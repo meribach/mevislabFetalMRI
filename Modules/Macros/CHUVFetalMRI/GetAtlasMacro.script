@@ -1,0 +1,85 @@
+//----------------------------------------------------------------------------------
+//! Macro module GetAtlasMacro
+/*!
+// \file    GetAtlasMacro.script
+// \author  pierre
+// \date    2017-12-14
+//
+// get atlas for filename and week
+*/
+//----------------------------------------------------------------------------------
+
+
+
+Interface {
+  Inputs {}
+  Outputs {    
+    Field outImage {
+      deprecatedName = "output"
+      internalName   = itkImageFileReader.output0
+    }
+    Field outMask {
+      internalName = itkImageFileReaderMask.output0
+    }
+  }
+  Parameters {
+    Field name     { type = string value = $*Home* }
+    Field AtlasPath {
+      editable = No 
+      type = String
+      value = ""
+      persistent = Yes
+    }
+    
+    //currentWeek should be limited between 21 and 37
+    Field currentWeek {
+      type = Int
+      value = 30
+    }
+  }
+}
+
+/*
+NetworkPanel {
+  Button load {
+    dependsOn = "* AtlasPath != "" *"
+  }
+}
+*/
+
+Description {
+  Field currentWeek {
+    min = 21
+    max = 37
+  }
+  
+}
+
+Commands {
+  source = $(LOCAL)/GetAtlasMacro.py
+  initCommand        = init
+  FieldListener name { command = AtlasPathChanged }
+  FieldListener currentWeek { command = weeksChanged }
+}
+
+Window {
+  mw = 480
+  Vertical {
+    //droppedFileCommand = fileDropped
+    margin             = 8
+    Box {
+      Horizontal {
+        FieldLabel name { title = "Path:" labelAlignGroup = group1 }
+        ComboBox name { name = pathChoices }
+        Button { title = "Browse" command = fileDialog }
+      }   
+      Field AtlasPath { trim = left labelAlignGroup = group1 }
+    }
+    Field currentWeek {step = 1}
+    //Field currentWeek { title = "Weeks:" step = 1 }
+    
+  }
+  
+  
+  Execute = populateComboBox  
+}

@@ -1,0 +1,19 @@
+//----------------------------------------------------------------------------------
+//! ImageOrientationInterface module definition
+/*!
+// \file    ImageOrientationInterface.def
+// \author  FetalMRI
+// \date    2018-01-16
+*/
+//----------------------------------------------------------------------------------
+
+
+MacroModule ImageOrientationInterface {
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+   
+  externalDefinition = "$(LOCAL)/ImageOrientationInterface.script"
+}

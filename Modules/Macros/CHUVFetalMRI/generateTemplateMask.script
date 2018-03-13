@@ -1,0 +1,42 @@
+//----------------------------------------------------------------------------------
+//! Macro module generateTemplateMask
+/*!
+// \file    generateTemplateMask.script
+// \author  FetalMRI
+// \date    2018-02-26
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {
+    Field name {internalName = GetAtlasMacro.name}
+    Field AtlasPath {internalName = GetAtlasMacro.AtlasPath}
+    
+  }
+}
+
+
+Commands {
+  source = $(LOCAL)/generateTemplateMask.py
+}
+
+Window {
+  mw = 480
+  Vertical {
+    Box {
+      Horizontal {
+        FieldLabel name { title = "Path:" labelAlignGroup = group1 }
+        ComboBox name { name = pathChoices }
+        Button { title = "Browse" command = fileDialog }
+      }   
+      Field AtlasPath { trim = left labelAlignGroup = group1 }
+    }
+    Button { title = "Excecute" command = main}
+ }
+}

@@ -1,0 +1,20 @@
+//----------------------------------------------------------------------------------
+//! CHUVTestInterface module definitions.
+/*!
+// \file    CHUVTestInterface.def
+// \author  FetalMRI
+// \date    2018-02-05
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule btkNLMDenoising {
+  DLL                = "CHUVTestInterface"
+
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/btkNLMDenoising.script
+}  

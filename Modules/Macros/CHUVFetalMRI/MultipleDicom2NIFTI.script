@@ -1,0 +1,42 @@
+//----------------------------------------------------------------------------------
+//! Macro module MultipleDicom2NIFTI
+/*!
+// \file    MultipleDicom2NIFTI.script
+// \author  FetalMRI
+// \date    2018-02-14
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {
+    Field name     { type = string value = $*Home* }
+    Field name2     { type = string value = $*Home* }
+  }
+}
+
+
+Commands {
+  source = $(LOCAL)/MultipleDicom2NIFTI.py
+  //FieldListener DirectDicomImport.outVolume {command = "modify_itksavename"}
+  FieldListener MultiFileVolumeListImageOutput.outVolIdx {command = "modify_itksavename"}
+}
+
+Window {
+  mw = 480
+  Vertical {
+    ComboBox name { name = pathChoices }
+    Button { title = "Browse" command = fileDialog }
+  
+    ComboBox name2 { name = pathChoices2 }
+    Button { title = "Browse" command = fileDialog2 } 
+  
+    Button { title = "Validate" command = execute }
+  }
+  
+}

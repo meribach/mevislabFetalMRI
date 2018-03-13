@@ -1,0 +1,19 @@
+//----------------------------------------------------------------------------------
+//! VerifWorldMatrix2MNI module definition
+/*!
+// \file    VerifWorldMatrix2MNI.def
+// \author     neuropsynov
+// \date    2018-03-08
+*/
+//----------------------------------------------------------------------------------
+
+
+MacroModule VerifWorldMatrix2MNI {
+  genre              = ""
+  author             = "   neuropsynov"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+   
+  externalDefinition = "$(LOCAL)/VerifWorldMatrix2MNI.script"
+}

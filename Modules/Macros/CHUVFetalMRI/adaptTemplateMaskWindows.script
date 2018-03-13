@@ -1,0 +1,43 @@
+//----------------------------------------------------------------------------------
+//! Macro module adaptTemplateMask
+/*!
+// \file    adaptTemplateMask.script
+// \author  FetalMRI
+// \date    2018-02-26
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+
+Interface {
+  Inputs {
+    Field inImage { internalName = Bypass.input0}
+  }  
+  Outputs { 
+    Field outAdaptTemplateMask { internalName = SoGroup1.self }
+    Field outAdaptMaskImage { internalName = CSOConvertToImage.output0}
+  }
+  Parameters {
+    Field updateCSOButton {type = Trigger}
+  }
+
+}
+
+NetworkPanel {
+  Button updateCSOButton {
+    symbol = "* "recycle" *"
+    command = updateCSO
+  }
+}
+
+Commands {
+  source = $(LOCAL)/adaptTemplateMask.py
+}
+
+Window {
+  Box {
+  Button updateCSOButton { title = "Update" command = updateCSO }
+  }
+}

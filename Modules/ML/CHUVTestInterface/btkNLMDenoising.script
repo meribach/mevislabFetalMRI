@@ -1,0 +1,15 @@
+//----------------------------------------------------------------------------------
+//! CHUVTestInterface module definitions.
+/*!
+// \file    btkNLMDenoising.script
+// \author  FetalMRI
+// \date    2018-02-05
+*/
+//----------------------------------------------------------------------------------
+
+
+Window {
+  Category {
+    Label { title = "Add your GUI here." }
+  }
+}

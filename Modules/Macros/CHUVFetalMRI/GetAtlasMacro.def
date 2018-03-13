@@ -1,0 +1,19 @@
+//----------------------------------------------------------------------------------
+//! GetAtlasMacro module definition
+/*!
+// \file    GetAtlasMacro.def
+// \author  pierre
+// \date    2017-12-14
+*/
+//----------------------------------------------------------------------------------
+
+
+MacroModule GetAtlasMacro {
+  genre              = ""
+  author             = "pierre"
+  comment            = "get atlas for filename and week"
+  keywords           = ""
+  seeAlso            = ""
+   
+  externalDefinition = "$(LOCAL)/GetAtlasMacro.script"
+}

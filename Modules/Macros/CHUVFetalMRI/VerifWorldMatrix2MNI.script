@@ -1,0 +1,27 @@
+//----------------------------------------------------------------------------------
+//! Macro module VerifWorldMatrix2MNI
+/*!
+// \file    VerifWorldMatrix2MNI.script
+// \author     neuropsynov
+// \date    2018-03-08
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+
+Interface {
+  Inputs {
+    Field input0 {internalName = Bypass.input0}
+  }
+  Outputs { 
+    Field output0 {internalName = SoGroupBT.self}
+  }
+  Parameters {}
+}
+
+
+Commands {
+  source = $(LOCAL)/VerifWorldMatrix2MNI.py
+}

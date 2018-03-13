@@ -1,0 +1,181 @@
+//----------------------------------------------------------------------------------
+//! Macro module ImageOrientationInterface
+/*!
+// \file    ImageOrientationInterface.script
+// \author  FetalMRI
+// \date    2018-01-16
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+
+Interface {
+  Inputs {
+    Field inImageInfos { type = MLBase }
+  }
+  Outputs {
+    Field outImagesInfosStep1 { type = MLBase }
+    //Field viewer2D    { internalName = RemoteRendering.output }
+    Field viewer2D {
+      hidden       = yes
+      internalName = viewer.self
+    }
+    
+  }
+  Parameters {
+    Field GestationalAge {internalName = GetAtlasMacro.currentWeek}
+    Field AtlasPath {internalName = GetAtlasMacro.AtlasPath}
+    Field AtlasImage {internalName = GetAtlasMacro.name}
+    Field NumberImages {type = Int value = 2}
+    Field cornerMenuIteraction {internalName = SyngoViaViewersMRCornerMenus.clickedMenuItem}
+    Field fileSelectionCompleted {type = Trigger}
+    Field resetAll {type = Trigger}
+    Field pathImages {type = String}
+    Field eventChoice {type = Int value = 0}
+    Field resetZoomButton {type = Trigger}
+    Field increaseNbImage {type = Trigger}
+    Field decreaseNbImage {type = Trigger}
+  }
+}
+
+
+Description {
+  Field NumberImages {
+    min = 1
+    max = 15
+  }
+}
+
+Commands {
+  source = $(MLAB_MMS_Syngo)/Modules/Macros/FrontierStyle/FrontierStyle.py
+  source = $(LOCAL)/ImageOrientationInterface.py
+  //initCommand = initImageOrientationInterface
+  FieldListener cornerMenuIteraction {command = cornerMenuClicked}
+  FieldListener fileSelectionCompleted {command = showImageOrientationInterface}
+  FieldListener resetAll {command = resetImages}
+  //FieldListener View2DExtensions.annoReadPix.worldPosition {command = updateLabelPosition}
+}
+
+NetworkPanel {
+  Button resetZoomButton {
+    symbol  = "* "recycle" *"
+    command = resetZoom
+  }
+  Button increaseNbImage {
+    symbol = "* "$(MLAB_CHUV_FetalMRI)/Projects/TestInterface/Modules/Graphics/up-arrow-symbol-icon-68695.png" *"
+    command = "py: modifyImageNumber(1)"
+  }
+  Button decreaseNbImage {
+    symbol  = "* "$(MLAB_CHUV_FetalMRI)/Projects/TestInterface/Modules/Graphics/down-arrow-symbol-icon-68695.png" *"
+    command = "py: modifyImageNumber(-1)"
+  }
+}
+
+Window ImageOrientationPanel {
+  
+  Splitter {
+    direction = horizontal
+    //expandX = No
+    Vertical
+    {
+      GraphicsView
+      {
+        name        = GraphicsView
+        initCommand = initImageOrientationGraphicsView
+        
+        //expandX = No
+      }
+
+      expandY = yes
+      //expandX = No
+    
+      Horizontal {
+        Field GestationalAge {step = 1}
+        Button { title = "Choose manually the atlas" command = getAtlasManually }
+        CheckBox { title = "+/1 week from Gestational Age" }
+      }
+      
+    }
+    
+    //expandX = No
+    
+    Box ViewerBox {
+        title = ""
+      
+        Viewer viewer2D {
+        name            = viewer
+        clone           = NO
+        preferredWidth  = 900
+        preferredHeight = 500
+        }
+      
+        EventFilter {
+          //dependsOn = "eventChoice == 1"
+          filter = "MouseButtonPress,KeyPress"
+          control = viewer 
+          command = button1PressedImOrient
+        }
+      
+        /*EventFilter {
+          dependsOn = "eventChoice == 2"
+          filter  = "MouseButtonPress,KeyPress"
+          control = viewer 
+          command = button1PressedMaskRefine         
+        }*/
+      expandY = yes
+    }
+    
+    
+  }
+  
+}
+
+Window ButtonOnly {
+    
+    style = FrontierStyle
+    Vertical
+    {
+      GraphicsView
+      {
+        name        = GraphicsView
+        initCommand = initImageOrientationGraphicsView
+        
+        //expandX = No
+      }
+
+      expandY = yes
+    
+      Horizontal {
+        Field GestationalAge {step = 1}
+        Button { title = "Choose manually the atlas" command = getAtlasManually }
+        CheckBox { title = "+/1 week from Gestational Age" }
+      }
+    }
+    expandX = yes
+  
+}
+
+Window ViewerOnly {
+  
+  style = FrontierStyle
+  Box ViewerBox {
+    title = ""
+      
+    Viewer viewer2D {
+      name            = viewer
+      clone           = NO
+      preferredWidth  = 900
+      preferredHeight = 500
+    }
+      
+    EventFilter {
+      filter  = "MouseButtonPress,KeyPress"
+      control = viewer 
+      command = button1PressedImOrient
+    }
+    expandY = yes
+  } 
+  
+}
