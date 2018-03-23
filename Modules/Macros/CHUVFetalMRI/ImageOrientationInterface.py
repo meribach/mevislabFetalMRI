@@ -37,6 +37,8 @@ def initImageOrientationGraphicsView(view):
   global activeMasking
   activeMasking = False
   ctx.field("Switch.currentInput").setValue(0)
+  ctx.field("GetAtlasMacro.itkImageFileReader.open").touch()
+  ctx.field("GetAtlasMacro.itkImageFileReaderMask.open").touch()
   
 def showImageOrientationInterface():
   
@@ -47,39 +49,47 @@ def showImageOrientationInterface():
   g_sceneImageOrientation = g_ImageOrientationGraphicsView.scene()
   g_sceneImageOrientation.clear()
   #setSceneBackgroundColor(g_sceneImageOrientation)
-  layer = g_sceneImageOrientation.addLayer()
+  #layer = g_sceneImageOrientation.addLayer()
 
-  g_layoutImageOrientation = g_sceneImageOrientation.createGridLayout(layer)
+  #g_layoutImageOrientation = g_sceneImageOrientation.createVerticalLayout(layer)
   
   #MainMDL = g_sceneImageOrientation.addMDL("Panel { module=parent:ImageOrientationInterface window=ImageOrientationPanel }")
   #ctx.control("GraphicsView" ).setProperty("expandX",False)
+  mdlToSet = ""
   numIm = ctx.field("NumberImages").value
   for i in range(numIm):
     buttonDefinition = """Button {expandX = No title = \"Image %i\" name = buttonImage%i command = "py: updateImage(\'Image%i\')"}"""%(i,i,i)
-    buttonImage = g_sceneImageOrientation.addMDL(buttonDefinition, True)
+    #buttonImage = g_sceneImageOrientation.addMDL(buttonDefinition, True)
     buttonPositioningDef = """Button {expandX = No title = "Set IH T B A P positons" name = buttonPositioning%i command = "py: setPositioning(\'Image%i\')"}"""%(i,i)
-    buttonPositioning = g_sceneImageOrientation.addMDL(buttonPositioningDef, True)
+    #buttonPositioning = g_sceneImageOrientation.addMDL(buttonPositioningDef, True)
     buttonManualPositioningDef = """Button {expandX = No title ="Set IH + manual registration" name = buttonManualPositioning%i command = "py: setManualPositioning(\'Image%i\')"}"""%(i,i)
-    buttonManualPositioning = g_sceneImageOrientation.addMDL(buttonManualPositioningDef, True)
+    #buttonManualPositioning = g_sceneImageOrientation.addMDL(buttonManualPositioningDef, True)
     buttonGenerateMaskDef = """Button {expandX = No title = "Generate Brain Mask" name = GenerateBrainMask%i command = "py: generateBrainMask(\'Image%i\')"}"""%(i,i)
-    buttonGenerateMask = g_sceneImageOrientation.addMDL(buttonGenerateMaskDef, True)
+    #buttonGenerateMask = g_sceneImageOrientation.addMDL(buttonGenerateMaskDef, True)
     checkBoxDefinition = "CheckBox {name = checkImage%i}"%(i)
-    checkBoxImage = g_sceneImageOrientation.addMDL(checkBoxDefinition,True)
+    #checkBoxImage = g_sceneImageOrientation.addMDL(checkBoxDefinition,True)
     comboboxDefinition = """ComboBox {expandX = No name = \"comboImage%i\" items {item = unknown item = axial item = sagittal item = coronal} textChangedCommand = "py: registerplaneOrientation(\'Image%i\')"}"""%(i,i)
-    comboboxImage = g_sceneImageOrientation.addMDL(comboboxDefinition,True)
+    
+    mdlToSet +="Horizontal {" + buttonDefinition + buttonPositioningDef + buttonManualPositioningDef + buttonGenerateMaskDef + comboboxDefinition + checkBoxDefinition +"}"
+    #mdlPanel = g_sceneImageOrientation.addMDL(mdlToSet)
+    #g_layoutImageOrientation.addItem(mdlPanel)
+    #comboboxImage = g_sceneImageOrientation.addMDL(comboboxDefinition,True)
     #comboboxImage.setProperty("expandX",False)
     #buttonPositioning.setProperty("expandX",False)
     #buttonImage.setProperty("expandX",False)
-    comboboxImage.setProperty("expandY",True)
-    g_layoutImageOrientation.addItem(buttonImage,i,0)
-    g_layoutImageOrientation.addItem(buttonPositioning,i,1)
-    g_layoutImageOrientation.addItem(buttonManualPositioning,i,2)
-    g_layoutImageOrientation.addItem(comboboxImage,i,3)
-    g_layoutImageOrientation.addItem(buttonGenerateMask,i,4)
-    g_layoutImageOrientation.addItem(checkBoxImage,i,5)
+    #comboboxImage.setProperty("expandY",True)
+    #g_layoutImageOrientation.addItem(buttonImage,i,0)
+    #g_layoutImageOrientation.addItem(buttonPositioning,i,1)
+    #g_layoutImageOrientation.addItem(buttonManualPositioning,i,2)
+    #g_layoutImageOrientation.addItem(comboboxImage,i,3)
+    #g_layoutImageOrientation.addItem(buttonGenerateMask,i,4)
+    #g_layoutImageOrientation.addItem(checkBoxImage,i,5)
   
-  buttonResetIm = g_sceneImageOrientation.addMDL("""Button {expandX = No title = "Reset Images" name = buttonResetImage command = "py: resetImages()"}""",True)
-  g_layoutImageOrientation.addItem(buttonResetIm,i+1,0)
+  buttonResetIm = """Button {expandX = No title = "Reset Images" name = buttonResetImage command = "py: resetImages()"}"""
+  
+  mdlToSet += buttonResetIm
+  g_sceneImageOrientation.addMDL("Vertical {" + mdlToSet + "}")
+  #g_layoutImageOrientation.addItem(buttonResetIm)
   #g_layoutImageOrientation.addItem(MainMDL,0,4)
 
 def getAtlasManually():
@@ -94,6 +104,9 @@ def resetImages():
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("itkImageFileReader.fileName").setStringValue("")
   resetZoom()
+  ctx.field("Switch.currentInput").setValue(0)
+  ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
+  ctx.field("SwitchAlreadyRegistered.currentInput").setValue(0)
   print("images reseted")
 
 def updateImage(Image="Image0"):
@@ -151,15 +164,25 @@ def updateImage(Image="Image0"):
       ctx.field("LabelB.drawingOn").setValue(True)
     else:
       ctx.field("LabelB.drawingOn").setValue(False)
-    
-    if "WorldChanged" in inImages[Image].keys():
+  else:
+    ctx.field("LabelIH.drawingOn").setValue(False)
+    ctx.field("LabelA.drawingOn").setValue(False)
+    ctx.field("LabelP.drawingOn").setValue(False)
+    ctx.field("LabelT.drawingOn").setValue(False)
+    ctx.field("LabelB.drawingOn").setValue(False)
+    ctx.field("ToggleBrainMask.on").setBoolValue(False)
+    print("No label to show")  
+  
+  
+  if "WorldChanged" in inImages[Image].keys():
       ctx.field("itkImageFileReader1.unresolvedFileName").setValue(inImages[Image]["WorldChanged"])
       ctx.field("SwitchAlreadyRegistered.currentInput").setValue(1)
-    else:
+  else:
       ctx.field("SwitchAlreadyRegistered.currentInput").setValue(0)
+      ctx.field("Switch.currentInput").setValue(0)
     
     #here I do, if all positioning are present I toggle the brain cso but it means that I reload the transfo in setworldmatrix and transformworldmatrix 
-    if "WorldChanged" in inImages[Image].keys() and "planeOrientation" in inImages[Image].keys():
+  if "WorldChanged" in inImages[Image].keys() and "planeOrientation" in inImages[Image].keys():
       if inImages[Image]["planeOrientation"] == 'axial':
         ctx.field("OrthoSwapFlip.view").setValue("Transversal")
       elif inImages[Image]["planeOrientation"] == 'coronal':
@@ -171,18 +194,11 @@ def updateImage(Image="Image0"):
       ctx.field("Switch.currentInput").setValue(1)  
       #ctx.field("adaptTemplateMask.updateCSOButton").touch()
       ctx.field("ToggleBrainMask.on").setBoolValue(True)
-    else:
+  else:
       ctx.field("ToggleBrainMask.on").setBoolValue(False)
       ctx.field("Switch.currentInput").setValue(0)
       print("Switch set to 0")
-  else:
-    ctx.field("LabelIH.drawingOn").setValue(False)
-    ctx.field("LabelA.drawingOn").setValue(False)
-    ctx.field("LabelP.drawingOn").setValue(False)
-    ctx.field("LabelT.drawingOn").setValue(False)
-    ctx.field("LabelB.drawingOn").setValue(False)
-    ctx.field("ToggleBrainMask.on").setBoolValue(False)
-    print("No label to show")
+
   print("label updated")
   
 def setPositioning(Image="Image0"):
@@ -324,12 +340,13 @@ def cornerMenuClicked():
 def button1PressedImOrient(event):
   
   global activeShowPosition
+  global activePositioning
   print activeShowPosition
   if activeShowPosition == 0:
     ctx.field("cornerMenuIteraction").setValue(1)
   
   inImages = ctx.field("inImageInfos").object() 
-  global activePositioning
+
   print("eventChoice button1PressedImOrient")
   print(ctx.field("eventChoice").value)
   if activePositioning == True:
@@ -432,7 +449,6 @@ def button1PressedImOrient(event):
         ctx.field("eventChoice").setValue(0)
         ctx.field("View2DExtensions.annotation.editingOn").setBoolValue(True)
         ctx.field("SoView2D.useManagedInteraction").setBoolValue(False)
-        global activePositioning
         activePositioning = False
         print("anatomic position registered")  
         print("modifying voxel to world transformation matrix")
@@ -462,18 +478,21 @@ def button1PressedImOrient(event):
           newBvox= inImages[currentPositioning]["Positioning"]["Tvox"]+numpy.multiply(recalculateBTortho*lengthBT,numpy.array([1/voxelSize[0],1/voxelSize[1],1/voxelSize[2]]))
           #orientBT = numpy.cross(BT,numpy.array([0,0,1]))
           
-          skewMatrixPA = numpy.array(((0,-orientPA[2],orientPA[1]),(orientPA[2],0,-orientPA[0]),(-orientPA[1],orientPA[0],0)))
-          #skewMatrixBT = numpy.array(((0,-orientBT[2],orientBT[1]),(orientBT[2],0,-orientBT[0]),(-orientBT[1],orientBT[0],0)))
+          if numpy.linalg.norm(orientPA) != 0:
+            skewMatrixPA = numpy.array(((0,-orientPA[2],orientPA[1]),(orientPA[2],0,-orientPA[0]),(-orientPA[1],orientPA[0],0)))
+            #skewMatrixBT = numpy.array(((0,-orientBT[2],orientBT[1]),(orientBT[2],0,-orientBT[0]),(-orientBT[1],orientBT[0],0)))
           
-          SquaredPA = numpy.dot(skewMatrixPA,skewMatrixPA)*1/(1+numpy.dot(PA,numpy.array([0,-1,0])))
-          #SquaredBT = numpy.dot(skewMatrixBT,skewMatrixBT)*1/(1+numpy.dot(BT,numpy.array([0,1,0])))
+            SquaredPA = numpy.dot(skewMatrixPA,skewMatrixPA)*1/(1+numpy.dot(PA,numpy.array([0,-1,0])))
+            #SquaredBT = numpy.dot(skewMatrixBT,skewMatrixBT)*1/(1+numpy.dot(BT,numpy.array([0,1,0])))
           
-          #FullRotation = numpy.array(((1,0,0),(0,1,0),(0,0,1))) + skewMatrixAP  + SquaredAP + SquaredBT + skewMatrixBT
-          #ca ne marche pas je ne peux pas composer des matrices de rotations comme ca
-          #PA
-          RotationPA = numpy.array(((1,0,0),(0,1,0),(0,0,1))) + skewMatrixPA  + SquaredPA
-          FullRotationPA = numpy.identity(4)
-          FullRotationPA[0:3,0:3]=RotationPA
+            #FullRotation = numpy.array(((1,0,0),(0,1,0),(0,0,1))) + skewMatrixAP  + SquaredAP + SquaredBT + skewMatrixBT
+            #ca ne marche pas je ne peux pas composer des matrices de rotations comme ca
+            #PA
+            RotationPA = numpy.array(((1,0,0),(0,1,0),(0,0,1))) + skewMatrixPA  + SquaredPA
+            FullRotationPA = numpy.identity(4)
+            FullRotationPA[0:3,0:3]=RotationPA
+          else:
+            FullRotationPA = numpy.identity(4)
           #la le determinant est bien a 1, numpy.linalg.det(FullRotationAP)
           
           #BT
@@ -509,13 +528,16 @@ def button1PressedImOrient(event):
           print("new BT")
           print(newBT)
           orientBT = numpy.cross(newBT,numpy.array([0,0,-1]))
-          skewMatrixBT = numpy.array(((0,-orientBT[2],orientBT[1]),(orientBT[2],0,-orientBT[0]),(-orientBT[1],orientBT[0],0)))
-          SquaredBT = numpy.dot(skewMatrixBT,skewMatrixBT)*1/(1+numpy.dot(newBT,numpy.array([0,0,-1])))
+          if numpy.linalg.norm(orientBT) != 0:
+            skewMatrixBT = numpy.array(((0,-orientBT[2],orientBT[1]),(orientBT[2],0,-orientBT[0]),(-orientBT[1],orientBT[0],0)))
+            SquaredBT = numpy.dot(skewMatrixBT,skewMatrixBT)*1/(1+numpy.dot(newBT,numpy.array([0,0,-1])))
           
-          RotationBT = numpy.array(((1,0,0),(0,1,0),(0,0,1))) + skewMatrixBT  + SquaredBT
-          FullRotationBT = numpy.identity(4)
-          FullRotationBT[0:3,0:3]=RotationBT
-          
+            RotationBT = numpy.array(((1,0,0),(0,1,0),(0,0,1))) + skewMatrixBT  + SquaredBT
+            FullRotationBT = numpy.identity(4)
+            FullRotationBT[0:3,0:3]=RotationBT
+          else:
+           FullRotationBT = numpy.identity(4)
+           
           print(FullRotationBT)
           
           #getnewIHvoxelPosition
@@ -591,22 +613,95 @@ def button1PressedMaskRefine(event):
   print("eventChoice")
   print(ctx.field("eventChoice").value)
   global currentImage
-  inImages = ctx.field("inImageInfos").object() 
+  inImages = ctx.field("inImageInfos").object()
+  worldToVoxelMatrix = ctx.field("SwitchAlreadyRegistered.output0").worldToVoxelMatrix()
+  csoId2Modify = []
   if event["type"] == "KeyPress":
     #ctx.field("adaptTemplateMask.updateCSOButton").touch()
-    if event["key"]=="2":
-      print("coucou")
+    CSOobj = ctx.field("adaptTemplateMask.CSOManager1.outCSOList").object()
+    for csobj in CSOobj.getCSOs():
+      if csobj.isInPlane:
+        if ctx.field("SoView2D.startSlice").value == int(csobj.getVoxelBoundingBox(worldToVoxelMatrix)[5]):
+            csoId2Modify.append(str(csobj.id))
+    csoId2Modifystr=" ".join(csoId2Modify)
+    print(csoId2Modifystr)        
+    if event["key"]=="2":   
       #ctx.field("adaptTemplateMask.AffineMatrixComposition.inTranslation").value
       #ctx.field("adaptTemplateMask.AffineMatrixComposition.inTranslation").setValue(numpy.array(ctx.field("adaptTemplateMask.AffineMatrixComposition.inTranslation").value) + numpy.array([0,-1,0,0]))
-      #ctx.field("AffineMatrixComposition.update").touch()
-      ctx.field("adaptTemplateMask.CSOManager1.outCSOList").object()
-      newMatrix=numpy.array([[1,0,0,0],[0,1,0,-1],[0,0,1,0],[0,0,0,0]])
-      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.csoIdList").setValue()
+      #ctx.field("AffineMatrixComposition.update").touch()  
+      #which orientation am I ? coronal/sagital 2 is -1 z
+      #axial, 2 is -1 y
+      if inImages[currentImage]['planeOrientation'] == "coronal" or inImages[currentImage]['planeOrientation'] == "sagittal":
+         newMatrix=numpy.array([[1,0,0,0],[0,1,0,0],[0,0,1,-1],[0,0,0,1]])
+      elif inImages[currentImage]['planeOrientation'] == "axial" :
+         newMatrix=numpy.array([[1,0,0,0],[0,1,0,-1],[0,0,1,0],[0,0,0,1]])
+         
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.csoIdList").setValue(csoId2Modifystr)
       ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.matrix").setValue(newMatrix)
       ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.apply").touch()
     
+    elif event["key"]=="8":
+      if inImages[currentImage]['planeOrientation'] == "coronal" or inImages[currentImage]['planeOrientation'] == "sagittal":
+         newMatrix=numpy.array([[1,0,0,0],[0,1,0,0],[0,0,1,1],[0,0,0,1]])
+      elif inImages[currentImage]['planeOrientation'] == "axial" :
+         newMatrix=numpy.array([[1,0,0,0],[0,1,0,1],[0,0,1,0],[0,0,0,1]])
+         
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.csoIdList").setValue(csoId2Modifystr)
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.matrix").setValue(newMatrix)
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.apply").touch()    
+      
+    elif event["key"]=="4":
+      if inImages[currentImage]['planeOrientation'] == "coronal" or inImages[currentImage]['planeOrientation'] == "axial":
+         newMatrix=numpy.array([[1,0,0,-1],[0,1,0,0],[0,0,1,0],[0,0,0,1]])
+      elif inImages[currentImage]['planeOrientation'] == "sagittal" :
+         newMatrix=numpy.array([[1,0,0,0],[0,1,0,-1],[0,0,1,0],[0,0,0,1]])
+         
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.csoIdList").setValue(csoId2Modifystr)
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.matrix").setValue(newMatrix)
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.apply").touch()    
+
+    elif event["key"]=="6":
+      if inImages[currentImage]['planeOrientation'] == "coronal" or inImages[currentImage]['planeOrientation'] == "axial":
+         newMatrix=numpy.array([[1,0,0,1],[0,1,0,0],[0,0,1,0],[0,0,0,1]])
+      elif inImages[currentImage]['planeOrientation'] == "sagittal" :
+         newMatrix=numpy.array([[1,0,0,0],[0,1,0,1],[0,0,1,0],[0,0,0,1]])
+         
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.csoIdList").setValue(csoId2Modifystr)
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.matrix").setValue(newMatrix)
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.apply").touch()    
+
+    elif event["key"]=="1":
+      
+      if inImages[currentImage]['planeOrientation'] == "coronal":
+         newMatrix=numpy.array([[0.9961946948320953,0,0.08715578000562225,0],[0,1,0,0],[-0.08715578000562225,0,0.9961946948320953,0],[0,0,0,1]])
+      elif inImages[currentImage]['planeOrientation'] == "axial":
+         newMatrix=numpy.array([[0.9961946948320953,-0.08715578000562225,0,0],[0.08715578000562225,0.9961946948320953,0,0],[0,0,1,0],[0,0,0,1]])
+      elif inImages[currentImage]['planeOrientation'] == "sagittal" :
+         newMatrix=numpy.array([[1,0,0,0],[0,0.9961946948320953,-0.08715578000562225,0],[0,0.08715578000562225,0.9961946948320953,0],[0,0,0,0]])
+         
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.csoIdList").setValue(csoId2Modifystr)
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.matrix").setValue(newMatrix)
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.apply").touch()    
+
+      
+    elif event["key"]=="9":
+      
+      if inImages[currentImage]['planeOrientation'] == "coronal":
+         newMatrix=numpy.array([[0.9961946948320953,0,-0.08715578000562225,0],[0,1,0,0],[0.08715578000562225,0,0.9961946948320953,0],[0,0,0,1]])
+      elif inImages[currentImage]['planeOrientation'] == "axial":
+         newMatrix=numpy.array([[0.9961946948320953,0.08715578000562225,0,0],[-0.08715578000562225,0.9961946948320953,0,0],[0,0,1,0],[0,0,0,1]])
+      elif inImages[currentImage]['planeOrientation'] == "sagittal" :
+         newMatrix=numpy.array([[1,0,0,0],[0,0.9961946948320953,0.08715578000562225,0],[0,-0.08715578000562225,0.9961946948320953,0],[0,0,0,0]])
+         
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.csoIdList").setValue(csoId2Modifystr)
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.matrix").setValue(newMatrix)
+      ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.apply").touch()        
+    
+    
     elif event["key"]=="r":
       print("should reset only current slice")
+    elif event["key"]=="s":
+      print("delete current CSO")
     
     elif event["key"] == "Return":
       print("Enter")
@@ -619,6 +714,15 @@ def button1PressedMaskRefine(event):
       NameFull=nameInter.replace('.nii','_Mask.nii')
       ctx.field("itkImageFileWriterMask.unresolvedFileName").setStringValue(NameFull)
       ctx.field("itkImageFileWriterMask.save").touch()
+      
+      if currentImage in inImages.keys():
+        inImages[currentImage].update({"mask":NameFull})
+      
+      ctx.field("AlreadyModifiedMaskReader.fileName").setStringValue(NameFull)
+      
+      ctx.field("AlreadyModifiedMask.currentInput").setValue(1)
+      
+      ctx.field("inImageInfos").setObject(inImages)
       #else:
       #  ctx.field("parent:MessageBox.message").setStringValue("you have to precise the plane orientation to be able to save")
       #  ctx.parent().module("MessageBox").showModalDialog("dialog")

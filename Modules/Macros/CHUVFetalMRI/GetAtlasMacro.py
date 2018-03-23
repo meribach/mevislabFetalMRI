@@ -16,7 +16,7 @@ import os
 
 def init():
   print("test")
-
+  weeksChanged()
 
 #def fileDropped(filename):
 #  ctx.field("name").value = ctx.unexpandFilename(filename)

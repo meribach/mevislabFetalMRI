@@ -12,7 +12,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 0
+    startSlice = 77
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -37,8 +37,8 @@ module View2D {
     sliceOrigin = "0 0"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 1
-    lutWidth = 1
+    lutCenter = 1742
+    lutWidth = 3484
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -61,20 +61,76 @@ module itkImageFileReader {
   internal  {
     frame = "541 357 136 56"
     moduleGroupName = GetAtlas
+    windows  {
+      window _default {
+        geometry = "804 416 310 415"
+        sizeHint = "310 415"
+        wasOpen = no
+      }
+    }
   }
   fields  {
     instanceName = itkImageFileReader
     fileDataType = int16
-    autoDetermineDataType = FALSE
+    autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
-    numDims = 0
+    info = "Loading okay."
+    numDims = 3
     fileType = TypeNotApplicable
-    componentType = ""
-    pixelType = UNKNOWNPIXELTYPE
-    loaderType = ""
-    outputMetaDataStr = ""
+    componentType = int16
+    pixelType = SCALAR
+    loaderType = NiftiImageIO
+    outputMetaDataStr = "ITK_FileNotes : 
+aux_file : 
+bitpix : 16
+cal_max : 0
+cal_min : 0
+datatype : 4
+descrip : 
+dim[0] : 3
+dim[1] : 135
+dim[2] : 189
+dim[3] : 155
+dim[4] : 1
+dim[5] : 1
+dim[6] : 1
+dim[7] : 1
+dim_info : 
+intent_code : 0
+intent_name : 
+intent_p1 : 0
+intent_p2 : 0
+intent_p3 : 0
+pixdim[0] : 1
+pixdim[1] : 0.799999
+pixdim[2] : 0.799999
+pixdim[3] : 0.799999
+pixdim[4] : 0
+pixdim[5] : 0
+pixdim[6] : 0
+pixdim[7] : 0
+qform_code : 2
+qoffset_x : 53.5999
+qoffset_y : 75.1999
+qoffset_z : -61.5999
+quatern_b : 0
+quatern_c : 0
+quatern_d : 1
+scl_inter : 0
+scl_slope : 1
+sform_code : 1
+slice_code : 
+slice_duration : 0
+slice_end : 0
+slice_start : 0
+srow_x : -0.799999 0 0 53.5999
+srow_y : 0 -0.799999 0 75.1999
+srow_z : 0 0 0.799999 -61.5999
+toffset : 0
+vox_offset : 352
+xyzt_units : 
+"
     suppressErrorPosting = FALSE
     unresolvedFileName = ""
   }
@@ -83,20 +139,76 @@ module itkImageFileReader {
   internal  {
     frame = "733 353 168 64"
     moduleGroupName = GetAtlasBrainMask
+    windows  {
+      window _default {
+        geometry = "804 360 310 415"
+        sizeHint = "310 415"
+        wasOpen = no
+      }
+    }
   }
   fields  {
     instanceName = itkImageFileReaderMask
-    fileDataType = int16
-    autoDetermineDataType = FALSE
+    fileDataType = "unsigned int8"
+    autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
-    numDims = 0
+    info = "Loading okay."
+    numDims = 3
     fileType = TypeNotApplicable
-    componentType = ""
-    pixelType = UNKNOWNPIXELTYPE
-    loaderType = ""
-    outputMetaDataStr = ""
+    componentType = "unsigned int8"
+    pixelType = SCALAR
+    loaderType = NiftiImageIO
+    outputMetaDataStr = "ITK_FileNotes : 
+aux_file : 
+bitpix : 8
+cal_max : 0
+cal_min : 0
+datatype : 2
+descrip : 
+dim[0] : 3
+dim[1] : 135
+dim[2] : 189
+dim[3] : 155
+dim[4] : 1
+dim[5] : 1
+dim[6] : 1
+dim[7] : 1
+dim_info : 
+intent_code : 0
+intent_name : 
+intent_p1 : 0
+intent_p2 : 0
+intent_p3 : 0
+pixdim[0] : 1
+pixdim[1] : 0.799999
+pixdim[2] : 0.799999
+pixdim[3] : 0.799999
+pixdim[4] : 0
+pixdim[5] : 0
+pixdim[6] : 0
+pixdim[7] : 0
+qform_code : 2
+qoffset_x : 53.5999
+qoffset_y : 75.1999
+qoffset_z : -61.5999
+quatern_b : 0
+quatern_c : 0
+quatern_d : 1
+scl_inter : 0
+scl_slope : 1
+sform_code : 1
+slice_code : 
+slice_duration : 0
+slice_end : 0
+slice_start : 0
+srow_x : -0.799999 0 0 53.5999
+srow_y : 0 -0.799999 0 75.1999
+srow_z : 0 0 0.799999 -61.5999
+toffset : 0
+vox_offset : 352
+xyzt_units : 
+"
     suppressErrorPosting = FALSE
     unresolvedFileName = ""
   }
@@ -108,7 +220,7 @@ networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 7
+        uniqueId = 10
         objectName = GetAtlas
         parentUniqueId = 0
         color  {

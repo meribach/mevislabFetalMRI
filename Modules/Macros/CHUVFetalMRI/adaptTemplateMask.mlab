@@ -588,7 +588,7 @@ module SoGroup {
     moduleGroupName = SecondTry
     windows  {
       window _viewer {
-        geometry = "1261 647 400 400"
+        geometry = "795 536 670 619"
         sizeHint = "400 400"
         wasOpen = no
       }
@@ -605,8 +605,8 @@ module CSOIsoGenerator {
     showNetworkPanel = true
     windows  {
       window _default {
-        geometry = "1120 283 361 589"
-        sizeHint = "361 589"
+        geometry = "1120 311 380 602"
+        sizeHint = "380 602"
         wasOpen = no
       }
       window _automatic {
@@ -653,7 +653,7 @@ module CSOIsoGenerator {
     smoothFactor = 0.1
     smoothRange = 1
     reduceCSOsToOnlyOneSeedPoint = TRUE
-    autoClear = FALSE
+    autoClear = TRUE
     progress = 0.035714287
     creationMode = All
     startCondition = Always
@@ -669,7 +669,7 @@ module CSOManager {
       window _default {
         geometry = "63 574 706 594"
         sizeHint = "706 594"
-        wasOpen = yes
+        wasOpen = no
       }
       window _automatic {
         geometry = "775 243 500 600"
@@ -842,7 +842,7 @@ module SoView2D {
       window _default {
         geometry = "838 461 445 528"
         sizeHint = "445 528"
-        wasOpen = yes
+        wasOpen = no
       }
       window _automatic {
         geometry = "717 329 500 600"
@@ -1030,7 +1030,7 @@ LUT C/W: $(numInput07) / $(numInput08)"
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
-    annoNumInput02 = 776
+    annoNumInput02 = 0
     annoNumInput03 = 0.5
     annoNumInput04 = 1
     annoNumInput05 = 0.5
@@ -1358,7 +1358,7 @@ module AffineMatrixComposition {
       window _default {
         geometry = "185 496 341 531"
         sizeHint = "341 531"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -1519,9 +1519,9 @@ module CSOAffineTransformationModificator {
     moduleGroupName = SecondTry
     windows  {
       window _default {
-        geometry = "1425 365 380 672"
+        geometry = "1425 393 380 672"
         sizeHint = "380 672"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -1545,16 +1545,16 @@ module CSOAffineTransformationModificator {
     seedPointAlpha = 1
     voxelWriteMode = VoxelWriteModeModule
     voxelWriteValue = 1024
-    csoIdList = 10
+    csoIdList = 1
     workDirectlyOnInputList = TRUE
     useUndoRedo = TRUE
     changeSettingsForModifiedCSOs = FALSE
     listenToFinishingNotifications = TRUE
     listenToSelectionNotifications = TRUE
-    matrix = "1 0 0 -10
-0 1 0 0
-0 0 1 0
-0 0 0 1"
+    matrix = "1 0 0 0
+0 1 0 -1
+0 0 1 1
+0 0 0 0"
   }
 }
 connections  {
