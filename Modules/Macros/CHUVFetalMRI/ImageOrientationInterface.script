@@ -29,7 +29,7 @@ Interface {
     Field AtlasPath {internalName = GetAtlasMacro.AtlasPath}
     Field AtlasImage {internalName = GetAtlasMacro.name}
     Field NumberImages {type = Int value = 2}
-    Field cornerMenuIteraction {internalName = SyngoViaViewersMRCornerMenus.clickedMenuItem}
+    //Field cornerMenuIteraction {internalName = SyngoViaViewersMRCornerMenus.clickedMenuItem}
     Field fileSelectionCompleted {type = Trigger}
     Field resetAll {type = Trigger}
     Field pathImages {type = String}
@@ -52,7 +52,7 @@ Commands {
   source = $(MLAB_MMS_Syngo)/Modules/Macros/FrontierStyle/FrontierStyle.py
   source = $(LOCAL)/ImageOrientationInterface.py
   //initCommand = initImageOrientationInterface
-  FieldListener cornerMenuIteraction {command = cornerMenuClicked}
+  //FieldListener cornerMenuIteraction {command = cornerMenuClicked}
   FieldListener fileSelectionCompleted {command = showImageOrientationInterface}
   FieldListener resetAll {command = resetImages}
   //FieldListener View2DExtensions.annoReadPix.worldPosition {command = updateLabelPosition}
