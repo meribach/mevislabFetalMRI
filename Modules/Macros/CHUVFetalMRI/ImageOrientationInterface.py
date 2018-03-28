@@ -210,6 +210,7 @@ def updateImage(Image="Image0"):
         print("Switch set to 0")
         
   if "mask" in inImages[Image].keys():
+     ctx.field("AlreadyModifiedMaskReader.fileName").setStringValue(inImages[Image]["mask"])
      ctx.field("AlreadyModifiedMask.currentInput").setValue(1)
      ctx.field("adaptTemplateMask.updateCSOButton").touch()
      
