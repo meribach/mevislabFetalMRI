@@ -49,7 +49,7 @@ Description {
 }
 
 Commands {
-  source = $(MLAB_MMS_Syngo)/Modules/Macros/FrontierStyle/FrontierStyle.py
+  //source = $(MLAB_MMS_Syngo)/Modules/Macros/FrontierStyle/FrontierStyle.py
   source = $(LOCAL)/ImageOrientationInterface.py
   //initCommand = initImageOrientationInterface
   //FieldListener cornerMenuIteraction {command = cornerMenuClicked}
@@ -134,7 +134,7 @@ Window ImageOrientationPanel {
 
 Window ButtonOnly {
     
-    style = FrontierStyle
+    //style = FrontierStyle
     Vertical
     {
       GraphicsView
@@ -159,7 +159,7 @@ Window ButtonOnly {
 
 Window ViewerOnly {
   
-  style = FrontierStyle
+  //style = FrontierStyle
   Box ViewerBox {
     title = ""
       

@@ -39,6 +39,9 @@ def initImageOrientationGraphicsView(view):
   ctx.field("Switch.currentInput").setValue(0)
   ctx.field("GetAtlasMacro.itkImageFileReader.open").touch()
   ctx.field("GetAtlasMacro.itkImageFileReaderMask.open").touch()
+  ctx.field("ToggleBrainMask.on").setValue(False)
+  ctx.field("SwitchAlreadyRegistered.currentInput").setValue(0)
+  ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
   
 def showImageOrientationInterface():
   
@@ -195,9 +198,13 @@ def updateImage(Image="Image0"):
       #ctx.field("adaptTemplateMask.updateCSOButton").touch()
       ctx.field("ToggleBrainMask.on").setBoolValue(True)
   else:
-      ctx.field("ToggleBrainMask.on").setBoolValue(False)
-      ctx.field("Switch.currentInput").setValue(0)
-      print("Switch set to 0")
+      if "WorldChanged" in inImages[Image].keys():
+        ctx.field("ToggleBrainMask.on").setBoolValue(True)
+        ctx.field("Switch.currentInput").setValue(1)
+      else:  
+        ctx.field("ToggleBrainMask.on").setBoolValue(False)
+        ctx.field("Switch.currentInput").setValue(0)
+        print("Switch set to 0")
 
   print("label updated")
   
@@ -230,6 +237,9 @@ def setPositioning(Image="Image0"):
 
   
 def registerplaneOrientation(Image="Image0"):
+  
+  if not ctx.hasControl("combo%s"%Image):
+    return
   
   inImages = ctx.field("inImageInfos").object()
   
