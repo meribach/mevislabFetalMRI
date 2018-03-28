@@ -23,7 +23,7 @@ module GetAtlasMacro {
     instanceName = GetAtlasMacro
     name = $(HOME)/Bureau/CHUV/CRL_Fetal_Brain_Atlas_2016
     AtlasPath = /home/neuropsynov/Bureau/CHUV/CRL_Fetal_Brain_Atlas_2016
-    currentWeek = 27
+    currentWeek = 30
   }
 }
 module RemoteRendering {
@@ -63,7 +63,7 @@ module SoGroup {
     moduleGroupName = ViewerInterface
     windows  {
       window _viewer {
-        geometry = "342 548 641 647"
+        geometry = "342 433 641 647"
         sizeHint = "400 400"
         wasOpen = no
       }
@@ -115,8 +115,8 @@ module SoView2DSlider {
     clipToSlice = FALSE
     cursorShape = UNDEFINED_CURSOR
     minimumValue = 0
-    maximumValue = 0
-    currentValue = 0
+    maximumValue = 23
+    currentValue = 5
     useTracking = TRUE
     stepSize = 1
     snapSize = 1
@@ -156,7 +156,7 @@ module Switch {
   }
   fields  {
     instanceName = Switch
-    currentInput = 0
+    currentInput = 1
     numberOfInputs = 2
   }
 }
@@ -180,7 +180,7 @@ module Switch {
   }
   fields  {
     instanceName = Switch1
-    currentInput = 1
+    currentInput = 0
     numberOfInputs = 2
   }
 }
@@ -198,7 +198,7 @@ module SoCalculator {
   }
   fields  {
     instanceName = SoCalculator
-    a = 0
+    a = 1
     b = 1
     c = 0
     d = 0
@@ -214,7 +214,7 @@ module SoCalculator {
     vf = "0 0 0"
     vg = "0 0 0"
     vh = "0 0 0"
-    oa = 1
+    oa = 0
     ob = 0
     oc = 0
     od = 0
@@ -244,20 +244,66 @@ module itkImageFileReader {
   }
   fields  {
     instanceName = itkImageFileReader
-    fileDataType = "unsigned int8"
+    fileDataType = int16
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = " Could not create IO object for file D:/Pierre/zurich/Anonymized_data/10063_GW_27/20170804_074500anonymouss006a1001.nii.gz
-The file doesn't exist. 
-Filename = D:/Pierre/zurich/Anonymized_data/10063_GW_27/20170804_074500anonymouss006a1001.nii.gz
- Loaded data may be undefined."
-    numDims = 0
+    info = "Loading okay."
+    numDims = 3
     fileType = TypeNotApplicable
-    componentType = ""
-    pixelType = UNKNOWNPIXELTYPE
-    loaderType = ""
-    outputMetaDataStr = ""
+    componentType = int16
+    pixelType = SCALAR
+    loaderType = NiftiImageIO
+    outputMetaDataStr = "ITK_FileNotes : 
+aux_file : 
+bitpix : 16
+cal_max : 0
+cal_min : 0
+datatype : 4
+descrip : 
+dim[0] : 3
+dim[1] : 512
+dim[2] : 512
+dim[3] : 24
+dim[4] : 1
+dim[5] : 1
+dim[6] : 1
+dim[7] : 1
+dim_info : 
+intent_code : 0
+intent_name : 
+intent_p1 : 0
+intent_p2 : 0
+intent_p3 : 0
+pixdim[0] : 1
+pixdim[1] : 0.4688
+pixdim[2] : 0.4688
+pixdim[3] : 2.99995
+pixdim[4] : 0
+pixdim[5] : 0
+pixdim[6] : 0
+pixdim[7] : 0
+qform_code : 2
+qoffset_x : 143.118
+qoffset_y : -12.0852
+qoffset_z : 58.2752
+quatern_b : -0.238493
+quatern_c : -0.59659
+quatern_d : 0.71145
+scl_inter : 0
+scl_slope : 1
+sform_code : 1
+slice_code : 
+slice_duration : 0
+slice_end : 0
+slice_start : 0
+srow_x : -0.339487 -0.0564913 -2.03703 143.118
+srow_y : 0.323299 -0.0591064 -2.13927 -12.0852
+srow_z : 0.000149464 -0.461615 0.523204 58.2752
+toffset : 0
+vox_offset : 352
+xyzt_units : 
+"
     suppressErrorPosting = FALSE
     unresolvedFileName = D:/Pierre/zurich/Anonymized_data/10063_GW_27/20170804_074500anonymouss006a1001.nii.gz
   }
@@ -315,11 +361,11 @@ module WorldVoxelConvert {
     voxelX = 64
     voxelY = 86
     voxelZ = 102
-    worldX = 64
-    worldY = 86
-    worldZ = 102
+    worldX = 90.0281734104143
+    worldY = 213.745030974766
+    worldZ = 71.9218231451387
     voxelPos = "64 86 102"
-    worldPos = "64 86 102"
+    worldPos = "90.0281734104143 213.745030974766 71.9218231451387"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -407,11 +453,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
-    lutGrayWidth = 1
-    lutAlphaCenter = 1
-    lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutGrayCenter = 1378
+    lutGrayWidth = 2756
+    lutAlphaCenter = 1378
+    lutAlphaWidth = 2756
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -486,21 +532,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
-    annoInput04 = 1
+    annoInput03 = 1378
+    annoInput04 = 2756
     annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 1
-    annoInput08 = 1
+    annoInput07 = 1378
+    annoInput08 = 2756
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
-    annoNumInput02 = 997
-    annoNumInput03 = 1
-    annoNumInput04 = 1
+    annoNumInput02 = 748
+    annoNumInput03 = 1378
+    annoNumInput04 = 2756
     annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 1378
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -599,7 +645,7 @@ module SoView2DLabel {
 "
     viewerId = ""
     textPositioning = WORLD_COORDINATES
-    worldPosition = "-1.65015888214111 -35.5044403076172 -94.3377990722656"
+    worldPosition = "7.91764831542969 -32.082706451416 -108.354713439941"
     relativeViewerPosition = "70 133"
     useDepthVisibility = TRUE
     depthVisibility = 2
@@ -634,7 +680,7 @@ module SoView2DLabel {
     text = T
     viewerId = ""
     textPositioning = WORLD_COORDINATES
-    worldPosition = "-38.5671730041504 -12.7044067382812 -123.744522094727"
+    worldPosition = "-11.5860748291016 -7.20950222015381 -134.120483398438"
     relativeViewerPosition = "0.5 0.5"
     useDepthVisibility = TRUE
     depthVisibility = 2
@@ -669,7 +715,7 @@ module SoView2DLabel {
     text = B
     viewerId = ""
     textPositioning = WORLD_COORDINATES
-    worldPosition = "15.817343711853 -46.0682830810547 -80.5015258789062"
+    worldPosition = "9.22257995605469 -39.6248741149902 -82.5970077514648"
     relativeViewerPosition = "0.5 0.5"
     useDepthVisibility = TRUE
     depthVisibility = 2
@@ -704,7 +750,7 @@ module SoView2DLabel {
     text = A
     viewerId = ""
     textPositioning = WORLD_COORDINATES
-    worldPosition = "-24.6380157470703 -24.5273590087891 -89.7870254516602"
+    worldPosition = "-30.143913269043 -5.09994792938232 -70.4933242797852"
     relativeViewerPosition = "0.5 0.5"
     useDepthVisibility = TRUE
     depthVisibility = 2
@@ -739,7 +785,7 @@ module SoView2DLabel {
     text = P
     viewerId = ""
     textPositioning = WORLD_COORDINATES
-    worldPosition = "5.22801780700684 -34.9160919189453 -119.529724121094"
+    worldPosition = "33.6016235351562 -50.489574432373 -133.090484619141"
     relativeViewerPosition = "0.5 0.5"
     useDepthVisibility = TRUE
     depthVisibility = 2
@@ -806,11 +852,11 @@ module SoView2D {
     instanceName = SoView2D
     interactionProviderID = ""
     viewerId = viewer
-    startSlice = 0
+    startSlice = 5
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -821,7 +867,7 @@ module SoView2D {
     sliceZoomSynchronized = 1
     zoomCenter = "0.756837546825409 0.427350401878357"
     minSliceZoomKeyboard = 1
-    sliceOrigin = "0 0"
+    sliceOrigin = "3.814697265625e-06 0"
     viewingCenter = "0 0 0"
     enableViewingCenter = FALSE
     unzoomOnImageChange = FALSE
@@ -866,7 +912,7 @@ module SoView2D {
     deletingEnabled = TRUE
     handle2DEvents = TRUE
     handle3DEvents = TRUE
-    useManagedInteraction = FALSE
+    useManagedInteraction = TRUE
     devicePixelSize = 1
     enableZBuffer = TRUE
     enableZWrite = TRUE
@@ -1389,7 +1435,7 @@ module SetWorldMatrix {
     instanceName = SetWorldMatrix
     center = "0 0 0"
     scaleOrientation = "0 0 1 0"
-    scale = "0.468800008296967 0.468800008296967 3.00005292892456"
+    scale = "0.468800008296967 0.468800008296967 2.99995183944702"
     rotation = "0 0 1 0"
     translation = "0 0 0"
     sourceUsage = Ignore
@@ -1459,7 +1505,7 @@ module adaptTemplateMask {
     showNetworkPanel = true
     windows  {
       window _default {
-        geometry = "344 488 334 39"
+        geometry = "344 572 334 39"
         sizeHint = "90 35"
         wasOpen = no
       }
@@ -1505,7 +1551,7 @@ module Switch {
     showNetworkPanel = true
     windows  {
       window _default {
-        geometry = "867 625 201 64"
+        geometry = "867 653 201 64"
         sizeHint = "201 64"
         wasOpen = no
       }
@@ -1523,7 +1569,7 @@ module itkImageFileReader {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "803 516 480 415"
+        geometry = "803 544 480 415"
         sizeHint = "310 415"
         wasOpen = no
       }
@@ -1551,7 +1597,7 @@ descrip :
 dim[0] : 3
 dim[1] : 512
 dim[2] : 512
-dim[3] : 27
+dim[3] : 24
 dim[4] : 1
 dim[5] : 1
 dim[6] : 1
@@ -1565,18 +1611,18 @@ intent_p3 : 0
 pixdim[0] : 1
 pixdim[1] : 0.4688
 pixdim[2] : 0.4688
-pixdim[3] : 3.00005
+pixdim[3] : 2.99995
 pixdim[4] : 0
 pixdim[5] : 0
 pixdim[6] : 0
 pixdim[7] : 0
 qform_code : 2
-qoffset_x : 133.605
-qoffset_y : -41.0291
-qoffset_z : -73.986
-quatern_b : -0.159355
-quatern_c : 0.758774
-quatern_d : 0.630724
+qoffset_x : 41.9993
+qoffset_y : 220.169
+qoffset_z : -47.8534
+quatern_b : 0.639263
+quatern_c : -0.302229
+quatern_d : -0.639263
 scl_inter : 0
 scl_slope : 1
 sform_code : 1
@@ -1584,9 +1630,9 @@ slice_code :
 slice_duration : 0
 slice_end : 0
 slice_start : 0
-srow_x : -0.444001 -0.132584 -0.455143 133.605
-srow_y : -0.0941554 0.0720014 2.90258 -41.0291
-srow_z : -0.117352 0.443859 -0.606801 -73.986
+srow_x : 1.68031e-08 3.55413e-08 -2.99995 41.9993
+srow_y : -0.362296 -0.297515 -2.27436e-07 220.169
+srow_z : -0.297515 0.362296 1.07527e-07 -47.8534
 toffset : 0
 vox_offset : 352
 xyzt_units : 
@@ -1609,9 +1655,9 @@ module TransformWorldMatrix {
   }
   fields  {
     instanceName = TransformWorldMatrixTransAndAP
-    transformation = "0.952342187038784 -0.200843755326147 0.229578188712856 -82.9492149843864
-0.200843755326147 -0.153586546526238 -0.967508634934404 42.469300766926
-0.229578188712856 0.967508634934404 -0.105928733565023 -128.689590499046
+    transformation = "0.634630257398377 -0.77281591365245 0 47.8858390684794
+0.77281591365245 0.634630257398377 0 -220.498478882102
+0 0 1 -43.4993016719818
 0 0 0 1"
     invert = FALSE
   }
@@ -1658,7 +1704,7 @@ module SoView2DLabel {
     text = newB
     viewerId = ""
     textPositioning = WORLD_COORDINATES
-    worldPosition = "11.5764150619507 -10.7067565917969 -21.1772842407227"
+    worldPosition = "24.1200942993164 -7.57804346084595 0"
     relativeViewerPosition = "0.5 0.5"
     useDepthVisibility = TRUE
     depthVisibility = 3
@@ -1693,7 +1739,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -1792,11 +1838,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
-    lutGrayWidth = 1
-    lutAlphaCenter = 1
-    lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutGrayCenter = 1378
+    lutGrayWidth = 2756
+    lutAlphaCenter = 1378
+    lutAlphaWidth = 2756
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -1871,21 +1917,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
-    annoInput04 = 1
+    annoInput03 = 1378
+    annoInput04 = 2756
     annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 1
-    annoInput08 = 1
+    annoInput07 = 1378
+    annoInput08 = 2756
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 760
-    annoNumInput03 = 1
-    annoNumInput04 = 1
+    annoNumInput03 = 1378
+    annoNumInput04 = 2756
     annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 1378
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -1959,7 +2005,7 @@ module SoView2DLabel {
     text = newT
     viewerId = ""
     textPositioning = WORLD_COORDINATES
-    worldPosition = "-24.2593059539795 -10.7067565917969 45.2140922546387"
+    worldPosition = "-40.0689239501953 -7.57804346084595 0"
     relativeViewerPosition = "0.5 0.5"
     useDepthVisibility = TRUE
     depthVisibility = 3
@@ -1991,11 +2037,11 @@ module WorldVoxelConvert {
     voxelX = 276.786315917969
     voxelY = 249.435897827149
     voxelZ = 11.5012265243338
-    worldX = 276.786315917969
-    worldY = 249.435897827149
-    worldZ = 11.5012265243338
+    worldX = 39.8641738289736
+    worldY = -46.0090354165446
+    worldZ = -8.99617600440975
     voxelPos = "276.786315917969 249.435897827149 11.5012265243338"
-    worldPos = "276.786315917969 249.435897827149 11.5012265243338"
+    worldPos = "39.8641738289736 -46.0090354165446 -8.99617600440975"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -2109,11 +2155,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
-    lutGrayWidth = 1
-    lutAlphaCenter = 1
-    lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutGrayCenter = 1378
+    lutGrayWidth = 2756
+    lutAlphaCenter = 1378
+    lutAlphaWidth = 2756
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -2188,21 +2234,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
-    annoInput04 = 1
+    annoInput03 = 1378
+    annoInput04 = 2756
     annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 1
-    annoInput08 = 1
+    annoInput07 = 1378
+    annoInput08 = 2756
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 681
-    annoNumInput03 = 1
-    annoNumInput04 = 1
+    annoNumInput03 = 1378
+    annoNumInput04 = 2756
     annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 1378
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -2339,7 +2385,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -2555,9 +2601,9 @@ module TransformWorldMatrix {
   }
   fields  {
     instanceName = TransformWorldMatrixBT
-    transformation = "0.879991950473764 0 0.474988596811945 0
+    transformation = "0 0 1 0
 0 1 0 0
--0.474988596811945 0 0.879991950473764 0
+-1 0 0 0
 0 0 0 1"
     invert = FALSE
   }
@@ -2617,7 +2663,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -2716,11 +2762,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
-    lutGrayWidth = 1
-    lutAlphaCenter = 1
-    lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutGrayCenter = 1378
+    lutGrayWidth = 2756
+    lutAlphaCenter = 1378
+    lutAlphaWidth = 2756
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -2795,21 +2841,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
-    annoInput04 = 1
+    annoInput03 = 1378
+    annoInput04 = 2756
     annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 1
-    annoInput08 = 1
+    annoInput07 = 1378
+    annoInput08 = 2756
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 892
-    annoNumInput03 = 1
-    annoNumInput04 = 1
+    annoNumInput03 = 1378
+    annoNumInput04 = 2756
     annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 1378
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -2974,7 +3020,7 @@ module SoView2DLabel {
     moduleGroupName = RotationBT
     windows  {
       window _default {
-        geometry = "759 321 400 717"
+        geometry = "759 349 400 717"
         sizeHint = "400 717"
         wasOpen = no
       }
@@ -3021,7 +3067,7 @@ module itkImageFileWriter {
     correctSubVoxelShift = TRUE
     forceDirectionCosineWrite = TRUE
     outputVoxelType = Automatic
-    info = ""
+    info = "File saved successfully"
     unresolvedFileName = D:/Pierre/zurich/Anonymized_data/10063_GW_27/testreorient.nii
   }
 }
@@ -3056,7 +3102,7 @@ module OrthoSwapFlip {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "1184 522 261 258"
+        geometry = "1184 550 261 258"
         sizeHint = "261 258"
         wasOpen = no
       }
@@ -3087,7 +3133,7 @@ module Resample3D {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "793 458 332 331"
+        geometry = "793 486 332 331"
         sizeHint = "332 331"
         wasOpen = no
       }
@@ -3100,10 +3146,10 @@ module Resample3D {
     isotropic = FALSE
     filterAlways = FALSE
     filterAlwaysTolerance = 0
-    zoom = "1.70648247543375 1.70648247543375 0.266661628176256"
+    zoom = "1.70648247543375 1.70648247543375 0.266670613882065"
     imageSize = "323 265 36"
-    voxelSize = "0.468800008296967 0.468800008296967 3.00005292892456"
-    subVoxelShift = "1.53078081789819 -0.57999471015782 0.129773651752359"
+    voxelSize = "0.468800008296967 0.468800008296967 2.99995183944702"
+    subVoxelShift = "-0.161137760832176 0.095527178291519 -1.87395660210603"
     useReferenceImage = TRUE
   }
 }
@@ -3114,7 +3160,7 @@ module Reformat {
     showNetworkPanel = true
     windows  {
       window _default {
-        geometry = "1023 307 419 661"
+        geometry = "1023 335 419 661"
         sizeHint = "405 661"
         wasOpen = no
       }
@@ -3131,7 +3177,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "19.6293038903338 8.9559413408348 1.54800159712892"
+    center = "-7.49989201894699 -51.5869257640447 -31.3017609568652"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -3184,7 +3230,7 @@ module itkImageFileWriter {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "831 424 311 399"
+        geometry = "831 452 311 399"
         sizeHint = "256 399"
         wasOpen = no
       }
@@ -3196,8 +3242,8 @@ module itkImageFileWriter {
     correctSubVoxelShift = TRUE
     forceDirectionCosineWrite = TRUE
     outputVoxelType = Automatic
-    info = ""
-    unresolvedFileName = $(HOME)/Bureau/CHUV/10063_GW_27/testMultipleDicom2Nifti/0MR_CorSSFSESchadel_worldmatrixModified_Mask.nii
+    info = "File saved successfully"
+    unresolvedFileName = $(HOME)/Bureau/CHUV/10063_GW_27/testMultipleDicom2Nifti/2MR_SagSSFSESchadel_worldmatrixModified_Mask.nii
   }
 }
 module MessageBox {
@@ -3268,7 +3314,7 @@ descrip :
 dim[0] : 3
 dim[1] : 512
 dim[2] : 512
-dim[3] : 27
+dim[3] : 24
 dim[4] : 1
 dim[5] : 1
 dim[6] : 1
@@ -3282,18 +3328,18 @@ intent_p3 : 0
 pixdim[0] : 1
 pixdim[1] : 0.4688
 pixdim[2] : 0.4688
-pixdim[3] : 3.00005
+pixdim[3] : 2.99995
 pixdim[4] : 0
 pixdim[5] : 0
 pixdim[6] : 0
 pixdim[7] : 0
 qform_code : 2
-qoffset_x : 133.605
-qoffset_y : -41.0291
-qoffset_z : -73.986
-quatern_b : -0.159355
-quatern_c : 0.758774
-quatern_d : 0.630724
+qoffset_x : 41.9993
+qoffset_y : 220.169
+qoffset_z : -47.8534
+quatern_b : 0.639263
+quatern_c : -0.302229
+quatern_d : -0.639263
 scl_inter : 0
 scl_slope : 1
 sform_code : 1
@@ -3301,15 +3347,15 @@ slice_code :
 slice_duration : 0
 slice_end : 0
 slice_start : 0
-srow_x : -0.444001 -0.132584 -0.455144 133.605
-srow_y : -0.0941556 0.0720014 2.90258 -41.0291
-srow_z : -0.117352 0.443859 -0.606801 -73.986
+srow_x : 0 0 -2.99995 41.9993
+srow_y : -0.362296 -0.297515 0 220.169
+srow_z : -0.297515 0.362296 0 -47.8534
 toffset : 0
 vox_offset : 352
 xyzt_units : 
 "
     suppressErrorPosting = FALSE
-    unresolvedFileName = $(HOME)/Bureau/CHUV/10063_GW_27/testMultipleDicom2Nifti/0MR_CorSSFSESchadel_worldmatrixModified.nii
+    unresolvedFileName = $(HOME)/Bureau/CHUV/10063_GW_27/testMultipleDicom2Nifti/2MR_SagSSFSESchadel_worldmatrixModified.nii
   }
 }
 module SoInteractionInfo {
@@ -3318,7 +3364,7 @@ module SoInteractionInfo {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "808 263 412 340"
+        geometry = "808 291 412 340"
         sizeHint = "412 340"
         wasOpen = no
       }
@@ -3336,8 +3382,13 @@ module SoInteractionMapping {
     moduleGroupName = ViewerInterface
     windows  {
       window _default {
-        geometry = "826 482 266 282"
+        geometry = "826 622 266 282"
         sizeHint = "266 282"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "709 267 500 600"
+        sizeHint = "260 226"
         wasOpen = no
       }
     }
@@ -3352,9 +3403,44 @@ module SoInteractionMapping {
     ignoreOtherOffsetActions = FALSE
   }
 }
+module SoView2DLabel {
+  internal  {
+    frame = "1196 -7 136 56"
+    moduleGroupName = ViewerInterface
+    windows  {
+      window _default {
+        geometry = "903 224 400 717"
+        sizeHint = "400 717"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LabelViewerMode
+    interactionProviderID = ""
+    drawingOn = TRUE
+    color = "0.882352948188782 0.968627452850342 0.0352941192686558"
+    text = "Viewer Mode"
+    viewerId = ""
+    textPositioning = RELATIVE_TO_VIEWER
+    worldPosition = "0 0 0"
+    relativeViewerPosition = "0 0"
+    useDepthVisibility = FALSE
+    depthVisibility = 1
+    depthVisibilityMode = DEPTH_IN_SLICES
+    depthMinimumAlpha = 0
+    verticalOffset = 0
+    verticalPosition = POS_VCENTER
+    horizontalOffset = 0
+    horizontalPosition = POS_RIGHT
+    fontSize = 14
+    alpha = 1
+    textShadow = FALSE
+  }
+}
 connections  {
   RemoteRendering.sceneGraph = viewer.self
-  viewer.children = "SoView2DSlider.self SoView2DSliceZoom.self SoToggle.self LabelIH.self LabelT.self LabelB.self LabelA.self LabelP.self ToggleBrainMask.self SoInteractionMapping1.self SoView2D.self"
+  viewer.children = "SoView2DSlider.self SoView2DSliceZoom.self SoToggle.self LabelIH.self LabelT.self LabelB.self LabelA.self LabelP.self ToggleBrainMask.self SoInteractionMapping1.self LabelViewerMode.self SoView2D.self"
   SoView2DSlider.maximumValue = ImageStatistics.bBoxZ2
   SoView2DSlider.currentValue = SoView2D.startSlice
   Switch.input0 = itkImageFileReader.output0

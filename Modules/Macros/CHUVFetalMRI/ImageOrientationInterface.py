@@ -24,6 +24,8 @@ g_sceneImageOrientation = None
 g_ImageOrientationGraphicsView = None
 activeShowPosition = 1
 ctx.field("Switch.currentInput").setValue(0)
+ctx.field("SoInteractionMapping1.ignoreOtherCommandActions").setBoolValue(False)
+
 
 def setSceneBackgroundColor(scene):
   scene.setBackgroundBrush(QtGui.QColor(0,0,0,255))
@@ -42,6 +44,7 @@ def initImageOrientationGraphicsView(view):
   ctx.field("ToggleBrainMask.on").setValue(False)
   ctx.field("SwitchAlreadyRegistered.currentInput").setValue(0)
   ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
+  ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
   
 def showImageOrientationInterface():
   
@@ -208,6 +211,8 @@ def updateImage(Image="Image0"):
         
   if "mask" in inImages[Image].keys():
      ctx.field("AlreadyModifiedMask.currentInput").setValue(1)
+     ctx.field("adaptTemplateMask.updateCSOButton").touch()
+     
   else:
      ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
 
@@ -233,6 +238,7 @@ def setPositioning(Image="Image0"):
   ctx.field("View2DExtensions.annotation.editingOn").setBoolValue(False)
   ctx.field("SoView2D.useManagedInteraction").setBoolValue(True)
   ctx.field("eventChoice").setValue(1)
+  ctx.field("LabelViewerMode.text").setStringValue("Set Positioning Mode")
   #while tuppleWorldPosition == None:
   #    tuppleWorldPosition = button1PressedImOrient() #ctx.field("SyngoViaView2DOverlay.annoReadPix.worldPosition").value
   #ctx.showModalDialog("ViewerOnly")
@@ -621,6 +627,9 @@ def generateBrainMask(Image="Image0"):
   global activeMasking
   activeMasking = True
   ctx.field("adaptTemplateMask.updateCSOButton").touch()
+  ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(True)
+  ctx.field("SoInteractionMapping1.ignoreOtherCommandActions").setBoolValue(True)
+  ctx.field("LabelViewerMode.text").setStringValue("Editing Brain Mask Mode")
   
   #detection of 2,8 4,6 1,9 on the keypad enter to validate
   
@@ -728,8 +737,8 @@ def button1PressedMaskRefine(event):
          ctx.field("adaptTemplateMask.CSOManager1.csoSelectedItems").setValue(csoId2Modifystr) 
       ctx.field("adaptTemplateMask.CSOManager1.csoRemoveSelected").touch()
     
-    elif event["key"] == "Return":
-      print("Enter")
+    elif event["key"] == "Return" or event["key"]=="Enter":
+      print(event["key"])
       ctx.field("eventChoice").setValue(0)
       ctx.field("View2DExtensions.annotation.editingOn").setBoolValue(True)
       ctx.field("SoView2D.useManagedInteraction").setBoolValue(False)
@@ -748,6 +757,9 @@ def button1PressedMaskRefine(event):
       ctx.field("AlreadyModifiedMask.currentInput").setValue(1)
       
       ctx.field("inImageInfos").setObject(inImages)
+      ctx.field("SoInteractionMapping1.ignoreOtherCommandActions").setBoolValue(False)
+      ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
+      ctx.field("LabelViewerMode.text").setStringValue("Viewer Mode")
       #else:
       #  ctx.field("parent:MessageBox.message").setStringValue("you have to precise the plane orientation to be able to save")
       #  ctx.parent().module("MessageBox").showModalDialog("dialog")

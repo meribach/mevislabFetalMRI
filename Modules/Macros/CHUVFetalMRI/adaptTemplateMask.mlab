@@ -260,7 +260,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 26
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -654,7 +654,7 @@ module CSOIsoGenerator {
     smoothRange = 1
     reduceCSOsToOnlyOneSeedPoint = TRUE
     autoClear = TRUE
-    progress = 0.035714287
+    progress = 0.039999999
     creationMode = All
     startCondition = Always
     startPosition = "0 0 0"
@@ -791,8 +791,8 @@ module SoView2DCSOExtensibleEditor {
     moduleGroupName = SecondTry
     windows  {
       window _default {
-        geometry = "770 445 394 369"
-        sizeHint = "394 369"
+        geometry = "770 473 393 395"
+        sizeHint = "393 395"
         wasOpen = no
       }
     }
@@ -859,7 +859,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 26
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -923,7 +923,7 @@ module SoView2D {
 }
 module View2DExtensions {
   internal  {
-    frame = "1081 893 144 56"
+    frame = "1137 901 144 56"
     moduleGroupName = SecondTry
     windows  {
       window _default {
@@ -1226,12 +1226,12 @@ module itkImageFileReader {
 }
 module SoCSOManualCorrectionEditor {
   internal  {
-    frame = "877 725 200 56"
+    frame = "941 773 200 56"
     moduleGroupName = SecondTry
     windows  {
       window _default {
-        geometry = "1530 649 481 880"
-        sizeHint = "349 880"
+        geometry = "781 126 491 883"
+        sizeHint = "357 883"
         wasOpen = no
       }
     }
@@ -1438,7 +1438,7 @@ module itkImageFileWriter {
 }
 module SoToggle {
   internal  {
-    frame = "1213 789 120 56"
+    frame = "1253 789 120 56"
     moduleGroupName = SecondTry
     showNetworkPanel = true
   }
@@ -1450,7 +1450,7 @@ module SoToggle {
 }
 module SoGroup {
   internal  {
-    frame = "1257 693 96 56"
+    frame = "1313 685 96 56"
     moduleGroupName = SecondTry
   }
   fields  {
@@ -1459,7 +1459,7 @@ module SoGroup {
 }
 module SoToggle {
   internal  {
-    frame = "1141 605 120 56"
+    frame = "1269 589 120 56"
     moduleGroupName = SecondTry
     showNetworkPanel = true
   }
@@ -1515,7 +1515,7 @@ module CSOAffineTransformationModificator {
 }
 module CSOAffineTransformationModificator {
   internal  {
-    frame = "921 805 240 56"
+    frame = "921 853 240 56"
     moduleGroupName = SecondTry
     windows  {
       window _default {
@@ -1545,16 +1545,28 @@ module CSOAffineTransformationModificator {
     seedPointAlpha = 1
     voxelWriteMode = VoxelWriteModeModule
     voxelWriteValue = 1024
-    csoIdList = 1
+    csoIdList = 5
     workDirectlyOnInputList = TRUE
     useUndoRedo = TRUE
     changeSettingsForModifiedCSOs = FALSE
     listenToFinishingNotifications = TRUE
     listenToSelectionNotifications = TRUE
     matrix = "1 0 0 0
-0 1 0 -1
+0 1 0 0
 0 0 1 1
-0 0 0 0"
+0 0 0 1"
+  }
+}
+module SoToggle {
+  internal  {
+    frame = "945 697 176 64"
+    moduleGroupName = SecondTry
+    showNetworkPanel = true
+  }
+  fields  {
+    instanceName = SoToggleMaskEditor
+    whichChild = -3
+    on = TRUE
   }
 }
 connections  {
@@ -1570,7 +1582,7 @@ connections  {
   CSOIsoGenerator.input0 = Switch.output0
   CSOIsoGenerator.inCSOList = CSOManager1.outCSOList
   SoView2DCSOExtensibleEditor1.inCSOList = CSOManager1.outCSOList
-  SoView2DCSOExtensibleEditor1.inExtensions = SoCSOManualCorrectionEditor.self
+  SoView2DCSOExtensibleEditor1.inExtensions = SoToggleMaskEditor.self
   SoView2D1.image = Switch.output0
   View2DExtensions1.inLUT = Switch.output0
   Switch.input0 = Bypass.output0
@@ -1583,6 +1595,7 @@ connections  {
   SoGroup2.children = "SoToggle.self SoView2D1.self"
   SoToggle1.children = SoGroup2.self
   CSOAffineTransformationModificator1.inCSOList = CSOManager1.outCSOList
+  SoToggleMaskEditor.children = SoCSOManualCorrectionEditor.self
 }
 networkModel  {
   parentItems  {

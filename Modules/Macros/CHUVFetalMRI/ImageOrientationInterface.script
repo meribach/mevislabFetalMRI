@@ -55,6 +55,7 @@ Commands {
   //FieldListener cornerMenuIteraction {command = cornerMenuClicked}
   FieldListener fileSelectionCompleted {command = showImageOrientationInterface}
   FieldListener resetAll {command = resetImages}
+  //FieldListener GestationalAge {command = adaptTemplateMask.updateCSOButton}
   //FieldListener View2DExtensions.annoReadPix.worldPosition {command = updateLabelPosition}
 }
 
