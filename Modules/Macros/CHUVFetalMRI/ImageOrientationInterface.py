@@ -216,6 +216,8 @@ def updateImage(Image="Image0"):
   else:
      ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
 
+  ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
+  ctx.field("LabelViewerMode.text").setStringValue("Viewer Mode")
   print("label updated")
   
 def setPositioning(Image="Image0"):
