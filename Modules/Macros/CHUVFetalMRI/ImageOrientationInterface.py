@@ -206,7 +206,7 @@ def updateImage(Image="Image0"):
         ctx.field("Switch.currentInput").setValue(0)
         print("Switch set to 0")
         
-   if "mask" in inImages[Image].keys():
+  if "mask" in inImages[Image].keys():
      ctx.field("AlreadyModifiedMask.currentInput").setValue(1)
   else:
      ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
