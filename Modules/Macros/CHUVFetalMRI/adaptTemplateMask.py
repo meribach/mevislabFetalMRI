@@ -16,4 +16,5 @@ def updateCSO():
   print("update CSO")
   ctx.field("CSOManager1.removeAllCSOsAndGroups").touch()
   ctx.field("CSOIsoGenerator.apply").touch()
+  ctx.field("CSOConvertToImage.apply").touch()
     
