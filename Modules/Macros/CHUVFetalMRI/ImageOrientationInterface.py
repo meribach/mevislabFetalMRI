@@ -273,6 +273,7 @@ def registerplaneOrientation(Image="Image0"):
         ctx.field("OrthoSwapFlip.view").setValue("Sagittal")
       else:
         print("orientation unknown")
+      
       ctx.field("adaptTemplateMask.updateCSOButton").touch()
       updateImage(Image)
       
@@ -715,8 +716,17 @@ def button1PressedMaskRefine(event):
     
     elif event["key"]=="r":
       print("should reset only current slice")
-    elif event["key"]=="s":
+    elif event["key"]=="Minus":
       print("delete current CSO")
+      
+      isCSOmouse = CSOobj.getCSOCurrentlyUnderMouse()
+      
+      if isCSOmouse is not None:
+         idundermouse = isCSOmouse.id
+         ctx.field("adaptTemplateMask.CSOManager1.csoSelectedItems").setValue(idundermouse) 
+      else:
+         ctx.field("adaptTemplateMask.CSOManager1.csoSelectedItems").setValue(csoId2Modifystr) 
+      ctx.field("adaptTemplateMask.CSOManager1.csoRemoveSelected").touch()
     
     elif event["key"] == "Return":
       print("Enter")
