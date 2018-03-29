@@ -22,6 +22,7 @@ currentImage = None
 g_layoutImageOrientation = None 
 g_sceneImageOrientation = None 
 g_ImageOrientationGraphicsView = None
+g_HorizontalControl = None
 activeShowPosition = 1
 ctx.field("Switch.currentInput").setValue(0)
 ctx.field("SoInteractionMapping1.ignoreOtherCommandActions").setBoolValue(False)
@@ -52,6 +53,7 @@ def showImageOrientationInterface():
   global g_layoutImageOrientation
   global g_sceneImageOrientation
   global g_ImageOrientationGraphicsView
+  global g_HorizontalControl
   
   g_sceneImageOrientation = g_ImageOrientationGraphicsView.scene()
   g_sceneImageOrientation.clear()
@@ -77,7 +79,8 @@ def showImageOrientationInterface():
     #checkBoxImage = g_sceneImageOrientation.addMDL(checkBoxDefinition,True)
     comboboxDefinition = """ComboBox {expandX = No name = \"comboImage%i\" items {item = unknown item = axial item = sagittal item = coronal} textChangedCommand = "py: registerplaneOrientation(\'Image%i\')"}"""%(i,i)
     
-    mdlToSet +="Horizontal {" + buttonDefinition + buttonPositioningDef + buttonManualPositioningDef + buttonGenerateMaskDef + comboboxDefinition + checkBoxDefinition +"}"
+    #mdlToSet +="""Horizontal { name = \"horizontal%i\"  "+ buttonDefinition + buttonPositioningDef + buttonManualPositioningDef + buttonGenerateMaskDef + comboboxDefinition + checkBoxDefinition " Execute = "py: getHorizontalControl(\'horizontal%i\')" } """%(i,i)
+    mdlToSet +="""Horizontal { name = \"horizontal%i\"  " + buttonDefinition + buttonPositioningDef + buttonManualPositioningDef + buttonGenerateMaskDef + comboboxDefinition + checkBoxDefinition + " Execute = "py: getHorizontalControl()" } """%(i)
     #mdlPanel = g_sceneImageOrientation.addMDL(mdlToSet)
     #g_layoutImageOrientation.addItem(mdlPanel)
     #comboboxImage = g_sceneImageOrientation.addMDL(comboboxDefinition,True)
@@ -97,7 +100,7 @@ def showImageOrientationInterface():
   mdlToSet += buttonResetIm
   g_sceneImageOrientation.addMDL("Vertical {" + mdlToSet + "}")
   
-  updateComboBox()
+  #updateComboBox()
   
 def updateComboBox():
     
@@ -128,13 +131,20 @@ def getAtlasManually():
   ctx.field("GetAtlasMacro.itkImageFileReader.fileName").setStringValue(filename)
 
 def resetImages():
-  inImages = None
-  ctx.field("inImageInfos").setObject(inImages)
+
   ctx.field("itkImageFileReader.fileName").setStringValue("")
   resetZoom()
   ctx.field("Switch.currentInput").setValue(0)
   ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
   ctx.field("SwitchAlreadyRegistered.currentInput").setValue(0)
+  
+  for iterIm in range(ctx.field("NumberImages").value):
+    print("reset combo box")
+    if ctx.hasControl("comboImage%i"%iterIm):
+      ctx.control("comboImage%i"%iterIm).setCurrentItem(0)
+
+  inImages = None
+  ctx.field("inImageInfos").setObject(inImages)
   print("images reseted")
 
 def updateImage(Image="Image0"):
@@ -250,6 +260,11 @@ def updateImage(Image="Image0"):
   ctx.field("SoInteractionMapping1.ignoreOtherCommandActions").setBoolValue(False)
   ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
   ctx.field("LabelViewerMode.text").setStringValue("Viewer Mode")
+  
+  if ctx.hasControl("button%s"%Image):
+    print("has control")
+  else:
+      print("doesn't have control")
   print("label updated")
   
 def setPositioning(Image="Image0"):
@@ -816,5 +831,11 @@ def modifyImageNumber(x):
       ctx.field("inImageInfos").setObjec(inImages)
       
   initImageOrientationGraphicsView(g_ImageOrientationGraphicsView)
+  updateComboBox()
   #ctx.updateLayout()
+
+def getHorizontalControl():
+  
+  print("pouet")
+  #print("get %s control"%horizon)
   
