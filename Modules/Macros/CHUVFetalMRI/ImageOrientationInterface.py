@@ -33,7 +33,7 @@ def setSceneBackgroundColor(scene):
 def initImageOrientationGraphicsView(view):
   global g_ImageOrientationGraphicsView
   g_ImageOrientationGraphicsView = view
-  showImageOrientationInterface()
+  
   global activePositioning
   activePositioning = False
   global activeMasking
@@ -45,6 +45,7 @@ def initImageOrientationGraphicsView(view):
   ctx.field("SwitchAlreadyRegistered.currentInput").setValue(0)
   ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
   ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
+  showImageOrientationInterface()
   
 def showImageOrientationInterface():
   
@@ -95,6 +96,27 @@ def showImageOrientationInterface():
   
   mdlToSet += buttonResetIm
   g_sceneImageOrientation.addMDL("Vertical {" + mdlToSet + "}")
+  
+  updateComboBox()
+  
+def updateComboBox():
+    
+  try:
+    inImages = ctx.field("inImageInfos").object()
+    if inImages is not None:
+      print("set orientation plane")
+      dictItem = {"unknown":0,"axial":1,"sagittal":2,"coronal":3}
+      for imiter in inImages.keys():
+        if 'planeOrientation' in inImages[imiter].keys():
+            if ctx.hasControl("combo%s"%imiter):
+             try:
+               ctx.control("combo%s"%imiter).setCurrentItem(dictItem[inImages[imiter]['planeOrientation']])
+             except:
+               ctx.control("combo%s"%imiter).setCurrentItem(0)
+          
+  except:
+    pass
+ 
   #g_layoutImageOrientation.addItem(buttonResetIm)
   #g_layoutImageOrientation.addItem(MainMDL,0,4)
 
@@ -216,6 +238,14 @@ def updateImage(Image="Image0"):
      
   else:
      ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
+     
+  if "planeOrientation" in inImages[Image].keys():
+    dictItem = {"unknown":0,"axial":1,"sagittal":2,"coronal":3}
+    if ctx.hasControl("combo%s"%Image):
+      if inImages[Image]["planeOrientation"] != ctx.control("combo%s"%Image).currentText():
+        ctx.control("combo%s"%Image).setCurrentItem(dictItem[inImages[Image]['planeOrientation']])
+    else:
+      print("why the f... this combo doesn't have any control")
 
   ctx.field("SoInteractionMapping1.ignoreOtherCommandActions").setBoolValue(False)
   ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
@@ -778,6 +808,13 @@ def resetZoom():
 def modifyImageNumber(x):
   ctx.field("NumberImages").setValue(int(ctx.field("NumberImages").value)+x)
   global g_ImageOrientationGraphicsView
+  inImages = ctx.field("inImageInfos").object()
+  if inImages is not None:
+    if len(inImages)>ctx.field("NumberImages").value:
+      print("remove last image object")
+      del inImages["Image%i"%ctx.field("NumberImages").value]
+      ctx.field("inImageInfos").setObjec(inImages)
+      
   initImageOrientationGraphicsView(g_ImageOrientationGraphicsView)
   #ctx.updateLayout()
   
