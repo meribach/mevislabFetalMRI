@@ -34,6 +34,7 @@ NetworkPanel {
 
 Commands {
   source = $(LOCAL)/adaptTemplateMask.py
+  FieldListener updateCSOButton {command = updateCSO}
 }
 
 Window {

@@ -23,7 +23,7 @@ module GetAtlasMacro {
     instanceName = GetAtlasMacro
     name = $(HOME)/Bureau/CHUV/CRL_Fetal_Brain_Atlas_2016
     AtlasPath = /home/neuropsynov/Bureau/CHUV/CRL_Fetal_Brain_Atlas_2016
-    currentWeek = 30
+    currentWeek = 27
   }
 }
 module RemoteRendering {
@@ -116,7 +116,7 @@ module SoView2DSlider {
     cursorShape = UNDEFINED_CURSOR
     minimumValue = 0
     maximumValue = 23
-    currentValue = 5
+    currentValue = 0
     useTracking = TRUE
     stepSize = 1
     snapSize = 1
@@ -231,8 +231,8 @@ module itkImageFileReader {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "339 511 328 420"
-        sizeHint = "328 395"
+        geometry = "339 567 310 440"
+        sizeHint = "310 415"
         wasOpen = no
       }
       window _automatic {
@@ -305,7 +305,7 @@ vox_offset : 352
 xyzt_units : 
 "
     suppressErrorPosting = FALSE
-    unresolvedFileName = D:/Pierre/zurich/Anonymized_data/10063_GW_27/20170804_074500anonymouss006a1001.nii.gz
+    unresolvedFileName = ""
   }
 }
 module MessageBox {
@@ -645,7 +645,7 @@ module SoView2DLabel {
 "
     viewerId = ""
     textPositioning = WORLD_COORDINATES
-    worldPosition = "7.91764831542969 -32.082706451416 -108.354713439941"
+    worldPosition = "13.555908203125 -41.0372123718262 -110.894706726074"
     relativeViewerPosition = "70 133"
     useDepthVisibility = TRUE
     depthVisibility = 2
@@ -680,7 +680,7 @@ module SoView2DLabel {
     text = T
     viewerId = ""
     textPositioning = WORLD_COORDINATES
-    worldPosition = "-11.5860748291016 -7.20950222015381 -134.120483398438"
+    worldPosition = "-4.40217590332031 -15.2890977859497 -146.255584716797"
     relativeViewerPosition = "0.5 0.5"
     useDepthVisibility = TRUE
     depthVisibility = 2
@@ -715,7 +715,7 @@ module SoView2DLabel {
     text = B
     viewerId = ""
     textPositioning = WORLD_COORDINATES
-    worldPosition = "9.22257995605469 -39.6248741149902 -82.5970077514648"
+    worldPosition = "4.27610778808594 -38.8699226379395 -83.6265335083008"
     relativeViewerPosition = "0.5 0.5"
     useDepthVisibility = TRUE
     depthVisibility = 2
@@ -750,7 +750,7 @@ module SoView2DLabel {
     text = A
     viewerId = ""
     textPositioning = WORLD_COORDINATES
-    worldPosition = "-30.143913269043 -5.09994792938232 -70.4933242797852"
+    worldPosition = "-31.5658645629883 -2.88420581817627 -91.2179336547852"
     relativeViewerPosition = "0.5 0.5"
     useDepthVisibility = TRUE
     depthVisibility = 2
@@ -785,7 +785,7 @@ module SoView2DLabel {
     text = P
     viewerId = ""
     textPositioning = WORLD_COORDINATES
-    worldPosition = "33.6016235351562 -50.489574432373 -133.090484619141"
+    worldPosition = "33.6076049804688 -54.945011138916 -132.09765625"
     relativeViewerPosition = "0.5 0.5"
     useDepthVisibility = TRUE
     depthVisibility = 2
@@ -852,7 +852,7 @@ module SoView2D {
     instanceName = SoView2D
     interactionProviderID = ""
     viewerId = viewer
-    startSlice = 5
+    startSlice = 0
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
@@ -1559,7 +1559,7 @@ module Switch {
   }
   fields  {
     instanceName = AlreadyModifiedMask
-    currentInput = 1
+    currentInput = 0
     numberOfInputs = 2
   }
 }
@@ -1597,7 +1597,7 @@ descrip :
 dim[0] : 3
 dim[1] : 512
 dim[2] : 512
-dim[3] : 24
+dim[3] : 27
 dim[4] : 1
 dim[5] : 1
 dim[6] : 1
@@ -1611,18 +1611,18 @@ intent_p3 : 0
 pixdim[0] : 1
 pixdim[1] : 0.4688
 pixdim[2] : 0.4688
-pixdim[3] : 2.99995
+pixdim[3] : 3.00005
 pixdim[4] : 0
 pixdim[5] : 0
 pixdim[6] : 0
 pixdim[7] : 0
 qform_code : 2
-qoffset_x : 41.9993
-qoffset_y : 220.169
-qoffset_z : -47.8534
-quatern_b : 0.639263
-quatern_c : -0.302229
-quatern_d : -0.639263
+qoffset_x : 130.647
+qoffset_y : -35.6802
+qoffset_z : -76.9583
+quatern_b : -0.140641
+quatern_c : 0.753389
+quatern_d : 0.64073
 scl_inter : 0
 scl_slope : 1
 sform_code : 1
@@ -1630,9 +1630,9 @@ slice_code :
 slice_duration : 0
 slice_end : 0
 slice_start : 0
-srow_x : 1.68031e-08 3.55413e-08 -2.99995 41.9993
-srow_y : -0.362296 -0.297515 -2.27436e-07 220.169
-srow_z : -0.297515 0.362296 1.07527e-07 -47.8534
+srow_x : -0.448293 -0.12682 -0.333953 130.647
+srow_y : -0.0718713 0.0653374 2.93495 -35.6802
+srow_z : -0.116795 0.446566 -0.524254 -76.9583
 toffset : 0
 vox_offset : 352
 xyzt_units : 
@@ -2037,11 +2037,11 @@ module WorldVoxelConvert {
     voxelX = 276.786315917969
     voxelY = 249.435897827149
     voxelZ = 11.5012265243338
-    worldX = 39.8641738289736
-    worldY = -46.0090354165446
+    worldX = 39.8641738289735
+    worldY = -46.0090354165447
     worldZ = -8.99617600440975
     voxelPos = "276.786315917969 249.435897827149 11.5012265243338"
-    worldPos = "39.8641738289736 -46.0090354165446 -8.99617600440975"
+    worldPos = "39.8641738289735 -46.0090354165447 -8.99617600440975"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -3067,7 +3067,7 @@ module itkImageFileWriter {
     correctSubVoxelShift = TRUE
     forceDirectionCosineWrite = TRUE
     outputVoxelType = Automatic
-    info = "File saved successfully"
+    info = ""
     unresolvedFileName = D:/Pierre/zurich/Anonymized_data/10063_GW_27/testreorient.nii
   }
 }
@@ -3148,8 +3148,8 @@ module Resample3D {
     filterAlwaysTolerance = 0
     zoom = "1.70648247543375 1.70648247543375 0.266670613882065"
     imageSize = "323 265 36"
-    voxelSize = "0.468800008296967 0.468800008296967 2.99995183944702"
-    subVoxelShift = "-0.161137760832176 0.095527178291519 -1.87395660210603"
+    voxelSize = "0.468800008296966 0.468800008296966 2.99995183944702"
+    subVoxelShift = "-0.0817300091647724 -0.0518567825665031 -1.87394009277074"
     useReferenceImage = TRUE
   }
 }
@@ -3177,7 +3177,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "-7.49989201894699 -51.5869257640447 -31.3017609568652"
+    center = "-4.49995030268658 -53.441985105507 -39.2213476855811"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -3242,7 +3242,7 @@ module itkImageFileWriter {
     correctSubVoxelShift = TRUE
     forceDirectionCosineWrite = TRUE
     outputVoxelType = Automatic
-    info = "File saved successfully"
+    info = ""
     unresolvedFileName = $(HOME)/Bureau/CHUV/10063_GW_27/testMultipleDicom2Nifti/2MR_SagSSFSESchadel_worldmatrixModified_Mask.nii
   }
 }
@@ -3334,12 +3334,12 @@ pixdim[5] : 0
 pixdim[6] : 0
 pixdim[7] : 0
 qform_code : 2
-qoffset_x : 41.9993
-qoffset_y : 220.169
-qoffset_z : -47.8534
-quatern_b : 0.639263
-quatern_c : -0.302229
-quatern_d : -0.639263
+qoffset_x : 38.9994
+qoffset_y : 214.142
+qoffset_z : -92.7879
+quatern_b : 0.601501
+quatern_c : -0.371748
+quatern_d : -0.601501
 scl_inter : 0
 scl_slope : 1
 sform_code : 1
@@ -3347,9 +3347,9 @@ slice_code :
 slice_duration : 0
 slice_end : 0
 slice_start : 0
-srow_x : 0 0 -2.99995 41.9993
-srow_y : -0.362296 -0.297515 0 220.169
-srow_z : -0.297515 0.362296 0 -47.8534
+srow_x : 0 0 -2.99995 38.9994
+srow_y : -0.419307 -0.209654 0 214.142
+srow_z : -0.209654 0.419307 0 -92.7879
 toffset : 0
 vox_offset : 352
 xyzt_units : 
@@ -3399,7 +3399,7 @@ module SoInteractionMapping {
     overrideCommandActions = ""
     overrideOffsetActions = ""
     ignoreOtherPointingActions = FALSE
-    ignoreOtherCommandActions = TRUE
+    ignoreOtherCommandActions = FALSE
     ignoreOtherOffsetActions = FALSE
   }
 }
@@ -3438,6 +3438,48 @@ module SoView2DLabel {
     textShadow = FALSE
   }
 }
+module FieldBypass {
+  internal  {
+    frame = "469 1221 136 56"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "866 407 186 377"
+        sizeHint = "186 377"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FieldBypass
+    inputString0 = ""
+    inputString1 = ""
+    inputString2 = ""
+    inputString3 = ""
+    inputString4 = ""
+    inputString5 = ""
+    inputString6 = ""
+    inputString7 = ""
+    inputString8 = ""
+    inputString9 = ""
+    inputString10 = ""
+    inputString11 = ""
+    inputString12 = ""
+    inputString13 = ""
+    inputString14 = ""
+    inputString15 = ""
+    inputString16 = ""
+    inputString17 = ""
+    inputString18 = ""
+    inputString19 = ""
+    inputNumber = 0
+    outputString = ""
+    noBypass = FALSE
+    onlyIfChanged = TRUE
+    numberOfInputs = 5
+  }
+}
 connections  {
   RemoteRendering.sceneGraph = viewer.self
   viewer.children = "SoView2DSlider.self SoView2DSliceZoom.self SoToggle.self LabelIH.self LabelT.self LabelB.self LabelA.self LabelP.self ToggleBrainMask.self SoInteractionMapping1.self LabelViewerMode.self SoView2D.self"
@@ -3448,6 +3490,7 @@ connections  {
   Switch1.input0 = itkImageFileReader.output0
   Switch1.currentInput = SoCalculator.oa
   SoCalculator.a = Switch.currentInput
+  itkImageFileReader.unresolvedFileName = FieldBypass.inputString0
   GetVoxelValue.input0 = itkImageFileReader.output0
   WorldVoxelConvert.input0 = itkImageFileReader.output0
   SoView2DOverlay.image = Switch1.output0

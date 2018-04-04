@@ -26,6 +26,8 @@ def AtlasPathChanged():
   exp = ctx.expandFilename(ctx.field("name").stringValue())
   if MLABFileManager.exists(exp):
     updateAtlas(newPath=exp)
+  else:
+    fileDialog()
   
 def weeksChanged():
   print("weeks changed")

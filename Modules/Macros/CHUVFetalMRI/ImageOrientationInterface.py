@@ -47,6 +47,7 @@ def initImageOrientationGraphicsView(view):
   ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
   ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
   showImageOrientationInterface()
+  resetZoom()
   
 def showImageOrientationInterface():
   
@@ -323,6 +324,7 @@ def updateImage(Image="Image0"):
      
   else:
      ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
+     ctx.field("adaptTemplateMask.updateCSOButton").touch()
      
   if "planeOrientation" in inImages[Image].keys():
     dictItem = {"unknown":0,"axial":1,"sagittal":2,"coronal":3}
@@ -901,10 +903,7 @@ def button1PressedMaskRefine(event):
 
       
       #we set a inImages object mask done to show the mask when updateDisplay
-      
-def resetZoom():
-   ctx.field("SoView2D.unzoom").touch()
-   
+         
 def modifyImageNumber(x):
   ctx.field("NumberImages").setValue(int(ctx.field("NumberImages").value)+x)
   global g_ImageOrientationGraphicsView
@@ -947,3 +946,10 @@ def resetBrainMask(Image):
   
   ctx.field("inImageInfos").setObject(inImages)  
   generateBrainMask(Image)
+  
+def updateCSOfromAdapt():
+    ctx.field("adaptTemplateMask.updateCSOButton").touch()
+    
+def resetZoom():
+   ctx.field("SoView2D.unzoom").touch()
+    

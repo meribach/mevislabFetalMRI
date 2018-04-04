@@ -55,14 +55,14 @@ Commands {
   //FieldListener cornerMenuIteraction {command = cornerMenuClicked}
   FieldListener fileSelectionCompleted {command = showImageOrientationInterface}
   FieldListener resetAll {command = resetImages}
-  //FieldListener GestationalAge {command = adaptTemplateMask.updateCSOButton}
+  FieldListener GestationalAge {command = updateCSOfromAdapt}
   //FieldListener View2DExtensions.annoReadPix.worldPosition {command = updateLabelPosition}
 }
 
 NetworkPanel {
   Button resetZoomButton {
     symbol  = "* "recycle" *"
-    command = resetZoom
+    command = "py: resetZoom()"
   }
   Button increaseNbImage {
     symbol = "* "$(MLAB_CHUV_FetalMRI)/Modules/Graphics/up-arrow-symbol-icon-68695.png" *"
