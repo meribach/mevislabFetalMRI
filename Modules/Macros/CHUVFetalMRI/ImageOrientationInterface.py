@@ -72,7 +72,7 @@ def showImageOrientationInterface():
     #buttonImage = g_sceneImageOrientation.addMDL(buttonDefinition, True)
     buttonPositioningDef = """Button {expandX = No title = "Set IH T B A P positons" name = buttonPositioning%i command = "py: setPositioning(\'Image%i\')"}"""%(i,i)
     #buttonPositioning = g_sceneImageOrientation.addMDL(buttonPositioningDef, True)
-    buttonManualPositioningDef = """Button {expandX = No title ="Set IH + manual registration" name = buttonManualPositioning%i command = "py: setManualPositioning(\'Image%i\')"}"""%(i,i)
+    buttonResetBrainMaskDef = """Button {expandX = No title ="Reset Brain Mask" name = buttonResetBrainMask%i command = "py: resetBrainMask(\'Image%i\')"}"""%(i,i)
     #buttonManualPositioning = g_sceneImageOrientation.addMDL(buttonManualPositioningDef, True)
     buttonGenerateMaskDef = """Button {expandX = No title = "Generate Brain Mask" name = GenerateBrainMask%i command = "py: generateBrainMask(\'Image%i\')"}"""%(i,i)
     #buttonGenerateMask = g_sceneImageOrientation.addMDL(buttonGenerateMaskDef, True)
@@ -81,7 +81,7 @@ def showImageOrientationInterface():
     comboboxDefinition = """ComboBox {expandX = No name = \"comboImage%i\" items {item = unknown item = axial item = sagittal item = coronal} textChangedCommand = "py: registerplaneOrientation(\'Image%i\')"}"""%(i,i)
     
     #mdlToSet +="""Horizontal { name = \"horizontal%i\"  "+ buttonDefinition + buttonPositioningDef + buttonManualPositioningDef + buttonGenerateMaskDef + comboboxDefinition + checkBoxDefinition " Execute = "py: getHorizontalControl(\'horizontal%i\')" } """%(i,i)
-    mdlToSet +="""Horizontal { name = \"horizontal%i\"  """%i + buttonDefinition + buttonPositioningDef + buttonManualPositioningDef + buttonGenerateMaskDef + comboboxDefinition + checkBoxDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)
+    mdlToSet +="""Horizontal { name = \"horizontal%i\"  """%i + buttonDefinition + buttonPositioningDef + buttonGenerateMaskDef + buttonResetBrainMaskDef+ comboboxDefinition + checkBoxDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)
     #mdlPanel = g_sceneImageOrientation.addMDL(mdlToSet)
     #g_layoutImageOrientation.addItem(mdlPanel)
     #comboboxImage = g_sceneImageOrientation.addMDL(comboboxDefinition,True)
@@ -101,16 +101,29 @@ def showImageOrientationInterface():
   mdlToSet += buttonResetIm
   g_sceneImageOrientation.addMDL("Vertical {" + mdlToSet + "}")
   
-  #updateComboBox()
+  updateComboBox()
   
 def updateComboBox():
     
+  global g_HorizontalControl
   try:
     inImages = ctx.field("inImageInfos").object()
     if inImages is not None:
       print("set orientation plane")
       dictItem = {"unknown":0,"axial":1,"sagittal":2,"coronal":3}
       for imiter in inImages.keys():
+        if 'file' in inImages[imiter].keys():
+          if ctx.hasControl("button%s"%imiter):
+            try:
+              ctx.control("button%s"%imiter).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
+            except:
+              print("test background has control didn't work")
+          else:
+            try:
+              g_HorizontalControl[imiter].control("button%s"%imiter).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
+            except:
+              print("test background g_horizontalcontrol didn't work")
+        
         if 'planeOrientation' in inImages[imiter].keys():
             if ctx.hasControl("combo%s"%imiter):
              try:
@@ -118,12 +131,24 @@ def updateComboBox():
              except:
                ctx.control("combo%s"%imiter).setCurrentItem(0)
             else:
-              global g_HorizontalControl
-              valIm = imiter.split('Image')[-1]
+              #valIm = imiter.split('Image')[-1]
               try:
                 g_HorizontalControl[imiter].control("comboImage%s"%valIm).setCurrentItem(dictItem[inImages[imiter]['planeOrientation']])
               except:
                 g_HorizontalControl[imiter].control("comboImage%s"%valIm).setCurrentItem(0)
+                
+        if 'mask' in inImages[imiter].keys():
+          valIm = imiter.split('Image')[-1]
+          if ctx.hasControl("GenerateBrainMask%s"%valIm):
+            try:
+              ctx.control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
+            except:
+              print("test background has control didn't work")
+          else:
+            try:
+              g_HorizontalControl[imiter].control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
+            except:
+              print("test background g_horizontalcontrol didn't work")        
           
   except:
     pass
@@ -146,6 +171,8 @@ def resetImages():
   ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
   ctx.field("SwitchAlreadyRegistered.currentInput").setValue(0)
   
+  global g_HorizontalControl  
+  
   for iterIm in range(ctx.field("NumberImages").value):
     print("reset combo box")
     if ctx.hasControl("comboImage%i"%iterIm):
@@ -156,6 +183,29 @@ def resetImages():
   inImages = None
   ctx.field("inImageInfos").setObject(inImages)
   print("images reseted")
+  
+  for iterbutton in range(ctx.field("NumberImages").value):
+    if ctx.hasControl("buttonImage%i"%iterbutton):
+      try:
+        ctx.control("buttonImage%i"%iterbutton).setStyleSheetFromString('QPushButton { background-color: "white"; }')
+      except:
+        print("test background has control didn't work")
+    else:
+      try:
+        g_HorizontalControl["Image%i"%iterbutton].control("buttonImage%i"%iterbutton).setStyleSheetFromString('QPushButton { background-color: "white"; }')
+      except:
+        print("test background g_horizontalcontrol didn't work")
+
+    if ctx.hasControl("GenerateBrainMask%s"%iterbutton):
+      try:
+        ctx.control("GenerateBrainMask%s"%iterbutton).setStyleSheetFromString('QPushButton { background-color: "white"; }')
+      except:
+        print("test background has control didn't work")
+    else:
+      try:
+        g_HorizontalControl[imiter].control("GenerateBrainMask%s"%iterbutton).setStyleSheetFromString('QPushButton { background-color: "white"; }')
+      except:
+        print("test background g_horizontalcontrol didn't work")            
 
 def updateImage(Image="Image0"):
   
@@ -172,6 +222,9 @@ def updateImage(Image="Image0"):
     print("select manually a file for debug")
     exp = ctx.expandFilename(ctx.field("AtlasImage").stringValue())
     filename = MLABFileDialog.getOpenFileName(exp, "", "Open file")
+    if filename == "":
+      print("no file selected")
+      return
     if inImages != None:
       inImages.update({Image:{"file":filename}})
     else:
@@ -180,6 +233,18 @@ def updateImage(Image="Image0"):
   
   ctx.field("itkImageFileReader.fileName").setStringValue(filename)
   ctx.field("inImageInfos").setObject(inImages)
+  
+  if ctx.hasControl("button%s"%Image):
+    try:
+      ctx.control("button%s"%Image).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
+    except:
+      print("test background has control didn't work")
+  else:
+    global g_HorizontalControl
+    try:
+      g_HorizontalControl[Image].control("button%s"%Image).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
+    except:
+      print("test background g_horizontalcontrol didn't work")
   
   #la il faut aussi gerer les labels anatomics qu'on affiche
   if "Positioning" in inImages[Image].keys():
@@ -670,9 +735,6 @@ def button1PressedImOrient(event):
     else:
       print("j'en veux pas de ton click souris")
     
-
-def setManualPositioning(Image="Image0"):
-  print("Manual Registration %s"%Image)
   
 def generateBrainMask(Image="Image0"): 
   updateImage(Image)
@@ -819,6 +881,19 @@ def button1PressedMaskRefine(event):
       ctx.field("SoInteractionMapping1.ignoreOtherCommandActions").setBoolValue(False)
       ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
       ctx.field("LabelViewerMode.text").setStringValue("Viewer Mode")
+      
+      valIm = currentImage.split('Image')[-1]
+      if ctx.hasControl("GenerateBrainMask%s"%valIm):
+        try:
+          ctx.control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
+        except:
+          print("test background has control didn't work")
+      else:
+        global g_HorizontalControl
+        try:
+          g_HorizontalControl[imiter].control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
+        except:
+          print("test background g_horizontalcontrol didn't work")  
       #else:
       #  ctx.field("parent:MessageBox.message").setStringValue("you have to precise the plane orientation to be able to save")
       #  ctx.parent().module("MessageBox").showModalDialog("dialog")
@@ -842,7 +917,7 @@ def modifyImageNumber(x):
       
   ctx.field("inImageInfos").setObject(inImages)
   initImageOrientationGraphicsView(g_ImageOrientationGraphicsView)
-  updateComboBox()
+  #updateComboBox()
   #ctx.updateLayout()
 
 def getHorizontalControl(image,horizon):
@@ -850,3 +925,25 @@ def getHorizontalControl(image,horizon):
   print("get %s control"%horizon)
   global g_HorizontalControl
   g_HorizontalControl.update({image:ctx.control(horizon)})
+  
+def resetBrainMask(Image):
+  print("reset brain mask")
+  inImages = ctx.field("inImageInfos").object()
+  if "mask" in inImages[Image].keys():
+    del inImages[Image]["mask"]
+  
+    valIm = Image.split('Image')[-1]
+    if ctx.hasControl("GenerateBrainMask%s"%valIm):
+      try:
+        ctx.control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "white"; }')
+      except:
+        print("test background has control didn't work")
+    else:
+      global g_HorizontalControl
+      try:
+        g_HorizontalControl[imiter].control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "white"; }')
+      except:
+        print("test background g_horizontalcontrol didn't work") 
+  
+  ctx.field("inImageInfos").setObject(inImages)  
+  generateBrainMask(Image)
