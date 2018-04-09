@@ -27,7 +27,7 @@ module View2DExtensions {
     lutGrayWidth = 1
     lutAlphaCenter = 0.5
     lutAlphaWidth = 1
-    lutIsRelative = FALSE
+    lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -260,7 +260,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 23
+    maxSlice = 0
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -745,7 +745,7 @@ module CSOManager {
     listSingleRemoveEmptyGroupHandling = RemoveAlways
     listDefaultRemoveEmptyGroupHandling = RemoveAlways
     enableUndoRedo = TRUE
-    numUndos = 16
+    numUndos = 0
     numRedos = 0
     undoStackLimit = 16
     useSelectionCSONotification = FALSE
@@ -859,7 +859,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 23
+    maxSlice = 0
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -946,7 +946,7 @@ module View2DExtensions {
     lutGrayWidth = 1
     lutAlphaCenter = 0.5
     lutAlphaWidth = 1
-    lutIsRelative = FALSE
+    lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -1378,8 +1378,8 @@ module CSOConvertToImage {
     moduleGroupName = SecondTry
     windows  {
       window _default {
-        geometry = "747 375 440 508"
-        sizeHint = "440 508"
+        geometry = "747 431 464 543"
+        sizeHint = "464 543"
         wasOpen = no
       }
     }
@@ -1389,7 +1389,7 @@ module CSOConvertToImage {
     updateMode = Off
     autoApply = TRUE
     isProcessing = FALSE
-    foregroundValue = 4095
+    foregroundValue = 1
     backgroundValue = 0
     useImageValues = FALSE
     fillSurface = TRUE
@@ -1565,8 +1565,8 @@ module SoToggle {
   }
   fields  {
     instanceName = SoToggleMaskEditor
-    whichChild = -3
-    on = TRUE
+    whichChild = -1
+    on = FALSE
   }
 }
 connections  {

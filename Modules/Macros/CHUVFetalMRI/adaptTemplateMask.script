@@ -21,6 +21,7 @@ Interface {
   }
   Parameters {
     Field updateCSOButton {type = Trigger}
+    //Field temporaryMask{ type = MLBase }
   }
 
 }

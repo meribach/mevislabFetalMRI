@@ -37,6 +37,7 @@ Interface {
     Field resetZoomButton {type = Trigger}
     Field increaseNbImage {type = Trigger}
     Field decreaseNbImage {type = Trigger}
+    //Field temporaryMasksSwitch {type = MLBase }
   }
 }
 
