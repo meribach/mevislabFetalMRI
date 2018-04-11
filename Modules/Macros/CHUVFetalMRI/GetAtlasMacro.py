@@ -56,7 +56,7 @@ def populateComboBox():
 
 def fileDialog():
   #exp = ctx.expandFilename(ctx.field("AtlasPath").stringValue())
-  filename = MLABFileDialog.getExistingDirectory(ctx.field("AtlasPath").stringValue(), "Select a Directory", MLABFileDialog.ShowDirsOnly)
+  filename = MLABFileDialog.getExistingDirectory(ctx.field("AtlasPath").stringValue(), "Select the Atlas directory", MLABFileDialog.ShowDirsOnly)
   if filename:
     ctx.field("AtlasPath").value = filename
     ctx.field("name").value = filename
