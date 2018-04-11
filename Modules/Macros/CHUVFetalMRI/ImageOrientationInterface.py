@@ -14,6 +14,7 @@ from mevis import MLAB, MLABFileManager, MLABFileDialog
 from PythonQt import QtGui
 import numpy
 import math
+import os
 
 activePositioning = None
 activeMasking = None
@@ -83,9 +84,9 @@ def showImageOrientationInterface():
     #buttonImage = g_sceneImageOrientation.addMDL(buttonDefinition, True)
     buttonPositioningDef = """Button {expandX = No title = "Set IH T B A P positons" name = buttonPositioning%i command = "py: setPositioning(\'Image%i\')"}"""%(i,i)
     #buttonPositioning = g_sceneImageOrientation.addMDL(buttonPositioningDef, True)
-    buttonResetBrainMaskDef = """Button {expandX = No title ="Reset Brain Mask" name = buttonResetBrainMask%i command = "py: resetBrainMask(\'Image%i\')"}"""%(i,i)
+    buttonResetBrainMaskDef = """Button {expandX = No title ="Reset Brain Mask" name = buttonResetBrainMask%i enabled = False command = "py: resetBrainMask(\'Image%i\')"}"""%(i,i)
     #buttonManualPositioning = g_sceneImageOrientation.addMDL(buttonManualPositioningDef, True)
-    buttonGenerateMaskDef = """Button {expandX = No title = "Generate Brain Mask" name = GenerateBrainMask%i command = "py: generateBrainMask(\'Image%i\')"}"""%(i,i)
+    buttonGenerateMaskDef = """Button {expandX = No title = "Generate Brain Mask" name = GenerateBrainMask%i enabled = False command = "py: generateBrainMask(\'Image%i\')"}"""%(i,i)
     #buttonGenerateMask = g_sceneImageOrientation.addMDL(buttonGenerateMaskDef, True)
     checkBoxDefinition = "CheckBox {name = checkImage%i}"%(i)
     #checkBoxImage = g_sceneImageOrientation.addMDL(checkBoxDefinition,True)
@@ -153,14 +154,30 @@ def updateComboBox():
           if ctx.hasControl("GenerateBrainMask%s"%valIm):
             try:
               ctx.control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
+              ctx.control("buttonResetBrainMask%s"%valIm).setEnabled(True)
             except:
               print("test background has control didn't work")
           else:
             try:
               g_HorizontalControl[imiter].control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
+              g_HorizontalControl[imiter].control("buttonResetBrainMask%s"%valIm).setEnabled(True)
             except:
-              print("test background g_horizontalcontrol didn't work")        
-          
+              print("test background g_horizontalcontrol didn't work")
+         
+        if "WorldChanged" in inImages[imiter].keys():
+          valIm = imiter.split('Image')[-1]
+          if ctx.hasControl("GenerateBrainMask%s"%valIm):
+            try:
+              ctx.control("GenerateBrainMask%s"%valIm).setEnabled(True)
+            except:
+              print("don't know")
+          else:
+            try:
+              g_HorizontalControl[imiter].control("GenerateBrainMask%s"%valIm).setEnabled(True)
+            except:
+              print("don't know")
+                
+            
   except:
     pass
  
@@ -236,7 +253,10 @@ def updateImage(Image="Image0"):
   except:
     print("inImages must be a dictionnary with 'Image0' etc as keys and inImage['Image0'] must be a dictionnary with at least 'file' as key")
     print("select manually a file for debug")
-    exp = ctx.expandFilename(ctx.field("AtlasImage").stringValue())
+    if inImages == None:
+      exp = ctx.expandFilename(ctx.field("AtlasImage").stringValue())
+    else:
+      exp = os.path.dirname(inImages[inImages.keys()[0]]['file'])
     filename = MLABFileDialog.getOpenFileName(exp, "", "Open file")
     if filename == "":
       print("no file selected")
@@ -726,7 +746,7 @@ def button1PressedImOrient(event):
           
           #ctx.field("TransformWorldMatrix.transformation").setValue(FullTransfo)
           WorldChangedName= inImages[currentImage]['file']
-          WorldChangedNameFull=WorldChangedName.replace('.nii','_worldmatrixModified.nii')
+          WorldChangedNameFull=WorldChangedName.replace('.nii','_worldmatrixModified_lr.nii')
           #WorldChangedNameAP=WorldChangedName.replace('.nii','_worldmatrixModifiedAP.nii')
           
           ctx.field("itkImageFileWriterWorldMatrixChanged.fileName").setValue(WorldChangedNameFull)
@@ -738,6 +758,20 @@ def button1PressedImOrient(event):
           #to change
           #inImages[currentImage].update({"newWorldMatrix":FullTransfo})
           ctx.field("inImageInfos").setObject(inImages)
+          valIm = currentImage.split('Image')[-1]
+          if ctx.hasControl("GenerateBrainMask%s"%valIm):
+            try:
+              ctx.control("GenerateBrainMask%s"%valIm).setEnabled(True)
+              ctx.control("buttonResetBrainMask%s"%valIm).setEnabled(True)
+            except:
+              print("don't know")
+          else:
+            try:
+              g_HorizontalControl[currentImage].control("GenerateBrainMask%s"%valIm).setEnabled(True)
+              g_HorizontalControl[currentImage].control("buttonResetBrainMask%s"%valIm).setEnabled(True)
+            except:
+              print("don't know")
+              
           #modify mask
           generateBrainMask(currentImage)
 
@@ -885,7 +919,7 @@ def button1PressedMaskRefine(event):
       ctx.field("adaptTemplateMask.CSOConvertToImage.apply").touch()
       #if "planeOrientation" in inImages[currentImage]:
       nameInter = inImages[currentImage]['WorldChanged'] 
-      NameFull=nameInter.replace('.nii','_Mask.nii')
+      NameFull=nameInter.replace('.nii','_brain_mask.nii')
       ctx.field("itkImageFileWriterMask.unresolvedFileName").setStringValue(NameFull)
       ctx.field("itkImageFileWriterMask.save").touch()
       
