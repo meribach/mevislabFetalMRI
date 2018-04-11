@@ -40,6 +40,14 @@ def initImageOrientationGraphicsView(view):
   activePositioning = False
   global activeMasking
   activeMasking = False
+  ctx.field("itkImageFileReader1.unresolvedFileName").setStringValue("")
+  ctx.field("AlreadyModifiedMaskReader.unresolvedFileName").setStringValue("")
+  ctx.field("AlreadyModifiedMaskReader.fileName").setStringValue("")
+  ctx.field("itkImageFileReader1.fileName").setStringValue("")
+  ctx.field("itkImageFileReader1.close").touch()
+  ctx.field("AlreadyModifiedMaskReader.close").touch()
+  ctx.field("SwitchAlreadyRegistered.currentInput").setValue(0)
+  ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
   ctx.field("Switch.currentInput").setValue(0)
   ctx.field("GetAtlasMacro.itkImageFileReader.open").touch()
   ctx.field("GetAtlasMacro.itkImageFileReaderMask.open").touch()
@@ -930,7 +938,7 @@ def modifyImageNumber(x):
 
 def getHorizontalControl(image,horizon):
   
-  print("get %s control"%horizon)
+  #print("get %s control"%horizon)
   global g_HorizontalControl
   g_HorizontalControl.update({image:ctx.control(horizon)})
   

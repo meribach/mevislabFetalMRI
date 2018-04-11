@@ -23,11 +23,13 @@ Interface {
     }
   }
   Parameters {
-    Field name     { type = string value = $*Home* }
+    Field name     {
+      type = string
+      persistent = Yes
+    }
     Field AtlasPath {
       editable = No 
       type = String
-      value = ""
       persistent = Yes
     }
     
