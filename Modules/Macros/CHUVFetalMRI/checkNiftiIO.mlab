@@ -1,0 +1,51 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module itkImageFileReader {
+  internal  {
+    frame = "541 485 136 56"
+    moduleGroupName = checkIO
+    windows  {
+      window _default {
+        geometry = "803 432 328 395"
+        sizeHint = "328 395"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReader
+    fileDataType = "unsigned int8"
+    autoDetermineDataType = TRUE
+    correctSubVoxelShift = TRUE
+    fileDimension = 3
+    info = "File closed"
+    numDims = 0
+    fileType = TypeNotApplicable
+    componentType = ""
+    pixelType = UNKNOWNPIXELTYPE
+    loaderType = ""
+    outputMetaDataStr = ""
+    suppressErrorPosting = FALSE
+    unresolvedFileName = 20180405_153104Fetals034a1001_worldmatrixModified_lr.nii.gz
+  }
+}
+connections = ""
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNetworkModelItemGroup {
+        uniqueId = 3
+        objectName = checkIO
+        parentUniqueId = 0
+        color  {
+          r = 45
+          g = 226
+          b = 226
+          a = 40
+        }
+      }
+    }
+  }
+}

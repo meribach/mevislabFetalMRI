@@ -1,0 +1,19 @@
+//----------------------------------------------------------------------------------
+//! checkNiftiIO module definition
+/*!
+// \file    checkNiftiIO.def
+// \author  FetalMRI
+// \date    2018-04-16
+*/
+//----------------------------------------------------------------------------------
+
+
+MacroModule checkNiftiIO {
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+   
+  externalDefinition = "$(LOCAL)/checkNiftiIO.script"
+}
