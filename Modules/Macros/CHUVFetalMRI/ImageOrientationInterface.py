@@ -20,10 +20,10 @@ activePositioning = None
 activeMasking = None
 currentPositioning = None
 currentImage = None
-g_layoutImageOrientation = None 
-g_sceneImageOrientation = None 
-g_ImageOrientationGraphicsView = None
-g_HorizontalControl = {}
+#g_layoutImageOrientation = None 
+#g_sceneImageOrientation = None 
+#g_ImageOrientationGraphicsView = None
+#g_HorizontalControl = {}
 activeShowPosition = 1
 ctx.field("Switch.currentInput").setValue(0)
 ctx.field("SoInteractionMapping1.ignoreOtherCommandActions").setBoolValue(False)
@@ -37,6 +37,7 @@ def initImageOrientationGraphicsView(view):
   g_ImageOrientationGraphicsView = view
   global TempObj
   
+  print("did the init")
   global activePositioning
   activePositioning = False
   global activeMasking
@@ -79,6 +80,7 @@ def showImageOrientationInterface():
   #ctx.control("GraphicsView" ).setProperty("expandX",False)
   mdlToSet = ""
   numIm = ctx.field("NumberImages").value
+  print("number of images: %s")
   for i in range(numIm):
     buttonDefinition = """Button {expandX = No title = \"Image %i\" name = buttonImage%i command = "py: updateImage(\'Image%i\')"}"""%(i,i,i)
     #buttonImage = g_sceneImageOrientation.addMDL(buttonDefinition, True)
@@ -808,11 +810,15 @@ def generateBrainMask(Image="Image0"):
   #detection of 2,8 4,6 1,9 on the keypad enter to validate
   
 def button1PressedMaskRefine(event):
-  print(event)
-  print("eventChoice")
-  print(ctx.field("eventChoice").value)
+
   global currentImage
+  
   inImages = ctx.field("inImageInfos").object()
+  if 'planeOrientation' not in inImages[currentImage].keys():
+    print("need to define a plante orientation first")
+    return
+  
+  
   worldToVoxelMatrix = ctx.field("SwitchAlreadyRegistered.output0").worldToVoxelMatrix()
   csoId2Modify = []
   if event["type"] == "KeyPress":
