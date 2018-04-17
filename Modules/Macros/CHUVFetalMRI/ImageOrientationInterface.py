@@ -20,10 +20,10 @@ activePositioning = None
 activeMasking = None
 currentPositioning = None
 currentImage = None
-#g_layoutImageOrientation = None 
-#g_sceneImageOrientation = None 
-#g_ImageOrientationGraphicsView = None
-#g_HorizontalControl = {}
+g_layoutImageOrientation = None 
+g_sceneImageOrientation = None 
+g_ImageOrientationGraphicsView = None
+g_HorizontalControl = {}
 activeShowPosition = 1
 ctx.field("Switch.currentInput").setValue(0)
 ctx.field("SoInteractionMapping1.ignoreOtherCommandActions").setBoolValue(False)
@@ -37,7 +37,6 @@ def initImageOrientationGraphicsView(view):
   g_ImageOrientationGraphicsView = view
   global TempObj
   
-  print("did the init")
   global activePositioning
   activePositioning = False
   global activeMasking
