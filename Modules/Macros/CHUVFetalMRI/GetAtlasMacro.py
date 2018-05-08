@@ -15,7 +15,7 @@ from LocalFilePathSupport import populateComboBoxWithDefaultPathVariables
 import os
 
 def init():
-  print("test")
+  print(ctx.field("AtlasPath").stringValue())
   updateAtlas()
 
 #def fileDropped(filename):

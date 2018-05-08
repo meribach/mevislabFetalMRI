@@ -46,10 +46,14 @@ def execute():
   ctx.field("DirectDicomImport.dplImport").touch()
   numVolu = ctx.field("DirectDicomImport.numVolumes").value
   for iterVol in range(numVolu):
+    
     ctx.field("MultiFileVolumeListImageOutput.outVolIdx").setValue(iterVol)
+    if ctx.field("MultiFileVolumeListImageOutput.issues").value == '':
     #ctx.field("itkImageFileWriter.fileName").setValue(ctx.expandFilename(ctx.field("name2").value+os.sep+"Image%i.nii"%iterVol))
-    print(ctx.field("itkImageFileWriter.fileName").value)
-    ctx.field("itkImageFileWriter.save").touch()
+      print(ctx.field("itkImageFileWriter.fileName").value)
+      ctx.field("itkImageFileWriter.save").touch()
+    else:
+      print("Error with the file %s"%ctx.field("itkImageFileWriter.fileName").value)
   print("conversion done")
   
   

@@ -21,8 +21,8 @@ module GetAtlasMacro {
   }
   fields  {
     instanceName = GetAtlasMacro
-    name = D:/Pierre/CRL_Fetal_Brain_Atlas_2016/CRL_Fetal_Brain_Atlas_2016
-    AtlasPath = D:/Pierre/CRL_Fetal_Brain_Atlas_2016/CRL_Fetal_Brain_Atlas_2016
+    name = /home/neuropsynov/Bureau/CHUV/CRL_Fetal_Brain_Atlas_2016
+    AtlasPath = /home/neuropsynov/Bureau/CHUV/CRL_Fetal_Brain_Atlas_2016
     currentWeek = 22
   }
 }
@@ -115,8 +115,8 @@ module SoView2DSlider {
     clipToSlice = FALSE
     cursorShape = UNDEFINED_CURSOR
     minimumValue = 0
-    maximumValue = 154
-    currentValue = 87
+    maximumValue = 0
+    currentValue = 0
     useTracking = TRUE
     stepSize = 1
     snapSize = 1
@@ -248,62 +248,13 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Loading okay."
-    numDims = 3
+    info = "Invalid path"
+    numDims = 0
     fileType = TypeNotApplicable
-    componentType = int16
-    pixelType = SCALAR
-    loaderType = NiftiImageIO
-    outputMetaDataStr = "ITK_FileNotes : 
-aux_file : 
-bitpix : 16
-cal_max : 0
-cal_min : 0
-datatype : 4
-descrip : 
-dim[0] : 3
-dim[1] : 135
-dim[2] : 189
-dim[3] : 155
-dim[4] : 1
-dim[5] : 1
-dim[6] : 1
-dim[7] : 1
-dim_info : 
-intent_code : 0
-intent_name : 
-intent_p1 : 0
-intent_p2 : 0
-intent_p3 : 0
-pixdim[0] : 1
-pixdim[1] : 0.799999
-pixdim[2] : 0.799999
-pixdim[3] : 0.799999
-pixdim[4] : 0
-pixdim[5] : 0
-pixdim[6] : 0
-pixdim[7] : 0
-qform_code : 2
-qoffset_x : 53.5999
-qoffset_y : 75.1999
-qoffset_z : -61.5999
-quatern_b : 0
-quatern_c : 0
-quatern_d : 1
-scl_inter : 0
-scl_slope : 1
-sform_code : 1
-slice_code : 
-slice_duration : 0
-slice_end : 0
-slice_start : 0
-srow_x : -0.799999 0 0 53.5999
-srow_y : 0 -0.799999 0 75.1999
-srow_z : 0 0 0.799999 -61.5999
-toffset : 0
-vox_offset : 352
-xyzt_units : 
-"
+    componentType = ""
+    pixelType = UNKNOWNPIXELTYPE
+    loaderType = ""
+    outputMetaDataStr = ""
     suppressErrorPosting = FALSE
     unresolvedFileName = ""
   }
@@ -361,11 +312,11 @@ module WorldVoxelConvert {
     voxelX = 64
     voxelY = 86
     voxelZ = 102
-    worldX = -2.79999721050262
-    worldY = -6.79999101161957
-    worldZ = 19.5999761819839
+    worldX = 64
+    worldY = 86
+    worldZ = 102
     voxelPos = "64 86 102"
-    worldPos = "-2.79999721050262 -6.79999101161957 19.5999761819839"
+    worldPos = "64 86 102"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -453,11 +404,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1994.59020996094
-    lutGrayWidth = 670.669921875
-    lutAlphaCenter = 1994.59020996094
-    lutAlphaWidth = 670.669921875
-    lutIsRelative = FALSE
+    lutGrayCenter = 1
+    lutGrayWidth = 1
+    lutAlphaCenter = 1
+    lutAlphaWidth = 1
+    lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -532,21 +483,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1994.59020996094
-    annoInput04 = 670.669921875
+    annoInput03 = 1
+    annoInput04 = 1
     annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 1994.59020996094
-    annoInput08 = 670.669921875
+    annoInput07 = 1
+    annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 0
-    annoNumInput03 = 1994.59020996094
-    annoNumInput04 = 670.669921875
+    annoNumInput03 = 1
+    annoNumInput04 = 1
     annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 1994.59020996094
+    annoNumInput07 = 1
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -852,11 +803,11 @@ module SoView2D {
     instanceName = SoView2D
     interactionProviderID = ""
     viewerId = viewer
-    startSlice = 87
+    startSlice = 0
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 154
+    maxSlice = 0
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -1159,10 +1110,10 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
-    lutGrayWidth = 1
-    lutAlphaCenter = 1
-    lutAlphaWidth = 1
+    lutGrayCenter = 1742
+    lutGrayWidth = 3484
+    lutAlphaCenter = 1742
+    lutAlphaWidth = 3484
     lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
@@ -1238,21 +1189,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
-    annoInput04 = 1
+    annoInput03 = 1742
+    annoInput04 = 3484
     annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 1
-    annoInput08 = 1
+    annoInput07 = 1742
+    annoInput08 = 3484
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 0
-    annoNumInput03 = 1
-    annoNumInput04 = 1
+    annoNumInput03 = 1742
+    annoNumInput04 = 3484
     annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 1742
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -1534,7 +1485,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "File closed"
+    info = "Invalid path"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -1643,7 +1594,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 154
+    maxSlice = 0
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -1742,11 +1693,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1742
-    lutGrayWidth = 3484
-    lutAlphaCenter = 1742
-    lutAlphaWidth = 3484
-    lutIsRelative = FALSE
+    lutGrayCenter = 1
+    lutGrayWidth = 1
+    lutAlphaCenter = 1
+    lutAlphaWidth = 1
+    lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -1821,21 +1772,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1742
-    annoInput04 = 3484
+    annoInput03 = 1
+    annoInput04 = 1
     annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 1742
-    annoInput08 = 3484
+    annoInput07 = 1
+    annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 760
-    annoNumInput03 = 1742
-    annoNumInput04 = 3484
+    annoNumInput03 = 1
+    annoNumInput04 = 1
     annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 1742
+    annoNumInput07 = 1
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -1941,11 +1892,11 @@ module WorldVoxelConvert {
     voxelX = 276.786315917969
     voxelY = 249.435897827149
     voxelZ = 11.5012265243338
-    worldX = 161.296300506684
-    worldY = 128.388804389851
-    worldZ = -59.1989446812667
+    worldX = 276.786315917969
+    worldY = 249.435897827149
+    worldZ = 11.5012265243338
     voxelPos = "276.786315917969 249.435897827149 11.5012265243338"
-    worldPos = "161.296300506684 128.388804389851 -59.1989446812667"
+    worldPos = "276.786315917969 249.435897827149 11.5012265243338"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -2059,11 +2010,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1742
-    lutGrayWidth = 3484
-    lutAlphaCenter = 1742
-    lutAlphaWidth = 3484
-    lutIsRelative = FALSE
+    lutGrayCenter = 1
+    lutGrayWidth = 1
+    lutAlphaCenter = 1
+    lutAlphaWidth = 1
+    lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -2138,21 +2089,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1742
-    annoInput04 = 3484
+    annoInput03 = 1
+    annoInput04 = 1
     annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 1742
-    annoInput08 = 3484
+    annoInput07 = 1
+    annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 681
-    annoNumInput03 = 1742
-    annoNumInput04 = 3484
+    annoNumInput03 = 1
+    annoNumInput04 = 1
     annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 1742
+    annoNumInput07 = 1
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -2289,7 +2240,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 154
+    maxSlice = 0
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -2567,7 +2518,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 154
+    maxSlice = 0
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -2666,11 +2617,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1742
-    lutGrayWidth = 3484
-    lutAlphaCenter = 1742
-    lutAlphaWidth = 3484
-    lutIsRelative = FALSE
+    lutGrayCenter = 1
+    lutGrayWidth = 1
+    lutAlphaCenter = 1
+    lutAlphaWidth = 1
+    lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -2745,21 +2696,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1742
-    annoInput04 = 3484
+    annoInput03 = 1
+    annoInput04 = 1
     annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 1742
-    annoInput08 = 3484
+    annoInput07 = 1
+    annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 892
-    annoNumInput03 = 1742
-    annoNumInput04 = 3484
+    annoNumInput03 = 1
+    annoNumInput04 = 1
     annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 1742
+    annoNumInput07 = 1
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -3081,7 +3032,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "-1.74221048628687 -1.28042000342047 -6.39999198913569"
+    center = "0 0 0"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -3146,7 +3097,7 @@ module itkImageFileWriter {
     correctSubVoxelShift = TRUE
     forceDirectionCosineWrite = TRUE
     outputVoxelType = Automatic
-    info = "File saved successfully"
+    info = ""
     unresolvedFileName = D:/Pierre/CRL_Fetal_Brain_Atlas_2016/CRL_Fetal_Brain_Atlas_2016/STA22_worldmatrixModified_lr_brain_mask.nii.gz
   }
 }
@@ -3202,7 +3153,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "File closed"
+    info = "Invalid path"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""

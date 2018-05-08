@@ -27,7 +27,7 @@ module View2DExtensions {
     lutGrayWidth = 1
     lutAlphaCenter = 0.5
     lutAlphaWidth = 1
-    lutIsRelative = FALSE
+    lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -260,7 +260,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 23
+    maxSlice = 0
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -590,7 +590,7 @@ module SoGroup {
       window _viewer {
         geometry = "1146 127 670 619"
         sizeHint = "400 400"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -745,7 +745,7 @@ module CSOManager {
     listSingleRemoveEmptyGroupHandling = RemoveAlways
     listDefaultRemoveEmptyGroupHandling = RemoveAlways
     enableUndoRedo = TRUE
-    numUndos = 9
+    numUndos = 0
     numRedos = 0
     undoStackLimit = 16
     useSelectionCSONotification = FALSE
@@ -855,11 +855,11 @@ module SoView2D {
     instanceName = SoView2D1
     interactionProviderID = ""
     viewerId = viewer
-    startSlice = 12
+    startSlice = 0
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 23
+    maxSlice = 0
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -946,7 +946,7 @@ module View2DExtensions {
     lutGrayWidth = 1
     lutAlphaCenter = 0.5
     lutAlphaWidth = 1
-    lutIsRelative = FALSE
+    lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -1328,50 +1328,6 @@ module Bypass {
     noBypass = FALSE
   }
 }
-module SoCSOTransform {
-  internal  {
-    frame = "849 485 128 56"
-    moduleGroupName = SecondTry
-    windows  {
-      window _default {
-        geometry = "1336 356 264 250"
-        sizeHint = "264 250"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = SoCSOTransform
-    affineMatrix = "1 0 0 0
-0 1 0 0
-0 0 1 0
-0 0 0 1"
-    interpretMatrixAsMLMatrix = TRUE
-  }
-}
-module AffineMatrixComposition {
-  internal  {
-    frame = "741 565 200 56"
-    moduleGroupName = SecondTry
-    showNetworkPanel = true
-    windows  {
-      window _default {
-        geometry = "185 496 341 531"
-        sizeHint = "341 531"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = AffineMatrixComposition
-    onInputChangeBehavior = Clear
-    inTranslation = "0 -167 0 1"
-    inRotation = "0 0 0 1"
-    inScale = "1 1 1 1"
-    inStretch = "0 0 0 1"
-    inSignDeterminant = 1
-  }
-}
 module CSOConvertToImage {
   internal  {
     frame = "605 461 152 56"
@@ -1475,7 +1431,7 @@ module CSOAffineTransformationModificator {
     moduleGroupName = SecondTry
     windows  {
       window _default {
-        geometry = "769 287 380 672"
+        geometry = "769 343 380 672"
         sizeHint = "380 672"
         wasOpen = no
       }
@@ -1565,8 +1521,8 @@ module SoToggle {
   }
   fields  {
     instanceName = SoToggleMaskEditor
-    whichChild = -3
-    on = TRUE
+    whichChild = -1
+    on = FALSE
   }
 }
 module SoCSOTransformEditor {
@@ -1577,7 +1533,7 @@ module SoCSOTransformEditor {
       window _default {
         geometry = "431 610 562 335"
         sizeHint = "292 335"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -1627,7 +1583,7 @@ module SoCSOVisualizationSettings {
       window _default {
         geometry = "1000 619 372 924"
         sizeHint = "372 667"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -1751,7 +1707,7 @@ module CSOInfo {
       window _default {
         geometry = "57 424 368 845"
         sizeHint = "368 845"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -1797,7 +1753,7 @@ connections  {
   Info.input0 = Switch.output0
   RemoteRendering.sceneGraph = SoGroup.self
   RemoteRenderingClient.input = RemoteRendering.output
-  SoGroup1.children = "SoCSOTransform.self SoView2DCSOExtensibleEditor1.self SoToggle1.self"
+  SoGroup1.children = "SoView2DCSOExtensibleEditor1.self SoToggle1.self"
   CSOIsoGenerator.input0 = Switch.output0
   CSOIsoGenerator.inCSOList = CSOManager1.outCSOList
   SoView2DCSOExtensibleEditor1.inCSOList = CSOManager1.outCSOList
@@ -1806,7 +1762,6 @@ connections  {
   View2DExtensions1.inLUT = Switch.output0
   Switch.input0 = Bypass.output0
   Switch.input1 = itkImageFileReader.output0
-  SoCSOTransform.affineMatrix = AffineMatrixComposition.outMatrix
   CSOConvertToImage.input0 = Switch.output0
   CSOConvertToImage.inCSOList = CSOManager1.outCSOList
   itkImageFileWriter.input0 = CSOConvertToImage.output0
@@ -1823,7 +1778,7 @@ networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 77
+        uniqueId = 80
         objectName = MayBeUsefulOneDay
         parentUniqueId = 0
         color  {

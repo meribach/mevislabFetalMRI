@@ -774,6 +774,7 @@ def button1PressedImOrient(event):
               print("don't know")
               
           #modify mask
+          ctx.module("GetAtlasMacro").call("updateAtlas")
           generateBrainMask(currentImage)
 
           #voxelworldmatrix = imagetorotate.voxelToWorldMatrix()
@@ -885,7 +886,7 @@ def button1PressedMaskRefine(event):
       elif inImages[currentImage]['planeOrientation'] == "axial":
          newMatrix=numpy.array([[0.99984769502584625,-0.017452413916200969,0,0],[0.017452413916200969,0.99984769502584625,0,0],[0,0,1,0],[0,0,0,1]])
       elif inImages[currentImage]['planeOrientation'] == "sagittal" :
-         newMatrix=numpy.array([[1,0,0,0],[0,0.99984769502584625,-0.017452413916200969,0],[0,0.017452413916200969,0.99984769502584625,0],[0,0,0,0]])
+         newMatrix=numpy.array([[1,0,0,0],[0,0.99984769502584625,-0.017452413916200969,0],[0,0.017452413916200969,0.99984769502584625,0],[0,0,0,1]])
          
       ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.csoIdList").setValue(csoId2Modifystr)
       ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.matrix").setValue(newMatrix)
@@ -899,7 +900,7 @@ def button1PressedMaskRefine(event):
       elif inImages[currentImage]['planeOrientation'] == "axial":
          newMatrix=numpy.array([[0.99984769502584625,0.017452413916200969,0,0],[-0.017452413916200969,0.99984769502584625,0,0],[0,0,1,0],[0,0,0,1]])
       elif inImages[currentImage]['planeOrientation'] == "sagittal" :
-         newMatrix=numpy.array([[1,0,0,0],[0,0.99984769502584625,0.017452413916200969,0],[0,-0.017452413916200969,0.99984769502584625,0],[0,0,0,0]])
+         newMatrix=numpy.array([[1,0,0,0],[0,0.99984769502584625,0.017452413916200969,0],[0,-0.017452413916200969,0.99984769502584625,0],[0,0,0,1]])
          
       ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.csoIdList").setValue(csoId2Modifystr)
       ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.matrix").setValue(newMatrix)
@@ -912,9 +913,27 @@ def button1PressedMaskRefine(event):
 
     elif event["key"]=="Minus":
       print("decrease")
+      #ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.csoIdList").setValue(csoId2Modifystr)
+      #if inImages[currentImage]['planeOrientation'] == "coronal":
+      #   newMatrix=numpy.array([[0.9,0,0,0],[0,1,0,0],[0,0,0.9,0],[0,0,0,1]])
+      #elif inImages[currentImage]['planeOrientation'] == "axial":
+      #   newMatrix=numpy.array([[0.9,0,0,0],[0,0.9,0,0],[0,0,1,0],[0,0,0,1]])
+      #elif inImages[currentImage]['planeOrientation'] == "sagittal" :
+      #   newMatrix=numpy.array([[1,0,0,0],[0,0.9,0,0],[0,0,0.9,0],[0,0,0,1]])
+      #print(newMatrix)
+      #ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.apply").touch()
     
     elif event["key"]=="Plus":
       print("increase")
+      #ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.csoIdList").setValue(csoId2Modifystr)
+      #if inImages[currentImage]['planeOrientation'] == "coronal":
+      #   newMatrix=numpy.array([[1.1,0,0,0],[0,1,0,0],[0,0,1.1,0],[0,0,0,1]])
+      #elif inImages[currentImage]['planeOrientation'] == "axial":
+      #   newMatrix=numpy.array([[1.1,0,0,0],[0,1.1,0,0],[0,0,1,0],[0,0,0,1]])
+      #elif inImages[currentImage]['planeOrientation'] == "sagittal" :
+      #   newMatrix=numpy.array([[1,0,0,0],[0,1.1,0,0],[0,0,1.1,0],[0,0,0,1]])
+      #print(newMatrix)
+      #ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.apply").touch()
     
     elif event["key"]=="Backspace":
       print("delete current CSO")
