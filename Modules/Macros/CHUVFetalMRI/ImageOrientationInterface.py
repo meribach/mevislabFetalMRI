@@ -87,7 +87,7 @@ def showImageOrientationInterface():
     #buttonPositioning = g_sceneImageOrientation.addMDL(buttonPositioningDef, True)
     buttonResetBrainMaskDef = """Button {expandX = No title ="Reset Brain Mask" name = buttonResetBrainMask%i enabled = False command = "py: resetBrainMask(\'Image%i\')"}"""%(i,i)
     #buttonManualPositioning = g_sceneImageOrientation.addMDL(buttonManualPositioningDef, True)
-    buttonGenerateMaskDef = """Button {expandX = No title = "Generate Brain Mask" name = GenerateBrainMask%i enabled = False command = "py: generateBrainMask(\'Image%i\')"}"""%(i,i)
+    buttonGenerateMaskDef = """Button {expandX = No title = "Edit Brain Mask" name = GenerateBrainMask%i enabled = False command = "py: generateBrainMask(\'Image%i\')"}"""%(i,i)
     #buttonGenerateMask = g_sceneImageOrientation.addMDL(buttonGenerateMaskDef, True)
     checkBoxDefinition = "CheckBox {name = checkImage%i}"%(i)
     #checkBoxImage = g_sceneImageOrientation.addMDL(checkBoxDefinition,True)
@@ -525,14 +525,14 @@ def button1PressedImOrient(event):
   
   global activeShowPosition
   global activePositioning
-  print activeShowPosition
+  #print activeShowPosition
   if activeShowPosition == 0:
     ctx.field("cornerMenuIteraction").setValue(1)
   
   inImages = ctx.field("inImageInfos").object() 
 
-  print("eventChoice button1PressedImOrient")
-  print(ctx.field("eventChoice").value)
+  #print("eventChoice button1PressedImOrient")
+  #print(ctx.field("eventChoice").value)
   if activePositioning == True:
     if event["type"] == "MouseButtonPress":
       if event["button"] == "left":
@@ -780,12 +780,13 @@ def button1PressedImOrient(event):
         
   elif activePositioning ==False:
     global activeMasking
-    print("activeMaskting")
-    print(activeMasking)
+    #print("activeMaskting")
+    #print(activeMasking)
     if activeMasking == True:
       button1PressedMaskRefine(event)
-    else:
-      print("j'en veux pas de ton click souris")
+    #else:
+      
+      #print("j'en veux pas de ton click souris")
     
   
 def generateBrainMask(Image="Image0"): 
@@ -813,22 +814,25 @@ def button1PressedMaskRefine(event):
   global currentImage
   
   inImages = ctx.field("inImageInfos").object()
-  if 'planeOrientation' not in inImages[currentImage].keys():
-    print("need to define a plante orientation first")
-    return
+  if event["type"]== "KeyPress":
+    if event["key"] != "Return" or event["key"]!="Enter":
+      if 'planeOrientation' not in inImages[currentImage].keys():
+        print("need to define a plante orientation first")
+        return
   
   
   worldToVoxelMatrix = ctx.field("SwitchAlreadyRegistered.output0").worldToVoxelMatrix()
   csoId2Modify = []
   if event["type"] == "KeyPress":
+    if event["key"] != "Return" or event["key"]!="Enter":
     #ctx.field("adaptTemplateMask.updateCSOButton").touch()
-    CSOobj = ctx.field("adaptTemplateMask.CSOManager1.outCSOList").object()
-    for csobj in CSOobj.getCSOs():
-      if csobj.isInPlane:
-        if ctx.field("SoView2D.startSlice").value == int(csobj.getVoxelBoundingBox(worldToVoxelMatrix)[5]):
-            csoId2Modify.append(str(csobj.id))
-    csoId2Modifystr=" ".join(csoId2Modify)
-    print(csoId2Modifystr)        
+      CSOobj = ctx.field("adaptTemplateMask.CSOManager1.outCSOList").object()
+      for csobj in CSOobj.getCSOs():
+        if csobj.isInPlane:
+          if ctx.field("SoView2D.startSlice").value == int(csobj.getVoxelBoundingBox(worldToVoxelMatrix)[5]):
+              csoId2Modify.append(str(csobj.id))
+      csoId2Modifystr=" ".join(csoId2Modify)
+      print(csoId2Modifystr)        
     if event["key"]=="2":   
       #ctx.field("adaptTemplateMask.AffineMatrixComposition.inTranslation").value
       #ctx.field("adaptTemplateMask.AffineMatrixComposition.inTranslation").setValue(numpy.array(ctx.field("adaptTemplateMask.AffineMatrixComposition.inTranslation").value) + numpy.array([0,-1,0,0]))
@@ -902,9 +906,17 @@ def button1PressedMaskRefine(event):
       ctx.field("adaptTemplateMask.CSOAffineTransformationModificator1.apply").touch()        
     
     
-    elif event["key"]=="r":
+    elif event["key"]=="r" or event["key"]=="R":
       print("should reset only current slice")
+      #AffineMatrixComposition.inScale
+
     elif event["key"]=="Minus":
+      print("decrease")
+    
+    elif event["key"]=="Plus":
+      print("increase")
+    
+    elif event["key"]=="Backspace":
       print("delete current CSO")
       
       isCSOmouse = CSOobj.getCSOCurrentlyUnderMouse()
@@ -997,7 +1009,7 @@ def resetBrainMask(Image):
     else:
       global g_HorizontalControl
       try:
-        g_HorizontalControl[imiter].control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "white"; }')
+        g_HorizontalControl[Image].control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "white"; }')
       except:
         print("test background g_horizontalcontrol didn't work") 
   
