@@ -27,7 +27,7 @@ module View2DExtensions {
     lutGrayWidth = 1
     lutAlphaCenter = 0.5
     lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -260,7 +260,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -588,9 +588,9 @@ module SoGroup {
     moduleGroupName = SecondTry
     windows  {
       window _viewer {
-        geometry = "795 536 670 619"
+        geometry = "1146 127 670 619"
         sizeHint = "400 400"
-        wasOpen = no
+        wasOpen = yes
       }
     }
   }
@@ -600,7 +600,7 @@ module SoGroup {
 }
 module CSOIsoGenerator {
   internal  {
-    frame = "556 812 160 72"
+    frame = "657 869 160 72"
     moduleGroupName = SecondTry
     showNetworkPanel = true
     windows  {
@@ -662,7 +662,7 @@ module CSOIsoGenerator {
 }
 module CSOManager {
   internal  {
-    frame = "697 749 144 72"
+    frame = "729 717 144 72"
     moduleGroupName = SecondTry
     showNetworkPanel = true
     windows  {
@@ -745,7 +745,7 @@ module CSOManager {
     listSingleRemoveEmptyGroupHandling = RemoveAlways
     listDefaultRemoveEmptyGroupHandling = RemoveAlways
     enableUndoRedo = TRUE
-    numUndos = 0
+    numUndos = 9
     numRedos = 0
     undoStackLimit = 16
     useSelectionCSONotification = FALSE
@@ -787,12 +787,12 @@ module CSOManager {
 }
 module SoView2DCSOExtensibleEditor {
   internal  {
-    frame = "916 628 208 56"
+    frame = "1009 541 208 56"
     moduleGroupName = SecondTry
     windows  {
       window _default {
-        geometry = "770 473 393 395"
-        sizeHint = "393 395"
+        geometry = "1103 382 394 369"
+        sizeHint = "394 369"
         wasOpen = no
       }
     }
@@ -828,7 +828,7 @@ module SoView2DCSOExtensibleEditor {
     enableRemoveAll = FALSE
     interactOnlyWithSelectedCSO = FALSE
     renderLeftOverCSOsWithDefaultRenderer = TRUE
-    allowSelectionWithDefaultRenderer = TRUE
+    allowSelectionWithDefaultRenderer = FALSE
     renderCSOsOnImagesDependingOnCreationMode = ON_ALL_IMAGES
     updateCSOIdUnderMouseCursor = TRUE
     updateImageStatisticsOnFinishInteraction = FALSE
@@ -836,7 +836,7 @@ module SoView2DCSOExtensibleEditor {
 }
 module SoView2D {
   internal  {
-    frame = "1313 909 96 56"
+    frame = "1545 813 96 56"
     moduleGroupName = SecondTry
     windows  {
       window _default {
@@ -855,11 +855,11 @@ module SoView2D {
     instanceName = SoView2D1
     interactionProviderID = ""
     viewerId = viewer
-    startSlice = 0
+    startSlice = 12
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -923,7 +923,7 @@ module SoView2D {
 }
 module View2DExtensions {
   internal  {
-    frame = "1137 901 144 56"
+    frame = "1473 933 144 56"
     moduleGroupName = SecondTry
     windows  {
       window _default {
@@ -946,7 +946,7 @@ module View2DExtensions {
     lutGrayWidth = 1
     lutAlphaCenter = 0.5
     lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -1438,7 +1438,7 @@ module itkImageFileWriter {
 }
 module SoToggle {
   internal  {
-    frame = "1253 789 120 56"
+    frame = "1389 781 120 56"
     moduleGroupName = SecondTry
     showNetworkPanel = true
   }
@@ -1450,7 +1450,7 @@ module SoToggle {
 }
 module SoGroup {
   internal  {
-    frame = "1313 685 96 56"
+    frame = "1409 661 96 56"
     moduleGroupName = SecondTry
   }
   fields  {
@@ -1459,7 +1459,7 @@ module SoGroup {
 }
 module SoToggle {
   internal  {
-    frame = "1269 589 120 56"
+    frame = "1389 557 120 56"
     moduleGroupName = SecondTry
     showNetworkPanel = true
   }
@@ -1515,7 +1515,7 @@ module CSOAffineTransformationModificator {
 }
 module CSOAffineTransformationModificator {
   internal  {
-    frame = "921 853 240 56"
+    frame = "889 877 240 56"
     moduleGroupName = SecondTry
     windows  {
       window _default {
@@ -1565,8 +1565,227 @@ module SoToggle {
   }
   fields  {
     instanceName = SoToggleMaskEditor
-    whichChild = -1
-    on = FALSE
+    whichChild = -3
+    on = TRUE
+  }
+}
+module SoCSOTransformEditor {
+  internal  {
+    frame = "1153 733 160 56"
+    moduleGroupName = SecondTry
+    windows  {
+      window _default {
+        geometry = "431 610 562 335"
+        sizeHint = "292 335"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCSOTransformEditor
+    extensionId = SUB_TYPE_ALL
+    allowCreation = TRUE
+    allowModification = TRUE
+    allowSeedPointInteraction = TRUE
+    shouldRender = TRUE
+    selectionCursor = POINTING_HAND_CURSOR
+    interactionForbiddenCursor = FORBIDDEN_CURSOR
+    allowScale = TRUE
+    allowTranslation = TRUE
+    allowRotation = FALSE
+    scaleHandleMargin = 2
+    translateHandleAreaSize = 0
+    isotropicScaling = FALSE
+    hideHandlesWhileInteracting = FALSE
+    defaultCursor = DEFAULT_CURSOR
+    moveAllCursor = MOVE_ALL_CURSOR
+    scaleNCursor = MOVE_VERT_CURSOR
+    scaleNWCursor = MOVE_FDIAG_CURSOR
+    scaleWCursor = MOVE_HORI_CURSOR
+    scaleSWCursor = MOVE_BDIAG_CURSOR
+    scaleSCursor = MOVE_VERT_CURSOR
+    scaleSECursor = MOVE_FDIAG_CURSOR
+    scaleECursor = MOVE_HORI_CURSOR
+    scaleNECursor = MOVE_BDIAG_CURSOR
+    rotateCursor = ROTATE_Z_CURSOR
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "1145 621 96 56"
+    moduleGroupName = SecondTry
+  }
+  fields  {
+    instanceName = SoGroup3
+  }
+}
+module SoCSOVisualizationSettings {
+  internal  {
+    frame = "1165 837 184 56"
+    moduleGroupName = SecondTry
+    windows  {
+      window _default {
+        geometry = "1000 619 372 924"
+        sizeHint = "372 667"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCSOVisualizationSettings
+    autoApply = TRUE
+    shouldUseAntiAliasing = TRUE
+    globalAlphaFactor = 1
+    showCSOsOnAllTimePoints = FALSE
+    overwriteCurrentTimePoint = FALSE
+    newCurrentTimePoint = 0
+    orientationFilterMode = ORIENTATION_MODE_ALL
+    parallelThicknessMode = PARALLEL_THICKNESS_MODE_RELATIVE_TO_SLICE
+    showParallelThickness = 0.2
+    ghostingDepthInVoxel = 0
+    voxelSlabAugment = 0
+    shouldRenderShadow = FALSE
+    shadowColor = "0 0 0"
+    shadowAlpha = 1
+    shadowLineWidth = 1
+    shouldRenderSeedPoints = TRUE
+    shouldRenderPathPoints = TRUE
+    shouldOverwriteSeedPointsSettings = TRUE
+    shouldUsePathPointColorForSeedPoints = FALSE
+    shouldRenderSeedPointsOnlyForSelectedCSOs = FALSE
+    shouldUsePathPointColorForSeedPoints = FALSE
+    shouldUseStylePaletteLookUpForSeedPoints = FALSE
+    stylePaletteLookUpSeedPoints = CSOId
+    useSeedPointOnSliceStyle = TRUE
+    useSeedPointOnSliceSize = FALSE
+    useSeedPointOnSliceColor = TRUE
+    useSeedPointOnSliceAlpha = FALSE
+    seedPointOnSliceStyle = SEED_POINT_STYLE_FIXED_SIZE_CIRCLE
+    seedPointOnSliceSize = 3
+    seedPointOnSliceColor = "1 1 0"
+    seedPointOnSliceAlpha = 1
+    useSeedPointBelowSliceStyle = TRUE
+    useSeedPointBelowSliceSize = FALSE
+    useSeedPointBelowSliceColor = FALSE
+    useSeedPointBelowSliceAlpha = FALSE
+    seedPointBelowSliceStyle = SEED_POINT_STYLE_NONE
+    seedPointBelowSliceSize = 3
+    seedPointBelowSliceColor = "1 1 1"
+    seedPointBelowSliceAlpha = 1
+    useSeedPointAboveSliceStyle = TRUE
+    useSeedPointAboveSliceSize = FALSE
+    useSeedPointAboveSliceColor = FALSE
+    useSeedPointAboveSliceAlpha = FALSE
+    seedPointAboveSliceStyle = SEED_POINT_STYLE_NONE
+    seedPointAboveSliceSize = 3
+    seedPointAboveSliceColor = "1 1 1"
+    seedPointAboveSliceAlpha = 1
+    shouldOverwritePathPointsSettings = FALSE
+    shouldUseStylePaletteLookUpForPathPoints = FALSE
+    stylePaletteLookUpPathPoints = CSOId
+    usePathPointsOnSliceLineStyle = TRUE
+    usePathPointsOnSliceLineWidth = FALSE
+    usePathPointsOnSliceColor = FALSE
+    usePathPointsOnSliceAlpha = TRUE
+    pathPointsOnSliceLineStyle = PATH_POINTS_STYLE_SOLID
+    pathPointsOnSliceLineWidth = 1
+    pathPointsOnSliceColor = "1 1 1"
+    pathPointsOnSliceAlpha = 1
+    usePathPointsBelowSliceLineStyle = TRUE
+    usePathPointsBelowSliceLineWidth = FALSE
+    usePathPointsBelowSliceColor = FALSE
+    usePathPointsBelowSliceAlpha = TRUE
+    pathPointsBelowSliceLineStyle = PATH_POINTS_STYLE_DASHED
+    pathPointsBelowSliceLineWidth = 1
+    pathPointsBelowSliceColor = "1 1 1"
+    pathPointsBelowSliceAlpha = 0.5
+    usePathPointsAboveSliceLineStyle = TRUE
+    usePathPointsAboveSliceLineWidth = FALSE
+    usePathPointsAboveSliceColor = FALSE
+    usePathPointsAboveSliceAlpha = TRUE
+    pathPointsAboveSliceLineStyle = PATH_POINTS_STYLE_DASHED
+    pathPointsAboveSliceLineWidth = 1
+    pathPointsAboveSliceColor = "1 1 1"
+    pathPointsAboveSliceAlpha = 0.5
+    shouldOverwriteSelectionSettings = TRUE
+    selectedPathPointsColorMode = HIGHLIGHT_MODE_RELATIVE
+    selectedPathPointsLineWidthMode = HIGHLIGHT_MODE_RELATIVE
+    selectedPathPointsBrightenValue = 1.2
+    selectedPathPointsFixedColor = "1 1 0"
+    selectedPathPointsAlpha = 1
+    selectedPathPointsWidenValue = 1
+    selectedPathPointsFixedLineWidth = 2
+    selectedSeedPointColorMode = HIGHLIGHT_MODE_RELATIVE
+    selectedSeedPointSizeMode = HIGHLIGHT_MODE_RELATIVE
+    selectedSeedPointBrightenValue = 1.2
+    selectedSeedPointFixedColor = "1 1 0"
+    selectedSeedPointAlpha = 1
+    selectedSeedPointEnlargeValue = 1
+    selectedSeedPointFixedSize = 2
+    enableMouseOverHighlighting = TRUE
+    mouseOverPathPointsColorMode = HIGHLIGHT_MODE_RELATIVE
+    mouseOverPathPointsLineWidthMode = HIGHLIGHT_MODE_RELATIVE
+    mouseOverPathPointsBrightenValue = 1.2
+    mouseOverPathPointsFixedColor = "1 1 0"
+    mouseOverPathPointsAlpha = 1
+    mouseOverPathPointsWidenValue = 1
+    mouseOverPathPointsFixedLineWidth = 2
+    mouseOverSeedPointColorMode = HIGHLIGHT_MODE_RELATIVE
+    mouseOverSeedPointSizeMode = HIGHLIGHT_MODE_RELATIVE
+    mouseOverSeedPointBrightenValue = 1.2
+    mouseOverSeedPointFixedColor = "1 1 0"
+    mouseOverSeedPointAlpha = 1
+    mouseOverSeedPointEnlargeValue = 1
+    mouseOverSeedPointFixedSize = 2
+    visibleByMode = CSOs
+    visibleIdList = ""
+    invertVisibility = FALSE
+  }
+}
+module CSOInfo {
+  internal  {
+    frame = "582 640 80 72"
+    moduleGroupName = SecondTry
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "57 424 368 845"
+        sizeHint = "368 845"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = CSOInfo
+    updateMode = AutoUpdate
+    autoApply = FALSE
+    isProcessing = FALSE
+    csoShowMode = LastSelected
+    csoShowByIndexOrId = 0
+    csoShowPrivateValues = TRUE
+    groupShowMode = LastSelected
+    groupShowByIndexOrId = 0
+    shouldGenerateCSOStringOutput = FALSE
+    shouldGenerateCSOGroupStringOutput = FALSE
+    showCSOType = TRUE
+    showCSOSubType = TRUE
+    showCSOCreatorId = TRUE
+    showCSODescription = FALSE
+    showCSONumSeedPoints = TRUE
+    showCSONumPathPoints = TRUE
+    showCSOLength = FALSE
+    showCSOArea = FALSE
+    showCSOGrouping = TRUE
+    showCSOClosedState = TRUE
+    showCSOInPlane = TRUE
+    showCSOSelfIntersecting = FALSE
+    showGroupDescription = FALSE
+    showGroupNumCSO = TRUE
+    showGroupCSOIds = TRUE
+    listenToRepaintNotifications = FALSE
+    listenToFinishingNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    listenToCSOCurrentlyUnderMouseNotifications = TRUE
   }
 }
 connections  {
@@ -1582,7 +1801,7 @@ connections  {
   CSOIsoGenerator.input0 = Switch.output0
   CSOIsoGenerator.inCSOList = CSOManager1.outCSOList
   SoView2DCSOExtensibleEditor1.inCSOList = CSOManager1.outCSOList
-  SoView2DCSOExtensibleEditor1.inExtensions = SoToggleMaskEditor.self
+  SoView2DCSOExtensibleEditor1.inExtensions = SoGroup3.self
   SoView2D1.image = Switch.output0
   View2DExtensions1.inLUT = Switch.output0
   Switch.input0 = Bypass.output0
@@ -1596,6 +1815,9 @@ connections  {
   SoToggle1.children = SoGroup2.self
   CSOAffineTransformationModificator1.inCSOList = CSOManager1.outCSOList
   SoToggleMaskEditor.children = SoCSOManualCorrectionEditor.self
+  SoCSOTransformEditor.inVisualizationSettings = SoCSOVisualizationSettings.outVisualizationSettings
+  SoGroup3.children = "SoToggleMaskEditor.self SoCSOTransformEditor.self"
+  CSOInfo.inCSOList = CSOManager1.outCSOList
 }
 networkModel  {
   parentItems  {
