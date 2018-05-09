@@ -123,8 +123,9 @@ def updateComboBox():
     inImages = ctx.field("inImageInfos").object()
     if inImages is not None:
       print("set orientation plane")
-      dictItem = {"unknown":0,"axial":1,"sagittal":2,"coronal":3}
-      for imiter in inImages.keys():
+      dictItem = {"unknown":0,"axial":1,"sagittal":2,"coronal":3}  
+      
+      for imiter in inImages.keys():        
         if 'file' in inImages[imiter].keys():
           if ctx.hasControl("button%s"%imiter):
             try:
@@ -213,7 +214,9 @@ def resetImages():
   ctx.field("inImageInfos").setObject(inImages)
   print("images reseted")
   
+  
   for iterbutton in range(ctx.field("NumberImages").value):
+         
     if ctx.hasControl("buttonImage%i"%iterbutton):
       try:
         ctx.control("buttonImage%i"%iterbutton).setStyleSheetFromString('QPushButton { background-color: "white"; }')
@@ -228,13 +231,26 @@ def resetImages():
     if ctx.hasControl("GenerateBrainMask%s"%iterbutton):
       try:
         ctx.control("GenerateBrainMask%s"%iterbutton).setStyleSheetFromString('QPushButton { background-color: "white"; }')
+        ctx.control("GenerateBrainMask%s"%iterbutton).setEnabled(False)
       except:
         print("test background has control didn't work")
     else:
       try:
         g_HorizontalControl[imiter].control("GenerateBrainMask%s"%iterbutton).setStyleSheetFromString('QPushButton { background-color: "white"; }')
+        g_HorizontalControl[currentImage].control("GenerateBrainMask%s"%iterbutton).setEnabled(False)
       except:
-        print("test background g_horizontalcontrol didn't work")            
+        print("test background g_horizontalcontrol didn't work")   
+        
+    if ctx.hasControl("buttonResetBrainMask%s"%iterbutton):
+      try:
+         ctx.control("buttonResetBrainMask%s"%iterbutton).setEnabled(False)
+      except:
+         print("don't know")
+    else:
+      try:
+         g_HorizontalControl[currentImage].control("buttonResetBrainMask%s"%iterbutton).setEnabled(False)
+      except:
+         print("don't know")    
 
 def updateImage(Image="Image0"):
   
