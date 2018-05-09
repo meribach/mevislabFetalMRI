@@ -10,15 +10,15 @@ module GetAtlasMacro {
       window _default {
         geometry = "1128 918 588 109"
         sizeHint = "588 109"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
   fields  {
     instanceName = GetAtlasMacro
-    name = $(HOME)/Bureau/CHUV/CRL_Fetal_Brain_Atlas_2017
-    AtlasPath = /home/neuropsynov/Bureau/CHUV/CRL_Fetal_Brain_Atlas_2017
-    currentWeek = 31
+    name = D:/Pierre/CRL_Fetal_Brain_Atlas_2016/CRL_Fetal_Brain_Atlas_2016
+    AtlasPath = D:/Pierre/CRL_Fetal_Brain_Atlas_2016/CRL_Fetal_Brain_Atlas_2016
+    currentWeek = 32
   }
 }
 module Threshold {
@@ -51,7 +51,7 @@ module View2D {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "240 379 400 400"
+        geometry = "1257 217 400 400"
         sizeHint = "400 400"
         wasOpen = no
       }
@@ -109,12 +109,12 @@ module View2D {
 }
 module itkBinaryMorphologicalClosingImageFilter {
   internal  {
-    frame = "513 397 256 56"
+    frame = "377 221 256 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "153 420 509 417"
-        sizeHint = "422 417"
+        geometry = "53 661 517 414"
+        sizeHint = "430 414"
         wasOpen = no
       }
     }
@@ -135,7 +135,7 @@ module itkBinaryMorphologicalClosingImageFilter {
     kernel = ""
     foregroundValue = 3.4028235e+38
     safeBorder = TRUE
-    radius = "3 3 3 0 0 0"
+    radius = "10 10 3 0 0 0"
     coordinateTolerance = 1e-06
     directionTolerance = 1e-06
   }
@@ -146,7 +146,7 @@ module View2D {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "335 566 400 400"
+        geometry = "42 160 400 374"
         sizeHint = "400 400"
         wasOpen = no
       }
@@ -157,7 +157,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 77
+    startSlice = 91
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -208,7 +208,7 @@ module View2D {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "767 429 400 400"
+        geometry = "961 340 400 400"
         sizeHint = "400 400"
         wasOpen = no
       }
@@ -219,7 +219,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 77
+    startSlice = 128
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -244,8 +244,8 @@ module View2D {
     sliceOrigin = "0 0"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 125
-    lutWidth = 125
+    lutCenter = 1742
+    lutWidth = 3484
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -288,12 +288,12 @@ module itkImageFileWriter {
 }
 module itkDilateObjectMorphologyImageFilter {
   internal  {
-    frame = "269 285 232 56"
+    frame = "389 365 232 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "322 366 260 360"
-        sizeHint = "260 360"
+        geometry = "1134 797 258 356"
+        sizeHint = "258 356"
         wasOpen = no
       }
     }
@@ -311,8 +311,12 @@ module itkDilateObjectMorphologyImageFilter {
     upperOutSideMode = MaxValue
     lowerOutSideValue = 0
     upperOutSideValue = 0
-    kernel = "(*,0,0,0,0,0):    1.000000,  1.000000
-(*,1,0,0,0,0):    1.000000,  1.000000
+    kernel = "(*,0,0,0,0,0):    1.000000,  1.000000,  1.000000,  1.000000,  1.000000,  1.000000
+(*,1,0,0,0,0):    1.000000,  1.000000,  1.000000,  1.000000,  1.000000,  1.000000
+(*,2,0,0,0,0):    1.000000,  1.000000,  1.000000,  1.000000,  1.000000,  1.000000
+(*,3,0,0,0,0):    1.000000,  1.000000,  1.000000,  1.000000,  1.000000,  1.000000
+(*,4,0,0,0,0):    1.000000,  1.000000,  1.000000,  1.000000,  1.000000,  1.000000
+(*,5,0,0,0,0):    1.000000,  1.000000,  1.000000,  1.000000,  1.000000,  1.000000
 
 "
     objectValue = 1
@@ -327,16 +331,16 @@ module KernelEditor {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "1131 292 434 816"
-        sizeHint = "434 816"
+        geometry = "1106 376 407 796"
+        sizeHint = "407 796"
         wasOpen = no
       }
     }
   }
   fields  {
     instanceName = KernelEditor
-    kernelX = 2
-    kernelY = 2
+    kernelX = 6
+    kernelY = 6
     kernelZ = 1
     kernelC = 1
     kernelT = 1
@@ -344,20 +348,87 @@ module KernelEditor {
     fieldWidth = 10
     precision = 6
     value = 1
-    kernel = "(*,0,0,0,0,0):    1.000000,  1.000000
-(*,1,0,0,0,0):    1.000000,  1.000000
+    kernel = "(*,0,0,0,0,0):    1.000000,  1.000000,  1.000000,  1.000000,  1.000000,  1.000000
+(*,1,0,0,0,0):    1.000000,  1.000000,  1.000000,  1.000000,  1.000000,  1.000000
+(*,2,0,0,0,0):    1.000000,  1.000000,  1.000000,  1.000000,  1.000000,  1.000000
+(*,3,0,0,0,0):    1.000000,  1.000000,  1.000000,  1.000000,  1.000000,  1.000000
+(*,4,0,0,0,0):    1.000000,  1.000000,  1.000000,  1.000000,  1.000000,  1.000000
+(*,5,0,0,0,0):    1.000000,  1.000000,  1.000000,  1.000000,  1.000000,  1.000000
 
 "
+  }
+}
+module View2D {
+  internal  {
+    frame = "125 485 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "660 690 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D3
+    inventorInputOn = TRUE
+    inventorOutputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 77
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_ZT
+    cineDirection = CINE_FORWARD
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    cineAlwaysReset = TRUE
+    snapToCenter = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    useShaders = TRUE
+    useManagedInteraction = FALSE
+    lutCenter = 0.5
+    lutWidth = 1
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = FALSE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    valueHighPrecision = TRUE
+    showColorChannelValues = FALSE
+    colorChannelSeparator = " / "
+    maxPrecision = 4
+    enableSlicing = TRUE
+    useRelativeLUTIfNoInputImage = TRUE
+    hiResRendering = TRUE
   }
 }
 connections  {
   Threshold.input0 = GetAtlasMacro.outImage
   View2D.inImage = Threshold.output0
-  itkBinaryMorphologicalClosingImageFilter.input0 = Threshold.output0
-  View2D1.inImage = itkDilateObjectMorphologyImageFilter.output0
+  itkBinaryMorphologicalClosingImageFilter.input0 = itkDilateObjectMorphologyImageFilter.output0
+  View2D1.inImage = itkBinaryMorphologicalClosingImageFilter.output0
   View2D2.inImage = GetAtlasMacro.outImage
-  itkImageFileWriter.input0 = itkDilateObjectMorphologyImageFilter.output0
-  itkDilateObjectMorphologyImageFilter.input0 = itkBinaryMorphologicalClosingImageFilter.output0
+  itkImageFileWriter.input0 = itkBinaryMorphologicalClosingImageFilter.output0
+  itkDilateObjectMorphologyImageFilter.input0 = Threshold.output0
   itkDilateObjectMorphologyImageFilter.kernel = KernelEditor.kernel
+  View2D3.inImage = itkDilateObjectMorphologyImageFilter.output0
 }
 networkModel = ""
