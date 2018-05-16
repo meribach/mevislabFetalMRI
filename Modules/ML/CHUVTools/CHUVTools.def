@@ -1,0 +1,31 @@
+//----------------------------------------------------------------------------------
+//! CHUVTools module definitions.
+/*!
+// \file    CHUVTools.def
+// \author  FetalMRI
+// \date    2018-04-12
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule mialOrientImage {
+  DLL                = "CHUVTools"
+
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/mialOrientImage.script
+}
+
+MLModule mevisbtkDenoising {
+  DLL                = "CHUVTools"
+
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/mevisbtkDenoising.script
+}   

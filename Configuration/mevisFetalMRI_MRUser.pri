@@ -66,109 +66,119 @@ LIBS          += -L"$${PACKAGE_ROOT}"/lib
 #  CONFIG += ProjectMLMyProjectDependsOn1 ProjectMLMyProjectDependsOn2 ...
 #}
 
+MyTools {
+   CONFIG_FOUND += MyTools
+   INCLUDEPATH += $${PACKAGE_SOURCES}/Shared/MyTools 
+   QMAKE_LIBDIR += $${PACKAGE_LIB}/MyTools
+   win32:LIBS += mialsrtkOrientImageLib.lib \
+                 mialsrtkOrientImageWrapper.lib \
+				 btkNLMDenoisingLib.lib \
+				 btkNLMDenoisingWrapperLib.lib \
+}
+
 MyITK {
   CONFIG_FOUND += MyITK
-  INCLUDEPATH += $${PACKAGE_SOURCES}/Shared/MyITK
   QMAKE_LIBDIR += $${PACKAGE_LIB}/MyITK
-  win32:LIBS += ITKIONIFTI-4.13.lib \ 
-				ITKCommon-4.13.lib \
-				ITKBiasCorrection-4.13.lib \
-				ITKBioCell-4.13.lib \
-				ITKDICOMParser-4.13.lib \
-				ITKEXPAT-4.13.lib \
-				ITKFEM-4.13.lib \
-				ITKFEMHeaderTest1.lib \
-				ITKFEMRegistrationHeaderTest1.lib \
-				ITKFEMRegistrationTestDriver.lib \
-				ITKFEMTestDriver.lib \
-				ITKIOBMP-4.13.lib \
-				ITKIOBioRad-4.13.lib \
-				ITKIOBruker-4.13.lib \
-				ITKIOCSV-4.13.lib \
-				ITKIOGDCM-4.13.lib \
-				ITKIOGE-4.13.lib \
-				ITKIOGIPL-4.13.lib \
-				ITKIOHDF5-4.13.lib \
-				ITKIOIPL-4.13.lib \
-				ITKIOImageBase-4.13.lib \
-				ITKIOJPEG-4.13.lib \
-				ITKIOLSM-4.13.lib \
-				ITKIOMINC-4.13.lib \
-				ITKIOMRC-4.13.lib \
-				ITKIOMesh-4.13.lib \
-				ITKIOMeta-4.13.lib \
-				ITKIONIFTI-TestSupport.lib \
-				ITKIONRRD-4.13.lib \
-				ITKIOPNG-4.13.lib \
-				ITKIOSiemens-4.13.lib \
-				ITKIOSpatialObjects-4.13.lib \
-				ITKIOStimulate-4.13.lib \
-				ITKIOTIFF-4.13.lib \
-				ITKIOTransformBase-4.13.lib \
-				ITKIOTransformHDF5-4.13.lib \
-				ITKIOTransformInsightLegacy-4.13.lib \
-				ITKIOTransformMatlab-4.13.lib \
-				ITKIOVTK-4.13.lib \
-				ITKIOXML-4.13.lib \
-				ITKKLMRegionGrowing-4.13.lib \
-				ITKLabelMap-4.13.lib \
-				ITKMesh-4.13.lib \
-				ITKMetaIO-4.13.lib \
-				ITKNrrdIO-4.13.lib \
-				ITKOptimizers-4.13.lib \
-				ITKOptimizersv4-4.13.lib \
-				ITKPath-4.13.lib \
-				ITKPolynomials-4.13.lib \
-				ITKQuadEdgeMesh-4.13.lib \
-				ITKSpatialObjects-4.13.lib \
-				ITKStatistics-4.13.lib \
-				ITKTransform-4.13.lib \
-				ITKTransformFactory-4.13.lib \
-				ITKVNLInstantiation-4.13.lib \
-				ITKVTK-4.13.lib \
-				ITKVideoCore-4.13.lib \
-				ITKVideoIO-4.13.lib \
-				ITKVtkGlue-4.13.lib \
-				ITKWatersheds-4.13.lib \
-				ITKgiftiio-4.13.lib \
-				ITKniftiio-4.13.lib \
-				ITKznz-4.13.lib \
-				itkIsotropicWavelets-4.13.lib \
-				itkMinimalPathExtraction-4.13.lib \
-				itkNetlibSlatec-4.13.lib \
-				itkPerformanceBenchmarking-4.13.lib \
-				itkdouble-conversion-4.13.lib \
-				itkgdcmCommon-4.13.lib \
-				itkgdcmDICT-4.13.lib \
-				itkgdcmDSED-4.13.lib \
-				itkgdcmIOD-4.13.lib \				
-				itkgdcmMEXD-4.13.lib \
-				itkgdcmMSFF-4.13.lib \
-				itkgdcmcharls-4.13.lib \
-				itkgdcmjpeg12-4.13.lib \
-				itkgdcmjpeg16-4.13.lib \
-				itkgdcmjpeg8-4.13.lib \
-				itkgdcmopenjp2-4.13.lib \
-				itkgdcmsocketxx-4.13.lib \
-				itkgtest-4.13.lib \
-				itkgtest_main-4.13.lib \
-				itkjpeg-4.13.lib \
-				itklbfgs-4.13.lib \
-				itkminc2-4.13.lib \
-				itknetlib-4.13.lib \
-				itkpng-4.13.lib \
-				itksys-4.13.lib \
-				itktestlib-4.13.lib \
-				itktiff-4.13.lib \
-				itkv3p_netlib-4.13.lib \
-				itkvcl-4.13.lib \
-				itkvnl-4.13.lib \
-				itkvnl_algo-4.13.lib \
-				itkzlib-4.13.lib \
-				libitkhdf5_D.lib \
-				libitkhdf5_cpp_D.lib \			
-				
+  win32:LIBS += ITKBiasCorrection-4.13.lib \
+		ITKIOImageBase-4.13.lib \
+		ITKNrrdIO-4.13.lib \
+		itkgdcmMSFF-4.13.lib \
+		ITKBioCell-4.13.lib \
+		ITKIOJPEG-4.13.lib \
+		ITKOptimizers-4.13.lib \
+		itkgdcmcharls-4.13.lib \
+		ITKCommon-4.13.lib \
+		ITKIOLSM-4.13.lib \
+		ITKOptimizersv4-4.13.lib \
+		itkgdcmjpeg12-4.13.lib \
+		ITKIOMINC-4.13.lib \
+		ITKPath-4.13.lib \
+		itkgdcmjpeg16-4.13.lib \
+		ITKCommon1TestDriver.lib \
+		ITKIOMRC-4.13.lib \
+		ITKPolynomials-4.13.lib \
+		itkgdcmjpeg8-4.13.lib \
+		ITKDICOMParser-4.13.lib \
+		ITKIOMesh-4.13.lib \
+		ITKQuadEdgeMesh-4.13.lib \
+		itkgdcmopenjp2-4.13.lib \
+		ITKEXPAT-4.13.lib \
+		ITKIOMeta-4.13.lib \
+		ITKSpatialObjects-4.13.lib \
+		itkgdcmsocketxx-4.13.lib \
+		ITKFEM-4.13.lib \
+		ITKIONIFTI-4.13.lib \
+		ITKStatistics-4.13.lib \
+		itkgtest-4.13.lib \
+		ITKIONIFTI-TestSupport.lib \
+		ITKTransform-4.13.lib \
+		itkgtest_main-4.13.lib \
+		ITKFEMHeaderTest1.lib \
+		ITKIONRRD-4.13.lib \
+		ITKTransformFactory-4.13.lib \
+		itkjpeg-4.13.lib \
+		ITKIOPNG-4.13.lib \
+		ITKVNLInstantiation-4.13.lib \
+		itklbfgs-4.13.lib \
+		ITKFEMRegistrationHeaderTest1.lib \
+		ITKIOSiemens-4.13.lib \
+		ITKVTK-4.13.lib \
+		itkminc2-4.13.lib \
+		ITKIOSpatialObjects-4.13.lib \
+		ITKVideoCore-4.13.lib \
+		itknetlib-4.13.lib \
+		ITKFEMRegistrationTestDriver.lib \
+		ITKIOStimulate-4.13.lib \
+		ITKVideoIO-4.13.lib \
+		itkpng-4.13.lib \
+		ITKIOTIFF-4.13.lib \
+		ITKWatersheds-4.13.lib \
+		itksys-4.13.lib \
+		ITKFEMTestDriver.lib \
+		ITKIOTransformBase-4.13.lib \
+		ITKgiftiio-4.13.lib \
+		itktestlib-4.13.lib \
+		ITKIOBMP-4.13.lib \
+		ITKIOTransformHDF5-4.13.lib \
+		ITKniftiio-4.13.lib \
+		itktiff-4.13.lib \
+		ITKIOBioRad-4.13.lib \
+		ITKIOTransformInsightLegacy-4.13.lib \
+		ITKznz-4.13.lib \
+		itkv3p_netlib-4.13.lib \
+		ITKIOBruker-4.13.lib \
+		ITKIOTransformMatlab-4.13.lib \
+		itkNetlibSlatec-4.13.lib \
+		itkvcl-4.13.lib \
+		ITKIOCSV-4.13.lib \
+		ITKIOVTK-4.13.lib \
+		itkdouble-conversion-4.13.lib \
+		itkvnl-4.13.lib \
+		ITKIOGDCM-4.13.lib \
+		ITKIOXML-4.13.lib \
+		itkgdcmCommon-4.13.lib \
+		itkvnl_algo-4.13.lib \
+		ITKIOGE-4.13.lib \
+		ITKKLMRegionGrowing-4.13.lib \
+		itkgdcmDICT-4.13.lib \
+		itkzlib-4.13.lib \
+		ITKIOGIPL-4.13.lib \
+		ITKLabelMap-4.13.lib \
+		itkgdcmDSED-4.13.lib \
+		libitkhdf5.lib \
+		ITKIOHDF5-4.13.lib \
+		ITKMesh-4.13.lib \
+		itkgdcmIOD-4.13.lib \
+		libitkhdf5_cpp.lib \
+		ITKIOIPL-4.13.lib \
+		ITKMetaIO-4.13.lib \
+		itkgdcmMEXD-4.13.lib \
+		Ws2_32.lib \
+		Rpcrt4.lib \
 }
+
+message($$INCLUDEPATH)
+message($$LIBS)
 
 # -----------------------------------------------------------------------------
 

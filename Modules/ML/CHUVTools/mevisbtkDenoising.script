@@ -1,0 +1,62 @@
+//----------------------------------------------------------------------------------
+//! CHUVTools module definitions.
+/*!
+// \file    mevisbtkDenoising.script
+// \author  FetalMRI
+// \date    2018-05-09
+*/
+//----------------------------------------------------------------------------------
+Description {
+  Field status      { editable = False }
+}
+
+Window {
+  mw = 480
+  Category {
+    Field inputFileName {
+    }
+    Field outputFileName {
+    }
+    Field maskFileName {
+    }
+    Field referenceFileName {
+      tooltip = "filename of the reference image"
+    }
+    Field paddingValue {
+      tooltip = "padding value (used if no mask image is provided, default is 0)"
+    }
+    Field patchHalfSize {
+      tooltip = "patch half size (default is 1)"
+    }
+    Field halfsizeVolumeSearchArea {
+      tooltip = "half size of the volume search area, i.e. the spatial bandwidth (default is 5)"
+    }
+    Field smoothingParameterBeta {
+      tooltip = "beta: smoothing parameter (high beta produces smoother result, default is 1)"
+    }
+    Field block {
+      tooltip = "0: pointwise, 1: blockwise, 2: fast blockwise (default is 1)"
+    }
+    CheckBox opt {
+      tooltip = "optimized mode (use mean and standard deviation of patches) (0: no, 1: yes) (default is 1)"
+    }
+    Field lowerMeanThreshold {
+      tooltip = "lower mean threshold (0.95 by default) -- for optimized mode only"
+    }
+    Field lowerVarianceThreshold {
+      tooltip = "lower variance threshold (0.5 by default) -- for optimized mode only"
+    }
+    Field differenceFile {
+      tooltip = "filename of the difference image"
+    }
+    CheckBox smoothingParameterEstimation {
+      tooltip = "Estimation of the smoothing parameter. 0: global, 1: local (default is 0)"
+    }
+    Field center {
+      tooltip = "weight of the central patch (possible value: 0, 1, -1 (max)) (default is -1)"
+    }
+    
+    Button startTask {}           //{ dependsOn = !taskRunning }
+    Field status {}
+  }
+}

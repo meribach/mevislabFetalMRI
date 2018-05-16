@@ -1,0 +1,32 @@
+//----------------------------------------------------------------------------------
+//! CHUVTools module definitions.
+/*!
+// \file    mialOrientImage.script
+// \author  FetalMRI
+// \date    2018-04-12
+*/
+//----------------------------------------------------------------------------------
+
+Description {
+  //Field taskRunning { editable = False }
+  Field status      { editable = False }
+}
+
+
+Window {
+  mw = 480
+  
+  Category {
+    Field inputFileName {
+      tooltip = "input file name, multiple files: use -- as delimeter, ex: C:/file1.nii--C:/file2.nii"
+    }
+    Field outputFileName {
+      tooltip = "output file name, multiple files: use -- as delimeter, ex: C:/file1reoriented.nii--C:/file2reoriented.nii"
+    }
+    Field orientation {
+      tooltip = "orientation, axial sagittal or coronal, multiple files: use -- as delimeter, ex: axial--coronal"
+    }
+    Button startTask {}           //{ dependsOn = !taskRunning }
+    Field status {}
+  }
+}

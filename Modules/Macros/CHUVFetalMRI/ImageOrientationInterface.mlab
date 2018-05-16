@@ -21,8 +21,8 @@ module GetAtlasMacro {
   }
   fields  {
     instanceName = GetAtlasMacro
-    name = /home/neuropsynov/Bureau/CHUV/CRL_Fetal_Brain_Atlas_2016
-    AtlasPath = /home/neuropsynov/Bureau/CHUV/CRL_Fetal_Brain_Atlas_2016
+    name = D:/Pierre/CRL_Fetal_Brain_Atlas_2016/CRL_Fetal_Brain_Atlas_2016
+    AtlasPath = D:/Pierre/CRL_Fetal_Brain_Atlas_2016/CRL_Fetal_Brain_Atlas_2016
     currentWeek = 22
   }
 }
@@ -1022,7 +1022,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 154
+    maxSlice = 0
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -1110,11 +1110,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1742
-    lutGrayWidth = 3484
-    lutAlphaCenter = 1742
-    lutAlphaWidth = 3484
-    lutIsRelative = FALSE
+    lutGrayCenter = 1
+    lutGrayWidth = 1
+    lutAlphaCenter = 1
+    lutAlphaWidth = 1
+    lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -1189,21 +1189,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1742
-    annoInput04 = 3484
+    annoInput03 = 1
+    annoInput04 = 1
     annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 1742
-    annoInput08 = 3484
+    annoInput07 = 1
+    annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 0
-    annoNumInput03 = 1742
-    annoNumInput04 = 3484
+    annoNumInput03 = 1
+    annoNumInput04 = 1
     annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 1742
+    annoNumInput07 = 1
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -2975,11 +2975,11 @@ module OrthoSwapFlip {
     flipVertical = FALSE
     flipDepth = FALSE
     autoPageSizeX = TRUE
-    pageX = 135
+    pageX = 1
     autoPageSizeY = TRUE
-    pageY = 189
+    pageY = 1
     autoPageSizeZ = TRUE
-    pageZ = 56
+    pageZ = 1
   }
 }
 module Resample3D {
