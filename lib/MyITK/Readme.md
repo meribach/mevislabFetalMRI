@@ -1,0 +1,2 @@
+This libraries are build from the ITK open-source image processing Insight ToolKit (ITK) https://github.com/InsightSoftwareConsortium/ITK library
+They have been build on windows 7 using Visual Studio 14 2015 Win64 for the Windows version using ITK 4.13
