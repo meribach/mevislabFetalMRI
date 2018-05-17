@@ -1,0 +1,17 @@
+﻿  mlmevisbtkDenoising.cpp
+mlmevisbtkDenoising.cpp(91): warning C4305: 'argument': truncation from 'double' to 'float'
+mlmevisbtkDenoising.cpp(303): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+mlmevisbtkDenoising.cpp(306): warning C4456: declaration of 'iterIm' hides previous local declaration
+  mlmevisbtkDenoising.cpp(303): note: see declaration of 'iterIm'
+mlmevisbtkDenoising.cpp(314): warning C4244: 'argument': conversion from 'MLint' to 'int', possible loss of data
+mlmevisbtkDenoising.cpp(303): warning C4189: 'iterIm': local variable is initialized but not referenced
+mlmevisbtkDenoising.cpp(305): warning C4101: 'iterIm': unreferenced local variable
+     Creating library tmp\release\obj\CHUVTools.lib and object tmp\release\obj\CHUVTools.exp
+  CHUVTools.vcxproj -> D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser\Sources\ML\CHUVTools\tmp\release\obj\CHUVTools.dll
+  CHUVTools.vcxproj -> tmp\release\obj\CHUVTools.pdb (Full PDB)
+  copy "tmp\release\obj\CHUVTools.dll" "D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\CHUVTools.dll"
+          1 file(s) copied.
+  if exist "tmp\release\obj\CHUVTools.pdb" copy "tmp\release\obj\CHUVTools.pdb" "D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib"
+          1 file(s) copied.
+  if exist "tmp\release\obj\CHUVTools.lib" copy "tmp\release\obj\CHUVTools.lib" "D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib"
+          1 file(s) copied.
