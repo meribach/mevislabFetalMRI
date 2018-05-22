@@ -3,6 +3,8 @@
 #include <itkImageFileWriter.h>
 #include <itkOrientImageFilter.h>
 
+#include <itkVersion.h>
+
 //#include <tclap/CmdLine.h>
 
 #include "mialsrtkOrientImage.h"
@@ -30,6 +32,12 @@ MialOrientImage::~MialOrientImage()
 bool MialOrientImage::reOrient()
 {
 
+  //get itk version
+  //int itkBuildVersion = itk::Version::GetITKBuildVersion();
+  //std::cout << "itk Build version: " << itkBuildVersion << std::endl;
+
+  //const char * itkVersion = itk::Version::GetITKVersion();
+  //std::cout << "itk version: " << itkVersion << std::endl;
   //std::cout << "it's here where it fails ?" << std::endl;
   typedef float PixelType;
   typedef itk::Image< PixelType, 3 >  ImageType;
@@ -98,7 +106,7 @@ bool MialOrientImage::reOrient()
     {
     //std::cout << "ExceptionObject caught !" << std::endl;
     //std::cout << err << std::endl;
-	  throw inputFile; // "error itk ExceptionObject";
+	  throw outputFile; // "error itk ExceptionObject";
 	  return false;
     }
 

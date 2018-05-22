@@ -98,7 +98,8 @@ bool btkNLMDenoisingWrapper::runDenoise()
 	}
 	catch (const char* str)
 	{
-		std::cout << "error cought by the wrapper" << std::endl;
+		std::cout << "error caught by the wrapper" << std::endl;
+		std::cout << str << std::endl;
 		std::cout << inputFile << std::endl;
 		return false;
 		//throw str;
@@ -170,9 +171,10 @@ int EntryPoint(int argc, char** argv)
 	catch (TCLAP::ArgException &e)  // catch any exceptions
 	{
 		std::cerr << "error: " << e.error() << " for arg " << e.argId() << std::endl;
+		return false;
 	}
 
-	btkNLMDenoisingWrapper test("D:/Pierre/zurich/nifti/patient3/Image0.nii", "D:/Pierre/zurich/nifti/patient3/Image0Test.nii", "D:/Pierre/zurich/nifti/patient3/Image0Mask.nii");
+	btkNLMDenoisingWrapper test("D:/Pierre/zurich/nifti/patient3/Image0.nii", "D:/Pierre/zurich/nifti/patient3/Image0Test.nii");
 	bool boolOutput = test.runDenoise();
 	std::cout << boolOutput << std::endl;
 	if (test.boolExit)

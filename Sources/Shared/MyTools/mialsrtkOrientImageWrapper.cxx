@@ -42,6 +42,8 @@ reOrientWrapper::~reOrientWrapper()
 
 int main()
 {
+	//here I add the TCLAP ?
+	
 	reOrientWrapper test("D:/Pierre/zurich/nifti/patient3/Image0.nii", "D:/Pierre/zurich/nifti/patient3/Image0Test.nii", "axial");
 	//std::cout << test.inputFile << std::endl;
 	bool boolOutput=test.reOrient();

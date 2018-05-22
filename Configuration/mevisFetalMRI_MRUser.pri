@@ -72,8 +72,22 @@ MyTools {
    QMAKE_LIBDIR += $${PACKAGE_LIB}/MyTools
    win32:LIBS += mialsrtkOrientImageLib.lib \
                  mialsrtkOrientImageWrapper.lib \
-				 btkNLMDenoisingLib.lib \
-				 btkNLMDenoisingWrapperLib.lib \
+		 btkNLMDenoisingLib.lib \
+		 btkNLMDenoisingWrapper.lib \
+}
+
+MyIntensityStandardization {
+   CONFIG_FOUND += MyIntensityStandardization 
+   INCLUDEPATH += $${PACKAGE_SOURCES}/Shared/MyIntensityStandardization  
+   QMAKE_LIBDIR += $${PACKAGE_LIB}/MyIntensityStandardization 
+   win32:LIBS += mialsrtkCorrectSliceIntensityLib.lib \
+                 mialsrtkCorrectSliceIntensityWrapper.lib \
+                 mialsrtkIntensityStandardizationLib.lib \
+                 mialsrtkIntensityStandardizationWrapper.lib \
+                 mialsrtkSliceBySliceCorrectBiasFieldLib.lib \
+                 mialsrtkSliceBySliceCorrectBiasFieldWrapper.lib \
+                 mialsrtkSliceBySliceN4BiasFieldCorrectionLib.lib \
+                 mialsrtkSliceBySliceN4BiasFieldCorrectionWrapper.lib \
 }
 
 MyITK {

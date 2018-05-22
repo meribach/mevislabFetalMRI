@@ -1022,7 +1022,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 154
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -1110,11 +1110,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
+    lutGrayCenter = 0.5
     lutGrayWidth = 1
-    lutAlphaCenter = 1
+    lutAlphaCenter = 0.5
     lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -1189,21 +1189,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
+    annoInput03 = 0.5
     annoInput04 = 1
-    annoInput05 = 1
+    annoInput05 = 0.5
     annoInput06 = 1
-    annoInput07 = 1
+    annoInput07 = 0.5
     annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 0
-    annoNumInput03 = 1
+    annoNumInput03 = 0.5
     annoNumInput04 = 1
-    annoNumInput05 = 1
+    annoNumInput05 = 0.5
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 0.5
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -2975,11 +2975,11 @@ module OrthoSwapFlip {
     flipVertical = FALSE
     flipDepth = FALSE
     autoPageSizeX = TRUE
-    pageX = 1
+    pageX = 69
     autoPageSizeY = TRUE
-    pageY = 1
+    pageY = 97
     autoPageSizeZ = TRUE
-    pageZ = 1
+    pageZ = 53
   }
 }
 module Resample3D {
@@ -3320,6 +3320,46 @@ module SoRenderArea {
     inputDevicesList = ""
   }
 }
+module mialOrientImage {
+  internal  {
+    frame = "2155 712 120 56"
+    moduleGroupName = BackgroundTasks
+  }
+  fields  {
+    instanceName = mialOrientImage
+    inputFileName = ""
+    outputFileName = ""
+    orientation = axial
+    inProgress = FALSE
+    ouputSucceed = FALSE
+  }
+}
+module mevisbtkDenoising {
+  internal  {
+    frame = "2147 832 136 56"
+    moduleGroupName = BackgroundTasks
+  }
+  fields  {
+    instanceName = mevisbtkDenoising
+    inputFileName = ""
+    outputFileName = ""
+    maskFileName = ""
+    referenceFileName = ""
+    paddingValue = 0
+    patchHalfSize = 1
+    halfsizeVolumeSearchArea = 5
+    smoothingParameterBeta = 1
+    block = 1
+    opt = TRUE
+    lowerMeanThreshold = 0.94999999
+    lowerVarianceThreshold = 0.5
+    differenceFile = ""
+    smoothingParameterEstimation = FALSE
+    center = -1
+    inProgress = FALSE
+    ouputSucceed = FALSE
+  }
+}
 connections  {
   RemoteRendering.sceneGraph = viewer.self
   viewerOld.children = "SoView2DSlider.self SoView2DSliceZoom.self SoToggle.self LabelIH.self LabelT.self LabelB.self LabelA.self LabelP.self ToggleBrainMask.self SoInteractionMapping1.self LabelViewerMode.self"
@@ -3451,7 +3491,7 @@ networkModel  {
         uniqueId = 423
         objectName = ""
         parentUniqueId = 0
-        frame = "1852 1503 278 119"
+        frame = "1710 1443 278 119"
         backgroundColor  {
           r = 252
           g = 242
@@ -3482,11 +3522,22 @@ OrthoSwapFlip ferait l'affaire ?</p>
         titleText = "Ressample the Template Mask"
         isCollapsed = False
         drawAsComment = False
-        titleFrame = "1857 1508 268 22"
+        titleFrame = "1715 1448 268 22"
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
         uniqueId = 476
         objectName = "doesnt work for now"
+        parentUniqueId = 0
+        color  {
+          r = 45
+          g = 226
+          b = 226
+          a = 40
+        }
+      }
+      MLABNetworkModelItem MLABNetworkModelItemGroup {
+        uniqueId = 549
+        objectName = BackgroundTasks
         parentUniqueId = 0
         color  {
           r = 45

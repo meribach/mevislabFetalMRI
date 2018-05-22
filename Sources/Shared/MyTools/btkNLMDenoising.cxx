@@ -50,6 +50,8 @@ This program implements a denoising method proposed by Coupé et al. described i
 #include "btkNLMDenoising.h"
 #include <vector>
 
+#include <itkVersion.h>
+
 
 btkNLMDenoise::btkNLMDenoise(const char* const _inputFile, const char* const _outputFile, const char* const _maskFile, const char* const _refFile,
 	float _padding, int _hwn, int _hwvs, float _beta, int _block, int _center, int _optimized, float _lowerMeanThreshold,
@@ -82,7 +84,12 @@ btkNLMDenoise::~btkNLMDenoise()
 bool btkNLMDenoise::runDenoising()
 {
 
-    //ITK declaration
+	//const char * itkVersion = itk::Version::GetITKVersion();
+	//std::cout << "itk version: " << itkVersion << std::endl;
+	//itk::Version::Pointer version = itk::Version::New();
+	//std::cout << version->GetITKVersion() << std::endl;
+	
+	//ITK declaration
     typedef float PixelType;
     const   unsigned int Dimension = 3;
 	typedef itk::Image< PixelType, Dimension > ImageType;  //same type for input and output
@@ -100,7 +107,7 @@ bool btkNLMDenoise::runDenoising()
 	}
 	catch (itk::ExceptionObject &err)
 	{
-		throw inputFile;
+		throw "error opening input";
 		return false;
 	}
 	
@@ -125,7 +132,7 @@ bool btkNLMDenoise::runDenoising()
 	  }
 	  catch (itk::ExceptionObject &err)
 	  {
-		throw maskFile;
+		throw "error opening maskFile";
 		return false;
 	  }
 	  maskImage = maskReader->GetOutput();
@@ -149,7 +156,7 @@ bool btkNLMDenoise::runDenoising()
 	 }
 	 catch (itk::ExceptionObject &err)
 	 {
-	   throw refFile;
+	   throw "error opening refFile";
 	   return false;
 	 }
 	  refImage = refReader->GetOutput();
@@ -180,7 +187,7 @@ bool btkNLMDenoise::runDenoising()
 	}
 	catch (itk::ExceptionObject &err)
 	{
-	  throw outputFile;
+	  throw "error writing output file";
 	  return false;
 
 	}
@@ -200,7 +207,7 @@ bool btkNLMDenoise::runDenoising()
 	  }
 	  catch (itk::ExceptionObject &err)
 	  {
-		throw differenceFile;
+		throw "error writing diff file";
 		return false;
 
 	  }

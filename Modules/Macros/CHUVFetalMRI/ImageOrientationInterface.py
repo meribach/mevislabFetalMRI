@@ -79,7 +79,7 @@ def showImageOrientationInterface():
   #ctx.control("GraphicsView" ).setProperty("expandX",False)
   mdlToSet = ""
   numIm = ctx.field("NumberImages").value
-  print("number of images: %s")
+  print("number of images: %s"%numIm)
   for i in range(numIm):
     buttonDefinition = """Button {expandX = No title = \"Image %i\" name = buttonImage%i command = "py: updateImage(\'Image%i\')"}"""%(i,i,i)
     #buttonImage = g_sceneImageOrientation.addMDL(buttonDefinition, True)
@@ -110,8 +110,12 @@ def showImageOrientationInterface():
     #g_layoutImageOrientation.addItem(checkBoxImage,i,5)
   
   buttonResetIm = """Button {expandX = No title = "Reset Images" name = buttonResetImage command = "py: resetImages()"}"""
+  buttonRunDenoising = """Button {expandX = No title = "Denoise Images" name = buttonDenoiseImage command = "py: denoiseImages()"}"""
+  FieldStatus = """Field {format = STRING name = StatusField title = "BackgroundTaskInfo" edit = no}"""
   
-  mdlToSet += buttonResetIm
+  mdlToSet += """Horizontal { name = horizontalFinal """ + buttonResetIm + buttonRunDenoising + FieldStatus + """ Execute = "py: getHorizontalControl(\'LastButtons\',\'horizontalFinal\')" } """
+  #mdlToSet += buttonRunDenoising
+  #mdlToSet += FieldStatus
   g_sceneImageOrientation.addMDL("Vertical {" + mdlToSet + "}")
   
   updateComboBox()
@@ -1056,6 +1060,26 @@ def updateCSOfromAdapt():
     
 def resetZoom():
    ctx.field("SoView2D.unzoom").touch()
+   
+
+def denoiseImages():
+    
+    inImages = ctx.field("inImageInfos").object()
+    inputsDenoise=""
+    outputsDenoise=""
+    for imageIter in inImages:
+      if inputsDenoise != "":
+        inputsDenoise = inputsDenoise+"--"
+        outputsDenoise = outputsDenoise+"--"
+      inputsDenoise=inputsDenoise+inImages[imageIter]["file"]
+      newOutput = inImages[imageIter]["file"].replace('.nii','NLM.nii')
+      outputsDenoise=outputsDenoise+newOutput
+    #set all input file name with -- as delimeter
+    ctx.field("mevisbtkDenoising.inputFileName").setStringValue(inputsDenoise)
+    ctx.field("mevisbtkDenoising.outputFileName").setStringValue(outputsDenoise)
+    
+    ctx.field("mevisbtkDenoising.startTask").touch()
+    #set all outpout file name with -- as delimeter
 
    
 class temporaryObject():

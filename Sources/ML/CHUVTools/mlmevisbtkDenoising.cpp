@@ -255,6 +255,7 @@ void mevisbtkDenoising::handleNotification(Field* field)
 		m_pBGBTKDenoiseWorker = new BTKDenoiseBackgroundTask(this);
 		std::cout << "background task created" << std::endl;
 		_inProgressFld->setBoolValue(true);
+		_statusFld->setStringValue("Denoising Running");
 		if (m_pBTKDenoiseWorkerThread)
 			delete m_pBTKDenoiseWorkerThread;
 		m_pBTKDenoiseWorkerThread = new boost::thread(*m_pBGBTKDenoiseWorker);

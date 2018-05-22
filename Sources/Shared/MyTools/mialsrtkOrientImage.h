@@ -40,6 +40,7 @@ knowledge of the CeCILL-B license and that you accept its terms.
 #include <itkImageFileReader.h>
 #include <itkImageFileWriter.h>
 #include <itkOrientImageFilter.h>
+#include <itkVersion.h>
 
 class MialOrientImage {
 
