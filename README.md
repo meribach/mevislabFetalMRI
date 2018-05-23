@@ -1,5 +1,5 @@
 # mevislabFetalMRI
-some fetal mri superresolution tools developed on Mevislab
+some fetal mri superresolution tools developed on Mevislab, based on https://github.com/sebastientourbier/mialsuperresolutiontoolkit
 
 Copyright © 2017-2018 Medical Image Analysis Laboratory, University Hospital Center and University of Lausanne (UNIL-CHUV), Switzerland
 
