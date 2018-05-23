@@ -24,7 +24,7 @@ IntensityStandardization::IntensityStandardization(std::vector< std::string > & 
         maxIntensity = _maxIntensity;
 }
 
-
+/*
 IntensityStandardization::IntensityStandardization(std::vector< std::string > & _inputFileNames, std::vector< std::string > & _outputFileNames)
 {
         inputFileNames = _inputFileNames;
@@ -77,7 +77,7 @@ IntensityStandardization::IntensityStandardization(std::vector< std::string > & 
         maxIntensity = 255.0;
 
 }
-
+*/
 
 
 std::vector<std::string> IntensityStandardization::prompt_start(std::vector< std::string > & _inputFileNames, float _maxIntensity)
@@ -93,7 +93,7 @@ std::vector<std::string> IntensityStandardization::prompt_start(std::vector< std
 
     for(unsigned int i=0; i < numberOfImages; i++)
     {
-        promptStart.push_back(int2str(i) + ":" +inputFileNames[i]);
+        promptStart.push_back(std::to_string(i) + ":" +inputFileNames[i]);
     }
 
     return promptStart;

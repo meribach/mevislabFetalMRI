@@ -18,7 +18,7 @@
 
 #include "vcl_algorithm.h"
 
-#include "mialsrtkMaths.h"
+//#include "mialsrtkMaths.h"
 
 
 class IntensityStandardization
@@ -27,12 +27,14 @@ class IntensityStandardization
 
 		//! default constructor
 		IntensityStandardization(std::vector< std::string > & _inputFileNames, std::vector< std::string > & _outputFileNames, float _maxIntensity);
+		/*
 		//! second constructor without max
 		IntensityStandardization(std::vector< std::string > & _inputFileNames, std::vector< std::string > & _outputFileNames);
 		//! third constructor wtihout outputFileName
 		IntensityStandardization(std::vector< std::string > & _inputFileNames, float _maxIntensity);
 		//! Fourth constructor without ouputFileName and max
 		IntensityStandardization(std::vector< std::string > & _inputFileNames);
+		*/
 
 		//! default destructor
 		~IntensityStandardization();

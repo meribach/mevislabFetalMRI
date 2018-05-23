@@ -227,6 +227,7 @@ void mialOrientImage::handleNotification(Field* field)
 		  delete (m_pBGOrientImageWorker);
 	  m_pBGOrientImageWorker = new OrientImageBackgroundTask(this);
 	  _inProgressFld->setBoolValue(true);
+	  _statusFld->setStringValue("mialOrientation running");
 	  if (m_pOrientImageWorkerThread)
 		  delete m_pOrientImageWorkerThread;
 	  m_pOrientImageWorkerThread = new boost::thread(*m_pBGOrientImageWorker);
@@ -307,6 +308,7 @@ void mialOrientImage::postComputation()
 	//BackgroundTaskBaseModule::taskFinished(task);
 	_inProgressFld->setBoolValue(false);
 	std::cout << "mialOrientation Done" << std::endl;
+	_statusFld->setStringValue("mialOrientation Done");
 }
 
 ML_END_NAMESPACE

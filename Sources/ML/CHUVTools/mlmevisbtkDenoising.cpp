@@ -355,6 +355,7 @@ void mevisbtkDenoising::postComputation()
 	*/
 	//BackgroundTaskBaseModule::taskFinished(task);
 	_inProgressFld->setBoolValue(false);
+	_statusFld->setStringValue("Denoising Done");
 	std::cout << "btkDenoising Done" << std::endl;
 }
 
