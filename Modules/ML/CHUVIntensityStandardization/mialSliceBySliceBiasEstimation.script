@@ -1,0 +1,31 @@
+//----------------------------------------------------------------------------------
+//! CHUVIntensityStandardization module definitions.
+/*!
+// \file    mialSliceBySliceBiasEstimation.script
+// \author  FetalMRI
+// \date    2018-05-22
+*/
+//----------------------------------------------------------------------------------
+Description {
+  Field status      { editable = False }
+}
+
+Window {
+  mw = 480
+  Category {
+    Field inputImageFile {
+      tooltip = "path of input file"
+    }
+    Field inputMaskFile {
+      tooltip = "path of mask (input) file"
+    }
+    Field outputImageFile {
+      tooltip = "path of output file"
+    }
+    Field outputBiasFieldFile {
+      tooltip = "path of output bias file"
+    }
+    Button startTask {}           //{ dependsOn = !taskRunning }
+    Field status {}
+  }
+}

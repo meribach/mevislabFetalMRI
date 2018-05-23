@@ -1,0 +1,30 @@
+//----------------------------------------------------------------------------------
+//! CHUVIntensityStandardization module definitions.
+/*!
+// \file    mialCorrectSliceIntensity.script
+// \author  FetalMRI
+// \date    2018-05-18
+*/
+//----------------------------------------------------------------------------------
+Description {
+  Field status      { editable = False }
+}
+
+Window {
+  mw = 480
+  Category {
+    Field inputFileName {
+      tooltip = "path of input file"
+    }
+    Field outputFileName {
+      tooltip = "path of output file"
+    }
+    Field maskFileName {
+      tooltip = "path of mask file (input)"
+    }
+    
+    Button startTask {}           //{ dependsOn = !taskRunning }
+    Field status {}
+    
+  }
+}

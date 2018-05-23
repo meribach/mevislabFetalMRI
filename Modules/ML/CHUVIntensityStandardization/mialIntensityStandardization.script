@@ -1,0 +1,28 @@
+//----------------------------------------------------------------------------------
+//! CHUVIntensityStandardization module definitions.
+/*!
+// \file    mialIntensityStandardization.script
+// \author  FetalMRI
+// \date    2018-05-22
+*/
+//----------------------------------------------------------------------------------
+Description {
+  Field status      { editable = False }
+}
+
+Window {
+  mw = 480
+  Category {
+    Field inputFileNames {
+      tooltip = "path of input file"
+    }
+    Field outputFileNames {
+      tooltip = "path of output file"
+    }
+    Field maxIntensity {
+      tooltip = "new max intensity (default is 255.0)"
+    }
+    Button startTask {}           //{ dependsOn = !taskRunning }
+    Field status {}
+  }
+}

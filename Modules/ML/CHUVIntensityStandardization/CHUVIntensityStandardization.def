@@ -1,0 +1,53 @@
+//----------------------------------------------------------------------------------
+//! CHUVIntensityStandardization module definitions.
+/*!
+// \file    CHUVIntensityStandardization.def
+// \author  FetalMRI
+// \date    2018-05-22
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule mialCorrectSliceIntensity {
+  DLL                = "CHUVIntensityStandardization"
+
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/mialCorrectSliceIntensity.script
+}
+
+MLModule mialIntensityStandardization {
+  DLL                = "CHUVIntensityStandardization"
+
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/mialIntensityStandardization.script
+}  
+
+MLModule mialSliceBySliceBiasEstimation {
+  DLL                = "CHUVIntensityStandardization"
+
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/mialSliceBySliceBiasEstimation.script
+}  
+
+MLModule mialSliceBySliceBiasFieldCorrection {
+  DLL                = "CHUVIntensityStandardization"
+
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/mialSliceBySliceBiasFieldCorrection.script
+}  
