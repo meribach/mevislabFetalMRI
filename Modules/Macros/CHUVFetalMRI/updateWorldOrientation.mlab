@@ -1,0 +1,209 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module itkImageFileReader {
+  internal  {
+    frame = "621 477 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "803 432 328 395"
+        sizeHint = "328 395"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReader
+    fileDataType = float
+    autoDetermineDataType = TRUE
+    correctSubVoxelShift = TRUE
+    fileDimension = 3
+    info = "Loading okay."
+    numDims = 3
+    fileType = TypeNotApplicable
+    componentType = float
+    pixelType = SCALAR
+    loaderType = NiftiImageIO
+    outputMetaDataStr = "ITK_FileNotes : 
+aux_file : 
+bitpix : 32
+cal_max : 0
+cal_min : 0
+datatype : 16
+descrip : 
+dim[0] : 3
+dim[1] : 320
+dim[2] : 320
+dim[3] : 24
+dim[4] : 1
+dim[5] : 1
+dim[6] : 1
+dim[7] : 1
+dim_info : 
+intent_code : 0
+intent_name : 
+intent_p1 : 0
+intent_p2 : 0
+intent_p3 : 0
+pixdim[0] : 1
+pixdim[1] : 1.125
+pixdim[2] : 1.125
+pixdim[3] : 3.3
+pixdim[4] : 0
+pixdim[5] : 0
+pixdim[6] : 0
+pixdim[7] : 0
+qform_code : 1
+qoffset_x : 49.618
+qoffset_y : 247.031
+qoffset_z : -15.0534
+quatern_b : 0.622966
+quatern_c : -0.307731
+quatern_d : -0.653945
+scl_inter : 0
+scl_slope : 1
+sform_code : 0
+slice_code : 
+slice_duration : 0
+slice_end : 0
+slice_start : 0
+srow_x : 0 0 0 0
+srow_y : 0 0 0 0
+srow_z : 0 0 0 0
+toffset : 0
+vox_offset : 352
+xyzt_units : 
+"
+    suppressErrorPosting = FALSE
+    unresolvedFileName = ""
+  }
+}
+module itkImageFileWriter {
+  internal  {
+    frame = "657 181 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "839 428 307 403"
+        sizeHint = "256 403"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileWriter
+    useCompression = FALSE
+    correctSubVoxelShift = TRUE
+    forceDirectionCosineWrite = TRUE
+    outputVoxelType = Automatic
+    info = "BadParameter: Warning: Perhaps cannot save image orientation correctly, because of non id direction cosines or non 1 scale values in the ML world matrix. You can force writing by enabling 'Force Direction Cosine Write' on your own risk."
+    unresolvedFileName = ""
+  }
+}
+module SetWorldMatrix {
+  internal  {
+    frame = "661 285 120 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SetWorldMatrix
+    center = "0 0 0"
+    scaleOrientation = "0 0 1 0"
+    scale = "1 1 1"
+    rotation = "0 0 1 0"
+    translation = "0 0 0"
+    sourceUsage = Ignore
+    referenceUsage = Forward
+    elementaryUsage = Ignore
+    invertResult = FALSE
+    setCInfo = FALSE
+    setTInfo = FALSE
+    setUInfo = FALSE
+  }
+}
+module itkImageFileReader {
+  internal  {
+    frame = "809 469 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "803 432 328 395"
+        sizeHint = "328 395"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReaderModel
+    fileDataType = "unsigned int16"
+    autoDetermineDataType = TRUE
+    correctSubVoxelShift = TRUE
+    fileDimension = 3
+    info = "Loading okay."
+    numDims = 3
+    fileType = TypeNotApplicable
+    componentType = "unsigned int16"
+    pixelType = SCALAR
+    loaderType = NiftiImageIO
+    outputMetaDataStr = "ITK_FileNotes : 
+aux_file : 
+bitpix : 16
+cal_max : 0
+cal_min : 0
+datatype : 512
+descrip : 
+dim[0] : 3
+dim[1] : 320
+dim[2] : 320
+dim[3] : 24
+dim[4] : 1
+dim[5] : 1
+dim[6] : 1
+dim[7] : 1
+dim_info : 
+intent_code : 0
+intent_name : 
+intent_p1 : 0
+intent_p2 : 0
+intent_p3 : 0
+pixdim[0] : 1
+pixdim[1] : 1.125
+pixdim[2] : 1.125
+pixdim[3] : 3.3
+pixdim[4] : 0
+pixdim[5] : 0
+pixdim[6] : 0
+pixdim[7] : 0
+qform_code : 2
+qoffset_x : 46.2001
+qoffset_y : 256.716
+qoffset_z : -28.931
+quatern_b : 0.63382
+quatern_c : -0.313483
+quatern_d : -0.63382
+scl_inter : 0
+scl_slope : 1
+sform_code : 1
+slice_code : 
+slice_duration : 0
+slice_end : 0
+slice_start : 0
+srow_x : 0 0 -3.3 46.2001
+srow_y : -0.894114 -0.682778 0 256.716
+srow_z : -0.682778 0.894114 0 -28.931
+toffset : 0
+vox_offset : 352
+xyzt_units : 
+"
+    suppressErrorPosting = FALSE
+    unresolvedFileName = ""
+  }
+}
+connections  {
+  itkImageFileWriter.input0 = SetWorldMatrix.output0
+  SetWorldMatrix.input0 = itkImageFileReader.output0
+  SetWorldMatrix.input1 = itkImageFileReaderModel.output0
+}
+networkModel = ""

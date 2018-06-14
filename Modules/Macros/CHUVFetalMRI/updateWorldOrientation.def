@@ -1,0 +1,19 @@
+//----------------------------------------------------------------------------------
+//! updateWorldOrientation module definition
+/*!
+// \file    updateWorldOrientation.def
+// \author  FetalMRI
+// \date    2018-05-30
+*/
+//----------------------------------------------------------------------------------
+
+
+MacroModule updateWorldOrientation {
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+   
+  externalDefinition = "$(LOCAL)/updateWorldOrientation.script"
+}
