@@ -1,0 +1,23 @@
+//----------------------------------------------------------------------------------
+//! Macro module updateWorldOrientation
+/*!
+// \file    updateWorldOrientation.script
+// \author  FetalMRI
+// \date    2018-05-30
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {}
+}
+
+
+Commands {
+  source = $(LOCAL)/updateWorldOrientation.py
+}
