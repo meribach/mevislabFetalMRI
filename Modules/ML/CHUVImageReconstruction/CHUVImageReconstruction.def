@@ -1,0 +1,20 @@
+//----------------------------------------------------------------------------------
+//! CHUVImageReconstruction module definitions.
+/*!
+// \file    CHUVImageReconstruction.def
+// \author  FetalMRI
+// \date    2018-06-11
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule mialImageReconstruction {
+  DLL                = "CHUVImageReconstruction"
+
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/mialImageReconstruction.script
+}  

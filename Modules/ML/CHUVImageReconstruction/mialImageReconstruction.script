@@ -1,0 +1,78 @@
+//----------------------------------------------------------------------------------
+//! CHUVImageReconstruction module definitions.
+/*!
+// \file    mialImageReconstruction.script
+// \author  FetalMRI
+// \date    2018-06-11
+*/
+//----------------------------------------------------------------------------------
+Description {
+  Field status      { editable = False }
+}
+
+Window {
+  mw = 640
+  Category {
+    Field inputFiles {
+      tooltip = "input file name, multiple files: use -- as delimeter, ex: C:/file1.nii--C:/file2.nii"
+    }
+    Field maskFiles {
+      tooltip = "input mask file name, multiple files: use -- as delimeter, ex: C:/filemask1.nii--C:/filemask2.nii"
+    }
+    Field outputFile {
+      tooltip = "output file name"
+    }
+    Field refFile {
+      tooltip = "Reference Image"
+    }
+    Field transformoutFiles {
+      tooltip = "transform output files, multiple files: use -- as delimeter, ex: C:/file1transform.nii--C:/file2transform.nii"
+    }
+    Field resampledFiles {
+      tooltip = "Resampled image file name with initial transform (this is an output to check initial transform consistency), multiple files: use -- as delimeter, ex: C:/fileresampled1.nii--C:/fileresampled2.nii"
+    }
+    Field combinedMasks {
+      tooltip = "All image masks combined in a single one, output filename"
+    }
+    Field itMax {
+      tooltip = "Maximum number of iterations"
+    }
+    Field espilon {
+      tooltip = "Minimal percent change between two iterations considered as convergence. (default 0.0001)"
+    }
+    Field margin {
+    }
+    CheckBox rigid3D {
+      tooltip = "Use of 3D rigid transforms, Recommended for adult subjects."
+    }
+    CheckBox noreg {
+      tooltip = "No registration is performed, the image is reconstructed with the identity transform. This option is important to have a reference for performance assessment."
+    }
+    CheckBox debluring {
+      tooltip = "Flag to set deblurring kernel for SDI (double the neighborhood) (by default it is disable.)."
+    }
+    Field methodRoiCalculation {
+      tooltip = "box: Use intersections for roi calculation ; mask:Use masks for roi calculation ; all:Use the whole image FOV, default is mask"
+    }
+    Field ImageBaseOfRecon {
+      tooltip = "targetImage of the lowToHighResFilter (should be the one with the less movement), default is 0"
+    }
+    Field MetricToUse {
+      tooltip = "Metric of the Coregistration, NC = Normalized Correlation, MI = Mutual Information, default is NC"
+    }
+    Field nbIterationsRegistration {
+    }
+    Field GradientMagnitudeToleranceRegistration {
+    }
+    Field MinStepLengthRegistration {
+    }
+    Field MaxStepLengthRegistration {
+    }
+    Field RelaxationFactorRegistration {
+    }
+    
+    Button startTask {}           //{ dependsOn = !taskRunning }
+    Button startTaskModal {}
+    Field status {}
+  }
+}
