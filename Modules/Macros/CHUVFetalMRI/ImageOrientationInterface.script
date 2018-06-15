@@ -91,14 +91,14 @@ Commands {
   FieldListener mialIntensityStandardizationNLM.inProgress {command = "py: updateBackgroundTaskRunningField()"}
   
   FieldListener mevisbtkDenoising.outputSucceed {command = "py: insertNLMDenoisingResults()"} //or next step instead of denoising ?
-  FieldListener mialOrientImage.outputSucceed {command = "py: nextStepBackgroundTask('mialOrientImage')"}
-  FieldListener mialOrientImageNLM.outputSucceed {command = "py: nextStepBackgroundTask('mialOrientImageNLM')"}
-  FieldListener mialOrientImageMask.outputSucceed {command = "py: nextStepBackgroundTask('mialOrientImageMask')"}
-  FieldListener mialCorrectSliceIntensity.outputSucceed {command = "py: nextStepBackgroundTask('mialCorrectSliceIntensity')"}
-  FieldListener mialCorrectSliceIntensityNLM.outputSucceed {command = "py: nextStepBackgroundTask('mialCorrectSliceIntensityNLM')"}
+  FieldListener mialOrientImage.outputSucceed {command = "py: runCorrectSliceIntensity('RawImage')"}
+  FieldListener mialOrientImageNLM.outputSucceed {command = "py: runCorrectSliceIntensity('NLMImage')"}
+  //FieldListener mialOrientImageMask.outputSucceed {command = "py: nextStepBackgroundTask('mialOrientImageMask')"}
+  FieldListener mialCorrectSliceIntensity.outputSucceed {command = "py: runSliceBySliceBiasEstimation()"}
+  //FieldListener mialCorrectSliceIntensityNLM.outputSucceed {command = "py: nextStepBackgroundTask('mialCorrectSliceIntensityNLM')"}
   FieldListener mialCorrectSliceIntensityNLMPostBiasCorrection.outputSucceed {command = "py: nextStepBackgroundTask('mialCorrectSliceIntensityNLMPostBiasCorrection')"}
   FieldListener mialCorrectSliceIntensityPostBiasCorrection.outputSucceed {command = "py: nextStepBackgroundTask('mialCorrectSliceIntensityPostBiasCorrection')"}
-  FieldListener mialSliceBySliceBiasEstimation.outputSucceed {command = "py: nextStepBackgroundTask('mialBiasEstimation')"}
+  FieldListener mialSliceBySliceBiasEstimation.outputSucceed {command = "py: runSliceBySliceBiasFieldCorrection()"}
   FieldListener mialSliceBySliceBiasFieldCorrection.outputSucceed {command = "py: nextStepBackgroundTask('mialBiasCorrection')"}
   FieldListener mialIntensityStandardization.outputSucceed {command = "py: nextStepBackgroundTask('mialIntensityStandardization')"}
   FieldListener mialIntensityStandardizationNLM.outputSucceed {command = "py: nextStepBackgroundTask('mialIntensityStandardizationNLM')"}

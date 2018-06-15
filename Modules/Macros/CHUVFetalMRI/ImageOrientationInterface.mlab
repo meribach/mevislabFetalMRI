@@ -23,7 +23,7 @@ module GetAtlasMacro {
     instanceName = GetAtlasMacro
     name = D:/Pierre/CRL_Fetal_Brain_Atlas_2016/CRL_Fetal_Brain_Atlas_2016
     AtlasPath = D:/Pierre/CRL_Fetal_Brain_Atlas_2016/CRL_Fetal_Brain_Atlas_2016
-    currentWeek = 22
+    currentWeek = 35
   }
 }
 module RemoteRendering {
@@ -404,9 +404,9 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
+    lutGrayCenter = 0.5
     lutGrayWidth = 1
-    lutAlphaCenter = 1
+    lutAlphaCenter = 0.5
     lutAlphaWidth = 1
     lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
@@ -483,21 +483,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
+    annoInput03 = 0.5
     annoInput04 = 1
-    annoInput05 = 1
+    annoInput05 = 0.5
     annoInput06 = 1
-    annoInput07 = 1
+    annoInput07 = 0.5
     annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
-    annoNumInput02 = 0
-    annoNumInput03 = 1
+    annoNumInput02 = 816
+    annoNumInput03 = 0.5
     annoNumInput04 = 1
-    annoNumInput05 = 1
+    annoNumInput05 = 0.5
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 0.5
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -1406,7 +1406,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
+    info = "File closed"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -1614,9 +1614,9 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
+    lutGrayCenter = 0.5
     lutGrayWidth = 1
-    lutAlphaCenter = 1
+    lutAlphaCenter = 0.5
     lutAlphaWidth = 1
     lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
@@ -1693,21 +1693,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
+    annoInput03 = 0.5
     annoInput04 = 1
-    annoInput05 = 1
+    annoInput05 = 0.5
     annoInput06 = 1
-    annoInput07 = 1
+    annoInput07 = 0.5
     annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 760
-    annoNumInput03 = 1
+    annoNumInput03 = 0.5
     annoNumInput04 = 1
-    annoNumInput05 = 1
+    annoNumInput05 = 0.5
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 0.5
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -2104,9 +2104,9 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
+    lutGrayCenter = 0.5
     lutGrayWidth = 1
-    lutAlphaCenter = 1
+    lutAlphaCenter = 0.5
     lutAlphaWidth = 1
     lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
@@ -2183,21 +2183,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
+    annoInput03 = 0.5
     annoInput04 = 1
-    annoInput05 = 1
+    annoInput05 = 0.5
     annoInput06 = 1
-    annoInput07 = 1
+    annoInput07 = 0.5
     annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 892
-    annoNumInput03 = 1
+    annoNumInput03 = 0.5
     annoNumInput04 = 1
-    annoNumInput05 = 1
+    annoNumInput05 = 0.5
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 0.5
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -2462,11 +2462,11 @@ module OrthoSwapFlip {
     flipVertical = FALSE
     flipDepth = FALSE
     autoPageSizeX = TRUE
-    pageX = 69
+    pageX = 135
     autoPageSizeY = TRUE
-    pageY = 97
+    pageY = 189
     autoPageSizeZ = TRUE
-    pageZ = 53
+    pageZ = 56
   }
 }
 module Resample3D {
@@ -2491,7 +2491,7 @@ module Resample3D {
     zoom = "1 1 1"
     imageSize = "135 189 155"
     voxelSize = "0.799998998641968 0.799998998641968 0.799998998641968"
-    subVoxelShift = "-0.00440320709228104 0.0828233904241529 -8.94070737444963e-07"
+    subVoxelShift = "-0.00217967359674276 -0.240446321357339 4.47035401407447e-06"
     useReferenceImage = TRUE
   }
 }
@@ -2640,7 +2640,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
+    info = "File closed"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -2809,7 +2809,7 @@ module SoRenderArea {
 }
 module mialOrientImage {
   internal  {
-    frame = "-1983 352 120 56"
+    frame = "-2301 361 120 56"
     moduleGroupName = BackgroundTasks
     windows  {
       window _automatic {
@@ -2826,16 +2826,16 @@ module mialOrientImage {
   }
   fields  {
     instanceName = mialOrientImage
-    inputFileName = ""
-    outputFileName = ""
-    orientation = axial
+    inputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM.nii.gz
+    outputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented.nii.gz
+    orientation = coronal--coronal--axial--axial--sagittal--sagittal
     inProgress = FALSE
-    outputSucceed = FALSE
+    outputSucceed = TRUE
   }
 }
 module mevisbtkDenoising {
   internal  {
-    frame = "-2322 118 136 56"
+    frame = "-2640 127 136 56"
     moduleGroupName = BackgroundTasks
     windows  {
       window _default {
@@ -2868,7 +2868,7 @@ module mevisbtkDenoising {
 }
 module mialCorrectSliceIntensity {
   internal  {
-    frame = "-1751 368 168 56"
+    frame = "-2069 377 168 56"
     moduleGroupName = BackgroundTasks
     windows  {
       window _automatic {
@@ -2885,7 +2885,7 @@ module mialCorrectSliceIntensity {
   }
   fields  {
     instanceName = mialCorrectSliceIntensity
-    inputFileName = ""
+    inputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented.nii.gz
     outputFileName = ""
     maskFileName = ""
     inProgress = FALSE
@@ -2894,7 +2894,7 @@ module mialCorrectSliceIntensity {
 }
 module mialSliceBySliceBiasEstimation {
   internal  {
-    frame = "-1467 128 200 56"
+    frame = "-1785 137 200 56"
     moduleGroupName = BackgroundTasks
     windows  {
       window _default {
@@ -2921,7 +2921,7 @@ module mialSliceBySliceBiasEstimation {
 }
 module mialSliceBySliceBiasFieldCorrection {
   internal  {
-    frame = "-1478 294 224 56"
+    frame = "-1796 303 224 56"
     moduleGroupName = BackgroundTasks
     windows  {
       window _default {
@@ -2948,7 +2948,7 @@ module mialSliceBySliceBiasFieldCorrection {
 }
 module mialIntensityStandardization {
   internal  {
-    frame = "-873 251 184 56"
+    frame = "-1191 260 184 56"
     moduleGroupName = BackgroundTasks
     windows  {
       window _automatic {
@@ -2974,7 +2974,7 @@ module mialIntensityStandardization {
 }
 module mialOrientImage {
   internal  {
-    frame = "-2015 116 152 64"
+    frame = "-2333 125 152 64"
     moduleGroupName = BackgroundTasks
     windows  {
       window _automatic {
@@ -3000,7 +3000,7 @@ module mialOrientImage {
 }
 module mialOrientImage {
   internal  {
-    frame = "-1927 228 152 64"
+    frame = "-2245 237 152 64"
     moduleGroupName = BackgroundTasks
     windows  {
       window _automatic {
@@ -3026,7 +3026,7 @@ module mialOrientImage {
 }
 module mialCorrectSliceIntensity {
   internal  {
-    frame = "-1763 116 192 64"
+    frame = "-2081 125 192 64"
     moduleGroupName = BackgroundTasks
     windows  {
       window _automatic {
@@ -3052,7 +3052,7 @@ module mialCorrectSliceIntensity {
 }
 module mialCorrectSliceIntensity {
   internal  {
-    frame = "-1198 234 272 64"
+    frame = "-1516 243 272 64"
     moduleGroupName = BackgroundTasks
     windows  {
       window _automatic {
@@ -3078,7 +3078,7 @@ module mialCorrectSliceIntensity {
 }
 module mialCorrectSliceIntensity {
   internal  {
-    frame = "-1215 132 296 64"
+    frame = "-1533 141 296 64"
     moduleGroupName = BackgroundTasks
     windows  {
       window _automatic {
@@ -3104,7 +3104,7 @@ module mialCorrectSliceIntensity {
 }
 module mialIntensityStandardization {
   internal  {
-    frame = "-885 127 208 64"
+    frame = "-1203 136 208 64"
     moduleGroupName = BackgroundTasks
     windows  {
       window _automatic {
@@ -3132,6 +3132,13 @@ module updateWorldOrientation {
   internal  {
     frame = "-735 781 160 56"
     moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
   }
   fields  {
     instanceName = updateWorldOrientation
@@ -3139,7 +3146,7 @@ module updateWorldOrientation {
 }
 module mialImageReconstruction {
   internal  {
-    frame = "-196 200 168 56"
+    frame = "-171 213 168 56"
     moduleGroupName = BackgroundTasks
     windows  {
       window _default {
@@ -3178,7 +3185,7 @@ module mialImageReconstruction {
 }
 module mialIntensityStandardization {
   internal  {
-    frame = "-540 252 200 64"
+    frame = "-603 273 200 64"
     moduleGroupName = BackgroundTasks
   }
   fields  {
@@ -3192,7 +3199,7 @@ module mialIntensityStandardization {
 }
 module mialIntensityStandardization {
   internal  {
-    frame = "-544 124 224 64"
+    frame = "-607 129 224 64"
     moduleGroupName = BackgroundTasks
     windows  {
       window _default {
@@ -3286,7 +3293,7 @@ networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 192
+        uniqueId = 195
         objectName = DisplayLabelsOnTopImage
         parentUniqueId = 0
         color  {
@@ -3308,7 +3315,7 @@ networkModel  {
         }
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 193
+        uniqueId = 196
         objectName = ModifyWorldToMatrix
         parentUniqueId = 0
         color  {
