@@ -55,8 +55,9 @@ private:
   //@}
   StringField* _statusFld;
   NotifyField* _startTaskFld;
+  NotifyField* _startTaskModalFld;
   BoolField* _inProgressFld;
-  BoolField* _ouputSucceedFld;
+  BoolField* _outputSucceedFld;
 
   std::vector<std::string> splitInputs;
   std::vector<std::string> splitOutputs;

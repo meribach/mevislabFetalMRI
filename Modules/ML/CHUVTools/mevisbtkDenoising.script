@@ -14,10 +14,13 @@ Window {
   mw = 480
   Category {
     Field inputFileName {
+      tooltip = "input file name, multiple files: use -- as delimeter, ex: C:/file1.nii--C:/file2.nii"
     }
     Field outputFileName {
+      tooltip = "output file name, multiple files: use -- as delimeter, ex: C:/file1denoised.nii--C:/file2denoised.nii"
     }
     Field maskFileName {
+      tooltip = "input mask file name, multiple files: use -- as delimeter, ex: C:/filemask1.nii--C:/filemask2.nii" 
     }
     Field referenceFileName {
       tooltip = "filename of the reference image"
@@ -57,6 +60,7 @@ Window {
     }
     
     Button startTask {}           //{ dependsOn = !taskRunning }
+    Button startTaskModal {}
     Field status {}
   }
 }

@@ -80,8 +80,9 @@ mialSliceBySliceBiasEstimation::mialSliceBySliceBiasEstimation() : Module(0, 0),
   _outputBiasFieldFileFld = addString("outputBiasFieldFile", "");
   _statusFld = addString("status", "");
   _startTaskFld = addTrigger("startTask");
+  _startTaskModalFld = addTrigger("startTaskModal");
   _inProgressFld = addBool("inProgress", false);
-  _ouputSucceedFld = addBool("ouputSucceed", false);
+  _outputSucceedFld = addBool("outputSucceed", false);
 
   clear();
   // Reactivate calls of handleNotification on field changes.
@@ -111,7 +112,7 @@ mialSliceBySliceBiasEstimation::~mialSliceBySliceBiasEstimation()
 void mialSliceBySliceBiasEstimation::handleNotification(Field* field)
 {
   // Handle changes of module parameters and input image fields here.
-	if (field == _startTaskFld)
+	if (field == _startTaskFld || field == _startTaskModalFld)
 	{
 
 		clear();
@@ -201,19 +202,24 @@ void mialSliceBySliceBiasEstimation::handleNotification(Field* field)
 		}
 		std::cout << "Files Found" << std::endl;
 
-
-		//kill le background worker si il exist:
-		if (m_pBGmialSliceBySliceBiasEstimationWorker)
-			delete (m_pBGmialSliceBySliceBiasEstimationWorker);
-		m_pBGmialSliceBySliceBiasEstimationWorker = new mialSliceBySliceBiasEstimationBackgroundTask(this);
-		std::cout << "background task created" << std::endl;
-		_inProgressFld->setBoolValue(true);
-		_statusFld->setStringValue("mial Slice by Slice Bias Estimation Running");
-		if (m_pmialSliceBySliceBiasEstimationThread)
-			delete m_pmialSliceBySliceBiasEstimationThread;
-		m_pmialSliceBySliceBiasEstimationThread = new boost::thread(*m_pBGmialSliceBySliceBiasEstimationWorker);
-		//touchOutputs = true;
-
+		if (field == _startTaskFld)
+		{
+			//kill le background worker si il exist:
+			if (m_pBGmialSliceBySliceBiasEstimationWorker)
+				delete (m_pBGmialSliceBySliceBiasEstimationWorker);
+			m_pBGmialSliceBySliceBiasEstimationWorker = new mialSliceBySliceBiasEstimationBackgroundTask(this);
+			std::cout << "background task created" << std::endl;
+			_inProgressFld->setBoolValue(true);
+			_statusFld->setStringValue("mial Slice by Slice Bias Estimation Running");
+			if (m_pmialSliceBySliceBiasEstimationThread)
+				delete m_pmialSliceBySliceBiasEstimationThread;
+			m_pmialSliceBySliceBiasEstimationThread = new boost::thread(*m_pBGmialSliceBySliceBiasEstimationWorker);
+			//touchOutputs = true;
+		}
+		else if (field == _startTaskModalFld)
+		{
+			EstimateBiasAllInput();
+		}
 	}
 }
 
@@ -225,7 +231,7 @@ void mialSliceBySliceBiasEstimation::clear()
 	splitOutputs.clear();
 	splitoutputBiasField.clear();
 	std::cout << "dynamic vector cleared" << std::endl;
-	_ouputSucceedFld->setBoolValue(false);
+	_outputSucceedFld->setBoolValue(false);
 
 }
 
@@ -233,6 +239,7 @@ void mialSliceBySliceBiasEstimation::postComputation()
 {
 	_inProgressFld->setBoolValue(false);
 	std::cout << "mial Slice by Slice Bias Estimation Done" << std::endl;
+	_statusFld->setStringValue("Slice by Slice Bias Estimation Done");
 
 }
 
@@ -260,7 +267,7 @@ void mialSliceBySliceBiasEstimation::EstimateBiasAllInput()
 		}
 	}
 
-	_ouputSucceedFld->setBoolValue(true);
+	_outputSucceedFld->setBoolValue(true);
 
 }
 

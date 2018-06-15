@@ -62,7 +62,7 @@ private:
 };
 
 //! Implements code for the runtime type system of the ML
-ML_MODULE_CLASS_SOURCE(mialIntensityStandardization, Module);
+ML_MODULE_CLASS_SOURCE(mialIntensityStandardization, Module); 
 
 //----------------------------------------------------------------------------------
 
@@ -78,8 +78,9 @@ mialIntensityStandardization::mialIntensityStandardization() : Module(0, 0), m_p
   _maxIntensityFld = addFloat("maxIntensity", 255.0);
   _statusFld = addString("status", "");
   _startTaskFld = addTrigger("startTask");
+  _startTaskModalFld = addTrigger("startTaskModal");
   _inProgressFld = addBool("inProgress", false);
-  _ouputSucceedFld = addBool("ouputSucceed", false);
+  _outputSucceedFld = addBool("outputSucceed", false);
 
   clear();
   // Reactivate calls of handleNotification on field changes.
@@ -111,7 +112,7 @@ mialIntensityStandardization::~mialIntensityStandardization()
 void mialIntensityStandardization::handleNotification(Field* field)
 {
   // Handle changes of module parameters and input image fields here.
-	if (field == _startTaskFld)
+	if (field == _startTaskFld || field == _startTaskModalFld)
 	{
 
 		clear();
@@ -169,19 +170,24 @@ void mialIntensityStandardization::handleNotification(Field* field)
 		}
 		std::cout << "Files Found" << std::endl;
 
-
-		//kill le background worker si il exist:
-		if (m_pBGmialIntensityStandardizationWorker)
-			delete (m_pBGmialIntensityStandardizationWorker);
-		m_pBGmialIntensityStandardizationWorker = new mialIntensityStandardizationBackgroundTask(this);
-		std::cout << "background task created" << std::endl;
-		_inProgressFld->setBoolValue(true);
-		_statusFld->setStringValue("mial Intensity Standardization Running");
-		if (m_pmialIntensityStandardizationWorkerThread)
-			delete m_pmialIntensityStandardizationWorkerThread;
-		m_pmialIntensityStandardizationWorkerThread = new boost::thread(*m_pBGmialIntensityStandardizationWorker);
-		//touchOutputs = true;
-
+		if (field == _startTaskFld)
+		{
+			//kill le background worker si il exist:
+			if (m_pBGmialIntensityStandardizationWorker)
+				delete (m_pBGmialIntensityStandardizationWorker);
+			m_pBGmialIntensityStandardizationWorker = new mialIntensityStandardizationBackgroundTask(this);
+			std::cout << "background task created" << std::endl;
+			_inProgressFld->setBoolValue(true);
+			_statusFld->setStringValue("mial Intensity Standardization Running");
+			if (m_pmialIntensityStandardizationWorkerThread)
+				delete m_pmialIntensityStandardizationWorkerThread;
+			m_pmialIntensityStandardizationWorkerThread = new boost::thread(*m_pBGmialIntensityStandardizationWorker);
+			//touchOutputs = true;
+		}
+		else if (field == _startTaskModalFld)
+		{
+			IntensityStandardizationAllInput();
+		}
 	}
 }
 
@@ -191,7 +197,7 @@ void mialIntensityStandardization::clear()
 	splitInputs.clear();
 	splitOutputs.clear();
 	std::cout << "dynamic vector cleared" << std::endl;
-	_ouputSucceedFld->setBoolValue(false);
+	_outputSucceedFld->setBoolValue(false);
 
 }
 
@@ -199,6 +205,7 @@ void mialIntensityStandardization::postComputation()
 {
 	_inProgressFld->setBoolValue(false);
 	std::cout << "mial Intensity Standardization Done" << std::endl;
+	_statusFld->setStringValue("Intensity Standardization Done");
 
 }
 
@@ -227,7 +234,7 @@ void mialIntensityStandardization::IntensityStandardizationAllInput()
 		}
 	//}
 
-	_ouputSucceedFld->setBoolValue(true);
+	_outputSucceedFld->setBoolValue(true);
 
 }
 

@@ -92,6 +92,15 @@ bool btkNLMDenoisingWrapper::runDenoise()
 {
 	try
 	{
+		/*if (std::strcmp(maskFile, "")==0)
+		{
+			std::cout << "no mask file" << std::endl;
+		}
+		else
+		{
+			std::cout << "mask file" << std::endl;
+		}*/
+
 		wrap_btkNLMDenoise = new btkNLMDenoise(inputFile, outputFile, maskFile, refFile, padding, hwn, hwvs, beta, block, center, optimized, lowerMeanThreshold, lowerVarianceThreshold, differenceFile, localSmoothing);
 		boolExit = wrap_btkNLMDenoise->runDenoising();
 		return boolExit;

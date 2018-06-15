@@ -41,6 +41,10 @@ def initImageOrientationGraphicsView(view):
   activePositioning = False
   global activeMasking
   activeMasking = False
+  
+  global runAllFirstBackgroundTask
+  runAllFirstBackgroundTask = False
+  
   ctx.field("itkImageFileReader1.unresolvedFileName").setStringValue("")
   ctx.field("AlreadyModifiedMaskReader.unresolvedFileName").setStringValue("")
   ctx.field("AlreadyModifiedMaskReader.fileName").setStringValue("")
@@ -53,9 +57,11 @@ def initImageOrientationGraphicsView(view):
   ctx.field("GetAtlasMacro.itkImageFileReader.open").touch()
   ctx.field("GetAtlasMacro.itkImageFileReaderMask.open").touch()
   ctx.field("ToggleBrainMask.on").setValue(False)
+  ctx.field("BackgroundTaskRunning").setBoolValue(False)
   ctx.field("SwitchAlreadyRegistered.currentInput").setValue(0)
   ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
   ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
+  ctx.field("mialImageReconstruction.ImageBaseOfRecon").setIntValue(ctx.field("RefImageFiled").value)
   showImageOrientationInterface()
   resetZoom()
   TempObj=temporaryObject()
@@ -66,6 +72,9 @@ def showImageOrientationInterface():
   global g_sceneImageOrientation
   global g_ImageOrientationGraphicsView
   global g_HorizontalControl
+  global ExportMode
+  global ShouldRunBackgroundTask
+  ShouldRunBackgroundTask = False
   
   g_HorizontalControl = {}
   g_sceneImageOrientation = g_ImageOrientationGraphicsView.scene()
@@ -109,11 +118,22 @@ def showImageOrientationInterface():
     #g_layoutImageOrientation.addItem(buttonGenerateMask,i,4)
     #g_layoutImageOrientation.addItem(checkBoxImage,i,5)
   
-  buttonResetIm = """Button {expandX = No title = "Reset Images" name = buttonResetImage command = "py: resetImages()"}"""
-  buttonRunDenoising = """Button {expandX = No title = "Denoise Images" name = buttonDenoiseImage command = "py: denoiseImages()"}"""
-  FieldStatus = """Field {format = STRING name = StatusField title = "BackgroundTaskInfo" edit = no}"""
+  FieldRefImage = """Field RefImageFiled {step = 1 title = "refImage: should be the one with the less movement"}"""
   
-  mdlToSet += """Horizontal { name = horizontalFinal """ + buttonResetIm + buttonRunDenoising + FieldStatus + """ Execute = "py: getHorizontalControl(\'LastButtons\',\'horizontalFinal\')" } """
+  buttonResetIm = """Button {expandX = No title = "Reset Images" name = buttonResetImage command = "py: resetImages()"}"""
+  
+  buttonAllBackgroundTasks = """Button {expandX = No title = "AllBackgroundTasks" name = AllBackgroundTasks command = "py: runAllFirstSetBackgroundTasks()" dependsOn = !BackgroundTaskRunning}"""
+  
+  if ctx.field("ExpertMode").value:
+     buttonRunDenoising = """Button {expandX = No title = "Denoise Images" name = buttonDenoiseImage command = "py: denoiseImages()" dependsOn = !BackgroundTaskRunning}"""
+
+  FieldStatus = """Field StatusField {format = STRING title = "BackgroundTaskInfo" edit = no}"""
+  
+  mdlToSet += """Horizontal { name = horizontalRef """ + FieldRefImage + """ Execute = "py: getHorizontalControl(\'refButtons\',\'horizontalRef\')" } """
+  mdlToSet += """Horizontal { name = horizontalFinal """ + buttonResetIm + buttonAllBackgroundTasks + FieldStatus + """ Execute = "py: getHorizontalControl(\'LastButtons\',\'horizontalFinal\')" } """
+  
+  if ctx.field("ExpertMode").value:
+    mdlToSet += """Horizontal { name = horizontalExportMode alignX = Left """ + buttonRunDenoising + """ Execute = "py: getHorizontalControl(\'ExpertButtons\',\'horizontalExportMode\')" } """
   #mdlToSet += buttonRunDenoising
   #mdlToSet += FieldStatus
   g_sceneImageOrientation.addMDL("Vertical {" + mdlToSet + "}")
@@ -392,7 +412,7 @@ def updateImage(Image="Image0"):
 
   ctx.field("SoInteractionMapping1.ignoreOtherCommandActions").setBoolValue(False)
   ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
-  ctx.field("LabelViewerMode.text").setStringValue("Viewer Mode")
+  ctx.field("LabelViewerMode.text").setStringValue("Viewer Mode %s"%Image)
   
   if ctx.hasControl("button%s"%Image):
     print("has control")
@@ -853,7 +873,7 @@ def button1PressedMaskRefine(event):
           if ctx.field("SoView2D.startSlice").value == int(csobj.getVoxelBoundingBox(worldToVoxelMatrix)[5]):
               csoId2Modify.append(str(csobj.id))
       csoId2Modifystr=" ".join(csoId2Modify)
-      print(csoId2Modifystr)        
+      #print(csoId2Modifystr)        
     if event["key"]=="2":   
       #ctx.field("adaptTemplateMask.AffineMatrixComposition.inTranslation").value
       #ctx.field("adaptTemplateMask.AffineMatrixComposition.inTranslation").setValue(numpy.array(ctx.field("adaptTemplateMask.AffineMatrixComposition.inTranslation").value) + numpy.array([0,-1,0,0]))
@@ -989,7 +1009,7 @@ def button1PressedMaskRefine(event):
       ctx.field("inImageInfos").setObject(inImages)
       ctx.field("SoInteractionMapping1.ignoreOtherCommandActions").setBoolValue(False)
       ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
-      ctx.field("LabelViewerMode.text").setStringValue("Viewer Mode")
+      ctx.field("LabelViewerMode.text").setStringValue("Viewer Mode %s"%currentImage)
       
       valIm = currentImage.split('Image')[-1]
       if ctx.hasControl("GenerateBrainMask%s"%valIm):
@@ -1003,6 +1023,10 @@ def button1PressedMaskRefine(event):
           g_HorizontalControl[imiter].control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
         except:
           print("test background g_horizontalcontrol didn't work")  
+      
+      
+      ctx.control("checkImage%s"%valIm).setChecked(True)
+      updateImage(currentImage)
       #else:
       #  ctx.field("parent:MessageBox.message").setStringValue("you have to precise the plane orientation to be able to save")
       #  ctx.parent().module("MessageBox").showModalDialog("dialog")
@@ -1062,26 +1086,224 @@ def resetZoom():
    ctx.field("SoView2D.unzoom").touch()
    
 
-def denoiseImages():
+def runAllFirstSetBackgroundTasks():
+    
+    global runAllFirstBackgroundTask
+    runAllFirstBackgroundTask = True
+    inImages = ctx.field("inImageInfos").object()
+    
+    if inImages == None:
+      print("no images to work on")
+      return
+    listTasks=[]
+    i=0
+    
+    #if !ctx.field("mevisbtkDenoising.outputSucceed").value:
+    #if denoise images as run on native image we have to reorient them
+    SomeToDenoise=False
+    for kk,vv in inImages.iteritems():
+      if 'NLMWorldChanged' in vv:
+        print("nothing to do")
+      elif 'NLM' in vv:
+        ctx.field("updateWorldOrientation.itkImageFileReader.fileName").setStringValue(vv['NLM'])
+        ctx.field("updateWorldOrientation.itkImageFileReaderModel.fileName").setStringValue(vv['WorldChanged'])
+        newName=vv['WorldChanged'].replace('.nii','_NLM.nii')
+        ctx.field("updateWorldOrientation.itkImageFileWriter.fileName").setStringValue(newName)
+        ctx.field("updateWorldOrientation.itkImageFileWriter.save").touch()
+        print("test")
+        #have to add to inImages now
+        inImages[kk].update({'NLMWorldChanged':newName})
+
+        
+      else:
+        SomeToDenoise=True
+      
+    if SomeToDenoise:
+      denoiseImages(nextStep=runAllFirstSetBackgroundTasks,BackgroundTask=True)
+        #denoiseImages(NextStep=runAllFirstSetBackgroundTasks)
+    
+    
+    ImageToOrient=False
+    for kk,vv in inImages.iteritems():
+      if "ImReOriented" not in vv:
+        ImageToOrient=True
+    
+    if ImageToOrient:
+      OrientImages(WhatToOrient="NativeImage")
+      OrientImages(WhatToOrient="Mask")
+      OrientImages(WhatToOrient="Denoised")
+
+        
+        
+    ImageDenoisedToOrient=False
+    
+    MaskToOrient=False
+    
+    
+    #while (not ctx.field("StopBackgroundTask").value):
+    #  #Normalement denoise est deja fait
+    #  for imageIter in inImages:
+    #    if ctx.control("check%i"%imageIter).isChecked():
+    #      if inputsDenoise != "":
+    #        inputsDenoise = inputsDenoise+"--"
+    #        outputsDenoise = outputsDenoise+"--"
+    #      inputsDenoise=inputsDenoise+inImages[imageIter]["file"]
+    #      newOutput = inImages[imageIter]["file"].replace('.nii','NLM.nii')
+    #      outputsDenoise=outputsDenoise+newOutput
+    #  #set all input file name with -- as delimeter
+    #  ctx.field("mevisbtkDenoising.inputFileName").setStringValue(inputsDenoise)
+    #  ctx.field("mevisbtkDenoising.outputFileName").setStringValue(outputsDenoise)
+    #  ctx.field("mevisbtkDenoising.startTask").touch()
+    #  i=i+1
+        
+
+def denoiseImages(nextStep=None,BackgroundTask=True):
+
     
     inImages = ctx.field("inImageInfos").object()
+    if inImages == None:
+      print("no images to denoise")
+      return
     inputsDenoise=""
     outputsDenoise=""
+    #if worldmatrix exists we run denoise image on world matrix.
+    #else on native
+    checkWorldMatrix = True
+    for kk,vv in inImages.iteritems():
+       if "WorldChanged" not in vv:
+         checkWorldMatrix = False
+    
+    if checkWorldMatrix:
+      print("run denoising on reoriented image directly")
+    else:
+      print("run denoising on native image, will have to reorient them when possible")
+      
     for imageIter in inImages:
+      
       if inputsDenoise != "":
         inputsDenoise = inputsDenoise+"--"
         outputsDenoise = outputsDenoise+"--"
-      inputsDenoise=inputsDenoise+inImages[imageIter]["file"]
-      newOutput = inImages[imageIter]["file"].replace('.nii','NLM.nii')
+      
+      if checkWorldMatrix:
+        inputsDenoise=inputsDenoise+inImages[imageIter]["WorldChanged"]
+        newOutput = inImages[imageIter]["WorldChanged"].replace('.nii','_NLM.nii')
+      else:
+        inputsDenoise=inputsDenoise+inImages[imageIter]["file"]
+        newOutput = inImages[imageIter]["file"].replace('.nii','_NLM.nii')
+      
       outputsDenoise=outputsDenoise+newOutput
     #set all input file name with -- as delimeter
     ctx.field("mevisbtkDenoising.inputFileName").setStringValue(inputsDenoise)
     ctx.field("mevisbtkDenoising.outputFileName").setStringValue(outputsDenoise)
     
-    ctx.field("mevisbtkDenoising.startTask").touch()
-    #set all outpout file name with -- as delimeter
+    if BackgroundTask:
+      ctx.field("mevisbtkDenoising.startTask").touch()
+    else:
+      ctx.field("mevisbtkDenoising.startTaskModal").touch()
 
-   
+    #set all outpout file name with -- as delimeter
+    
+
+
+def OrientImages(WhatToOrient):
+  
+  inImages = ctx.field("inImageInfos").object()
+  if inImages == None:
+    print("no images to denoise")
+    return
+  
+  inputsOrient=""
+  outputsOrient=""
+  inputOrientation=""
+  if WhatToOrient=="NativeImage":
+    for kk,vv in inImages.iteritems():
+     
+      if inputsOrient != "":
+        inputsOrient = inputsOrient+"--"
+        outputsOrient = outputsOrient+"--"
+        inputOrientation = inputOrientation+"--"
+    
+      if "WorldChanged" in vv:
+        if "planeOrientation" in vv:  
+          inputsOrient=inputsOrient+vv["WorldChanged"]
+          newOutput = vv["WorldChanged"].replace('.nii','_reoriented.nii')
+          outputsOrient=outputsOrient+newOutput
+          inputOrientation=inputOrientation+vv["planeOrientation"]
+          
+    ctx.field("mialOrientImage.inputFileName").setStringValue(inputsOrient)
+    ctx.field("mialOrientImage.outputFileName").setStringValue(outputsOrient)
+    ctx.field("mialOrientImage.orientation").setStringValue(inputOrientation)
+    ctx.field("mialOrientImage.startTask").touch()
+    
+    print("test")
+
+
+def updateBackgroundTaskStatus(Task):
+  
+  listOfPossibleTask = {"Denoising":ctx.field("mevisbtkDenoising.status"),"mialOrientImage":ctx.field("mialOrientImage.status"),"mialCorrectSliceIntensity":ctx.field("mialCorrectSliceIntensity.status"),"mialBiasEstimation":ctx.field("mialSliceBySliceBiasEstimation.status"),"mialBiasCorrection":ctx.field("mialSliceBySliceBiasFieldCorrection.status"),"mialIntensityStandardization":ctx.field("mialIntensityStandardization.status")}
+  
+  newMessage =listOfPossibleTask[Task].stringValue()
+  ctx.field("StatusField").setStringValue(newMessage)
+  
+  
+def updateBackgroundTaskRunningField():
+  
+  ctx.field("BackgroundTaskRunning").setBoolValue(ctx.field("mevisbtkDenoising.inProgress").value | ctx.field("mialOrientImage.inProgress").value | ctx.field("mialCorrectSliceIntensity.inProgress").value | ctx.field("mialSliceBySliceBiasEstimation.inProgress").value | ctx.field("mialSliceBySliceBiasFieldCorrection.inProgress").value | ctx.field("mialIntensityStandardization.inProgress").value | ctx.field("mialOrientImageMask.inProgress").value | ctx.field("mialOrientImageNLM.inProgress").value | ctx.field("mialCorrectSliceIntensityNLM.inProgress").value |ctx.field("mialCorrectSliceIntensityNLMPostBiasCorrection.inProgress").value | ctx.field("mialIntensityStandardizationNLM.inProgress").value | ctx.field("mialCorrectSliceIntensityPostBiasCorrection.inProgress").value )
+  
+ 
+def insertNLMDenoisingResults():
+  
+  global runAllFirstBackgroundTask
+  
+  if not ctx.field("mevisbtkDenoising.outputSucceed").value:
+    #print("denoising failed")
+    #runAllFirstBackgroundTask = False
+    return
+  
+  getFileName = ctx.field("mevisbtkDenoising.outputFileName").stringValue()
+  getInputFileName = ctx.field("mevisbtkDenoising.inputFileName").stringValue()
+  
+  splitNames = getFileName.split("--")
+  splitInputNames = getInputFileName.split("--")
+
+  if splitNames[0].find("_worldmatrixModified")>=0:
+    print("denoised images already in the good referential")
+    insertNLMOriented=True     
+  else:
+    print("will have to reorient latter")
+    insertNLMOriented= False 
+    
+  inImages = ctx.field("inImageInfos").object()
+  for iterImage in range(len(splitNames)):
+    for kk,vv in inImages.iteritems():
+      if insertNLMOriented:
+        if splitInputNames[iterImage]==vv['WorldChanged']:
+           inImages[kk].update({'NLMWorldChanged':splitNames[iterImage]})
+      else:
+        if splitInputNames[iterImage]==vv['file']:
+           inImages[kk].update({'NLM':splitNames[iterImage]})
+          
+  ctx.field("inImageInfos").setObject(inImages)
+  
+  if runAllFirstBackgroundTask:
+    runAllFirstSetBackgroundTasks()
+
+    
+def updateRefImageReconstruction():
+
+  ctx.field("mialImageReconstruction.ImageBaseOfRecon").setIntValue(ctx.field("RefImageFiled").value)
+  
+  
+
+#can't do one function dealing with every condition, have to split in functions depending on which process is done
+#def nextStepBackgroundTask(Task):
+#  
+#  listOfPossibleTask = {"Denoising":ctx.field("mevisbtkDenoising.startTask"),"mialOrientImage":ctx.field("mialOrientImage.startTask"),"mialCorrectSliceIntensity":ctx.field("mialCorrectSliceIntensity.startTask"),"mialBiasEstimation":ctx.field("mialSliceBySliceBiasEstimation.startTask"),"mialBiasCorrection":ctx.field("mialSliceBySliceBiasFieldCorrection.startTask"),"mialIntensityStandardization":ctx.field("mialIntensityStandardization.startTask")}
+#  listOfPossibleTask[Task].touch()
+
+
+
+
 class temporaryObject():
   def __init__(self):
     self.tempCSOs= {}

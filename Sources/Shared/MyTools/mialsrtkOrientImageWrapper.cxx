@@ -1,7 +1,6 @@
 #include "mialsrtkOrientImageWrapper.h"
-#include <string>
-#include <iostream>
 #include "mialsrtkOrientImage.h"
+#include <tclap/CmdLine.h>
 
 bool reOrientWrapper::reOrient()
 {
@@ -15,7 +14,7 @@ bool reOrientWrapper::reOrient()
 	}
 	catch(const char* str)
 	{
-		std::cout << "error cought by the wrapper" << std::endl;
+		std::cout << "error caught by the wrapper" << std::endl;
 		std::cout << inputFile << std::endl;
 		return false;
 		//throw str;
@@ -40,7 +39,7 @@ reOrientWrapper::~reOrientWrapper()
 	boolExit = NULL;
 }
 
-int main()
+int main(int argc, char** argv)
 {
 	//here I add the TCLAP ?
 	

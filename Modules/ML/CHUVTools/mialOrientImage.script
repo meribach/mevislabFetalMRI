@@ -27,6 +27,7 @@ Window {
       tooltip = "orientation, axial sagittal or coronal, multiple files: use -- as delimeter, ex: axial--coronal"
     }
     Button startTask {}           //{ dependsOn = !taskRunning }
+    Button startTaskModal {}
     Field status {}
   }
 }

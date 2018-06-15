@@ -20,7 +20,7 @@
 #include "itkChangeInformationImageFilter.h"
 
 #include "float.h"
-#include "vnl_index_sort.h"
+//#include "vnl_index_sort.h"
 #include <algorithm>
 
 

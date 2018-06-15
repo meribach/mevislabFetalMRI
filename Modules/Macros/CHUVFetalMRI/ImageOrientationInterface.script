@@ -37,6 +37,11 @@ Interface {
     Field resetZoomButton {type = Trigger}
     Field increaseNbImage {type = Trigger}
     Field decreaseNbImage {type = Trigger}
+    Field StatusField {type = String}
+    Field RefImageFiled {type = Int value = 0}
+    Field BackgroundTaskRunning {type = Bool}
+    Field StopBackgroundTask {type = Bool}
+    Field ExpertMode {type = Bool value = True}
     //Field temporaryMasksSwitch {type = MLBase }
   }
 }
@@ -47,6 +52,12 @@ Description {
     min = 1
     max = 15
   }
+  
+  Field RefImageFiled {
+    min = 0
+    max = NumberImages-1
+  }
+  
 }
 
 Commands {
@@ -57,6 +68,45 @@ Commands {
   FieldListener fileSelectionCompleted {command = initImageOrientationGraphicsView}
   FieldListener resetAll {command = resetImages}
   FieldListener GestationalAge {command = updateCSOfromAdapt}
+  
+  //FieldListener of status field from backgroundTasks
+  FieldListener mevisbtkDenoising.status {command ="py: updateBackgroundTaskStatus('Denoising')"}
+  FieldListener mialOrientImage.status {command = "py: updateBackgroundTaskStatus('mialOrientImage')"}
+  FieldListener mialCorrectSliceIntensity.status {command = "py: updateBackgroundTaskStatus('mialCorrectSliceIntensity')"}
+  FieldListener mialSliceBySliceBiasEstimation.status {command = "py: updateBackgroundTaskStatus('mialBiasEstimation')"}
+  FieldListener mialSliceBySliceBiasFieldCorrection.status {command = "py: updateBackgroundTaskStatus('mialBiasCorrection')"}
+  FieldListener mialIntensityStandardization.status {command = "py: updateBackgroundTaskStatus('mialIntensityStandardization')"}
+  
+  FieldListener mevisbtkDenoising.inProgress {command = "py: updateBackgroundTaskRunningField()"}
+  FieldListener mialOrientImage.inProgress {command = "py: updateBackgroundTaskRunningField()"}
+  FieldListener mialOrientImageNLM.inProgress {command = "py: updateBackgroundTaskRunningField()"}
+  FieldListener mialOrientImageMask.inProgress {command = "py: updateBackgroundTaskRunningField()"}
+  FieldListener mialCorrectSliceIntensity.inProgress {command = "py: updateBackgroundTaskRunningField()"}
+  FieldListener mialCorrectSliceIntensityNLM.inProgress {command = "py: updateBackgroundTaskRunningField()"}
+  FieldListener mialCorrectSliceIntensityNLMPostBiasCorrection.inProgress {command = "py: updateBackgroundTaskRunningField()"}
+  FieldListener mialCorrectSliceIntensityPostBiasCorrection.inProgress {command = "py: updateBackgroundTaskRunningField()"}
+  FieldListener mialSliceBySliceBiasEstimation.inProgress {command = "py: updateBackgroundTaskRunningField()"}
+  FieldListener mialSliceBySliceBiasFieldCorrection.inProgress {command = "py: updateBackgroundTaskRunningField()"}
+  FieldListener mialIntensityStandardization.inProgress {command = "py: updateBackgroundTaskRunningField()"}
+  FieldListener mialIntensityStandardizationNLM.inProgress {command = "py: updateBackgroundTaskRunningField()"}
+  
+  FieldListener mevisbtkDenoising.outputSucceed {command = "py: insertNLMDenoisingResults()"} //or next step instead of denoising ?
+  FieldListener mialOrientImage.outputSucceed {command = "py: nextStepBackgroundTask('mialOrientImage')"}
+  FieldListener mialOrientImageNLM.outputSucceed {command = "py: nextStepBackgroundTask('mialOrientImageNLM')"}
+  FieldListener mialOrientImageMask.outputSucceed {command = "py: nextStepBackgroundTask('mialOrientImageMask')"}
+  FieldListener mialCorrectSliceIntensity.outputSucceed {command = "py: nextStepBackgroundTask('mialCorrectSliceIntensity')"}
+  FieldListener mialCorrectSliceIntensityNLM.outputSucceed {command = "py: nextStepBackgroundTask('mialCorrectSliceIntensityNLM')"}
+  FieldListener mialCorrectSliceIntensityNLMPostBiasCorrection.outputSucceed {command = "py: nextStepBackgroundTask('mialCorrectSliceIntensityNLMPostBiasCorrection')"}
+  FieldListener mialCorrectSliceIntensityPostBiasCorrection.outputSucceed {command = "py: nextStepBackgroundTask('mialCorrectSliceIntensityPostBiasCorrection')"}
+  FieldListener mialSliceBySliceBiasEstimation.outputSucceed {command = "py: nextStepBackgroundTask('mialBiasEstimation')"}
+  FieldListener mialSliceBySliceBiasFieldCorrection.outputSucceed {command = "py: nextStepBackgroundTask('mialBiasCorrection')"}
+  FieldListener mialIntensityStandardization.outputSucceed {command = "py: nextStepBackgroundTask('mialIntensityStandardization')"}
+  FieldListener mialIntensityStandardizationNLM.outputSucceed {command = "py: nextStepBackgroundTask('mialIntensityStandardizationNLM')"}
+  
+  FieldListener ExpertMode {command = showImageOrientationInterface}
+  
+  FieldListener RefImageFiled {command = updateRefImageReconstruction}
+  
   //FieldListener View2DExtensions.annoReadPix.worldPosition {command = updateLabelPosition}
 }
 

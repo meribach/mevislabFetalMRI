@@ -90,6 +90,15 @@ MyIntensityStandardization {
                  mialsrtkSliceBySliceN4BiasFieldCorrectionWrapper.lib \
 }
 
+MyImageReconstruction {
+   CONFIG_FOUND += MyImageReconstruction
+   INCLUDEPATH += $${PACKAGE_SOURCES}/Shared/MyImageReconstruction
+   QMAKE_LIBDIR += $${PACKAGE_LIB}/MyImageReconstruction 
+   win32:LIBS += mialsrtkImageReconstructionLib.lib \
+                 mialsrtkImageReconstructionWrapper.lib \
+
+}
+
 MyITK {
   CONFIG_FOUND += MyITK
   QMAKE_LIBDIR += $${PACKAGE_LIB}/MyITK
@@ -189,6 +198,9 @@ MyITK {
 		itkgdcmMEXD-4.13.lib \
 		Ws2_32.lib \
 		Rpcrt4.lib \
+		Snmpapi.lib \
+		psapi.lib \
+
 }
 
 message($$INCLUDEPATH)

@@ -80,8 +80,9 @@ mialCorrectSliceIntensity::mialCorrectSliceIntensity() : Module(0, 0), m_pBGmial
   _maskFileNameFld = addString("maskFileName", "");
   _statusFld = addString("status", "");
   _startTaskFld = addTrigger("startTask");
+  _startTaskModalFld = addTrigger("startTaskModal");
   _inProgressFld = addBool("inProgress", false);
-  _ouputSucceedFld = addBool("ouputSucceed", false);
+  _outputSucceedFld = addBool("outputSucceed", false);
 
   clear();
 
@@ -113,7 +114,7 @@ mialCorrectSliceIntensity::~mialCorrectSliceIntensity()
 void mialCorrectSliceIntensity::handleNotification(Field* field)
 {
   // Handle changes of module parameters and input image fields here.
-	if (field == _startTaskFld)
+	if (field == _startTaskFld || field == _startTaskModalFld)
 	{
 
 		clear();
@@ -197,19 +198,24 @@ void mialCorrectSliceIntensity::handleNotification(Field* field)
 		}
 		std::cout << "Files Found" << std::endl;
 
-
-		//kill le background worker si il exist:
-		if (m_pBGmialCorrectSliceIntensityWorker)
-			delete (m_pBGmialCorrectSliceIntensityWorker);
-		m_pBGmialCorrectSliceIntensityWorker = new mialCorrectSliceIntensityBackgroundTask(this);
-		std::cout << "background task created" << std::endl;
-		_inProgressFld->setBoolValue(true);
-		_statusFld->setStringValue("mial Correct Slice Intensity Running");
-		if (m_pmialCorrectSliceIntensityWorkerThread)
-			delete m_pmialCorrectSliceIntensityWorkerThread;
-		m_pmialCorrectSliceIntensityWorkerThread = new boost::thread(*m_pBGmialCorrectSliceIntensityWorker);
-		//touchOutputs = true;
-
+		if (field == _startTaskFld)
+		{
+			//kill le background worker si il exist:
+			if (m_pBGmialCorrectSliceIntensityWorker)
+				delete (m_pBGmialCorrectSliceIntensityWorker);
+			m_pBGmialCorrectSliceIntensityWorker = new mialCorrectSliceIntensityBackgroundTask(this);
+			std::cout << "background task created" << std::endl;
+			_inProgressFld->setBoolValue(true);
+			_statusFld->setStringValue("mial Correct Slice Intensity Running");
+			if (m_pmialCorrectSliceIntensityWorkerThread)
+				delete m_pmialCorrectSliceIntensityWorkerThread;
+			m_pmialCorrectSliceIntensityWorkerThread = new boost::thread(*m_pBGmialCorrectSliceIntensityWorker);
+			//touchOutputs = true;
+		}
+		else if (field == _startTaskModalFld)
+		{
+			CorrectSliceIntensityAllInput();
+		}
 	}
 
 }
@@ -222,7 +228,7 @@ void mialCorrectSliceIntensity::clear()
 	splitMasks.clear();
 	splitOutputs.clear();
 	std::cout << "dynamic vector cleared" << std::endl;
-	_ouputSucceedFld->setBoolValue(false);
+	_outputSucceedFld->setBoolValue(false);
 
 }
 
@@ -230,6 +236,7 @@ void mialCorrectSliceIntensity::postComputation()
 {
 	_inProgressFld->setBoolValue(false);
 	std::cout << "mial Correct Slice Intensity Done" << std::endl;
+	_statusFld->setStringValue("mial Correct Slice Intensity Done");
 
 }
 
@@ -257,7 +264,7 @@ void mialCorrectSliceIntensity::CorrectSliceIntensityAllInput()
 		}
 	}
 
-	_ouputSucceedFld->setBoolValue(true);
+	_outputSucceedFld->setBoolValue(true);
 
 }
 

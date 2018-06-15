@@ -122,7 +122,7 @@ bool btkNLMDenoise::runDenoising()
 
 	btkTool.SetInput(inputImage);
 
-    if (maskFile != ""){               //reading the mask image
+    if (std::strncmp(maskFile, "",4)!=0) {               //reading the mask image
 
 	  ReaderType::Pointer maskReader = ReaderType::New();
       maskReader->SetFileName(maskFile);
@@ -132,7 +132,7 @@ bool btkNLMDenoise::runDenoising()
 	  }
 	  catch (itk::ExceptionObject &err)
 	  {
-		throw "error opening maskFile";
+		throw "error opening maskFile : " + std::string(maskFile);
 		return false;
 	  }
 	  maskImage = maskReader->GetOutput();
@@ -147,7 +147,8 @@ bool btkNLMDenoise::runDenoising()
 	btkTool.SetPatchSize(hwn);
 	btkTool.SetSpatialBandwidth(hwvs);
     
-    if (refFile != ""){
+    if (std::strncmp(refFile, "",4)!=0)
+	{
      ReaderType::Pointer refReader = ReaderType::New();
      refReader->SetFileName(refFile);
 	 try
@@ -191,7 +192,8 @@ bool btkNLMDenoise::runDenoising()
 	  return false;
 
 	}
-    if (differenceFile != ""){
+    if (strncmp(differenceFile, "",4) !=0)
+	{
       itk::ConstrainedValueDifferenceImageFilter<ImageType,ImageType,ImageType>::Pointer diffFilter = itk::ConstrainedValueDifferenceImageFilter<ImageType,ImageType,ImageType>::New();
 
       diffFilter->SetInput1( inputImage );

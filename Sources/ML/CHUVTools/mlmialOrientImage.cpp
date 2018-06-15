@@ -82,9 +82,10 @@ mialOrientImage::mialOrientImage() : Module(0, 0), m_pBGOrientImageWorker(NULL),
   _orientationFdl = addString("orientation", "axial");
   _statusFld = addString("status", "");
   _startTaskFld = addTrigger("startTask");
+  _startTaskModalFld = addTrigger("startTaskModal");
   _inProgressFld = addBool("inProgress",false);
-  _ouputSucceedFld = addBool("ouputSucceed",false);
-
+  _outputSucceedFld = addBool("outputSucceed",false);
+  
   // Reactivate calls of handleNotification on field changes.
   clear();
 
@@ -116,7 +117,7 @@ void mialOrientImage::clear()
 	splitOrientation.clear();
 	splitOutputs.clear();
 	std::cout << "dynamic vector cleared" << std::endl;
-	_ouputSucceedFld->setBoolValue(false);
+	_outputSucceedFld->setBoolValue(false);
 
 }
 
@@ -137,7 +138,7 @@ void mialOrientImage::handleNotification(Field* field)
     touchOutputs = true;
   }
 
-  else if (field == _startTaskFld)
+  else if (field == _startTaskFld || field == _startTaskModalFld)
   {
 
 	  clear();
@@ -222,6 +223,8 @@ void mialOrientImage::handleNotification(Field* field)
 	  }
 	  std::cout << "Orientations Recognized" << std::endl;
 	 
+	  if (field == _startTaskFld)
+	  {
 	  //kill le background worker si il exist:
 	  if (m_pBGOrientImageWorker)
 		  delete (m_pBGOrientImageWorker);
@@ -231,6 +234,11 @@ void mialOrientImage::handleNotification(Field* field)
 	  if (m_pOrientImageWorkerThread)
 		  delete m_pOrientImageWorkerThread;
 	  m_pOrientImageWorkerThread = new boost::thread(*m_pBGOrientImageWorker);
+	  }
+	  else if (field == _startTaskModalFld)
+	  {
+		reOrientAllInput();
+	  }
 	  //touchOutputs = true;
 
 	  //reOrientAllInput();
@@ -269,7 +277,7 @@ void mialOrientImage::reOrientAllInput()
 		//useReorientWrapper = NULL;
 	}
 
-	_ouputSucceedFld->setBoolValue(true);
+	_outputSucceedFld->setBoolValue(true);
 }
 
 

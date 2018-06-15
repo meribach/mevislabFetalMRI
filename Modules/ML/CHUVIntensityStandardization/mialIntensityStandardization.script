@@ -23,6 +23,7 @@ Window {
       tooltip = "new max intensity (default is 255.0)"
     }
     Button startTask {}           //{ dependsOn = !taskRunning }
+    Button startTaskModal {}
     Field status {}
   }
 }

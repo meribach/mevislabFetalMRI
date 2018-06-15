@@ -26,6 +26,7 @@ Window {
       tooltip = "path of output bias file"
     }
     Button startTask {}           //{ dependsOn = !taskRunning }
+    Button startTaskModal {}
     Field status {}
   }
 }

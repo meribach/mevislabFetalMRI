@@ -157,7 +157,7 @@ bool correctSliceIntensity::SliceIntensityCorrection()
 	}
 	gmean = gmean / gcounter;
 
-	vnl_vector<float> x;
+	/*vnl_vector<float> x;
 	x.set_size(gcounter);
 
 	gcounter = 0;
@@ -181,8 +181,10 @@ bool correctSliceIntensity::SliceIntensityCorrection()
 
 	indexXSort.vector_sort(x, sortedXVals, sortXIndices);
 	int indPercentile = (int)round(0.5 * (float)x.size());
-	float gmedian = sortedXVals[indPercentile];
+	float gmedian = sortedXVals[indPercentile];*/
 
+
+	/*
 	// Computes mean slice intensity in a neighborhood of each slice
 	//Loop over slices in the brain mask
 	for (unsigned int i = inputIndex[2]; i < inputIndex[2] + inputSize[2]; i++)
@@ -200,13 +202,13 @@ bool correctSliceIntensity::SliceIntensityCorrection()
 		wholeSliceRegion.SetIndex(wholeSliceRegionIndex);
 		wholeSliceRegion.SetSize(wholeSliceRegionSize);
 
-		/*std::cout << "inputMask " << std::endl;
-		std::cout << maskImage->GetLargestPossibleRegion() << std::endl;
-		std::cout << "inputImage" << std::endl;
-		std::cout << inputImage->GetLargestPossibleRegion() << std::endl;
-		std::cout << "wholeSliceRegion" << std::endl;
-		std::cout << wholeSliceRegion << std::endl;
-		*/
+		//std::cout << "inputMask " << std::endl;
+		//std::cout << maskImage->GetLargestPossibleRegion() << std::endl;
+		//std::cout << "inputImage" << std::endl;
+		//std::cout << inputImage->GetLargestPossibleRegion() << std::endl;
+		//std::cout << "wholeSliceRegion" << std::endl;
+		//std::cout << wholeSliceRegion << std::endl;
+		
 
 		//Extract slice in input mask
 		ExtractImageMaskFilterType::Pointer sliceMaskExtractor = ExtractImageMaskFilterType::New();
@@ -226,7 +228,6 @@ bool correctSliceIntensity::SliceIntensityCorrection()
 #endif
 		sliceExtractor->Update();
 
-		//Extract min value in the slice contained in the brain mask
 
 		itk::ImageRegionIterator<SliceImageType> ItS(sliceExtractor->GetOutput(), sliceExtractor->GetOutput()->GetLargestPossibleRegion());
 		itk::ImageRegionIterator<SliceImageMaskType> ItSM(sliceMaskExtractor->GetOutput(), sliceMaskExtractor->GetOutput()->GetLargestPossibleRegion());
@@ -405,9 +406,10 @@ bool correctSliceIntensity::SliceIntensityCorrection()
 
 
 	}
+	*/
 
 
-	// Remove the min value slice by slice
+	// Subtract gmean value slice by slice
 	//Loop over slices in the brain mask
 	for (unsigned int i = inputIndex[2]; i < inputIndex[2] + inputSize[2]; i++)
 	{

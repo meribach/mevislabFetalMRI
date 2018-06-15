@@ -24,6 +24,7 @@ Window {
     }
     
     Button startTask {}           //{ dependsOn = !taskRunning }
+    Button startTaskModal {}
     Field status {}
     
   }

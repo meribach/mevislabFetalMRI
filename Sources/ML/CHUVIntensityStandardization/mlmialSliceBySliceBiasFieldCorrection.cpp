@@ -81,8 +81,9 @@ mialSliceBySliceBiasFieldCorrection::mialSliceBySliceBiasFieldCorrection() : Mod
   _outputImageFileFld = addString("outputImageFile", "");
   _statusFld = addString("status", "");
   _startTaskFld = addTrigger("startTask");
+  _startTaskModalFld = addTrigger("startTaskModal");
   _inProgressFld = addBool("inProgress", false);
-  _ouputSucceedFld = addBool("ouputSucceed", false);
+  _outputSucceedFld = addBool("outputSucceed", false);
 
   clear();
   // Reactivate calls of handleNotification on field changes.
@@ -114,7 +115,7 @@ mialSliceBySliceBiasFieldCorrection::~mialSliceBySliceBiasFieldCorrection()
 void mialSliceBySliceBiasFieldCorrection::handleNotification(Field* field)
 {
   // Handle changes of module parameters and input image fields here.
-	if (field == _startTaskFld)
+	if (field == _startTaskFld || field == _startTaskModalFld)
 	{
 
 		clear();
@@ -204,18 +205,24 @@ void mialSliceBySliceBiasFieldCorrection::handleNotification(Field* field)
 		}
 		std::cout << "Files Found" << std::endl;
 
-
-		//kill le background worker si il exist:
-		if (m_pBGmialSliceBySliceBiasFieldCorrectionWorker)
-			delete (m_pBGmialSliceBySliceBiasFieldCorrectionWorker);
-		m_pBGmialSliceBySliceBiasFieldCorrectionWorker = new mialSliceBySliceBiasFieldCorrectionBackgroundTask(this);
-		std::cout << "background task created" << std::endl;
-		_inProgressFld->setBoolValue(true);
-		_statusFld->setStringValue("mial Slice by Slice Bias Correction Running");
-		if (m_pmialSliceBySliceBiasFieldCorrectionThread)
-			delete m_pmialSliceBySliceBiasFieldCorrectionThread;
-		m_pmialSliceBySliceBiasFieldCorrectionThread = new boost::thread(*m_pBGmialSliceBySliceBiasFieldCorrectionWorker);
-		//touchOutputs = true;
+		if (field == _startTaskFld)
+		{
+			//kill le background worker si il exist:
+			if (m_pBGmialSliceBySliceBiasFieldCorrectionWorker)
+				delete (m_pBGmialSliceBySliceBiasFieldCorrectionWorker);
+			m_pBGmialSliceBySliceBiasFieldCorrectionWorker = new mialSliceBySliceBiasFieldCorrectionBackgroundTask(this);
+			std::cout << "background task created" << std::endl;
+			_inProgressFld->setBoolValue(true);
+			_statusFld->setStringValue("mial Slice by Slice Bias Correction Running");
+			if (m_pmialSliceBySliceBiasFieldCorrectionThread)
+				delete m_pmialSliceBySliceBiasFieldCorrectionThread;
+			m_pmialSliceBySliceBiasFieldCorrectionThread = new boost::thread(*m_pBGmialSliceBySliceBiasFieldCorrectionWorker);
+			//touchOutputs = true;
+		}
+		else if (field == _startTaskModalFld)
+		{
+			CorrectBiasAllInput();
+		}
 
 	}
 }
@@ -228,7 +235,7 @@ void mialSliceBySliceBiasFieldCorrection::clear()
 	splitOutputs.clear();
 	splitinputBiasField.clear();
 	std::cout << "dynamic vector cleared" << std::endl;
-	_ouputSucceedFld->setBoolValue(false);
+	_outputSucceedFld->setBoolValue(false);
 
 }
 
@@ -236,6 +243,7 @@ void mialSliceBySliceBiasFieldCorrection::postComputation()
 {
 	_inProgressFld->setBoolValue(false);
 	std::cout << "mial Slice by Slice Bias Correction Done" << std::endl;
+	_statusFld->setStringValue("Slice by Slice Bias Correction Done");
 
 }
 
@@ -263,7 +271,7 @@ void mialSliceBySliceBiasFieldCorrection::CorrectBiasAllInput()
 		}
 	}
 
-	_ouputSucceedFld->setBoolValue(true);
+	_outputSucceedFld->setBoolValue(true);
 
 }
 

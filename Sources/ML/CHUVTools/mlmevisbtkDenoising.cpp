@@ -97,8 +97,9 @@ mevisbtkDenoising::mevisbtkDenoising() : Module(0, 0), m_pBGBTKDenoiseWorker(NUL
   _centerFld->setEnumValue(2);
   _statusFld = addString("status", "");
   _startTaskFld = addTrigger("startTask");
+  _startTaskModalFld = addTrigger("startTaskModal");
   _inProgressFld = addBool("inProgress", false);
-  _ouputSucceedFld = addBool("ouputSucceed", false);
+  _outputSucceedFld = addBool("outputSucceed", false);
 
   clear();
 
@@ -114,7 +115,7 @@ void mevisbtkDenoising::handleNotification(Field* field)
 {
   // Handle changes of module parameters and input image fields here.
 
-  if (field == _startTaskFld)
+  if (field == _startTaskFld || field == _startTaskModalFld)
   {
 
     clear();
@@ -156,7 +157,7 @@ void mevisbtkDenoising::handleNotification(Field* field)
 
 
 	
-	if (_maskFileNameFld->getStringValue() == "")
+	if (_maskFileNameFld->getStringValue().empty())
 	{
 		std::cout << "no maskFiles" << std::endl;
 		//I generate a std vector mask with empty strings same size as the input one
@@ -182,7 +183,7 @@ void mevisbtkDenoising::handleNotification(Field* field)
 
     //test if refs and diff are ""
 	//if not I have to split and check the size
-	if (_referenceFileNameFld->getStringValue() == "")
+	if (_referenceFileNameFld->getStringValue().empty())
 	{
 		std::cout << "no refs" << std::endl;
 		//I generate a std vector refs with empty strings
@@ -206,7 +207,7 @@ void mevisbtkDenoising::handleNotification(Field* field)
 
 	}
 
-	if (_differenceFileFld->getStringValue() == "")
+	if (_differenceFileFld->getStringValue().empty())
 	{
 		std::cout << "no diffFile" << std::endl;
 		//I generate a std vector diff with empty strings
@@ -248,17 +249,25 @@ void mevisbtkDenoising::handleNotification(Field* field)
 		}
 		std::cout << "Files Found" << std::endl;
 
-
+		if (field == _startTaskFld)
+		{
 		//kill le background worker si il exist:
 		if (m_pBGBTKDenoiseWorker)
+			std::cout << "denoise worker killed" << std::endl;
 			delete (m_pBGBTKDenoiseWorker);
 		m_pBGBTKDenoiseWorker = new BTKDenoiseBackgroundTask(this);
 		std::cout << "background task created" << std::endl;
 		_inProgressFld->setBoolValue(true);
 		_statusFld->setStringValue("Denoising Running");
 		if (m_pBTKDenoiseWorkerThread)
+			std::cout << "denoise thread killed" << std::endl;
 			delete m_pBTKDenoiseWorkerThread;
 		m_pBTKDenoiseWorkerThread = new boost::thread(*m_pBGBTKDenoiseWorker);
+		}
+		else if (field == _startTaskModalFld)
+		{
+			DenoiseAllInput();
+		}
 		//touchOutputs = true;
 
 		//DenoiseAllInput();
@@ -291,7 +300,7 @@ void mevisbtkDenoising::clear()
 	splitRefs.clear();
 	splitDiffs.clear();
 	std::cout << "dynamic vector cleared" << std::endl;
-	_ouputSucceedFld->setBoolValue(false);
+	_outputSucceedFld->setBoolValue(false);
 
 }
 
@@ -308,10 +317,13 @@ void mevisbtkDenoising::DenoiseAllInput()
 	{
 	
         //here I call the full constructor
+		//std::cout << "should be -1 : " << std::stoi(_centerFld->getStringValue()) << std::endl;
+		//std::cout << typeid(std::stoi(_centerFld->getStringValue())).name() << std::endl;
+		
 		btkNLMDenoisingWrapper* usebtkDenoiseWrapper = new btkNLMDenoisingWrapper(splitInputs[iterIm].c_str(), splitOutputs[iterIm].c_str(),
 			splitMasks[iterIm].c_str(), splitRefs[iterIm].c_str(), _paddingValueFld->getFloatValue(), _patchHalfSizeFld->getIntValue(),
-			_halfsizeVolumeSearchAreaFld->getIntValue(),_smoothingParameterBetaFld->getFloatValue(), _blockFld->getEnumValue(),
-			_centerFld->getEnumValue(), int(_optFld->getBoolValue()), _lowerMeanThresholdFld->getFloatValue(), _lowerVarianceThresholdFld->getFloatValue(),
+			_halfsizeVolumeSearchAreaFld->getIntValue(),_smoothingParameterBetaFld->getFloatValue(), std::stoi(_blockFld->getStringValue()),
+			std::stoi(_centerFld->getStringValue()), int(_optFld->getBoolValue()), _lowerMeanThresholdFld->getFloatValue(), _lowerVarianceThresholdFld->getFloatValue(),
 			splitDiffs[iterIm].c_str(), int(_smoothingParameterEstimationFld->getBoolValue()));
 		usebtkDenoiseWrapper->runDenoise();
 		if (usebtkDenoiseWrapper->boolExit)
@@ -324,7 +336,7 @@ void mevisbtkDenoising::DenoiseAllInput()
 		}
 	}
 
-	_ouputSucceedFld->setBoolValue(true);
+	_outputSucceedFld->setBoolValue(true);
 }
 
 
