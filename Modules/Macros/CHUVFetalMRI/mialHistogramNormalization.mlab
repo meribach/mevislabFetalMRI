@@ -1,0 +1,180 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module itkImageFileReader {
+  internal  {
+    frame = "621 349 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "804 360 310 415"
+        sizeHint = "310 415"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReader
+    fileDataType = int16
+    autoDetermineDataType = TRUE
+    correctSubVoxelShift = TRUE
+    fileDimension = 3
+    info = "Loading okay."
+    numDims = 3
+    fileType = TypeNotApplicable
+    componentType = int16
+    pixelType = SCALAR
+    loaderType = NiftiImageIO
+    outputMetaDataStr = "ITK_FileNotes : 
+aux_file : 
+bitpix : 16
+cal_max : 0
+cal_min : 0
+datatype : 4
+descrip : 
+dim[0] : 3
+dim[1] : 135
+dim[2] : 189
+dim[3] : 155
+dim[4] : 1
+dim[5] : 1
+dim[6] : 1
+dim[7] : 1
+dim_info : 
+intent_code : 0
+intent_name : 
+intent_p1 : 0
+intent_p2 : 0
+intent_p3 : 0
+pixdim[0] : 1
+pixdim[1] : 0.799999
+pixdim[2] : 0.799999
+pixdim[3] : 0.799999
+pixdim[4] : 0
+pixdim[5] : 0
+pixdim[6] : 0
+pixdim[7] : 0
+qform_code : 2
+qoffset_x : 53.5999
+qoffset_y : 75.1999
+qoffset_z : -61.5999
+quatern_b : 0
+quatern_c : 0
+quatern_d : 1
+scl_inter : 0
+scl_slope : 1
+sform_code : 1
+slice_code : 
+slice_duration : 0
+slice_end : 0
+slice_start : 0
+srow_x : -0.799999 0 0 53.5999
+srow_y : 0 -0.799999 0 75.1999
+srow_z : 0 0 0.799999 -61.5999
+toffset : 0
+vox_offset : 352
+xyzt_units : 
+"
+    suppressErrorPosting = FALSE
+    unresolvedFileName = ""
+  }
+}
+module itkImageFileWriter {
+  internal  {
+    frame = "433 157 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "831 368 311 399"
+        sizeHint = "256 399"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileWriter
+    useCompression = FALSE
+    correctSubVoxelShift = TRUE
+    forceDirectionCosineWrite = TRUE
+    outputVoxelType = Automatic
+    info = ""
+    unresolvedFileName = ""
+  }
+}
+module View2D {
+  internal  {
+    frame = "741 285 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "846 426 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = TRUE
+    inventorOutputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 77
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_ZT
+    cineDirection = CINE_FORWARD
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    cineAlwaysReset = TRUE
+    snapToCenter = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    useShaders = TRUE
+    useManagedInteraction = FALSE
+    lutCenter = 1742.4345703125
+    lutWidth = 3484
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = FALSE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    valueHighPrecision = TRUE
+    showColorChannelValues = FALSE
+    colorChannelSeparator = " / "
+    maxPrecision = 4
+    enableSlicing = TRUE
+    useRelativeLUTIfNoInputImage = TRUE
+    hiResRendering = TRUE
+  }
+}
+module PythonImage {
+  internal  {
+    frame = "453 261 104 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = PythonImage
+  }
+}
+connections  {
+  itkImageFileWriter.input0 = PythonImage.output0
+  View2D.inImage = itkImageFileReader.output0
+}
+networkModel = ""

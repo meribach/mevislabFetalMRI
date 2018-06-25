@@ -1,0 +1,19 @@
+//----------------------------------------------------------------------------------
+//! SDIVerificationInterface module definition
+/*!
+// \file    SDIVerificationInterface.def
+// \author  FetalMRI
+// \date    2018-06-22
+*/
+//----------------------------------------------------------------------------------
+
+
+MacroModule SDIVerificationInterface {
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+   
+  externalDefinition = "$(LOCAL)/SDIVerificationInterface.script"
+}

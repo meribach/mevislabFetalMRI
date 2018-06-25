@@ -1,0 +1,61 @@
+//----------------------------------------------------------------------------------
+//! Macro module mialHistogramNormalization
+/*!
+// \file    mialHistogramNormalization.script
+// \author     neuropsynov
+// \date    2018-06-08
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {
+    Field inputFiles {
+      type = String
+      value = ""
+    }
+    Field outputFiles {
+      type = String
+      value = ""
+    }
+    Field maskFiles {
+      type = String
+      value = ""
+    }
+    Field iteration {
+      type = Int
+      editable = No
+    }
+
+  }
+}
+
+Description {
+  Field iteration {
+    min = 1
+    max = 10
+  }
+
+  }
+
+Window {
+  
+  mw = 480
+  Vertical {
+    Field inputFiles {}
+    Field outputFiles {}
+    Field maskFiles {}
+    Field iteration {step = 1}
+    Button {title = "Validate" command = runHistoNormalization }
+  }
+}
+
+
+Commands {
+  source = $(LOCAL)/mialHistogramNormalization.py
+}

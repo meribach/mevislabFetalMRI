@@ -1,0 +1,19 @@
+//----------------------------------------------------------------------------------
+//! mialHistogramNormalization module definition
+/*!
+// \file    mialHistogramNormalization.def
+// \author     neuropsynov
+// \date    2018-06-08
+*/
+//----------------------------------------------------------------------------------
+
+
+MacroModule mialHistogramNormalization {
+  genre              = ""
+  author             = "   neuropsynov"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+   
+  externalDefinition = "$(LOCAL)/mialHistogramNormalization.script"
+}

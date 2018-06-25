@@ -1,0 +1,264 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module itkImageFileReader {
+  internal  {
+    frame = "589 565 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "803 432 328 395"
+        sizeHint = "328 395"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReader
+    fileDataType = int16
+    autoDetermineDataType = FALSE
+    correctSubVoxelShift = TRUE
+    fileDimension = 3
+    info = "Loading okay."
+    numDims = 3
+    fileType = TypeNotApplicable
+    componentType = float
+    pixelType = SCALAR
+    loaderType = NiftiImageIO
+    outputMetaDataStr = "ITK_FileNotes : 
+aux_file : 
+bitpix : 32
+cal_max : 0
+cal_min : 0
+datatype : 16
+descrip : 
+dim[0] : 3
+dim[1] : 320
+dim[2] : 320
+dim[3] : 129
+dim[4] : 1
+dim[5] : 1
+dim[6] : 1
+dim[7] : 1
+dim_info : 
+intent_code : 0
+intent_name : 
+intent_p1 : 0
+intent_p2 : 0
+intent_p3 : 0
+pixdim[0] : 1
+pixdim[1] : 1.125
+pixdim[2] : 1.125
+pixdim[3] : 1.125
+pixdim[4] : 0
+pixdim[5] : 0
+pixdim[6] : 0
+pixdim[7] : 0
+qform_code : 1
+qoffset_x : 106.487
+qoffset_y : -82.1183
+qoffset_z : -240.018
+quatern_b : -0.137682
+quatern_c : -0.69521
+quatern_d : -0.702376
+scl_inter : 0
+scl_slope : 1
+sform_code : 0
+slice_code : 
+slice_duration : 0
+slice_end : 0
+slice_start : 0
+srow_x : 0 0 0 0
+srow_y : 0 0 0 0
+srow_z : 0 0 0 0
+toffset : 0
+vox_offset : 352
+xyzt_units : 
+"
+    suppressErrorPosting = FALSE
+    unresolvedFileName = D:/Pierre/FoetusTest/SDI_debug.nii.gz
+  }
+}
+module OrthoView2D {
+  internal  {
+    frame = "309 357 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "767 414 400 430"
+        sizeHint = "400 430"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "39 160 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OrthoView2DAxial
+    inventorInputOn = TRUE
+    inventorOutputOn = FALSE
+    synchronizePosition = TRUE
+    layout = LAYOUT_AXIAL
+    filterMode = FILTER_LINEAR
+    synchronizeZoom = TRUE
+    synchronizePanning = FALSE
+    useGlobalInputImage = TRUE
+    snapToCenter = FALSE
+    alternCubeLayout = FALSE
+    timePoint = 0
+    useManagedInteraction = FALSE
+    enableSlicing = TRUE
+    borderOn = TRUE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    grayWidth = 204
+    grayCenter = 102
+    annotationOn = TRUE
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationFontSize = ANNO_SIZE_AUTO
+    valueHighPrecision = TRUE
+    annoCoords = World
+    showCurrentPos = TRUE
+    worldPosition = "-0.0290985107421875 7.68270492553711 5.97857666015625"
+    coloredMode = FALSE
+    hiResRendering = TRUE
+  }
+}
+module OrthoView2D {
+  internal  {
+    frame = "525 349 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "767 414 400 430"
+        sizeHint = "400 430"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "595 158 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OrthoView2DSagittal
+    inventorInputOn = TRUE
+    inventorOutputOn = FALSE
+    synchronizePosition = TRUE
+    layout = LAYOUT_SAGITTAL
+    filterMode = FILTER_LINEAR
+    synchronizeZoom = TRUE
+    synchronizePanning = FALSE
+    useGlobalInputImage = TRUE
+    snapToCenter = FALSE
+    alternCubeLayout = FALSE
+    timePoint = 0
+    useManagedInteraction = FALSE
+    enableSlicing = TRUE
+    borderOn = TRUE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    grayWidth = 204
+    grayCenter = 102
+    annotationOn = TRUE
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationFontSize = ANNO_SIZE_AUTO
+    valueHighPrecision = TRUE
+    annoCoords = World
+    showCurrentPos = TRUE
+    worldPosition = "-0.0290985107421875 7.68270492553711 5.97857666015625"
+    coloredMode = FALSE
+    hiResRendering = TRUE
+  }
+}
+module OrthoView2D {
+  internal  {
+    frame = "749 349 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "767 414 400 430"
+        sizeHint = "400 430"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "1223 351 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OrthoView2DCoronal
+    inventorInputOn = TRUE
+    inventorOutputOn = FALSE
+    synchronizePosition = TRUE
+    layout = LAYOUT_CORONAL
+    filterMode = FILTER_LINEAR
+    synchronizeZoom = TRUE
+    synchronizePanning = FALSE
+    useGlobalInputImage = TRUE
+    snapToCenter = FALSE
+    alternCubeLayout = FALSE
+    timePoint = 0
+    useManagedInteraction = FALSE
+    enableSlicing = TRUE
+    borderOn = TRUE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    grayWidth = 204
+    grayCenter = 102
+    annotationOn = TRUE
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationFontSize = ANNO_SIZE_AUTO
+    valueHighPrecision = TRUE
+    annoCoords = World
+    showCurrentPos = TRUE
+    worldPosition = "-0.0290985107421875 7.68270492553711 5.97857666015625"
+    coloredMode = FALSE
+    hiResRendering = TRUE
+  }
+}
+module mialImageReconstruction {
+  internal  {
+    frame = "877 477 168 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = mialImageReconstruction
+    inputFiles = ""
+    maskFiles = ""
+    outputFile = ""
+    refFile = ""
+    transformoutFiles = ""
+    resampledFiles = ""
+    combinedMasks = ""
+    itMax = 10
+    espilon = 0.0001
+    margin = 0
+    rigid3D = FALSE
+    noreg = FALSE
+    debluring = FALSE
+    methodRoiCalculation = mask
+    ImageBaseOfRecon = 0
+    MetricToUse = NC
+    nbIterationsRegistration = 2000
+    GradientMagnitudeToleranceRegistration = 0.0001
+    MinStepLengthRegistration = 0.0001
+    MaxStepLengthRegistration = 0.2
+    RelaxationFactorRegistration = 0.5
+    inProgress = FALSE
+    outputSucceed = FALSE
+  }
+}
+connections  {
+  OrthoView2DAxial.image = itkImageFileReader.output0
+  OrthoView2DAxial.worldPosition = OrthoView2DCoronal.worldPosition
+  OrthoView2DSagittal.image = itkImageFileReader.output0
+  OrthoView2DSagittal.worldPosition = OrthoView2DAxial.worldPosition
+  OrthoView2DCoronal.image = itkImageFileReader.output0
+  OrthoView2DCoronal.worldPosition = OrthoView2DSagittal.worldPosition
+}
+networkModel = ""

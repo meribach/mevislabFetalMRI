@@ -1,0 +1,130 @@
+//----------------------------------------------------------------------------------
+//! Macro module SDIVerificationInterface
+/*!
+// \file    SDIVerificationInterface.script
+// \author  FetalMRI
+// \date    2018-06-22
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+
+Interface {
+  Inputs {Field inImageInfos { type = MLBase }}
+  Outputs {
+    Field outImagesInfosStep2 { type = MLBase }
+    Field viewer2DAxial {
+      hidden       = yes
+      internalName = OrthoView2DAxial.viewer.self
+    }
+    Field viewer2DCoronal {
+      hidden       = yes
+      internalName = OrthoView2DCoronal.viewer.self
+    }
+    Field viewer2DSagittal {
+      hidden       = yes
+      internalName = OrthoView2DSagittal.viewer.self
+    }
+  }
+  Parameters {
+    Field NumberImages {type = Int}
+    Field outlierRejection { type = bool value = false}
+    Field ExpertMode {type = Bool value = True}
+  }
+}
+
+
+Commands {
+  source = $(LOCAL)/SDIVerificationInterface.py
+
+}
+
+Window SDIVerificationInterface {
+  Splitter {
+    direction = horizontal
+    Splitter {
+      direction = vertical
+      
+      Box {
+        GraphicsView
+        {
+          name        = GraphicsView
+          initCommand = initSDIVerificationGraphicsView
+        
+          //expandX = No
+        }
+
+        expandY = yes
+        //expandX = No
+    
+        Horizontal {
+          CheckBox outlierRejection {toggledCommand = OutlierRejectionStatusChanged}
+          Button {title = "ReRun SDI Estimation" command = ReRunImageReconstruction}
+          Button {title = "Run Super Resolution" command = RunSuperVariation}
+        }
+      }
+      
+      Box ViewerBoxAxial {
+        title = ""
+      
+        Viewer viewer2DAxial {
+          name            = viewerAxial
+          clone           = NO
+          preferredWidth  = 900
+          preferredHeight = 500
+        }
+      
+        EventFilter {
+          filter  = "MouseButtonPress,KeyPress"
+          control = viewerAxial 
+          command = buttonPressedAxial
+        }
+        expandY = yes
+      } 
+      
+    }
+    
+    Splitter {
+      
+      direction = vertical
+      
+      Box ViewerBoxCoronal {
+        title = ""
+      
+        Viewer viewer2DCoronal {
+          name            = viewerCoronal
+          clone           = NO
+          preferredWidth  = 900
+          preferredHeight = 500
+        }
+      
+        EventFilter {
+          filter  = "MouseButtonPress,KeyPress"
+          control = viewerCoronal 
+          command = buttonPressedCoronal
+        }
+        expandY = yes
+      } 
+      
+      Box ViewerBoxSagittal {
+        title = ""
+      
+        Viewer viewer2DSagittal {
+          name            = viewerSagittal
+          clone           = NO
+          preferredWidth  = 900
+          preferredHeight = 500
+        }
+      
+        EventFilter {
+          filter  = "MouseButtonPress,KeyPress"
+          control = viewerSagittal 
+          command = buttonPressedSagittal
+        }
+        expandY = yes
+      }
+    }
+  }
+}
