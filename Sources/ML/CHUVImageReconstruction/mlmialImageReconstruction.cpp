@@ -149,7 +149,7 @@ void mialImageReconstruction::handleNotification(Field* field)
 			token = s.substr(0, pos);
 			//remove whitespace
 			boost::trim(token);
-			std::cout << token << std::endl;
+			//std::cout << token << std::endl;
 			s.erase(0, pos + delimiter.length());
 			splitinputFile.push_back(token);
 		}
@@ -190,7 +190,7 @@ void mialImageReconstruction::handleNotification(Field* field)
 				token = s.substr(0, pos);
 				//remove whitespace
 				boost::trim(token);
-				std::cout << token << std::endl;
+				//std::cout << token << std::endl;
 				s.erase(0, pos + delimiter.length());
 				splitmaskFile.push_back(token);
 			}
@@ -210,7 +210,7 @@ void mialImageReconstruction::handleNotification(Field* field)
 			token = s.substr(0, pos);
 			//remove whitespace
 			boost::trim(token);
-			std::cout << token << std::endl;
+			//std::cout << token << std::endl;
 			s.erase(0, pos + delimiter.length());
 			splittransformout.push_back(token);
 		}
@@ -226,7 +226,7 @@ void mialImageReconstruction::handleNotification(Field* field)
 				token = s.substr(0, pos);
 				//remove whitespace
 				boost::trim(token);
-				std::cout << token << std::endl;
+				//std::cout << token << std::endl;
 				s.erase(0, pos + delimiter.length());
 				splitresampled.push_back(token);
 			}
@@ -298,11 +298,48 @@ void mialImageReconstruction::ReconstructHRImage()
   if (strncmp(_methodRoiCalculationFld->getStringValue().c_str(), "all", 10) == 0)
   {allBool = true;} else { allBool = false;}
   
-  mialImageReconstructionWrapper* useImageReconstructionWrapper = new mialImageReconstructionWrapper(splitinputFile,_outputFileFld->getStringValue().c_str(),splitmaskFile,_refFileFld->getStringValue().c_str(),
-	  splittransformout,splitresampled,_combinedMasksFld->getStringValue().c_str(),_itMaxFld->getIntValue(),_espilonFld->getDoubleValue(),_marginFld->getDoubleValue(), _rigid3DFld->getBoolValue(),
-	  _noregFld->getBoolValue(),_debluringFld->getBoolValue(), boxBool, maskBool, allBool,_ImageBaseOfReconFld->getIntValue(),_MetricToUseFld->getStringValue().c_str(),
+  const char* tempOutput;
+  std::string temp1Output;
+
+  const char* tempmetricToUse;
+  std::string temp1metricToUse;
+
+  const char* temprefFile;
+  std::string temp1refFile;
+
+  const char* tempcombinedMask;
+  std::string temp1combinedMask;
+
+
+
+  //tempOutput = _outputFileFld->getStringValue().c_str();
+  //std::cout << "from mevislab" << std::endl;
+  temp1Output = _outputFileFld->getStringValue();
+  //std::cout << "std::string" << std::endl;
+  //std::cout << temp1Output << std::endl;
+  tempOutput = temp1Output.c_str();
+  //std::cout << "const char variable : " << std::endl;
+  //std::cout << tempOutput << std::endl;
+
+  temp1metricToUse = _MetricToUseFld->getStringValue();
+  tempmetricToUse = temp1metricToUse.c_str();
+
+  temp1refFile = _refFileFld->getStringValue();
+  temprefFile = temp1refFile.c_str();
+
+  temp1combinedMask = _combinedMasksFld->getStringValue();
+  tempcombinedMask = temp1combinedMask.c_str();
+
+
+  mialImageReconstructionWrapper* useImageReconstructionWrapper = new mialImageReconstructionWrapper(splitinputFile,tempOutput,splitmaskFile, temprefFile,
+	  splittransformout,splitresampled, tempcombinedMask,_itMaxFld->getIntValue(),_espilonFld->getDoubleValue(),_marginFld->getDoubleValue(), _rigid3DFld->getBoolValue(),
+	  _noregFld->getBoolValue(),_debluringFld->getBoolValue(), boxBool, maskBool, allBool,_ImageBaseOfReconFld->getIntValue(), tempmetricToUse,
 	  _nbIterationsRegistrationFld->getIntValue(),_GradientMagnitudeToleranceRegistrationFld->getDoubleValue(),_MinStepLengthRegistrationFld->getDoubleValue(),
 	  _MaxStepLengthRegistrationFld->getDoubleValue(),_RelaxationFactorRegistrationFld->getDoubleValue());
+
+  std::cout << "wrapper construct" << std::endl;
+  std::cout << useImageReconstructionWrapper->outputFile << std::endl;
+  std::cout << useImageReconstructionWrapper->MetricToUse << std::endl;
   useImageReconstructionWrapper->runImageReconstruction();
   if (useImageReconstructionWrapper->boolExit)
 	{

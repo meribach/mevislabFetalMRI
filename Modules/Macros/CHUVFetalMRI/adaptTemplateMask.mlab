@@ -27,7 +27,7 @@ module View2DExtensions {
     lutGrayWidth = 1
     lutAlphaCenter = 0.5
     lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -260,7 +260,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -745,7 +745,7 @@ module CSOManager {
     listSingleRemoveEmptyGroupHandling = RemoveAlways
     listDefaultRemoveEmptyGroupHandling = RemoveAlways
     enableUndoRedo = TRUE
-    numUndos = 0
+    numUndos = 9
     numRedos = 0
     undoStackLimit = 16
     useSelectionCSONotification = FALSE
@@ -859,7 +859,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -946,7 +946,7 @@ module View2DExtensions {
     lutGrayWidth = 1
     lutAlphaCenter = 0.5
     lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -1334,8 +1334,8 @@ module CSOConvertToImage {
     moduleGroupName = SecondTry
     windows  {
       window _default {
-        geometry = "747 431 464 543"
-        sizeHint = "464 543"
+        geometry = "941 328 440 508"
+        sizeHint = "440 508"
         wasOpen = no
       }
     }
@@ -1354,7 +1354,7 @@ module CSOConvertToImage {
     listenInteractionFinished = TRUE
     boundingBoxMargin = 0
     useAlwaysForegroundValueOfModule = FALSE
-    voxelizeCSO = FALSE
+    voxelizeCSO = TRUE
     removeOutsideVoxels = FALSE
     useAntiAliasing = FALSE
     useGlobalSubsample = TRUE

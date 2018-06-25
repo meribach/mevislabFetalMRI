@@ -156,7 +156,7 @@ void mialOrientImage::handleNotification(Field* field)
 		  token = s.substr(0, pos);
 		  //remove whitespace
 		  boost::trim(token);
-		  std::cout << token << std::endl;
+		  //std::cout << token << std::endl;
 		  s.erase(0, pos + delimiter.length());
 		  splitInputs.push_back(token);
 	  }
@@ -171,7 +171,7 @@ void mialOrientImage::handleNotification(Field* field)
 		  token = s.substr(0, pos);
 		  //remove whitespace
 		  boost::trim(token);
-		  std::cout << token << std::endl;
+		  //std::cout << token << std::endl;
 		  s.erase(0, pos + delimiter.length());
 		  splitOutputs.push_back(token);
 	  }
@@ -187,7 +187,7 @@ void mialOrientImage::handleNotification(Field* field)
 		  token = s.substr(0, pos);
 		  //remove whitespace
 		  boost::trim(token);
-		  std::cout << token << std::endl;
+		  //std::cout << token << std::endl;
 		  s.erase(0, pos + delimiter.length());
 		  splitOrientation.push_back(token);
 	  }
@@ -277,6 +277,7 @@ void mialOrientImage::reOrientAllInput()
 		//useReorientWrapper = NULL;
 	}
 
+	_statusFld->setStringValue("mialOrientation Done");
 	_outputSucceedFld->setBoolValue(true);
 }
 
@@ -316,7 +317,6 @@ void mialOrientImage::postComputation()
 	//BackgroundTaskBaseModule::taskFinished(task);
 	_inProgressFld->setBoolValue(false);
 	std::cout << "mialOrientation Done" << std::endl;
-	_statusFld->setStringValue("mialOrientation Done");
 }
 
 ML_END_NAMESPACE

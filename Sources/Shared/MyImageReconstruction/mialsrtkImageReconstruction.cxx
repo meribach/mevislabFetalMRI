@@ -211,7 +211,7 @@ bool mialImageReconstruction::runImageReconstruction()
   }
   bool computeRefImage = true;
 
-  if(refFile != "")
+  if(strncmp(refFile, "", 4) != 0)
   {
       //std::cout<<"Reading the reference image : "<<refImage<<"\n";
       ImageReaderType::Pointer imageReader = ImageReaderType::New();
@@ -328,7 +328,7 @@ bool mialImageReconstruction::runImageReconstruction()
   //std::cout<<"Start rigid registration on the desired target image (#0 by default)\n";
   try
     {
-
+	   std::cout << "i am here 1" << std::endl;
        lowToHighResFilter->StartRegistration();
 
     }
@@ -345,7 +345,7 @@ bool mialImageReconstruction::runImageReconstruction()
 
   typedef itk::ImageFileWriter< ImageMaskType >  MaskWriterType;
 
-  if ( strcmp(combinedMask,"") != 0 )
+  if (strncmp(combinedMask, "", 4) != 0)
   {
     try
     {

@@ -69,6 +69,10 @@ bool mialImageReconstructionWrapper::runImageReconstruction()
 {
 	try
 	{
+		std::cout << "Image Recon Wrapper start" << std::endl;
+		std::cout << outputFile << std::endl;
+		std::cout << "test" << std::endl;
+		std::cout << MetricToUse << std::endl;
 		wrap_ImageReconstruction = new mialImageReconstruction(inputFile, outputFile, maskFile, refFile, transformout, resampled, combinedMask,
 			itMax, epsilon, margin, rigid3D, noreg, debluring, boxSwitch, maskSwitch, allSwitch, ImageBaseOfRecon, MetricToUse, m_Iterations,
 	        m_GradientMagnitudeTolerance, m_MinStepLength, m_MaxStepLength, m_RelaxationFactor);
@@ -86,6 +90,41 @@ bool mialImageReconstructionWrapper::runImageReconstruction()
 
 }
 
+
+int anotherEntryPointProblem()
+{
+	std::vector< std::string > inputTest;
+	inputTest.push_back("D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz");
+	inputTest.push_back("D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz");
+	inputTest.push_back("D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz");
+	inputTest.push_back("D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz");
+	inputTest.push_back("D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz");
+	inputTest.push_back("D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz");
+
+	const char* outputFile = "D:/Pierre/FoetusTest/SDI_debug.nii.gz";
+	std::vector< std::string > maskFile;
+	maskFile.push_back("D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz");
+	maskFile.push_back("D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz");
+	maskFile.push_back("D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz");
+	maskFile.push_back("D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz");
+	maskFile.push_back("D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz");
+	maskFile.push_back("D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz");
+
+	const char* refFile = "";
+	std::vector< std::string > transformout;
+	transformout.push_back("D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_transform_6V_1.txt");
+	transformout.push_back("D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_transform_6V_1.txt");
+	transformout.push_back("D:/Pierre/FoetusTest/ Axial2_worldmatrixModified_lr_reoriented_transform_6V_1.txt");
+	transformout.push_back("D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_transform_6V_1.txt");
+	transformout.push_back("D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_transform_6V_1.txt");
+	transformout.push_back("D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_transform_6V_1.txt");
+
+	std::vector< std::string > resampled;
+	mialImageReconstructionWrapper test(inputTest,outputFile, maskFile, "",transformout, resampled,"",10,0.0001,0,0,0,0,0,1,0,0,"NC",2000,0.0001,0.0001,0.2,0.5);
+	bool boolOutput = test.runImageReconstruction();
+	std::cout << boolOutput << std::endl;
+
+}
 
 /*int EntryPointImageReconstruction( int argc, char *argv[] )
 {

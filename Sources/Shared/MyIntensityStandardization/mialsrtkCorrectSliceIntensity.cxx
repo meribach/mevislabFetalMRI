@@ -18,8 +18,8 @@ Copyright (c) 2017 Medical Image Analysis Laboratory (MIAL), Lausanne
 correctSliceIntensity::correctSliceIntensity(const char* const _inputFile, const char* const _maskFile, const char* const _outputFile)
 {
 	inputFile = _inputFile;
-	outputFile = _maskFile;
-	maskFile = _outputFile;
+	outputFile = _outputFile;
+	maskFile = _maskFile;
 
 }
 

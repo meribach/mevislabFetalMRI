@@ -132,7 +132,7 @@ void mialCorrectSliceIntensity::handleNotification(Field* field)
 			token = s.substr(0, pos);
 			//remove whitespace
 			boost::trim(token);
-			std::cout << token << std::endl;
+			//std::cout << token << std::endl;
 			s.erase(0, pos + delimiter.length());
 			splitInputs.push_back(token);
 		}
@@ -147,7 +147,7 @@ void mialCorrectSliceIntensity::handleNotification(Field* field)
 			token = s.substr(0, pos);
 			//remove whitespace
 			boost::trim(token);
-			std::cout << token << std::endl;
+			//std::cout << token << std::endl;
 			s.erase(0, pos + delimiter.length());
 			splitOutputs.push_back(token);
 		}
@@ -174,7 +174,7 @@ void mialCorrectSliceIntensity::handleNotification(Field* field)
 				token = s.substr(0, pos);
 				//remove whitespace
 				boost::trim(token);
-				std::cout << token << std::endl;
+				//std::cout << token << std::endl;
 				s.erase(0, pos + delimiter.length());
 				splitMasks.push_back(token);
 			}
@@ -236,7 +236,6 @@ void mialCorrectSliceIntensity::postComputation()
 {
 	_inProgressFld->setBoolValue(false);
 	std::cout << "mial Correct Slice Intensity Done" << std::endl;
-	_statusFld->setStringValue("mial Correct Slice Intensity Done");
 
 }
 
@@ -264,6 +263,7 @@ void mialCorrectSliceIntensity::CorrectSliceIntensityAllInput()
 		}
 	}
 
+	_statusFld->setStringValue("mial Correct Slice Intensity Done");
 	_outputSucceedFld->setBoolValue(true);
 
 }

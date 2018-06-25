@@ -133,7 +133,7 @@ void mevisbtkDenoising::handleNotification(Field* field)
 		token = s.substr(0, pos);
 		//remove whitespace
 		boost::trim(token);
-		std::cout << token << std::endl;
+		//std::cout << token << std::endl;
 		s.erase(0, pos + delimiter.length());
 		splitInputs.push_back(token);
 	}
@@ -148,7 +148,7 @@ void mevisbtkDenoising::handleNotification(Field* field)
 		token = s.substr(0, pos);
 		//remove whitespace
 		boost::trim(token);
-		std::cout << token << std::endl;
+		//std::cout << token << std::endl;
 		s.erase(0, pos + delimiter.length());
 		splitOutputs.push_back(token);
 	}
@@ -175,7 +175,7 @@ void mevisbtkDenoising::handleNotification(Field* field)
 			token = s.substr(0, pos);
 			//remove whitespace
 			boost::trim(token);
-			std::cout << token << std::endl;
+			//std::cout << token << std::endl;
 			s.erase(0, pos + delimiter.length());
 			splitMasks.push_back(token);
 		}
@@ -200,7 +200,7 @@ void mevisbtkDenoising::handleNotification(Field* field)
 			token = s.substr(0, pos);
 			//remove whitespace
 			boost::trim(token);
-			std::cout << token << std::endl;
+			//std::cout << token << std::endl;
 			s.erase(0, pos + delimiter.length());
 			splitRefs.push_back(token);
 		}
@@ -224,7 +224,7 @@ void mevisbtkDenoising::handleNotification(Field* field)
 			token = s.substr(0, pos);
 			//remove whitespace
 			boost::trim(token);
-			std::cout << token << std::endl;
+			//std::cout << token << std::endl;
 			s.erase(0, pos + delimiter.length());
 			splitDiffs.push_back(token);
 		}
@@ -336,6 +336,7 @@ void mevisbtkDenoising::DenoiseAllInput()
 		}
 	}
 
+	_statusFld->setStringValue("Denoising Done");
 	_outputSucceedFld->setBoolValue(true);
 }
 
@@ -367,7 +368,6 @@ void mevisbtkDenoising::postComputation()
 	*/
 	//BackgroundTaskBaseModule::taskFinished(task);
 	_inProgressFld->setBoolValue(false);
-	_statusFld->setStringValue("Denoising Done");
 	std::cout << "btkDenoising Done" << std::endl;
 }
 

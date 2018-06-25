@@ -1031,10 +1031,10 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 0.5
-    lutGrayWidth = 1
-    lutAlphaCenter = 0.5
-    lutAlphaWidth = 1
+    lutGrayCenter = 1742
+    lutGrayWidth = 3484
+    lutAlphaCenter = 1742
+    lutAlphaWidth = 3484
     lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
@@ -1110,21 +1110,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 0.5
-    annoInput04 = 1
-    annoInput05 = 0.5
+    annoInput03 = 1742
+    annoInput04 = 3484
+    annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 0.5
-    annoInput08 = 1
+    annoInput07 = 1742
+    annoInput08 = 3484
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 0
-    annoNumInput03 = 0.5
-    annoNumInput04 = 1
-    annoNumInput05 = 0.5
+    annoNumInput03 = 1742
+    annoNumInput04 = 3484
+    annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 0.5
+    annoNumInput07 = 1742
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -1406,7 +1406,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "File closed"
+    info = "Invalid path"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -2640,7 +2640,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "File closed"
+    info = "Invalid path"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -2957,8 +2957,8 @@ module mialIntensityStandardization {
         wasOpen = no
       }
       window _default {
-        geometry = "727 554 480 150"
-        sizeHint = "480 150"
+        geometry = "746 632 480 180"
+        sizeHint = "480 180"
         wasOpen = no
       }
     }
@@ -3061,7 +3061,7 @@ module mialCorrectSliceIntensity {
         wasOpen = no
       }
       window _default {
-        geometry = "223 644 480 180"
+        geometry = "198 694 480 180"
         sizeHint = "480 180"
         wasOpen = no
       }
@@ -3078,7 +3078,7 @@ module mialCorrectSliceIntensity {
 }
 module mialCorrectSliceIntensity {
   internal  {
-    frame = "-1533 141 296 64"
+    frame = "-1531 145 296 64"
     moduleGroupName = BackgroundTasks
     windows  {
       window _automatic {
@@ -3113,8 +3113,8 @@ module mialIntensityStandardization {
         wasOpen = no
       }
       window _default {
-        geometry = "727 554 480 150"
-        sizeHint = "480 150"
+        geometry = "783 599 480 180"
+        sizeHint = "480 180"
         wasOpen = no
       }
     }
@@ -3185,8 +3185,15 @@ module mialImageReconstruction {
 }
 module mialIntensityStandardization {
   internal  {
-    frame = "-603 273 200 64"
+    frame = "-602 273 200 64"
     moduleGroupName = BackgroundTasks
+    windows  {
+      window _default {
+        geometry = "927 727 480 180"
+        sizeHint = "480 180"
+        wasOpen = no
+      }
+    }
   }
   fields  {
     instanceName = mialIntensityStandardizationBis
@@ -3203,7 +3210,7 @@ module mialIntensityStandardization {
     moduleGroupName = BackgroundTasks
     windows  {
       window _default {
-        geometry = "727 539 480 180"
+        geometry = "833 580 480 180"
         sizeHint = "480 180"
         wasOpen = no
       }
@@ -3216,6 +3223,44 @@ module mialIntensityStandardization {
     maxIntensity = 255
     inProgress = FALSE
     outputSucceed = FALSE
+  }
+}
+module mialHistogramNormalization {
+  internal  {
+    frame = "-903 129 208 64"
+    moduleGroupName = BackgroundTasks
+    windows  {
+      window _default {
+        geometry = "247 589 480 142"
+        sizeHint = "480 142"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialHistogramNormalizationNLM
+    inputFiles = ""
+    outputFiles = ""
+    maskFiles = ""
+  }
+}
+module mialHistogramNormalization {
+  internal  {
+    frame = "-891 261 184 56"
+    moduleGroupName = BackgroundTasks
+    windows  {
+      window _default {
+        geometry = "307 664 480 142"
+        sizeHint = "480 142"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialHistogramNormalization
+    inputFiles = ""
+    outputFiles = ""
+    maskFiles = ""
   }
 }
 connections  {
@@ -3279,15 +3324,29 @@ connections  {
   mialSliceBySliceBiasFieldCorrection.inputMaskFile = mialOrientImageMask.outputFileName
   mialSliceBySliceBiasFieldCorrection.inputBiasFieldFile = mialSliceBySliceBiasEstimation.outputBiasFieldFile
   mialIntensityStandardization.inputFileNames = mialCorrectSliceIntensityPostBiasCorrection.outputFileName
+  mialIntensityStandardization.outputFileNames = mialCorrectSliceIntensityPostBiasCorrection.outputFileName
   mialCorrectSliceIntensityNLM.inputFileName = mialOrientImageNLM.outputFileName
   mialCorrectSliceIntensityNLM.maskFileName = mialOrientImageMask.outputFileName
   mialCorrectSliceIntensityPostBiasCorrection.inputFileName = mialSliceBySliceBiasFieldCorrection.outputImageFile
+  mialCorrectSliceIntensityPostBiasCorrection.outputFileName = mialSliceBySliceBiasFieldCorrection.outputImageFile
   mialCorrectSliceIntensityPostBiasCorrection.maskFileName = mialOrientImageMask.outputFileName
   mialCorrectSliceIntensityNLMPostBiasCorrection.inputFileName = mialSliceBySliceBiasEstimation.outputImageFile
+  mialCorrectSliceIntensityNLMPostBiasCorrection.outputFileName = mialSliceBySliceBiasEstimation.outputImageFile
   mialCorrectSliceIntensityNLMPostBiasCorrection.maskFileName = mialOrientImageMask.outputFileName
   mialIntensityStandardizationNLM.inputFileNames = mialCorrectSliceIntensityNLMPostBiasCorrection.outputFileName
+  mialIntensityStandardizationNLM.outputFileNames = mialCorrectSliceIntensityNLMPostBiasCorrection.outputFileName
   mialImageReconstruction.inputFiles = mialIntensityStandardizationNLMBis.outputFileNames
   mialImageReconstruction.maskFiles = mialOrientImageMask.outputFileName
+  mialIntensityStandardizationBis.inputFileNames = mialHistogramNormalization.outputFiles
+  mialIntensityStandardizationBis.outputFileNames = mialHistogramNormalization.outputFiles
+  mialIntensityStandardizationNLMBis.inputFileNames = mialHistogramNormalizationNLM.outputFiles
+  mialIntensityStandardizationNLMBis.outputFileNames = mialHistogramNormalizationNLM.outputFiles
+  mialHistogramNormalizationNLM.inputFiles = mialIntensityStandardizationNLM.outputFileNames
+  mialHistogramNormalizationNLM.outputFiles = mialIntensityStandardizationNLM.outputFileNames
+  mialHistogramNormalizationNLM.maskFiles = mialOrientImageMask.outputFileName
+  mialHistogramNormalization.inputFiles = mialIntensityStandardization.outputFileNames
+  mialHistogramNormalization.outputFiles = mialIntensityStandardization.outputFileNames
+  mialHistogramNormalization.maskFiles = mialOrientImageMask.outputFileName
 }
 networkModel  {
   parentItems  {

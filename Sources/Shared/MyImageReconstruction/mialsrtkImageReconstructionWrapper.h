@@ -30,7 +30,6 @@ const char* refFile;
 std::vector< std::string > transformout;
 std::vector< std::string > resampled;
 const char* combinedMask;
-const char* roi;
 
 unsigned int itMax;
 double epsilon;

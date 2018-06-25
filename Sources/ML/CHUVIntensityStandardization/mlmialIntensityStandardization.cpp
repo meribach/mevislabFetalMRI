@@ -44,7 +44,7 @@ public:
 	{
 		try
 		{
-			mlInfo(__FUNCTION__) << "Started Correct Slice Intensity";
+			mlInfo(__FUNCTION__) << "Started Intensity Standardization";
 			m_pmialIntensityStandardizationModule->IntensityStandardizationAllInput();
 
 		}
@@ -205,7 +205,6 @@ void mialIntensityStandardization::postComputation()
 {
 	_inProgressFld->setBoolValue(false);
 	std::cout << "mial Intensity Standardization Done" << std::endl;
-	_statusFld->setStringValue("Intensity Standardization Done");
 
 }
 
@@ -234,6 +233,7 @@ void mialIntensityStandardization::IntensityStandardizationAllInput()
 		}
 	//}
 
+	_statusFld->setStringValue("Intensity Standardization Done");
 	_outputSucceedFld->setBoolValue(true);
 
 }

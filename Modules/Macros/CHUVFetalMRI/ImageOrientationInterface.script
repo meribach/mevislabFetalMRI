@@ -42,6 +42,8 @@ Interface {
     Field BackgroundTaskRunning {type = Bool}
     Field StopBackgroundTask {type = Bool}
     Field ExpertMode {type = Bool value = True}
+    
+    Field WaitForReconstruction {type = Bool value = False}
     //Field temporaryMasksSwitch {type = MLBase }
   }
 }
@@ -89,20 +91,24 @@ Commands {
   FieldListener mialSliceBySliceBiasFieldCorrection.inProgress {command = "py: updateBackgroundTaskRunningField()"}
   FieldListener mialIntensityStandardization.inProgress {command = "py: updateBackgroundTaskRunningField()"}
   FieldListener mialIntensityStandardizationNLM.inProgress {command = "py: updateBackgroundTaskRunningField()"}
+  FieldListener mialIntensityStandardizationNLMBis.inProgress {command = "py: updateBackgroundTaskRunningField()"}
+  FieldListener mialIntensityStandardizationBis.inProgress {command = "py: updateBackgroundTaskRunningField()"}
   
   FieldListener mevisbtkDenoising.outputSucceed {command = "py: insertNLMDenoisingResults()"} //or next step instead of denoising ?
-  FieldListener mialOrientImage.outputSucceed {command = "py: runCorrectSliceIntensity('RawImage')"}
-  FieldListener mialOrientImageNLM.outputSucceed {command = "py: runCorrectSliceIntensity('NLMImage')"}
-  //FieldListener mialOrientImageMask.outputSucceed {command = "py: nextStepBackgroundTask('mialOrientImageMask')"}
-  FieldListener mialCorrectSliceIntensity.outputSucceed {command = "py: runSliceBySliceBiasEstimation()"}
-  //FieldListener mialCorrectSliceIntensityNLM.outputSucceed {command = "py: nextStepBackgroundTask('mialCorrectSliceIntensityNLM')"}
-  FieldListener mialCorrectSliceIntensityNLMPostBiasCorrection.outputSucceed {command = "py: nextStepBackgroundTask('mialCorrectSliceIntensityNLMPostBiasCorrection')"}
-  FieldListener mialCorrectSliceIntensityPostBiasCorrection.outputSucceed {command = "py: nextStepBackgroundTask('mialCorrectSliceIntensityPostBiasCorrection')"}
-  FieldListener mialSliceBySliceBiasEstimation.outputSucceed {command = "py: runSliceBySliceBiasFieldCorrection()"}
-  FieldListener mialSliceBySliceBiasFieldCorrection.outputSucceed {command = "py: nextStepBackgroundTask('mialBiasCorrection')"}
-  FieldListener mialIntensityStandardization.outputSucceed {command = "py: nextStepBackgroundTask('mialIntensityStandardization')"}
-  FieldListener mialIntensityStandardizationNLM.outputSucceed {command = "py: nextStepBackgroundTask('mialIntensityStandardizationNLM')"}
-  
+  FieldListener mialOrientImage.outputSucceed {command = "py: insertReOrient('RawImage')"} //runCorrectSliceIntensity('RawImage')"}
+  FieldListener mialOrientImageNLM.outputSucceed {command = "py: insertReOrient('NLMImage')"} //runCorrectSliceIntensity('NLMImage')"}
+  FieldListener mialOrientImageMask.outputSucceed {command = "py: insertReOrient('MaskImage')"} //nextStepBackgroundTask('mialOrientImageMask')"}
+  FieldListener mialCorrectSliceIntensity.outputSucceed {command = "py: inserCorrectSliceIntensity('RawImage')"} //runSliceBySliceBiasEstimation()"}
+  FieldListener mialCorrectSliceIntensityNLM.outputSucceed {command = "py: inserCorrectSliceIntensity('NLMImage')"}
+  FieldListener mialCorrectSliceIntensityNLMPostBiasCorrection.outputSucceed {command = "py: inserCorrectSliceIntensity('NLMPostBiasCorrection')"}
+  FieldListener mialCorrectSliceIntensityPostBiasCorrection.outputSucceed {command = "py: inserCorrectSliceIntensity('PostBiasCorrection')"}
+  FieldListener mialSliceBySliceBiasEstimation.outputSucceed {command = "py: insertSliceBiasEstimation()"}
+  FieldListener mialSliceBySliceBiasFieldCorrection.outputSucceed {command = "py: insertSliceBiasCorrection()"}
+  FieldListener mialIntensityStandardization.outputSucceed {command = "py: runHistogramNormalization('RawImage')"}
+  FieldListener mialIntensityStandardizationNLM.outputSucceed {command = "py: runHistogramNormalization('DenoisedImage')"}
+  FieldListener mialIntensityStandardizationNLMBis.outputSucceed {command = "py: updateWaitForReconstrucion()"}
+  FieldListener mialIntensityStandardizationBis.outputSucceed {command = "py: updateWaitForReconstrucion()"}
+  FieldListener WaitForReconstruction {command = "py: runImageReconstruction()"}
   FieldListener ExpertMode {command = showImageOrientationInterface}
   
   FieldListener RefImageFiled {command = updateRefImageReconstruction}

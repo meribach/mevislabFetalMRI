@@ -45,7 +45,7 @@ public:
 	{
 		try
 		{
-			mlInfo(__FUNCTION__) << "Started Correct Slice Intensity";
+			mlInfo(__FUNCTION__) << "Started Slice By Slice Bias Field Estimation";
 			m_pmialSliceBySliceBiasEstimationModule->EstimateBiasAllInput();
 
 		}
@@ -239,7 +239,6 @@ void mialSliceBySliceBiasEstimation::postComputation()
 {
 	_inProgressFld->setBoolValue(false);
 	std::cout << "mial Slice by Slice Bias Estimation Done" << std::endl;
-	_statusFld->setStringValue("Slice by Slice Bias Estimation Done");
 
 }
 
@@ -267,6 +266,7 @@ void mialSliceBySliceBiasEstimation::EstimateBiasAllInput()
 		}
 	}
 
+	_statusFld->setStringValue("Slice by Slice Bias Estimation Done");
 	_outputSucceedFld->setBoolValue(true);
 
 }

@@ -243,7 +243,6 @@ void mialSliceBySliceBiasFieldCorrection::postComputation()
 {
 	_inProgressFld->setBoolValue(false);
 	std::cout << "mial Slice by Slice Bias Correction Done" << std::endl;
-	_statusFld->setStringValue("Slice by Slice Bias Correction Done");
 
 }
 
@@ -271,6 +270,7 @@ void mialSliceBySliceBiasFieldCorrection::CorrectBiasAllInput()
 		}
 	}
 
+	_statusFld->setStringValue("Slice by Slice Bias Correction Done");
 	_outputSucceedFld->setBoolValue(true);
 
 }
