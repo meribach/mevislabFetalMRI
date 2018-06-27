@@ -4,7 +4,7 @@ network  {
 }
 module itkImageFileReader {
   internal  {
-    frame = "589 565 136 56"
+    frame = "597 661 136 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -16,8 +16,8 @@ module itkImageFileReader {
   }
   fields  {
     instanceName = itkImageFileReader
-    fileDataType = int16
-    autoDetermineDataType = FALSE
+    fileDataType = float
+    autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
     info = "Loading okay."
@@ -82,7 +82,7 @@ xyzt_units : 
 }
 module OrthoView2D {
   internal  {
-    frame = "309 357 120 56"
+    frame = "317 305 136 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -114,15 +114,15 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 204
-    grayCenter = 102
+    grayWidth = 204.594192504883
+    grayCenter = 102.297096252441
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "-0.0290985107421875 7.68270492553711 5.97857666015625"
+    worldPosition = "9.58290481567383 -6.48614454269409 15.7741603851318"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
@@ -161,22 +161,22 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 204
-    grayCenter = 102
+    grayWidth = 204.594192504883
+    grayCenter = 102.297096252441
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "-0.0290985107421875 7.68270492553711 5.97857666015625"
+    worldPosition = "9.58290481567383 -6.48614454269409 15.7741603851318"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
 }
 module OrthoView2D {
   internal  {
-    frame = "749 349 120 56"
+    frame = "925 281 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -208,15 +208,15 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 204
-    grayCenter = 102
+    grayWidth = 204.594192504883
+    grayCenter = 102.297096252441
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "-0.0290985107421875 7.68270492553711 5.97857666015625"
+    worldPosition = "9.58290481567383 -6.48614454269409 15.7741603851318"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
@@ -253,12 +253,415 @@ module mialImageReconstruction {
     outputSucceed = FALSE
   }
 }
+module CreateBoundingVolume {
+  internal  {
+    frame = "249 509 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "897 770 321 212"
+        sizeHint = "309 212"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CreateBoundingVolumeAxial
+    dataTypeMode = InputImageDataType
+    userDataType = "unsigned int8"
+    orientation = Axial
+    voxelSizeMode = MinimumInputVoxelSize
+    voxelScaleFactor = 1
+    userVoxelSize = 1
+  }
+}
+module View2D {
+  internal  {
+    frame = "13 305 120 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "767 429 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "1062 305 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2DAxial
+    inventorInputOn = TRUE
+    inventorOutputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 199
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_ZT
+    cineDirection = CINE_FORWARD
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    cineAlwaysReset = TRUE
+    snapToCenter = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    useShaders = TRUE
+    useManagedInteraction = FALSE
+    lutCenter = 102.297096252441
+    lutWidth = 204.594192504883
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = World
+    annoCTValue = AsIs
+    borderOn = FALSE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    valueHighPrecision = TRUE
+    showColorChannelValues = FALSE
+    colorChannelSeparator = " / "
+    maxPrecision = 4
+    enableSlicing = TRUE
+    useRelativeLUTIfNoInputImage = TRUE
+    hiResRendering = TRUE
+  }
+}
+module Reformat {
+  internal  {
+    frame = "65 425 144 64"
+    moduleGroupName = ""
+    showNetworkPanel = true
+  }
+  fields  {
+    instanceName = ReformatAxial
+    matrix = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    useInventorComposition = FALSE
+    composeMatrix = TRUE
+    scale = "1 1 1"
+    rotation = "0 0 1 0"
+    translation = "0 0 0"
+    center = "6.68390474032313 -2.54864462107645 -16.9373914425769"
+    fillValue = 0
+    interactive = TRUE
+    autoCenter = TRUE
+    interpolation = Trilinear
+    borderHandling = UseFillValue
+    memoryAccess = Global
+    button1Translate = Pressed
+    button2Translate = Released
+    button3Translate = Released
+    shiftTranslate = Released
+    ctrlTranslate = Released
+    altTranslate = Released
+    button1Rotate = Pressed
+    button2Rotate = Released
+    button3Rotate = Released
+    shiftRotate = Pressed
+    ctrlRotate = Released
+    altRotate = Released
+    updateMode = AutoUpdate
+  }
+}
+module CreateBoundingVolume {
+  internal  {
+    frame = "213 773 168 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "897 770 321 212"
+        sizeHint = "309 212"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CreateBoundingVolumeSagittal
+    dataTypeMode = InputImageDataType
+    userDataType = "unsigned int8"
+    orientation = Sagittal
+    voxelSizeMode = MinimumInputVoxelSize
+    voxelScaleFactor = 1
+    userVoxelSize = 1
+  }
+}
+module View2D {
+  internal  {
+    frame = "93 581 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1093 502 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "326 236 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2DSagittal
+    inventorInputOn = TRUE
+    inventorOutputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 205
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_ZT
+    cineDirection = CINE_FORWARD
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    cineAlwaysReset = TRUE
+    snapToCenter = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 2.241986
+    sliceZoomSynced = 2.241986
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "46.5332183837891 110.516395568848"
+    useShaders = TRUE
+    useManagedInteraction = FALSE
+    lutCenter = 102.297096252441
+    lutWidth = 204.594192504883
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = World
+    annoCTValue = AsIs
+    borderOn = FALSE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    valueHighPrecision = TRUE
+    showColorChannelValues = FALSE
+    colorChannelSeparator = " / "
+    maxPrecision = 4
+    enableSlicing = TRUE
+    useRelativeLUTIfNoInputImage = TRUE
+    hiResRendering = TRUE
+  }
+}
+module Reformat {
+  internal  {
+    frame = "45 693 120 56"
+    moduleGroupName = ""
+    showNetworkPanel = true
+  }
+  fields  {
+    instanceName = ReformatSagittal
+    matrix = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    useInventorComposition = FALSE
+    composeMatrix = TRUE
+    scale = "1 1 1"
+    rotation = "0 0 1 0"
+    translation = "0 0 0"
+    center = "6.68390474032313 -2.54864462107645 -16.9373914425769"
+    fillValue = 0
+    interactive = TRUE
+    autoCenter = TRUE
+    interpolation = Trilinear
+    borderHandling = UseFillValue
+    memoryAccess = Global
+    button1Translate = Pressed
+    button2Translate = Released
+    button3Translate = Released
+    shiftTranslate = Released
+    ctrlTranslate = Released
+    altTranslate = Released
+    button1Rotate = Pressed
+    button2Rotate = Released
+    button3Rotate = Released
+    shiftRotate = Pressed
+    ctrlRotate = Released
+    altRotate = Released
+    updateMode = AutoUpdate
+  }
+}
+module CreateBoundingVolume {
+  internal  {
+    frame = "1285 577 200 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "897 770 321 212"
+        sizeHint = "309 212"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CreateBoundingVolumeCoronal
+    dataTypeMode = InputImageDataType
+    userDataType = "unsigned int8"
+    orientation = Coronal
+    voxelSizeMode = MinimumInputVoxelSize
+    voxelScaleFactor = 1
+    userVoxelSize = 1
+  }
+}
+module View2D {
+  internal  {
+    frame = "1181 385 120 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "767 429 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2DCoronal
+    inventorInputOn = TRUE
+    inventorOutputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 84
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_ZT
+    cineDirection = CINE_FORWARD
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    cineAlwaysReset = TRUE
+    snapToCenter = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1.3162147
+    sliceZoomSynced = 1.3162147
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "49.2503433227539 47.9289855957031"
+    useShaders = TRUE
+    useManagedInteraction = FALSE
+    lutCenter = 102.297096252441
+    lutWidth = 204.594192504883
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = World
+    annoCTValue = AsIs
+    borderOn = FALSE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    valueHighPrecision = TRUE
+    showColorChannelValues = FALSE
+    colorChannelSeparator = " / "
+    maxPrecision = 4
+    enableSlicing = TRUE
+    useRelativeLUTIfNoInputImage = TRUE
+    hiResRendering = TRUE
+  }
+}
+module Reformat {
+  internal  {
+    frame = "1113 497 160 64"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "766 303 419 652"
+        sizeHint = "402 652"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ReformatCoronal
+    matrix = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    useInventorComposition = FALSE
+    composeMatrix = TRUE
+    scale = "1 1 1"
+    rotation = "0 0 1 0"
+    translation = "0 0 0"
+    center = "6.68390474032313 -2.54864462107645 -16.9373914425769"
+    fillValue = 0
+    interactive = TRUE
+    autoCenter = TRUE
+    interpolation = Trilinear
+    borderHandling = UseFillValue
+    memoryAccess = Global
+    button1Translate = Pressed
+    button2Translate = Released
+    button3Translate = Released
+    shiftTranslate = Released
+    ctrlTranslate = Released
+    altTranslate = Released
+    button1Rotate = Pressed
+    button2Rotate = Released
+    button3Rotate = Released
+    shiftRotate = Pressed
+    ctrlRotate = Released
+    altRotate = Released
+    updateMode = AutoUpdate
+  }
+}
 connections  {
-  OrthoView2DAxial.image = itkImageFileReader.output0
+  OrthoView2DAxial.image = ReformatAxial.output0
   OrthoView2DAxial.worldPosition = OrthoView2DCoronal.worldPosition
-  OrthoView2DSagittal.image = itkImageFileReader.output0
+  OrthoView2DSagittal.image = ReformatSagittal.output0
   OrthoView2DSagittal.worldPosition = OrthoView2DAxial.worldPosition
-  OrthoView2DCoronal.image = itkImageFileReader.output0
+  OrthoView2DCoronal.image = ReformatCoronal.output0
   OrthoView2DCoronal.worldPosition = OrthoView2DSagittal.worldPosition
+  CreateBoundingVolumeAxial.input0 = itkImageFileReader.output0
+  View2DAxial.inImage = ReformatAxial.output0
+  ReformatAxial.input0 = itkImageFileReader.output0
+  ReformatAxial.input1 = CreateBoundingVolumeAxial.output0
+  CreateBoundingVolumeSagittal.input0 = itkImageFileReader.output0
+  View2DSagittal.inImage = ReformatSagittal.output0
+  ReformatSagittal.input0 = itkImageFileReader.output0
+  ReformatSagittal.input1 = CreateBoundingVolumeSagittal.output0
+  CreateBoundingVolumeCoronal.input0 = itkImageFileReader.output0
+  View2DCoronal.inImage = ReformatCoronal.output0
+  ReformatCoronal.input0 = itkImageFileReader.output0
+  ReformatCoronal.input1 = CreateBoundingVolumeCoronal.output0
 }
 networkModel = ""
