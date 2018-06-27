@@ -99,6 +99,14 @@ MyImageReconstruction {
 
 }
 
+MyTVSuperResolution {
+   CONFIG_FOUND += MyTVSuperResolution 
+   INCLUDEPATH += $${PACKAGE_SOURCES}/Shared/MyTVSuperResolution 
+   QMAKE_LIBDIR += $${PACKAGE_LIB}/MyTVSuperResolution
+   win32:LIBS += mialsrtkTVSuperResolutionLib.lib \
+                 mialsrtkTVSuperResolutionWrapper.lib \
+}
+
 MyITK {
   CONFIG_FOUND += MyITK
   QMAKE_LIBDIR += $${PACKAGE_LIB}/MyITK
@@ -203,93 +211,93 @@ MyITK {
 
 		
   unix:LIBS += libITKIOSpatialObjects-5.0.a \
-libITKBiasCorrection-5.0.a \
-libITKIOStimulate-5.0.a \
-libITKCommon-5.0.a \
-libITKIOTIFF-5.0.a \
-libITKDICOMParser-5.0.a \
-libITKIOTransformBase-5.0.a \
-libitkdouble-conversion-5.0.a \
-libITKIOTransformHDF5-5.0.a \
-libITKEXPAT-5.0.a \
-libITKIOTransformInsightLegacy-5.0.a \
-libITKFEM-5.0.a \
-libITKIOTransformMatlab-5.0.a \
-libitkgdcmcharls-5.0.a \
-libITKIOVTK-5.0.a \
-libitkgdcmCommon-5.0.a \
-libITKIOXML-5.0.a \
-libitkgdcmDICT-5.0.a \
-libitkjpeg-5.0.a \
-libitkgdcmDSED-5.0.a \
-libITKKLMRegionGrowing-5.0.a \
-libitkgdcmIOD-5.0.a \
-libITKLabelMap-5.0.a \
-libitkgdcmjpeg12-5.0.a \
-libitklbfgs-5.0.a \
-libitkgdcmjpeg16-5.0.a \
-libITKMesh-5.0.a \
-libitkgdcmjpeg8-5.0.a \
-libITKMetaIO-5.0.a \
-libitkgdcmMEXD-5.0.a \
-libitkminc2-5.0.a \
-libitkgdcmMSFF-5.0.a \
-libitknetlib-5.0.a \
-libitkgdcmopenjp2-5.0.a \
-libitkNetlibSlatec-5.0.a \
-libitkgdcmsocketxx-5.0.a \
-libITKniftiio-5.0.a \
-libitkgdcmuuid-5.0.a \
-libITKNrrdIO-5.0.a \
-libITKgiftiio-5.0.a \
-libITKOptimizers-5.0.a \
-libitkgtest-5.0.a \
-libITKOptimizersv4-5.0.a \
-libitkgtest_main-5.0.a \
-libITKPath-5.0.a \
-libitkhdf5.a \
-libitkpng-5.0.a \
-libitkhdf5_cpp.a \
-libITKPolynomials-5.0.a \
-libITKIOBioRad-5.0.a \
-libITKQuadEdgeMesh-5.0.a \
-libITKIOBMP-5.0.a \
-libITKSpatialObjects-5.0.a \
-libITKIOBruker-5.0.a \
-libITKStatistics-5.0.a \
-libITKIOCSV-5.0.a \
-libitksys-5.0.a \
-libITKIOGDCM-5.0.a \
-libitktestlib-5.0.a \
-libITKIOGE-5.0.a \ 
-libitktiff-5.0.a \
-libITKIOGIPL-5.0.a \
-libITKTransform-5.0.a \
-libITKIOHDF5-5.0.a \
-libITKTransformFactory-5.0.a \
-libITKIOImageBase-5.0.a \ 
-libitkv3p_netlib-5.0.a \
-libITKIOIPL-5.0.a \       
-libitkvcl-5.0.a \
-libITKIOJPEG-5.0.a \             
-libITKVideoCore-5.0.a \
-libITKIOLSM-5.0.a \       
-libITKVideoIO-5.0.a \
-libITKIOMesh-5.0.a \          
-libitkvnl-5.0.a \
-libITKIOMeta-5.0.a \  
-libitkvnl_algo-5.0.a \
-libITKIOMINC-5.0.a \         
-libITKVNLInstantiation-5.0.a \
-libITKIOMRC-5.0.a \           
-libITKVTK-5.0.a \
-libITKIONIFTI-5.0.a \            
-libITKWatersheds-5.0.a \
-libITKIONRRD-5.0.a \             
-libitkzlib-5.0.a \
-libITKIOPNG-5.0.a \
-libITKznz-5.0.a \
-libITKIOSiemens-5.0.a \  
+	       libITKBiasCorrection-5.0.a \
+	       libITKIOStimulate-5.0.a \
+	       libITKCommon-5.0.a \
+	       libITKIOTIFF-5.0.a \
+	       libITKDICOMParser-5.0.a \
+	       libITKIOTransformBase-5.0.a \
+	       libitkdouble-conversion-5.0.a \
+	       libITKIOTransformHDF5-5.0.a \
+	       libITKEXPAT-5.0.a \
+	       libITKIOTransformInsightLegacy-5.0.a \
+	       libITKFEM-5.0.a \
+	       libITKIOTransformMatlab-5.0.a \
+	       libitkgdcmcharls-5.0.a \
+	       libITKIOVTK-5.0.a \
+	       libitkgdcmCommon-5.0.a \
+	       libITKIOXML-5.0.a \
+	       libitkgdcmDICT-5.0.a \
+	       libitkjpeg-5.0.a \
+	       libitkgdcmDSED-5.0.a \
+	       libITKKLMRegionGrowing-5.0.a \
+	       libitkgdcmIOD-5.0.a \
+	       libITKLabelMap-5.0.a \
+	       libitkgdcmjpeg12-5.0.a \
+	       libitklbfgs-5.0.a \
+	       libitkgdcmjpeg16-5.0.a \
+	       libITKMesh-5.0.a \
+	       libitkgdcmjpeg8-5.0.a \
+	       libITKMetaIO-5.0.a \
+	       libitkgdcmMEXD-5.0.a \
+	       libitkminc2-5.0.a \
+	       libitkgdcmMSFF-5.0.a \
+	       libitknetlib-5.0.a \
+	       libitkgdcmopenjp2-5.0.a \
+	       libitkNetlibSlatec-5.0.a \
+	       libitkgdcmsocketxx-5.0.a \
+	       libITKniftiio-5.0.a \
+	       libitkgdcmuuid-5.0.a \
+	       libITKNrrdIO-5.0.a \
+	       libITKgiftiio-5.0.a \
+	       libITKOptimizers-5.0.a \
+	       libitkgtest-5.0.a \
+	       libITKOptimizersv4-5.0.a \
+	       libitkgtest_main-5.0.a \
+	       libITKPath-5.0.a \
+	       libitkhdf5.a \
+	       libitkpng-5.0.a \
+	       libitkhdf5_cpp.a \
+	       libITKPolynomials-5.0.a \
+	       libITKIOBioRad-5.0.a \
+	       libITKQuadEdgeMesh-5.0.a \
+	       libITKIOBMP-5.0.a \
+	       libITKSpatialObjects-5.0.a \
+	       libITKIOBruker-5.0.a \
+	       libITKStatistics-5.0.a \
+	       libITKIOCSV-5.0.a \
+	       libitksys-5.0.a \
+	       libITKIOGDCM-5.0.a \
+	       libitktestlib-5.0.a \
+	       libITKIOGE-5.0.a \ 
+	       libitktiff-5.0.a \
+	       libITKIOGIPL-5.0.a \
+	       libITKTransform-5.0.a \
+	       libITKIOHDF5-5.0.a \
+	       libITKTransformFactory-5.0.a \
+	       libITKIOImageBase-5.0.a \ 
+	       libitkv3p_netlib-5.0.a \
+	       libITKIOIPL-5.0.a \       
+	       libitkvcl-5.0.a \
+	       libITKIOJPEG-5.0.a \             
+	       libITKVideoCore-5.0.a \
+	       libITKIOLSM-5.0.a \       
+	       libITKVideoIO-5.0.a \
+	       libITKIOMesh-5.0.a \          
+	       libitkvnl-5.0.a \
+	       libITKIOMeta-5.0.a \  
+	       libitkvnl_algo-5.0.a \
+	       libITKIOMINC-5.0.a \         
+	       libITKVNLInstantiation-5.0.a \
+	       libITKIOMRC-5.0.a \           
+	       libITKVTK-5.0.a \
+	       libITKIONIFTI-5.0.a \            
+	       libITKWatersheds-5.0.a \
+	       libITKIONRRD-5.0.a \             
+	       libitkzlib-5.0.a \
+	       libITKIOPNG-5.0.a \
+	       libITKznz-5.0.a \
+	       libITKIOSiemens-5.0.a \  
 }
 
 message($$INCLUDEPATH)

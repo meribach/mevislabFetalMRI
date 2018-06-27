@@ -328,7 +328,6 @@ bool mialImageReconstruction::runImageReconstruction()
   //std::cout<<"Start rigid registration on the desired target image (#0 by default)\n";
   try
     {
-	   std::cout << "i am here 1" << std::endl;
        lowToHighResFilter->StartRegistration();
 
     }
