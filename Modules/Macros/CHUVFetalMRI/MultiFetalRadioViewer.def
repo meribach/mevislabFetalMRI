@@ -1,0 +1,19 @@
+//----------------------------------------------------------------------------------
+//! MultiFetalRadioViewer module definition
+/*!
+// \file    MultiFetalRadioViewer.def
+// \author  FetalMRI
+// \date    2018-06-28
+*/
+//----------------------------------------------------------------------------------
+
+
+MacroModule MultiFetalRadioViewer {
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+   
+  externalDefinition = "$(LOCAL)/MultiFetalRadioViewer.script"
+}
