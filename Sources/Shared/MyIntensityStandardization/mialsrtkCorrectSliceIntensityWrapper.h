@@ -4,7 +4,14 @@
 
 //#include <string>
 
-# define CorrectSliceIntensityWrapper_EXPORT  __declspec(dllexport)
+#if defined(_MSC_VER)
+    //  Microsoft 
+#define CorrectSliceIntensityWrapper_EXPORT __declspec(dllexport)
+
+#elif defined(__GNUC__)
+    //  GCC
+    #define CorrectSliceIntensityWrapper_EXPORT __attribute__((visibility("default")))
+#endif
 
 class correctSliceIntensity;
 

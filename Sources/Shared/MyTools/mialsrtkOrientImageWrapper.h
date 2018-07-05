@@ -38,7 +38,14 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include <string>
 
-# define reOrientWrapper_EXPORT  __declspec(dllexport)
+#if defined(_MSC_VER)
+    //  Microsoft 
+#define reOrientWrapper_EXPORT __declspec(dllexport)
+
+#elif defined(__GNUC__)
+    //  GCC
+    #define reOrientWrapper_EXPORT __attribute__((visibility("default")))
+#endif
 
 class MialOrientImage;
 

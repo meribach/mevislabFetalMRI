@@ -3,7 +3,14 @@
 
 #include <string>
 
-# define mialsrtkSliceBySliceN4BiasFieldCorrectionWrapper_EXPORT  __declspec(dllexport)
+#if defined(_MSC_VER)
+    //  Microsoft 
+#define mialsrtkSliceBySliceN4BiasFieldCorrectionWrapper_EXPORT __declspec(dllexport)
+
+#elif defined(__GNUC__)
+    //  GCC
+    #define mialsrtkSliceBySliceN4BiasFieldCorrectionWrapper_EXPORT __attribute__((visibility("default")))
+#endif
 
 class SliceBySliceN4BiasFieldCorrection;
 

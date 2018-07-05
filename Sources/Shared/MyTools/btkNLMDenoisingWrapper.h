@@ -38,7 +38,15 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include <string>
 
-# define btkNLMDenoisingWrapper_EXPORT  __declspec(dllexport)
+#if defined(_MSC_VER)
+    //  Microsoft 
+    #define btkNLMDenoisingWrapper_EXPORT __declspec(dllexport)
+
+#elif defined(__GNUC__)
+    //  GCC
+    #define btkNLMDenoisingWrapper_EXPORT __attribute__((visibility("default")))
+#endif
+
 
 class btkNLMDenoise;
 

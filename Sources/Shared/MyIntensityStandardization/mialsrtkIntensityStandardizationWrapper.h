@@ -3,7 +3,14 @@
 #define mialsrtkIntensityStandardizationWrapper_H
 
 
-# define IntensityStandardizationWrapper_EXPORT  __declspec(dllexport)
+#if defined(_MSC_VER)
+    //  Microsoft 
+#define IntensityStandardizationWrapper_EXPORT __declspec(dllexport)
+
+#elif defined(__GNUC__)
+    //  GCC
+    #define IntensityStandardizationWrapper_EXPORT __attribute__((visibility("default")))
+#endif
 
 class IntensityStandardization;
 
