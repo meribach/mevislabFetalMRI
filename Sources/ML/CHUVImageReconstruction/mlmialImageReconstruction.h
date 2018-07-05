@@ -19,9 +19,12 @@
 #include "mialsrtkImageReconstructionWrapper.h"
 
 class mialImageReconstructionWrapper;
+   
 
 ML_START_NAMESPACE
 
+
+class mialImageReconstructionBackgroundTask; 
 //! 
 class CHUVIMAGERECONSTRUCTION_EXPORT mialImageReconstruction : public Module
 {
