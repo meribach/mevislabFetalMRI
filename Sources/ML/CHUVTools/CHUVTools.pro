@@ -33,7 +33,13 @@ DEFINES += ML_WARN_DEPRECATED
 #DEFINES += _UNICODE \
 #      _AFXDLL \
 
+win32 {
 QMAKE_CXXFLAGS += /openmp
+}
+
+linux {
+QMAKE_CXXFLAGS += -fopenmp
+}
 
 HEADERS += \
     CHUVToolsInit.h \
