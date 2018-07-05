@@ -70,41 +70,56 @@ MyTools {
    CONFIG_FOUND += MyTools
    INCLUDEPATH += $${PACKAGE_SOURCES}/Shared/MyTools 
    QMAKE_LIBDIR += $${PACKAGE_LIB}/MyTools
-   win32:LIBS += mialsrtkOrientImageLib.lib \
-                 mialsrtkOrientImageWrapper.lib \
-		 btkNLMDenoisingLib.lib \
-		 btkNLMDenoisingWrapper.lib \
+   win32:LIBS += mialsrtkOrientImageLib.lib$${d} \
+                 mialsrtkOrientImageWrapper.lib$${d} \
+                 btkNLMDenoisingLib.lib$${d} \
+                 btkNLMDenoisingWrapper.lib$${d} 
+   unix:LIBS +=	 libmialsrtkOrientImageLib.a$${d} \
+                 libmialsrtkOrientImageWrapper.a$${d} \
+                 libbtkNLMDenoisingLib.a$${d} \
+                 libbtkNLMDenoisingWrapper.a$${d} \  
 }
 
 MyIntensityStandardization {
    CONFIG_FOUND += MyIntensityStandardization 
    INCLUDEPATH += $${PACKAGE_SOURCES}/Shared/MyIntensityStandardization  
    QMAKE_LIBDIR += $${PACKAGE_LIB}/MyIntensityStandardization 
-   win32:LIBS += mialsrtkCorrectSliceIntensityLib.lib \
-                 mialsrtkCorrectSliceIntensityWrapper.lib \
-                 mialsrtkIntensityStandardizationLib.lib \
-                 mialsrtkIntensityStandardizationWrapper.lib \
-                 mialsrtkSliceBySliceCorrectBiasFieldLib.lib \
-                 mialsrtkSliceBySliceCorrectBiasFieldWrapper.lib \
-                 mialsrtkSliceBySliceN4BiasFieldCorrectionLib.lib \
-                 mialsrtkSliceBySliceN4BiasFieldCorrectionWrapper.lib \
+   win32:LIBS += mialsrtkCorrectSliceIntensityLib.lib$${d} \
+                 mialsrtkCorrectSliceIntensityWrapper.lib$${d} \
+                 mialsrtkIntensityStandardizationLib.lib$${d} \
+                 mialsrtkIntensityStandardizationWrapper.lib$${d} \
+                 mialsrtkSliceBySliceCorrectBiasFieldLib.lib$${d} \
+                 mialsrtkSliceBySliceCorrectBiasFieldWrapper.lib$${d} \
+                 mialsrtkSliceBySliceN4BiasFieldCorrectionLib.lib$${d} \
+                 mialsrtkSliceBySliceN4BiasFieldCorrectionWrapper.lib$${d} 
+   unix:LIBS +=	 libmialsrtkCorrectSliceIntensityLib.a$${d} \
+                 libmialsrtkCorrectSliceIntensityWrapper.a$${d} \
+                 libmialsrtkIntensityStandardizationLib.a$${d} \
+                 libmialsrtkIntensityStandardizationWrapper.a$${d} \
+                 libmialsrtkSliceBySliceCorrectBiasFieldLib.a$${d} \
+                 libmialsrtkSliceBySliceCorrectBiasFieldWrapper.a$${d} \
+                 libmialsrtkSliceBySliceN4BiasFieldCorrectionLib.a$${d} \
+                 libmialsrtkSliceBySliceN4BiasFieldCorrectionWrapper.a$${d}\		 
 }
 
 MyImageReconstruction {
    CONFIG_FOUND += MyImageReconstruction
    INCLUDEPATH += $${PACKAGE_SOURCES}/Shared/MyImageReconstruction
    QMAKE_LIBDIR += $${PACKAGE_LIB}/MyImageReconstruction 
-   win32:LIBS += mialsrtkImageReconstructionLib.lib \
-                 mialsrtkImageReconstructionWrapper.lib \
-
+   win32:LIBS += mialsrtkImageReconstructionLib.lib$${d} \
+                 mialsrtkImageReconstructionWrapper.lib$${d} 
+   unix:LIBS += -l/libmialsrtkImageReconstructionLib.a$${d} \
+                -l/libmialsrtkImageReconstructionWrapper.a$${d} 
 }
 
 MyTVSuperResolution {
    CONFIG_FOUND += MyTVSuperResolution 
    INCLUDEPATH += $${PACKAGE_SOURCES}/Shared/MyTVSuperResolution 
    QMAKE_LIBDIR += $${PACKAGE_LIB}/MyTVSuperResolution
-   win32:LIBS += mialsrtkTVSuperResolutionLib.lib \
-                 mialsrtkTVSuperResolutionWrapper.lib \
+   win32:LIBS += mialsrtkTVSuperResolutionLib.lib$${d} \
+                 mialsrtkTVSuperResolutionWrapper.lib$${d} 
+   unix:LIBS += libmialsrtkTVSuperResolutionLib.a$${d} \
+                libmialsrtkTVSuperResolutionWrapper.a$${d} \
 }
 
 MyITK {
@@ -207,97 +222,98 @@ MyITK {
 		Ws2_32.lib \
 		Rpcrt4.lib \
 		Snmpapi.lib \
-		psapi.lib \
+		psapi.lib 
 
 		
-  unix:LIBS += libITKIOSpatialObjects-5.0.a \
-	       libITKBiasCorrection-5.0.a \
-	       libITKIOStimulate-5.0.a \
-	       libITKCommon-5.0.a \
-	       libITKIOTIFF-5.0.a \
-	       libITKDICOMParser-5.0.a \
-	       libITKIOTransformBase-5.0.a \
-	       libitkdouble-conversion-5.0.a \
-	       libITKIOTransformHDF5-5.0.a \
-	       libITKEXPAT-5.0.a \
-	       libITKIOTransformInsightLegacy-5.0.a \
-	       libITKFEM-5.0.a \
-	       libITKIOTransformMatlab-5.0.a \
-	       libitkgdcmcharls-5.0.a \
-	       libITKIOVTK-5.0.a \
-	       libitkgdcmCommon-5.0.a \
-	       libITKIOXML-5.0.a \
-	       libitkgdcmDICT-5.0.a \
-	       libitkjpeg-5.0.a \
-	       libitkgdcmDSED-5.0.a \
-	       libITKKLMRegionGrowing-5.0.a \
-	       libitkgdcmIOD-5.0.a \
-	       libITKLabelMap-5.0.a \
-	       libitkgdcmjpeg12-5.0.a \
-	       libitklbfgs-5.0.a \
-	       libitkgdcmjpeg16-5.0.a \
-	       libITKMesh-5.0.a \
-	       libitkgdcmjpeg8-5.0.a \
-	       libITKMetaIO-5.0.a \
-	       libitkgdcmMEXD-5.0.a \
-	       libitkminc2-5.0.a \
-	       libitkgdcmMSFF-5.0.a \
-	       libitknetlib-5.0.a \
-	       libitkgdcmopenjp2-5.0.a \
-	       libitkNetlibSlatec-5.0.a \
-	       libitkgdcmsocketxx-5.0.a \
-	       libITKniftiio-5.0.a \
-	       libitkgdcmuuid-5.0.a \
-	       libITKNrrdIO-5.0.a \
-	       libITKgiftiio-5.0.a \
-	       libITKOptimizers-5.0.a \
-	       libitkgtest-5.0.a \
-	       libITKOptimizersv4-5.0.a \
-	       libitkgtest_main-5.0.a \
-	       libITKPath-5.0.a \
-	       libitkhdf5.a \
-	       libitkpng-5.0.a \
-	       libitkhdf5_cpp.a \
-	       libITKPolynomials-5.0.a \
-	       libITKIOBioRad-5.0.a \
-	       libITKQuadEdgeMesh-5.0.a \
-	       libITKIOBMP-5.0.a \
-	       libITKSpatialObjects-5.0.a \
-	       libITKIOBruker-5.0.a \
-	       libITKStatistics-5.0.a \
-	       libITKIOCSV-5.0.a \
-	       libitksys-5.0.a \
-	       libITKIOGDCM-5.0.a \
-	       libitktestlib-5.0.a \
-	       libITKIOGE-5.0.a \ 
-	       libitktiff-5.0.a \
-	       libITKIOGIPL-5.0.a \
-	       libITKTransform-5.0.a \
-	       libITKIOHDF5-5.0.a \
-	       libITKTransformFactory-5.0.a \
-	       libITKIOImageBase-5.0.a \ 
-	       libitkv3p_netlib-5.0.a \
-	       libITKIOIPL-5.0.a \       
-	       libitkvcl-5.0.a \
-	       libITKIOJPEG-5.0.a \             
-	       libITKVideoCore-5.0.a \
-	       libITKIOLSM-5.0.a \       
-	       libITKVideoIO-5.0.a \
-	       libITKIOMesh-5.0.a \          
-	       libitkvnl-5.0.a \
-	       libITKIOMeta-5.0.a \  
-	       libitkvnl_algo-5.0.a \
-	       libITKIOMINC-5.0.a \         
-	       libITKVNLInstantiation-5.0.a \
-	       libITKIOMRC-5.0.a \           
-	       libITKVTK-5.0.a \
-	       libITKIONIFTI-5.0.a \            
-	       libITKWatersheds-5.0.a \
-	       libITKIONRRD-5.0.a \             
-	       libitkzlib-5.0.a \
-	       libITKIOPNG-5.0.a \
-	       libITKznz-5.0.a \
-	       libITKIOSiemens-5.0.a \  
+  unix:LIBS += libITKIOSiemens-4.13.a \
+               libITKBiasCorrection-4.13.a \
+               libITKIOSpatialObjects-4.13.a \
+               libITKBioCell-4.13.a \    
+               libITKIOStimulate-4.13.a \
+               libITKCommon-4.13.a \     
+               libITKIOTIFF-4.13.a \
+               libITKDICOMParser-4.13.a \       
+               libITKIOTransformBase-4.13.a \
+               libitkdouble-conversion-4.13.a \
+               libITKIOTransformHDF5-4.13.a \
+               libITKEXPAT-4.13.a \ 
+               libITKIOTransformInsightLegacy-4.13.a \
+               libITKFEM-4.13.a \
+               libITKIOTransformMatlab-4.13.a \
+               libitkgdcmcharls-4.13.a \
+               libITKIOVTK-4.13.a \
+               libitkgdcmCommon-4.13.a \        
+               libITKIOXML-4.13.a \
+               libitkgdcmDICT-4.13.a \        
+               libitkjpeg-4.13.a \
+               libitkgdcmDSED-4.13.a \          
+               libITKKLMRegionGrowing-4.13.a \
+               libitkgdcmIOD-4.13.a \        
+               libITKLabelMap-4.13.a \
+               libitkgdcmjpeg12-4.13.a \
+               libitklbfgs-4.13.a \
+               libitkgdcmjpeg16-4.13.a \       
+               libITKMesh-4.13.a \
+               libitkgdcmjpeg8-4.13.a \        
+               libITKMetaIO-4.13.a \
+               libitkgdcmMEXD-4.13.a \         
+               libitkminc2-4.13.a \
+               libitkgdcmMSFF-4.13.a \          
+               libitknetlib-4.13.a \
+               libitkgdcmopenjp2-4.13.a \       
+               libitkNetlibSlatec-4.13.a \
+               libitkgdcmsocketxx-4.13.a \     
+               libITKniftiio-4.13.a \
+               libitkgdcmuuid-4.13.a \      
+               libITKNrrdIO-4.13.a \
+               libITKgiftiio-4.13.a \          
+               libITKOptimizers-4.13.a \
+               libitkgtest-4.13.a \      
+               libITKOptimizersv4-4.13.a \
+               libitkgtest_main-4.13.a \    
+               libITKPath-4.13.a \
+               libitkhdf5.a \        
+               libitkpng-4.13.a \
+               libitkhdf5_cpp.a \             
+               libITKPolynomials-4.13.a \
+               libITKIOBioRad-4.13.a \     
+               libITKQuadEdgeMesh-4.13.a \
+               libITKIOBMP-4.13.a \    
+               libITKSpatialObjects-4.13.a \
+               libITKIOBruker-4.13.a \  
+               libITKStatistics-4.13.a \
+               libITKIOCSV-4.13.a \      
+               libitksys-4.13.a \
+               libITKIOGDCM-4.13.a \            
+               libitktestlib-4.13.a \
+               libITKIOGE-4.13.a \          
+               libitktiff-4.13.a \
+               libITKIOGIPL-4.13.a \            
+               libITKTransform-4.13.a \
+               libITKIOHDF5-4.13.a \       
+               libITKTransformFactory-4.13.a \
+               libITKIOImageBase-4.13.a \
+               libitkv3p_netlib-4.13.a \
+               libITKIOIPL-4.13.a \        
+               libitkvcl-4.13.a \
+               libITKIOJPEG-4.13.a \           
+               libITKVideoCore-4.13.a \
+               libITKIOLSM-4.13.a \       
+               libITKVideoIO-4.13.a \
+               libITKIOMesh-4.13.a \         
+               libitkvnl-4.13.a \
+               libITKIOMeta-4.13.a \           
+               libitkvnl_algo-4.13.a \
+               libITKIOMINC-4.13.a \        
+               libITKVNLInstantiation-4.13.a \
+               libITKIOMRC-4.13.a \
+               libITKVTK-4.13.a \
+               libITKIONIFTI-4.13.a \           
+               libITKWatersheds-4.13.a \
+               libITKIONRRD-4.13.a \      
+               libitkzlib-4.13.a \
+               libITKIOPNG-4.13.a \            
+               libITKznz-4.13.a \
 }
 
 message($$INCLUDEPATH)

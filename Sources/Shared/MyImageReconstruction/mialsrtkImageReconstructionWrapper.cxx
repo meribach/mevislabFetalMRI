@@ -5,7 +5,7 @@
 mialImageReconstructionWrapper::mialImageReconstructionWrapper(std::vector< std::string > _inputFile, const char* const _outputFile, std::vector< std::string > _maskFile, const char* _refFile, std::vector< std::string > _transformout,
 	std::vector< std::string > _resampled, const char* const _combinedMasks, unsigned int _itMax, double _epsilon, double _margin, bool _rigid3D, bool _noreg, bool _debluring, bool _boxSwitch,
 	bool _maskSwitch, bool _allSwitch, unsigned int _ImageBaseOfRecon, const char* const _MetricToUse, unsigned int _m_Iterations, double _m_GradientMagnitudeTolerance, double _m_MinStepLength,
-	double _m_MaxStepLength, double _m_RelaxationFactor)
+	double _m_MaxStepLength, double _m_RelaxationFactor,float _resampleKernelMultiplicator)
 {
 
 	inputFile = _inputFile;
@@ -32,6 +32,8 @@ mialImageReconstructionWrapper::mialImageReconstructionWrapper(std::vector< std:
 	m_MinStepLength = _m_MinStepLength;
 	m_MaxStepLength = _m_MaxStepLength;
 	m_RelaxationFactor = _m_RelaxationFactor;
+
+	resampleKernelMultiplicator = _resampleKernelMultiplicator;
 
 }
 
@@ -71,11 +73,10 @@ bool mialImageReconstructionWrapper::runImageReconstruction()
 	{
 		std::cout << "Image Recon Wrapper start" << std::endl;
 		std::cout << outputFile << std::endl;
-		std::cout << "test" << std::endl;
 		std::cout << MetricToUse << std::endl;
 		wrap_ImageReconstruction = new mialImageReconstruction(inputFile, outputFile, maskFile, refFile, transformout, resampled, combinedMask,
 			itMax, epsilon, margin, rigid3D, noreg, debluring, boxSwitch, maskSwitch, allSwitch, ImageBaseOfRecon, MetricToUse, m_Iterations,
-	        m_GradientMagnitudeTolerance, m_MinStepLength, m_MaxStepLength, m_RelaxationFactor);
+	        m_GradientMagnitudeTolerance, m_MinStepLength, m_MaxStepLength, m_RelaxationFactor, resampleKernelMultiplicator);
 		boolExit = wrap_ImageReconstruction->runImageReconstruction();
 		return boolExit;
 	}
@@ -120,7 +121,7 @@ int anotherEntryPointProblem()
 	transformout.push_back("D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_transform_6V_1.txt");
 
 	std::vector< std::string > resampled;
-	mialImageReconstructionWrapper test(inputTest,outputFile, maskFile, "",transformout, resampled,"",10,0.0001,0,0,0,0,0,1,0,0,"NC",2000,0.0001,0.0001,0.2,0.5);
+	mialImageReconstructionWrapper test(inputTest,outputFile, maskFile, "",transformout, resampled,"",10,0.0001,0,0,0,0,0,1,0,0,"NC",2000,0.0001,0.0001,0.2,0.5,1);
 	bool boolOutput = test.runImageReconstruction();
 	std::cout << boolOutput << std::endl;
 

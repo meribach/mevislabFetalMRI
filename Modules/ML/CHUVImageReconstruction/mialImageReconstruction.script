@@ -60,16 +60,13 @@ Window {
     Field MetricToUse {
       tooltip = "Metric of the Coregistration, NC = Normalized Correlation, MI = Mutual Information, default is NC"
     }
-    Field nbIterationsRegistration {
-    }
-    Field GradientMagnitudeToleranceRegistration {
-    }
-    Field MinStepLengthRegistration {
-    }
-    Field MaxStepLengthRegistration {
-    }
-    Field RelaxationFactorRegistration {
-    }
+    Field nbIterationsRegistration {    }
+    Field GradientMagnitudeToleranceRegistration {    }
+    Field MinStepLengthRegistration {    }
+    Field MaxStepLengthRegistration {    }
+    Field RelaxationFactorRegistration {    }
+    
+    Field resampleKernelMultiplicator {}
     
     Button startTask {}           //{ dependsOn = !taskRunning }
     Button startTaskModal {}

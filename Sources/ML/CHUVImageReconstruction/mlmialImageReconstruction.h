@@ -89,6 +89,8 @@ private:
   DoubleField* _RelaxationFactorRegistrationFld;
   //@}
 
+  FloatField* _resampleKernelMultiplicatorFld;
+
   StringField* _statusFld;
   NotifyField* _startTaskFld;
   NotifyField* _startTaskModalFld;

@@ -97,10 +97,9 @@ def runHistoNormalization():
     interface.setImage(tile, minMaxValues = (maskedImageMapped.min(), maskedImageMapped.max()),voxelToWorldMatrix = AllImagesInfo[iterImages][1])
     ctx.field("itkImageFileWriter.unresolvedFileName").setStringValue(alloutputNames[iterImages])
     ctx.field("itkImageFileWriter.save").touch()
-    print("test")
     
   
-    print("run histo normalization")
+  print("histonormalization done")
   
   
 def percentile_nonzero(image, percentile_nonzero):

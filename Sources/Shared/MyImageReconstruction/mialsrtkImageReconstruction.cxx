@@ -72,7 +72,7 @@ Copyright (c) 2017 Medical Image Analysis Laboratory (MIAL), Lausanne
 mialImageReconstruction::mialImageReconstruction(std::vector< std::string > _inputFile, const char* const _outputFile, std::vector< std::string > _maskFile, const char* _refFile, std::vector< std::string > _transformout,
 	std::vector< std::string > _resampled, const char* const _combinedMasks, unsigned int _itMax, double _epsilon, double _margin, bool _rigid3D, bool _noreg, bool _debluring, bool _boxSwitch,
 	bool _maskSwitch, bool _allSwitch, unsigned int _ImageBaseOfRecon, const char* const _MetricToUse, unsigned int _m_Iterations, double _m_GradientMagnitudeTolerance, double _m_MinStepLength,
-	double _m_MaxStepLength, double _m_RelaxationFactor)
+	double _m_MaxStepLength, double _m_RelaxationFactor, float _resampleKernelMultiplicator)
 {
 
   inputFile = _inputFile;
@@ -93,6 +93,7 @@ mialImageReconstruction::mialImageReconstruction(std::vector< std::string > _inp
   allSwitch = _allSwitch;
   ImageBaseOfRecon = _ImageBaseOfRecon;
   MetricToUse = _MetricToUse;
+  resampleKernelMultiplicator = _resampleKernelMultiplicator;
 
   m_Iterations = _m_Iterations;
   m_GradientMagnitudeTolerance = _m_GradientMagnitudeTolerance;
@@ -427,7 +428,7 @@ bool mialImageReconstruction::runImageReconstruction()
 
   for(unsigned int it=1; it <= itMax; it++)
   {
-    //std::cout << "Iteration " << it << std::endl; std::cout.flush();
+    std::cout << "Iteration " << it << std::endl;
 
     // Start registration
 
@@ -472,7 +473,7 @@ bool mialImageReconstruction::runImageReconstruction()
           registration[im] -> SetImageMask( imageMasks[im] );
           registration[im] -> SetTransform( transforms[im] );
           registration[im] -> SetIterations( m_Iterations );
-		  registration[im] -> SetCoregistrationMethod(MetricToUse);
+		  registration[im] -> SetCoregistrationMethod(std::string(MetricToUse));
           registration[im] -> SetGradientMagnitudeTolerance( m_GradientMagnitudeTolerance );
           registration[im] -> SetMinStepLength( m_MinStepLength );
           registration[im] -> SetMaxStepLength( m_MaxStepLength );
@@ -503,10 +504,12 @@ bool mialImageReconstruction::runImageReconstruction()
     }
 
     //std::cout << std::endl; std::cout.flush();
-
+	std::cout << "registration done" << std::endl;
     // Inject images
 
     //std::cout << "Injecting images ... "; std::cout.flush();
+
+	//update mask low resolution en fonction des outliers des coregistrations
 
 
     ResamplerType::Pointer resampler = ResamplerType::New();
@@ -532,9 +535,18 @@ bool mialImageReconstruction::runImageReconstruction()
     resampler -> SetReferenceImageMask(lowToHighResFilter -> GetImageMaskCombination());
 
     resampler -> SetUseDebluringKernel( debluring );
+	resampler -> SetkernelRadiusMultiplicator(resampleKernelMultiplicator);
 
-    resampler -> Update();
+    try
+	{
+	 resampler -> Update();
+	}
+	catch (itk::ExceptionObject & err)
+	{
+	 throw "error resampling";
+	 return false;
 
+	}
     if (it == 1)
       hrImageOld = hrImageIni;
     else
@@ -582,9 +594,22 @@ bool mialImageReconstruction::runImageReconstruction()
     else
       delta = 1;
 
-    if (delta < epsilon) break;
+	if (delta < epsilon)
+	{
+        //we store the different outlier values
+		std::cout << "TO DO outlier registration slices" << std::endl;
+		break;
+	}
+
+	if (it == itMax)
+	{
+		//we store the different outlier values
+		std::cout << "ITMAX" << std::endl;
+	}
 
   }
+
+  std::cout << "write datas" << std::endl;
 
   // Write HR image
 

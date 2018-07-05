@@ -115,8 +115,8 @@ module SoView2DSlider {
     clipToSlice = FALSE
     cursorShape = UNDEFINED_CURSOR
     minimumValue = 0
-    maximumValue = 0
-    currentValue = 0
+    maximumValue = 23
+    currentValue = 5
     useTracking = TRUE
     stepSize = 1
     snapSize = 1
@@ -244,17 +244,66 @@ module itkImageFileReader {
   }
   fields  {
     instanceName = itkImageFileReader
-    fileDataType = int16
+    fileDataType = "unsigned int16"
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
-    numDims = 0
+    info = "Loading okay."
+    numDims = 3
     fileType = TypeNotApplicable
-    componentType = ""
-    pixelType = UNKNOWNPIXELTYPE
-    loaderType = ""
-    outputMetaDataStr = ""
+    componentType = "unsigned int16"
+    pixelType = SCALAR
+    loaderType = NiftiImageIO
+    outputMetaDataStr = "ITK_FileNotes : 
+aux_file : 
+bitpix : 16
+cal_max : 0
+cal_min : 0
+datatype : 512
+descrip : 
+dim[0] : 3
+dim[1] : 320
+dim[2] : 320
+dim[3] : 24
+dim[4] : 1
+dim[5] : 1
+dim[6] : 1
+dim[7] : 1
+dim_info : 
+intent_code : 0
+intent_name : 
+intent_p1 : 0
+intent_p2 : 0
+intent_p3 : 0
+pixdim[0] : 1
+pixdim[1] : 1.125
+pixdim[2] : 1.125
+pixdim[3] : 3.3
+pixdim[4] : 0
+pixdim[5] : 0
+pixdim[6] : 0
+pixdim[7] : 0
+qform_code : 2
+qoffset_x : 197.757
+qoffset_y : 163.713
+qoffset_z : 38.9561
+quatern_b : 0.682673
+quatern_c : -0.730281
+quatern_d : 0.00120517
+scl_inter : 0
+scl_slope : 1
+sform_code : 1
+slice_code : 
+slice_duration : 0
+slice_end : 0
+slice_start : 0
+srow_x : -0.0749503 -1.12179 -0.117159 197.757
+srow_y : -1.12165 0.0764025 -0.120406 163.713
+srow_z : 0.0436427 0.0370869 -3.29572 38.9561
+toffset : 0
+vox_offset : 352
+xyzt_units : 
+"
     suppressErrorPosting = FALSE
     unresolvedFileName = ""
   }
@@ -312,11 +361,11 @@ module WorldVoxelConvert {
     voxelX = 64
     voxelY = 86
     voxelZ = 102
-    worldX = 64
-    worldY = 86
-    worldZ = 102
+    worldX = -85.1926939853603
+    worldY = -86.7992749313793
+    worldZ = -289.617414857519
     voxelPos = "64 86 102"
-    worldPos = "64 86 102"
+    worldPos = "-85.1926939853603 -86.7992749313793 -289.617414857519"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -404,11 +453,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 0.5
-    lutGrayWidth = 1
-    lutAlphaCenter = 0.5
-    lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutGrayCenter = 478
+    lutGrayWidth = 956
+    lutAlphaCenter = 478
+    lutAlphaWidth = 956
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -483,21 +532,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 0.5
-    annoInput04 = 1
-    annoInput05 = 0.5
+    annoInput03 = 478
+    annoInput04 = 956
+    annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 0.5
-    annoInput08 = 1
+    annoInput07 = 478
+    annoInput08 = 956
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
-    annoNumInput02 = 816
-    annoNumInput03 = 0.5
-    annoNumInput04 = 1
-    annoNumInput05 = 0.5
+    annoNumInput02 = 3
+    annoNumInput03 = 478
+    annoNumInput04 = 956
+    annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 0.5
+    annoNumInput07 = 478
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -590,7 +639,7 @@ module SoView2DLabel {
   fields  {
     instanceName = LabelIH
     interactionProviderID = ""
-    drawingOn = TRUE
+    drawingOn = FALSE
     color = "1 0 0"
     text = "IH
 "
@@ -626,7 +675,7 @@ module SoView2DLabel {
   fields  {
     instanceName = LabelT
     interactionProviderID = ""
-    drawingOn = TRUE
+    drawingOn = FALSE
     color = "1 0 0"
     text = T
     viewerId = ""
@@ -661,7 +710,7 @@ module SoView2DLabel {
   fields  {
     instanceName = LabelB
     interactionProviderID = ""
-    drawingOn = TRUE
+    drawingOn = FALSE
     color = "1 0 0"
     text = B
     viewerId = ""
@@ -696,7 +745,7 @@ module SoView2DLabel {
   fields  {
     instanceName = LabelA
     interactionProviderID = ""
-    drawingOn = TRUE
+    drawingOn = FALSE
     color = "1 0 0"
     text = A
     viewerId = ""
@@ -731,7 +780,7 @@ module SoView2DLabel {
   fields  {
     instanceName = LabelP
     interactionProviderID = ""
-    drawingOn = TRUE
+    drawingOn = FALSE
     color = "1 0 0"
     text = P
     viewerId = ""
@@ -772,11 +821,11 @@ module SoView2D {
     instanceName = SoView2D
     interactionProviderID = ""
     viewerId = viewer
-    startSlice = 0
+    startSlice = 5
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -1406,7 +1455,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
+    info = "File closed"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -1515,7 +1564,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -1614,11 +1663,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 0.5
-    lutGrayWidth = 1
-    lutAlphaCenter = 0.5
-    lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutGrayCenter = 478
+    lutGrayWidth = 956
+    lutAlphaCenter = 478
+    lutAlphaWidth = 956
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -1693,21 +1742,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 0.5
-    annoInput04 = 1
-    annoInput05 = 0.5
+    annoInput03 = 478
+    annoInput04 = 956
+    annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 0.5
-    annoInput08 = 1
+    annoInput07 = 478
+    annoInput08 = 956
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 760
-    annoNumInput03 = 0.5
-    annoNumInput04 = 1
-    annoNumInput05 = 0.5
+    annoNumInput03 = 478
+    annoNumInput04 = 956
+    annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 0.5
+    annoNumInput07 = 478
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -1813,11 +1862,11 @@ module WorldVoxelConvert {
     voxelX = 276.786315917969
     voxelY = 249.435897827149
     voxelZ = 11.5012265243338
-    worldX = 276.786315917969
-    worldY = 249.435897827149
-    worldZ = 11.5012265243338
+    worldX = 161.296300506684
+    worldY = 128.388804389851
+    worldZ = -59.1989446812667
     voxelPos = "276.786315917969 249.435897827149 11.5012265243338"
-    worldPos = "276.786315917969 249.435897827149 11.5012265243338"
+    worldPos = "161.296300506684 128.388804389851 -59.1989446812667"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -2005,7 +2054,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -2104,11 +2153,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 0.5
-    lutGrayWidth = 1
-    lutAlphaCenter = 0.5
-    lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutGrayCenter = 478
+    lutGrayWidth = 956
+    lutAlphaCenter = 478
+    lutAlphaWidth = 956
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -2183,21 +2232,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 0.5
-    annoInput04 = 1
-    annoInput05 = 0.5
+    annoInput03 = 478
+    annoInput04 = 956
+    annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 0.5
-    annoInput08 = 1
+    annoInput07 = 478
+    annoInput08 = 956
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 892
-    annoNumInput03 = 0.5
-    annoNumInput04 = 1
-    annoNumInput05 = 0.5
+    annoNumInput03 = 478
+    annoNumInput04 = 956
+    annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 0.5
+    annoNumInput07 = 478
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -2491,7 +2540,7 @@ module Resample3D {
     zoom = "1 1 1"
     imageSize = "135 189 155"
     voxelSize = "0.799998998641968 0.799998998641968 0.799998998641968"
-    subVoxelShift = "-0.00217967359674276 -0.240446321357339 4.47035401407447e-06"
+    subVoxelShift = "-0.00440320709228104 0.0828233904241529 -8.94070737444963e-07"
     useReferenceImage = TRUE
   }
 }
@@ -2519,7 +2568,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "0 0 0"
+    center = "70.3997315692129 53.6493498318907 -58.7999264001846"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -2640,7 +2689,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
+    info = "File closed"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -2713,7 +2762,7 @@ module SoView2DLabel {
     interactionProviderID = ""
     drawingOn = TRUE
     color = "0.882352948188782 0.968627452850342 0.0352941192686558"
-    text = "Viewer Mode"
+    text = "Viewer Mode Image0"
     viewerId = ""
     textPositioning = RELATIVE_TO_VIEWER
     worldPosition = "0 0 0"
@@ -3227,7 +3276,33 @@ module mialIntensityStandardization {
 }
 module mialHistogramNormalization {
   internal  {
-    frame = "-903 129 208 64"
+    frame = "-1591 -355 192 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "678 242 480 142"
+        sizeHint = "480 142"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "502 345 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialHistogramNormalization1
+    inputFiles = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
+    outputFiles = D:/Pierre/test.nii.gz
+    maskFiles = "
+D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz"
+  }
+}
+module mialHistogramNormalization {
+  isRemote = true
+  internal  {
+    frame = "-919 129 240 64"
     moduleGroupName = BackgroundTasks
     windows  {
       window _default {
@@ -3245,8 +3320,9 @@ module mialHistogramNormalization {
   }
 }
 module mialHistogramNormalization {
+  isRemote = true
   internal  {
-    frame = "-891 261 184 56"
+    frame = "-919 261 240 56"
     moduleGroupName = BackgroundTasks
     windows  {
       window _default {
@@ -3352,7 +3428,7 @@ networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 195
+        uniqueId = 203
         objectName = DisplayLabelsOnTopImage
         parentUniqueId = 0
         color  {
@@ -3374,7 +3450,7 @@ networkModel  {
         }
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 196
+        uniqueId = 204
         objectName = ModifyWorldToMatrix
         parentUniqueId = 0
         color  {

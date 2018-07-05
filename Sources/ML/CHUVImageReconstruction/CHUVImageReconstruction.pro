@@ -30,6 +30,11 @@ DEFINES += CHUVIMAGERECONSTRUCTION_EXPORTS
 # Enable ML deprecated API warnings. To completely disable the deprecated API, change WARN to DISABLE.
 DEFINES += ML_WARN_DEPRECATED
 
+win32 {
+QMAKE_CXXFLAGS += /openmp
+}
+
+
 HEADERS += \
     CHUVImageReconstructionInit.h \
     CHUVImageReconstructionSystem.h \

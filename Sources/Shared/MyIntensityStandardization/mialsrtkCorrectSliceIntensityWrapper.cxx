@@ -6,8 +6,8 @@
 CorrectSliceIntensityWrapper::CorrectSliceIntensityWrapper(const char* const _inputFile, const char* const _maskFile, const char* const _outputFile)
 {
 	inputFile = _inputFile;
-	outputFile = _maskFile;
-	maskFile = _outputFile;
+	outputFile = _outputFile;
+	maskFile = _maskFile;
 	boolExit = false;
 }
 
@@ -25,7 +25,7 @@ bool CorrectSliceIntensityWrapper::SliceIntensityCorrection()
 {
 	try
 	{
-		wrap_correctSliceIntensity = new correctSliceIntensity(inputFile, outputFile, maskFile);
+		wrap_correctSliceIntensity = new correctSliceIntensity(inputFile, maskFile, outputFile);
 		boolExit = wrap_correctSliceIntensity->SliceIntensityCorrection();
 		return boolExit;
 	}

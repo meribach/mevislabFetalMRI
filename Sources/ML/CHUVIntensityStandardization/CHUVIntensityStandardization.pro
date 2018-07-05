@@ -30,6 +30,15 @@ DEFINES += CHUVINTENSITYSTANDARDIZATION_EXPORTS
 # Enable ML deprecated API warnings. To completely disable the deprecated API, change WARN to DISABLE.
 DEFINES += ML_WARN_DEPRECATED
 
+
+win32 {
+QMAKE_CXXFLAGS += /openmp
+}
+
+linux {
+QMAKE_CXXFLAGS += -fopenmp
+}
+
 HEADERS += \
     CHUVIntensityStandardizationInit.h \
     CHUVIntensityStandardizationSystem.h \

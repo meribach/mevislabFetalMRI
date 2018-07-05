@@ -31,6 +31,8 @@ Interface {
       type = Int
       editable = No
     }
+    
+    Field validate { type = Trigger}
 
   }
 }
@@ -51,11 +53,12 @@ Window {
     Field outputFiles {}
     Field maskFiles {}
     Field iteration {step = 1}
-    Button {title = "Validate" command = runHistoNormalization }
+    Button validate {}
   }
 }
 
 
 Commands {
   source = $(LOCAL)/mialHistogramNormalization.py
+  FieldListener validate {command = runHistoNormalization}
 }

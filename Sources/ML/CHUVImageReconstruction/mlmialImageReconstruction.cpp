@@ -96,6 +96,7 @@ mialImageReconstruction::mialImageReconstruction() : Module(0, 0), m_pBGImageRec
   _MinStepLengthRegistrationFld = addDouble("MinStepLengthRegistration", 0.0001);
   _MaxStepLengthRegistrationFld = addDouble("MaxStepLengthRegistration", 0.2);
   _RelaxationFactorRegistrationFld = addDouble("RelaxationFactorRegistration", 0.5);
+  _resampleKernelMultiplicatorFld = addFloat("resampleKernelMultiplicator", 1.0);
   _statusFld = addString("status", "");
   _startTaskFld = addTrigger("startTask");
   _startTaskModalFld = addTrigger("startTaskModal");
@@ -335,7 +336,7 @@ void mialImageReconstruction::ReconstructHRImage()
 	  splittransformout,splitresampled, tempcombinedMask,_itMaxFld->getIntValue(),_espilonFld->getDoubleValue(),_marginFld->getDoubleValue(), _rigid3DFld->getBoolValue(),
 	  _noregFld->getBoolValue(),_debluringFld->getBoolValue(), boxBool, maskBool, allBool,_ImageBaseOfReconFld->getIntValue(), tempmetricToUse,
 	  _nbIterationsRegistrationFld->getIntValue(),_GradientMagnitudeToleranceRegistrationFld->getDoubleValue(),_MinStepLengthRegistrationFld->getDoubleValue(),
-	  _MaxStepLengthRegistrationFld->getDoubleValue(),_RelaxationFactorRegistrationFld->getDoubleValue());
+	  _MaxStepLengthRegistrationFld->getDoubleValue(),_RelaxationFactorRegistrationFld->getDoubleValue(), _resampleKernelMultiplicatorFld->getFloatValue());
 
   std::cout << "wrapper construct" << std::endl;
   std::cout << useImageReconstructionWrapper->outputFile << std::endl;
