@@ -1,0 +1,22 @@
+all: release debug
+
+#/home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI_backup/Sources/ML/CHUVTools/Makefile.CHUVTools.Release: /home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI_backup/Sources/ML/CHUVTools/CHUVTools.pro
+#	cd /home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI_backup/Sources/ML/CHUVTools && /home/neuropsynov/MeVisLab3.0.2GCC-5.4.0/Packages/MeVis/ThirdParty/Python/Release/bin/python /home/neuropsynov/MeVisLab3.0.2GCC-5.4.0/Packages/MeVis/BuildSystem/BuildTools/Scripts/createProject.py CHUVTools
+#/home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI_backup/Sources/ML/CHUVTools/Makefile.CHUVTools.Debug: /home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI_backup/Sources/ML/CHUVTools/CHUVTools.pro
+#	cd /home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI_backup/Sources/ML/CHUVTools && /home/neuropsynov/MeVisLab3.0.2GCC-5.4.0/Packages/MeVis/ThirdParty/Python/Release/bin/python /home/neuropsynov/MeVisLab3.0.2GCC-5.4.0/Packages/MeVis/BuildSystem/BuildTools/Scripts/createProject.py CHUVTools
+
+release: #/home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI_backup/Sources/ML/CHUVTools/Makefile.CHUVTools.Release
+	cd /home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI_backup/Sources/ML/CHUVTools && $(MAKE) -k -j 4 -f Makefile.CHUVTools.Release
+debug: #/home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI_backup/Sources/ML/CHUVTools/Makefile.CHUVTools.Debug
+	cd /home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI_backup/Sources/ML/CHUVTools && $(MAKE) -k -j 4 -f Makefile.CHUVTools.Debug
+cleanall: clean
+cleanrelease:
+	cd /home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI_backup/Sources/ML/CHUVTools && if test -e Makefile.CHUVTools.Release; then $(MAKE) -k -f Makefile.CHUVTools.Release clean; fi
+cleandebug:
+	cd /home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI_backup/Sources/ML/CHUVTools && if test -e Makefile.CHUVTools.Debug; then $(MAKE) -k -f Makefile.CHUVTools.Debug clean; fi
+
+clean: cleanrelease cleandebug
+
+rebuilddebug: cleandebug debug
+
+rebuildrelease: cleanrelease release
