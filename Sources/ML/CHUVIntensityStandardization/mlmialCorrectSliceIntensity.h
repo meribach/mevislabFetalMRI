@@ -22,6 +22,8 @@ class CorrectSliceIntensityWrapper;
 
 ML_START_NAMESPACE
 
+class mialCorrectSliceIntensityBackgroundTask;
+
 //! 
 class CHUVINTENSITYSTANDARDIZATION_EXPORT mialCorrectSliceIntensity : public Module
 {

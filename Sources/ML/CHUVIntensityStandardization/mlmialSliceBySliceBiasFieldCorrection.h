@@ -22,6 +22,8 @@ class mialsrtkSliceBySliceCorrectBiasFieldWrapper;
 
 ML_START_NAMESPACE
 
+class mialSliceBySliceBiasFieldCorrectionBackgroundTask;
+
 //! 
 class CHUVINTENSITYSTANDARDIZATION_EXPORT mialSliceBySliceBiasFieldCorrection : public Module
 {

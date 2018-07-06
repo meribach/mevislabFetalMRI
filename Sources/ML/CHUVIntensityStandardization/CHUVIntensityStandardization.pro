@@ -37,6 +37,7 @@ QMAKE_CXXFLAGS += /openmp
 
 linux {
 QMAKE_CXXFLAGS += -fopenmp
+LIBS += -fopenmp
 }
 
 HEADERS += \

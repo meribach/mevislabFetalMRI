@@ -23,6 +23,8 @@ class IntensityStandardizationWrapper;
 
 ML_START_NAMESPACE
 
+class mialIntensityStandardizationBackgroundTask;
+
 //! 
 class CHUVINTENSITYSTANDARDIZATION_EXPORT mialIntensityStandardization : public Module
 {

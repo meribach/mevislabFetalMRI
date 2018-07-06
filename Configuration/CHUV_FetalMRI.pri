@@ -66,6 +66,8 @@ LIBS          += -L"$${PACKAGE_ROOT}"/lib
 #  CONFIG += ProjectMLMyProjectDependsOn1 ProjectMLMyProjectDependsOn2 ...
 #}
 
+unix:LIBS += -Wl,--start-group 
+
 MyTools {
    CONFIG_FOUND += MyTools
    INCLUDEPATH += $${PACKAGE_SOURCES}/Shared/MyTools 
@@ -314,10 +316,13 @@ MyITK {
                -litkzlib-4.13 \
                -lITKIOPNG-4.13 \            
                -lITKznz-4.13 \
+               -ldl \
+
 }
 
+unix:LIBS += -Wl,--end-group  
 message($$INCLUDEPATH)
-message("PAckage lib path")
+message($$LIBS)
 message($$PACKAGE_LIB)  
 
 # -----------------------------------------------------------------------------
