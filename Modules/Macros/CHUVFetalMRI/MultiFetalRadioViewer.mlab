@@ -34,9 +34,9 @@ cal_min : 0
 datatype : 4
 descrip : 
 dim[0] : 3
-dim[1] : 135
-dim[2] : 189
-dim[3] : 155
+dim[1] : 512
+dim[2] : 512
+dim[3] : 27
 dim[4] : 1
 dim[5] : 1
 dim[6] : 1
@@ -48,20 +48,20 @@ intent_p1 : 0
 intent_p2 : 0
 intent_p3 : 0
 pixdim[0] : 1
-pixdim[1] : 0.799999
-pixdim[2] : 0.799999
-pixdim[3] : 0.799999
+pixdim[1] : 0.4688
+pixdim[2] : 0.4688
+pixdim[3] : 3.00005
 pixdim[4] : 0
 pixdim[5] : 0
 pixdim[6] : 0
 pixdim[7] : 0
 qform_code : 2
-qoffset_x : 53.5999
-qoffset_y : 75.1999
-qoffset_z : -61.5999
-quatern_b : 0
-quatern_c : 0
-quatern_d : 1
+qoffset_x : -10.4621
+qoffset_y : 193.009
+qoffset_z : -87.0453
+quatern_b : -0.181682
+quatern_c : 0.230454
+quatern_d : -0.892543
 scl_inter : 0
 scl_slope : 1
 sform_code : 1
@@ -69,29 +69,29 @@ slice_code :
 slice_duration : 0
 slice_end : 0
 slice_start : 0
-srow_x : -0.799999 0 0 53.5999
-srow_y : 0 -0.799999 0 75.1999
-srow_z : 0 0 0.799999 -61.5999
+srow_x : -0.327919 0.247294 1.44645 -10.4621
+srow_y : -0.325807 -0.309072 -0.860894 193.009
+srow_z : 0.0780527 -0.251184 2.48334 -87.0453
 toffset : 0
 vox_offset : 352
 xyzt_units : 
 "
     suppressErrorPosting = FALSE
-    unresolvedFileName = D:/Pierre/CRL_Fetal_Brain_Atlas_2016/CRL_Fetal_Brain_Atlas_2016/STA23.nii.gz
+    unresolvedFileName = D:/Pierre/zurich/Anonymized_data/pathology/10063_GW_27/testMultipleDicom2Nifti/0MR_CorSSFSESchadel.nii
   }
 }
 module OrthoView2D {
   internal  {
-    frame = "317 305 136 64"
+    frame = "309 305 136 64"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "767 414 400 430"
+        geometry = "868 521 400 372"
         sizeHint = "400 430"
         wasOpen = no
       }
       window _automatic {
-        geometry = "39 160 500 600"
+        geometry = "14 123 500 600"
         sizeHint = "260 223"
         wasOpen = no
       }
@@ -114,31 +114,31 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 3484
-    grayCenter = 1742
+    grayWidth = 2467
+    grayCenter = 1233.5
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "9.58290481567383 -6.48614454269409 15.7741603851318"
+    worldPosition = "-1.37115478515625 -32.7240905761719 -104.687637329102"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
 }
 module OrthoView2D {
   internal  {
-    frame = "525 349 120 56"
+    frame = "665 361 144 64"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "767 414 400 430"
+        geometry = "1076 401 400 430"
         sizeHint = "400 430"
         wasOpen = no
       }
       window _automatic {
-        geometry = "595 158 500 600"
+        geometry = "845 578 500 600"
         sizeHint = "260 223"
         wasOpen = no
       }
@@ -161,31 +161,31 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 3484
-    grayCenter = 1742
+    grayWidth = 2467
+    grayCenter = 1233.5
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "9.58290481567383 -6.48614454269409 15.7741603851318"
+    worldPosition = "-1.37115478515625 -32.7240905761719 -104.687637329102"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
 }
 module OrthoView2D {
   internal  {
-    frame = "925 281 152 64"
+    frame = "1037 169 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "767 414 400 430"
+        geometry = "705 227 400 430"
         sizeHint = "400 430"
         wasOpen = no
       }
       window _automatic {
-        geometry = "1223 351 500 600"
+        geometry = "1313 381 500 600"
         sizeHint = "260 223"
         wasOpen = no
       }
@@ -208,15 +208,15 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 3484
-    grayCenter = 1742
+    grayWidth = 2467
+    grayCenter = 1233.5
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "9.58290481567383 -6.48614454269409 15.7741603851318"
+    worldPosition = "-1.37115478515625 -32.7240905761719 -104.687637329102"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
@@ -249,6 +249,7 @@ module mialImageReconstruction {
     MinStepLengthRegistration = 0.0001
     MaxStepLengthRegistration = 0.2
     RelaxationFactorRegistration = 0.5
+    resampleKernelMultiplicator = 1
     inProgress = FALSE
     outputSucceed = FALSE
   }
@@ -259,7 +260,7 @@ module CreateBoundingVolume {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "897 770 321 212"
+        geometry = "1088 943 321 212"
         sizeHint = "309 212"
         wasOpen = no
       }
@@ -297,8 +298,8 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 77
-    numSlices = 1
+    startSlice = 304
+    numSlices = 7
     numXSlices = 1
     sliceStep = 1
     slab = 1
@@ -322,8 +323,8 @@ module View2D {
     sliceOrigin = "0 0"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 1742
-    lutWidth = 3484
+    lutCenter = 1538
+    lutWidth = 2467
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -347,6 +348,13 @@ module Reformat {
     frame = "65 425 144 64"
     moduleGroupName = ""
     showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "766 303 419 652"
+        sizeHint = "402 652"
+        wasOpen = no
+      }
+    }
   }
   fields  {
     instanceName = ReformatAxial
@@ -359,7 +367,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "-7.15255737304688e-07 4.76837158203125e-07 7.15255737304688e-07"
+    center = "12.3692452906401 -19.5976863812067 -74.0571555294622"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -425,7 +433,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 67
+    startSlice = 356
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -450,8 +458,8 @@ module View2D {
     sliceOrigin = "46.5332183837891 110.516395568848"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 1742
-    lutWidth = 3484
+    lutCenter = 1538
+    lutWidth = 2467
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -487,7 +495,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "-7.15255737304688e-07 4.76837158203125e-07 7.15255737304688e-07"
+    center = "12.3692452906401 -19.5976863812067 -74.0571555294622"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -553,7 +561,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 94
+    startSlice = 371
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -578,8 +586,8 @@ module View2D {
     sliceOrigin = "49.2503433227539 47.9289855957031"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 1742
-    lutWidth = 3484
+    lutCenter = 1538
+    lutWidth = 2467
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -622,7 +630,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "-7.15255737304688e-07 4.76837158203125e-07 7.15255737304688e-07"
+    center = "12.3692452906401 -19.5976863812067 -74.0571555294622"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -652,7 +660,7 @@ module SoView2DLabel {
       window _default {
         geometry = "903 224 400 717"
         sizeHint = "400 717"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -661,7 +669,7 @@ module SoView2DLabel {
     interactionProviderID = ""
     drawingOn = TRUE
     color = "0.882352948188782 0.968627452850342 0.0352941192686558"
-    text = "Image :"
+    text = D:/Pierre/zurich/Anonymized_data/pathology/10063_GW_27/testMultipleDicom2Nifti/0MR_CorSSFSESchadel.nii
     viewerId = ""
     textPositioning = RELATIVE_TO_VIEWER
     worldPosition = "0 0 0"
@@ -679,16 +687,89 @@ module SoView2DLabel {
     textShadow = FALSE
   }
 }
+module SyncVector {
+  internal  {
+    frame = "513 341 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "24 270 334 154"
+        sizeHint = "334 154"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SyncVector
+    vector1 = "-1.37115478515625 -32.7240905761719 -104.687637329102 0"
+    vector2 = "-1.37115478515625 -32.7240905761719 -104.687637329102 0"
+    epsilon = 9.9999997e-05
+    epsilonVec = "0.001 0.001 0.001 0.001"
+    mode = EpsilonScalar
+  }
+}
+module SyncVector {
+  internal  {
+    frame = "845 189 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _automatic {
+        geometry = "1063 457 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "733 603 334 154"
+        sizeHint = "334 154"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SyncVector1
+    vector1 = "-1.37115478515625 -32.7240905761719 -104.687637329102 0"
+    vector2 = "-1.37115478515625 -32.7240905761719 -104.687637329102 0"
+    epsilon = 9.9999997e-05
+    epsilonVec = "0.001 0.001 0.001 0.001"
+    mode = EpsilonScalar
+  }
+}
+module SyncVector {
+  internal  {
+    frame = "677 101 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _automatic {
+        geometry = "746 592 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SyncVector2
+    vector1 = "-1.37115478515625 -32.7240905761719 -104.687637329102 0"
+    vector2 = "-1.37115478515625 -32.7240905761719 -104.687637329102 0"
+    epsilon = 9.9999997e-05
+    epsilonVec = "0.001 0.001 0.001 0.001"
+    mode = EpsilonScalar
+  }
+}
 connections  {
   OrthoView2DAxial.image = ReformatAxial.output0
   OrthoView2DAxial.inInvPreLUT = LabelViewerMode.self
-  OrthoView2DAxial.worldPosition = OrthoView2DCoronal.worldPosition
+  OrthoView2DAxial.worldPosition = SyncVector2.vector2
   OrthoView2DSagittal.image = ReformatSagittal.output0
   OrthoView2DSagittal.inInvPreLUT = LabelViewerMode.self
-  OrthoView2DSagittal.worldPosition = OrthoView2DAxial.worldPosition
+  OrthoView2DSagittal.worldPosition = SyncVector.vector2
   OrthoView2DCoronal.image = ReformatCoronal.output0
   OrthoView2DCoronal.inInvPreLUT = LabelViewerMode.self
-  OrthoView2DCoronal.worldPosition = OrthoView2DSagittal.worldPosition
+  OrthoView2DCoronal.worldPosition = SyncVector1.vector2
   CreateBoundingVolumeAxial.input0 = itkImageFileReader.output0
   View2DAxial.inImage = ReformatAxial.output0
   ReformatAxial.input0 = itkImageFileReader.output0
@@ -701,5 +782,8 @@ connections  {
   View2DCoronal.inImage = ReformatCoronal.output0
   ReformatCoronal.input0 = itkImageFileReader.output0
   ReformatCoronal.input1 = CreateBoundingVolumeCoronal.output0
+  SyncVector.vector1 = OrthoView2DAxial.worldPosition
+  SyncVector1.vector1 = OrthoView2DSagittal.worldPosition
+  SyncVector2.vector1 = OrthoView2DCoronal.worldPosition
 }
 networkModel = ""

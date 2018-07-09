@@ -35,6 +35,8 @@ def fileDialog():
   if filenames:
     ctx.field("inImageInfos").setObject(filenames)
     ctx.field("NumberImages").setIntValue(len(filenames))
+    
+  updateImage()  
 
 
 def updateImage():

@@ -100,7 +100,7 @@ def ReRunImageReconstruction():
   print("reRunImageReconstruction")
   
 
-def RunSuperVariation():
+def RunSuperResolution():
   print("run SuperVariation")
   
   
