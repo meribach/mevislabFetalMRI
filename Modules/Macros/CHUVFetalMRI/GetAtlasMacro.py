@@ -15,6 +15,7 @@ from LocalFilePathSupport import populateComboBoxWithDefaultPathVariables
 import os
 
 def init():
+  print("Init GetAtlasMacro")
   print(ctx.field("AtlasPath").stringValue())
   updateAtlas()
 
@@ -24,7 +25,7 @@ def init():
 def AtlasPathChanged():
   print("atlaspath changed")
   exp = ctx.field("AtlasPath").stringValue()
-  if MLABFileManager.exists(exp):
+  if MLABFileManager.exists(ctx.expandFilename(exp)):
     updateAtlas()
   else:
     fileDialog()
@@ -37,16 +38,16 @@ def weeksChanged():
 
 def updateAtlas(newWeek=None):
 
-   if MLABFileManager.exists(ctx.field("AtlasPath").value):
-     for file in os.listdir(ctx.field("AtlasPath").value):
+   if MLABFileManager.exists(ctx.expandFilename(ctx.field("AtlasPath").value)):
+     for file in os.listdir(ctx.expandFilename(ctx.field("AtlasPath").value)):
        if file.endswith(".nii.gz"):
          if not "parc" in file and not "LogicalMask" in file:
            if "STA%i"%ctx.field("currentWeek").value in file:
-             print(os.path.join(ctx.field("AtlasPath").value,file))
-             ctx.field("itkImageFileReader.fileName").setStringValue(os.path.join(ctx.field("AtlasPath").value,file))
+             print(os.path.join(ctx.expandFilename(ctx.field("AtlasPath").value),file))
+             ctx.field("itkImageFileReader.fileName").setStringValue(os.path.join(ctx.expandFilename(ctx.field("AtlasPath").value),file))
          if "LogicalMask" in file:
            if "STA%i"%ctx.field("currentWeek").value in file:
-             ctx.field("itkImageFileReaderMask.fileName").setStringValue(os.path.join(ctx.field("AtlasPath").value,file))
+             ctx.field("itkImageFileReaderMask.fileName").setStringValue(os.path.join(ctx.expandFilename(ctx.field("AtlasPath").value),file))
    else:
      AtlasPathChanged()
 
@@ -56,7 +57,7 @@ def populateComboBox():
 
 def fileDialog():
   #exp = ctx.expandFilename(ctx.field("AtlasPath").stringValue())
-  filename = MLABFileDialog.getExistingDirectory(ctx.field("AtlasPath").stringValue(), "Select the Atlas directory", MLABFileDialog.ShowDirsOnly)
+  filename = MLABFileDialog.getExistingDirectory(ctx.expandFilename(ctx.field("AtlasPath").stringValue()), "Select the Atlas directory", MLABFileDialog.ShowDirsOnly)
   if filename:
-    ctx.field("AtlasPath").value = filename
+    ctx.field("AtlasPath").value = ctx.unexpandFilename(filename)
     ctx.field("name").value = filename

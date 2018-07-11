@@ -66,6 +66,8 @@ LIBS          += -L"$${PACKAGE_ROOT}"/lib
 #  CONFIG += ProjectMLMyProjectDependsOn1 ProjectMLMyProjectDependsOn2 ...
 #}
 
+unix:LIBS += -Wl,--start-group 
+
 MyTools {
    CONFIG_FOUND += MyTools
    INCLUDEPATH += $${PACKAGE_SOURCES}/Shared/MyTools 
@@ -74,10 +76,10 @@ MyTools {
                  mialsrtkOrientImageWrapper.lib$${d} \
                  btkNLMDenoisingLib.lib$${d} \
                  btkNLMDenoisingWrapper.lib$${d} 
-   unix:LIBS +=	 libmialsrtkOrientImageLib.a$${d} \
-                 libmialsrtkOrientImageWrapper.a$${d} \
-                 libbtkNLMDenoisingLib.a$${d} \
-                 libbtkNLMDenoisingWrapper.a$${d} \  
+   unix:LIBS +=	 -lmialsrtkOrientImageLib$${d} \
+                 -lmialsrtkOrientImageWrapper$${d} \
+                 -lbtkNLMDenoisingLib$${d} \
+                 -lbtkNLMDenoisingWrapper$${d} \  
 }
 
 MyIntensityStandardization {
@@ -92,14 +94,14 @@ MyIntensityStandardization {
                  mialsrtkSliceBySliceCorrectBiasFieldWrapper.lib$${d} \
                  mialsrtkSliceBySliceN4BiasFieldCorrectionLib.lib$${d} \
                  mialsrtkSliceBySliceN4BiasFieldCorrectionWrapper.lib$${d} 
-   unix:LIBS +=	 libmialsrtkCorrectSliceIntensityLib.a$${d} \
-                 libmialsrtkCorrectSliceIntensityWrapper.a$${d} \
-                 libmialsrtkIntensityStandardizationLib.a$${d} \
-                 libmialsrtkIntensityStandardizationWrapper.a$${d} \
-                 libmialsrtkSliceBySliceCorrectBiasFieldLib.a$${d} \
-                 libmialsrtkSliceBySliceCorrectBiasFieldWrapper.a$${d} \
-                 libmialsrtkSliceBySliceN4BiasFieldCorrectionLib.a$${d} \
-                 libmialsrtkSliceBySliceN4BiasFieldCorrectionWrapper.a$${d}\		 
+   unix:LIBS +=	 -lmialsrtkCorrectSliceIntensityLib$${d} \
+                 -lmialsrtkCorrectSliceIntensityWrapper$${d} \
+                 -lmialsrtkIntensityStandardizationLib$${d} \
+                 -lmialsrtkIntensityStandardizationWrapper$${d} \
+                 -lmialsrtkSliceBySliceCorrectBiasFieldLib$${d} \
+                 -lmialsrtkSliceBySliceCorrectBiasFieldWrapper$${d} \
+                 -lmialsrtkSliceBySliceN4BiasFieldCorrectionLib$${d} \
+                 -lmialsrtkSliceBySliceN4BiasFieldCorrectionWrapper$${d}\		 
 }
 
 MyImageReconstruction {
@@ -108,8 +110,8 @@ MyImageReconstruction {
    QMAKE_LIBDIR += $${PACKAGE_LIB}/MyImageReconstruction 
    win32:LIBS += mialsrtkImageReconstructionLib.lib$${d} \
                  mialsrtkImageReconstructionWrapper.lib$${d} 
-   unix:LIBS += -l/libmialsrtkImageReconstructionLib.a$${d} \
-                -l/libmialsrtkImageReconstructionWrapper.a$${d} 
+   unix:LIBS += -lmialsrtkImageReconstructionLib$${d} \
+                -lmialsrtkImageReconstructionWrapper$${d} 
 }
 
 MyTVSuperResolution {
@@ -118,13 +120,13 @@ MyTVSuperResolution {
    QMAKE_LIBDIR += $${PACKAGE_LIB}/MyTVSuperResolution
    win32:LIBS += mialsrtkTVSuperResolutionLib.lib$${d} \
                  mialsrtkTVSuperResolutionWrapper.lib$${d} 
-   unix:LIBS += libmialsrtkTVSuperResolutionLib.a$${d} \
-                libmialsrtkTVSuperResolutionWrapper.a$${d} \
+   unix:LIBS += -lmialsrtkTVSuperResolutionLib$${d} \
+                -lmialsrtkTVSuperResolutionWrapper$${d} \
 }
 
 MyITK {
   CONFIG_FOUND += MyITK
-  QMAKE_LIBDIR += $${PACKAGE_LIB}/MyITK
+  QMAKE_LIBDIR += $${PACKAGE_LIB}/MyITK 
   win32:LIBS += ITKBiasCorrection-4.13.lib \
 		ITKIOImageBase-4.13.lib \
 		ITKNrrdIO-4.13.lib \
@@ -225,99 +227,103 @@ MyITK {
 		psapi.lib 
 
 		
-  unix:LIBS += libITKIOSiemens-4.13.a \
-               libITKBiasCorrection-4.13.a \
-               libITKIOSpatialObjects-4.13.a \
-               libITKBioCell-4.13.a \    
-               libITKIOStimulate-4.13.a \
-               libITKCommon-4.13.a \     
-               libITKIOTIFF-4.13.a \
-               libITKDICOMParser-4.13.a \       
-               libITKIOTransformBase-4.13.a \
-               libitkdouble-conversion-4.13.a \
-               libITKIOTransformHDF5-4.13.a \
-               libITKEXPAT-4.13.a \ 
-               libITKIOTransformInsightLegacy-4.13.a \
-               libITKFEM-4.13.a \
-               libITKIOTransformMatlab-4.13.a \
-               libitkgdcmcharls-4.13.a \
-               libITKIOVTK-4.13.a \
-               libitkgdcmCommon-4.13.a \        
-               libITKIOXML-4.13.a \
-               libitkgdcmDICT-4.13.a \        
-               libitkjpeg-4.13.a \
-               libitkgdcmDSED-4.13.a \          
-               libITKKLMRegionGrowing-4.13.a \
-               libitkgdcmIOD-4.13.a \        
-               libITKLabelMap-4.13.a \
-               libitkgdcmjpeg12-4.13.a \
-               libitklbfgs-4.13.a \
-               libitkgdcmjpeg16-4.13.a \       
-               libITKMesh-4.13.a \
-               libitkgdcmjpeg8-4.13.a \        
-               libITKMetaIO-4.13.a \
-               libitkgdcmMEXD-4.13.a \         
-               libitkminc2-4.13.a \
-               libitkgdcmMSFF-4.13.a \          
-               libitknetlib-4.13.a \
-               libitkgdcmopenjp2-4.13.a \       
-               libitkNetlibSlatec-4.13.a \
-               libitkgdcmsocketxx-4.13.a \     
-               libITKniftiio-4.13.a \
-               libitkgdcmuuid-4.13.a \      
-               libITKNrrdIO-4.13.a \
-               libITKgiftiio-4.13.a \          
-               libITKOptimizers-4.13.a \
-               libitkgtest-4.13.a \      
-               libITKOptimizersv4-4.13.a \
-               libitkgtest_main-4.13.a \    
-               libITKPath-4.13.a \
-               libitkhdf5.a \        
-               libitkpng-4.13.a \
-               libitkhdf5_cpp.a \             
-               libITKPolynomials-4.13.a \
-               libITKIOBioRad-4.13.a \     
-               libITKQuadEdgeMesh-4.13.a \
-               libITKIOBMP-4.13.a \    
-               libITKSpatialObjects-4.13.a \
-               libITKIOBruker-4.13.a \  
-               libITKStatistics-4.13.a \
-               libITKIOCSV-4.13.a \      
-               libitksys-4.13.a \
-               libITKIOGDCM-4.13.a \            
-               libitktestlib-4.13.a \
-               libITKIOGE-4.13.a \          
-               libitktiff-4.13.a \
-               libITKIOGIPL-4.13.a \            
-               libITKTransform-4.13.a \
-               libITKIOHDF5-4.13.a \       
-               libITKTransformFactory-4.13.a \
-               libITKIOImageBase-4.13.a \
-               libitkv3p_netlib-4.13.a \
-               libITKIOIPL-4.13.a \        
-               libitkvcl-4.13.a \
-               libITKIOJPEG-4.13.a \           
-               libITKVideoCore-4.13.a \
-               libITKIOLSM-4.13.a \       
-               libITKVideoIO-4.13.a \
-               libITKIOMesh-4.13.a \         
-               libitkvnl-4.13.a \
-               libITKIOMeta-4.13.a \           
-               libitkvnl_algo-4.13.a \
-               libITKIOMINC-4.13.a \        
-               libITKVNLInstantiation-4.13.a \
-               libITKIOMRC-4.13.a \
-               libITKVTK-4.13.a \
-               libITKIONIFTI-4.13.a \           
-               libITKWatersheds-4.13.a \
-               libITKIONRRD-4.13.a \      
-               libitkzlib-4.13.a \
-               libITKIOPNG-4.13.a \            
-               libITKznz-4.13.a \
+  unix:LIBS += -lITKIOSiemens-4.13 \
+               -lITKBiasCorrection-4.13 \
+               -lITKIOSpatialObjects-4.13 \
+               -lITKBioCell-4.13 \    
+               -lITKIOStimulate-4.13 \
+               -lITKCommon-4.13 \     
+               -lITKIOTIFF-4.13 \
+               -lITKDICOMParser-4.13 \       
+               -lITKIOTransformBase-4.13 \
+               -litkdouble-conversion-4.13 \
+               -lITKIOTransformHDF5-4.13 \
+               -lITKEXPAT-4.13 \ 
+               -lITKIOTransformInsightLegacy-4.13 \
+               -lITKFEM-4.13 \
+               -lITKIOTransformMatlab-4.13 \
+               -litkgdcmcharls-4.13 \
+               -lITKIOVTK-4.13 \
+               -litkgdcmCommon-4.13 \        
+               -lITKIOXML-4.13 \
+               -litkgdcmDICT-4.13 \        
+               -litkjpeg-4.13 \
+               -litkgdcmDSED-4.13 \          
+               -lITKKLMRegionGrowing-4.13 \
+               -litkgdcmIOD-4.13 \        
+               -lITKLabelMap-4.13 \
+               -litkgdcmjpeg12-4.13 \
+               -litklbfgs-4.13 \
+               -litkgdcmjpeg16-4.13 \       
+               -lITKMesh-4.13 \
+               -litkgdcmjpeg8-4.13 \        
+               -lITKMetaIO-4.13 \
+               -litkgdcmMEXD-4.13 \         
+               -litkminc2-4.13 \
+               -litkgdcmMSFF-4.13 \          
+               -litknetlib-4.13 \
+               -litkgdcmopenjp2-4.13 \       
+               -litkNetlibSlatec-4.13 \
+               -litkgdcmsocketxx-4.13 \     
+               -lITKniftiio-4.13 \
+               -litkgdcmuuid-4.13 \      
+               -lITKNrrdIO-4.13 \
+               -lITKgiftiio-4.13 \          
+               -lITKOptimizers-4.13 \
+               -litkgtest-4.13 \      
+               -lITKOptimizersv4-4.13 \
+               -litkgtest_main-4.13 \    
+               -lITKPath-4.13 \
+               -litkhdf5 \        
+               -litkpng-4.13 \
+               -litkhdf5_cpp \             
+               -lITKPolynomials-4.13 \
+               -lITKIOBioRad-4.13 \     
+               -lITKQuadEdgeMesh-4.13 \
+               -lITKIOBMP-4.13 \    
+               -lITKSpatialObjects-4.13 \
+               -lITKIOBruker-4.13 \  
+               -lITKStatistics-4.13 \
+               -lITKIOCSV-4.13 \      
+               -litksys-4.13 \
+               -lITKIOGDCM-4.13 \            
+               -litktestlib-4.13 \
+               -lITKIOGE-4.13 \          
+               -litktiff-4.13 \
+               -lITKIOGIPL-4.13 \            
+               -lITKTransform-4.13 \
+               -lITKIOHDF5-4.13 \       
+               -lITKTransformFactory-4.13 \
+               -lITKIOImageBase-4.13 \
+               -litkv3p_netlib-4.13 \
+               -lITKIOIPL-4.13 \        
+               -litkvcl-4.13 \
+               -lITKIOJPEG-4.13 \           
+               -lITKVideoCore-4.13 \
+               -lITKIOLSM-4.13 \       
+               -lITKVideoIO-4.13 \
+               -lITKIOMesh-4.13 \         
+               -litkvnl-4.13 \
+               -lITKIOMeta-4.13 \           
+               -litkvnl_algo-4.13 \
+               -lITKIOMINC-4.13 \        
+               -lITKVNLInstantiation-4.13 \
+               -lITKIOMRC-4.13 \
+               -lITKVTK-4.13 \
+               -lITKIONIFTI-4.13 \           
+               -lITKWatersheds-4.13 \
+               -lITKIONRRD-4.13 \      
+               -litkzlib-4.13 \
+               -lITKIOPNG-4.13 \            
+               -lITKznz-4.13 \
+               -ldl \
+
 }
 
+unix:LIBS += -Wl,--end-group  
 message($$INCLUDEPATH)
 message($$LIBS)
+message($$PACKAGE_LIB)  
 
 # -----------------------------------------------------------------------------
 
