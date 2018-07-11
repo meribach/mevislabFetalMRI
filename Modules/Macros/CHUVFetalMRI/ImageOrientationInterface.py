@@ -332,7 +332,7 @@ def updateImage(Image="Image0"):
         exp = ctx.expandFilename(ctx.field("AtlasImage").stringValue())
       else:
         exp = os.path.dirname(inImages[inImages.keys()[0]]['file'])
-      filename = MLABFileDialog.getOpenFileName(exp, "", "Open file")
+      filename = MLABFileDialog.getOpenFileName(exp, "", "Open file ex: Axial2.nii.gz")
       if filename == "":
         print("no file selected")
         return
@@ -341,46 +341,30 @@ def updateImage(Image="Image0"):
       else:
         inImages={Image:{"file":filename}}
       #Reoriented Image
-      if inImages == None:
-        exp = ctx.expandFilename(ctx.field("AtlasImage").stringValue())
-      else:
-        exp = os.path.dirname(inImages[inImages.keys()[0]]['WorldChanged'])
-      filename = MLABFileDialog.getOpenFileName(exp, "", "Open WorldChanged")
+      exp = os.path.dirname(inImages[inImages.keys()[0]]['file'])
+      filename = MLABFileDialog.getOpenFileName(exp, "", "Open WorldChanged ex: Axial2_worldmatrixModified_lr.nii.gz")
       if filename == "":
         print("no WorldChanged selected")
         return
-      if inImages != None:
-        inImages.update({Image:{"WorldChanged":filename}})
-      else:
-        inImages={Image:{"WorldChanged":filename}}      
+      inImages[Image].update({"WorldChanged":filename})
       
       #NLM Image
-      if inImages == None:
-        exp = ctx.expandFilename(ctx.field("AtlasImage").stringValue())
-      else:
-        exp = os.path.dirname(inImages[inImages.keys()[0]]['NLMWorldChanged'])
-      filename = MLABFileDialog.getOpenFileName(exp, "", "Open NLMWorldChanged")
+      exp = os.path.dirname(inImages[inImages.keys()[0]]['file'])
+      filename = MLABFileDialog.getOpenFileName(exp, "", "Open NLMWorldChanged ex: Axial2_worldmatrixModified_lr_NLM.nii.gz")
       if filename == "":
         print("no NLMWorldChanged selected")
         return
-      if inImages != None:
-        inImages.update({Image:{"NLMWorldChanged":filename}})
-      else:
-        inImages={Image:{"NLMWorldChanged":filename}}      
+      inImages[Image].update({"NLMWorldChanged":filename})
+    
       
       #Mask
-      if inImages == None:
-        exp = ctx.expandFilename(ctx.field("AtlasImage").stringValue())
-      else:
-        exp = os.path.dirname(inImages[inImages.keys()[0]]['mask'])
-      filename = MLABFileDialog.getOpenFileName(exp, "", "Open mask")
+      exp = os.path.dirname(inImages[inImages.keys()[0]]['file'])
+      filename = MLABFileDialog.getOpenFileName(exp, "", "Open mask ex: Axial2_worldmatrixModified_lr_brain_mask.nii.gz")
       if filename == "":
         print("no mask selected")
         return
-      if inImages != None:
-        inImages.update({Image:{"mask":filename}})
-      else:
-        inImages={Image:{"mask":filename}}      
+      inImages[Image].update({"mask":filename})
+ 
       
       
     #return
@@ -491,7 +475,7 @@ def updateImage(Image="Image0"):
   ctx.field("SoInteractionMapping1.ignoreOtherCommandActions").setBoolValue(False)
   ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
   ctx.field("LabelViewerMode.text").setStringValue("Viewer Mode %s"%Image)
-  
+  ctx.field("View2DExtensions.lut.relative").setBoolValue(True)
   if ctx.hasControl("button%s"%Image):
     print("has control")
   else:
