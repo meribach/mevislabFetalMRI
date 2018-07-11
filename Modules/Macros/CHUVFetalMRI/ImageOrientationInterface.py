@@ -25,6 +25,8 @@ g_sceneImageOrientation = None
 g_ImageOrientationGraphicsView = None
 g_HorizontalControl = {}
 activeShowPosition = 1
+ToggleLoadPreviousData = 0
+
 ctx.field("Switch.currentInput").setValue(0)
 ctx.field("SoInteractionMapping1.ignoreOtherCommandActions").setBoolValue(False)
 
@@ -41,10 +43,12 @@ def initImageOrientationGraphicsView(view):
   activePositioning = False
   global activeMasking
   activeMasking = False
+  global ToggleLoadPreviousData
+  ToggleLoadPreviousData = 0
   
   global runAllFirstBackgroundTask
   runAllFirstBackgroundTask = False
-  
+  print("Init ImageOrientation")
   ctx.field("itkImageFileReader1.unresolvedFileName").setStringValue("")
   ctx.field("AlreadyModifiedMaskReader.unresolvedFileName").setStringValue("")
   ctx.field("AlreadyModifiedMaskReader.fileName").setStringValue("")
@@ -62,6 +66,8 @@ def initImageOrientationGraphicsView(view):
   ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
   ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
   ctx.field("mialImageReconstruction.ImageBaseOfRecon").setIntValue(ctx.field("RefImageFiled").value)
+  ctx.field("GetAtlasMacro.name").setStringValue("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
+  ctx.field("GetAtlasMacro.AtlasPath").setStringValue("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
   showImageOrientationInterface()
   resetZoom()
   TempObj=temporaryObject()
@@ -126,15 +132,25 @@ def showImageOrientationInterface():
   
   if ctx.field("ExpertMode").value:
      buttonRunDenoising = """Button {expandX = No title = "Denoise Images" name = buttonDenoiseImage command = "py: denoiseImages()" dependsOn = !BackgroundTaskRunning}"""
-     comboboxRegistration = """ComboBox {expandX = No name = comboRegistration items {item = NC item = MI} textChangedCommand = "py: updateParameterRegistration()"}"""
+     comboboxRegistration = """ComboBox RegistrationMetric {expandX = No textChangedCommand = "py: updateParameterRegistration()"}"""
+     FieldPresentRegistration = """Field FieldPresentRegistration {format = STRING title = "Registration Param:" edit = no}"""
+     FieldGradient = """Field RegistrationGradient {title = "Gradient"}"""
+     FieldMinStep = """Field RegistrationMinStep {title = "Min Step"}"""
+     FieldMaxStep = """Field RegistrationMaxStep {title = "Max Step"}"""
+     FieldRelaxFactor = """Field RegistrationRelaxationFactor {title = "Relaxation Factor"}"""
+     buttonLoadPreviousData = """Button {expandX = No title = "Load Raw Data" name = buttonLoadPreProcessed command = "py: loadPreProcessedAlready()"}"""
+     
   FieldStatus = """Field StatusField {format = STRING title = "BackgroundTaskInfo" edit = no}"""
   
   mdlToSet += """Horizontal { name = horizontalRef """ + FieldRefImage + """ Execute = "py: getHorizontalControl(\'refButtons\',\'horizontalRef\')" } """
   mdlToSet += """Horizontal { name = horizontalFinal """ + buttonResetIm + buttonAllBackgroundTasks + FieldStatus + """ Execute = "py: getHorizontalControl(\'LastButtons\',\'horizontalFinal\')" } """
   
   if ctx.field("ExpertMode").value:
-    mdlToSet += """Horizontal { name = horizontalExportMode alignX = Left """ + buttonRunDenoising + comboboxRegistration + """ Execute = "py: getHorizontalControl(\'ExpertButtons\',\'horizontalExportMode\')" } """
-  #mdlToSet += buttonRunDenoising
+    mdlToSet += """Horizontal { name = horizontalExportMode alignX = Left """ + buttonRunDenoising + """ Execute = "py: getHorizontalControl(\'ExpertButtons\',\'horizontalExportMode\')" } """
+    mdlToSet += """Horizontal { name = horizontalExportMode2 alignX = Left """ + FieldPresentRegistration + """ Execute = "py: getHorizontalControl(\'ExpertButtons2\',\'horizontalExportMode2\')" } """
+    mdlToSet += """Horizontal { name = horizontalExportMode3 alignX = Left """ + comboboxRegistration + FieldGradient + FieldMinStep + FieldMaxStep + FieldRelaxFactor + """ Execute = "py: getHorizontalControl(\'ExpertButtons3\',\'horizontalExportMode3\')" } """
+    mdlToSet += """Horizontal { name = horizontalExportMode4 alignX = Left """ + buttonLoadPreviousData + """ Execute = "py: getHorizontalControl(\'ExpertButtons4\',\'horizontalExportMode4\')" } """
+    #mdlToSet += buttonRunDenoising
   #mdlToSet += FieldStatus
   g_sceneImageOrientation.addMDL("Vertical {" + mdlToSet + "}")
   
@@ -294,19 +310,79 @@ def updateImage(Image="Image0"):
     filename = inImages[Image]["file"]
   except:
     print("inImages must be a dictionnary with 'Image0' etc as keys and inImage['Image0'] must be a dictionnary with at least 'file' as key")
-    print("select manually a file for debug")
-    if inImages == None:
-      exp = ctx.expandFilename(ctx.field("AtlasImage").stringValue())
-    else:
-      exp = os.path.dirname(inImages[inImages.keys()[0]]['file'])
-    filename = MLABFileDialog.getOpenFileName(exp, "", "Open file")
-    if filename == "":
-      print("no file selected")
-      return
-    if inImages != None:
-      inImages.update({Image:{"file":filename}})
-    else:
-      inImages={Image:{"file":filename}}
+    
+    if ToggleLoadPreviousData == 0:
+      print("select manually a file for debug")
+      if inImages == None:
+        exp = ctx.expandFilename(ctx.field("AtlasImage").stringValue())
+      else:
+        exp = os.path.dirname(inImages[inImages.keys()[0]]['file'])
+      filename = MLABFileDialog.getOpenFileName(exp, "", "Open file")
+      if filename == "":
+        print("no file selected")
+        return
+      if inImages != None:
+        inImages.update({Image:{"file":filename}})
+      else:
+        inImages={Image:{"file":filename}}
+    elif ToggleLoadPreviousData == 1:
+      print("select manually files")
+      #Raw Image
+      if inImages == None:
+        exp = ctx.expandFilename(ctx.field("AtlasImage").stringValue())
+      else:
+        exp = os.path.dirname(inImages[inImages.keys()[0]]['file'])
+      filename = MLABFileDialog.getOpenFileName(exp, "", "Open file")
+      if filename == "":
+        print("no file selected")
+        return
+      if inImages != None:
+        inImages.update({Image:{"file":filename}})
+      else:
+        inImages={Image:{"file":filename}}
+      #Reoriented Image
+      if inImages == None:
+        exp = ctx.expandFilename(ctx.field("AtlasImage").stringValue())
+      else:
+        exp = os.path.dirname(inImages[inImages.keys()[0]]['WorldChanged'])
+      filename = MLABFileDialog.getOpenFileName(exp, "", "Open WorldChanged")
+      if filename == "":
+        print("no WorldChanged selected")
+        return
+      if inImages != None:
+        inImages.update({Image:{"WorldChanged":filename}})
+      else:
+        inImages={Image:{"WorldChanged":filename}}      
+      
+      #NLM Image
+      if inImages == None:
+        exp = ctx.expandFilename(ctx.field("AtlasImage").stringValue())
+      else:
+        exp = os.path.dirname(inImages[inImages.keys()[0]]['NLMWorldChanged'])
+      filename = MLABFileDialog.getOpenFileName(exp, "", "Open NLMWorldChanged")
+      if filename == "":
+        print("no NLMWorldChanged selected")
+        return
+      if inImages != None:
+        inImages.update({Image:{"NLMWorldChanged":filename}})
+      else:
+        inImages={Image:{"NLMWorldChanged":filename}}      
+      
+      #Mask
+      if inImages == None:
+        exp = ctx.expandFilename(ctx.field("AtlasImage").stringValue())
+      else:
+        exp = os.path.dirname(inImages[inImages.keys()[0]]['mask'])
+      filename = MLABFileDialog.getOpenFileName(exp, "", "Open mask")
+      if filename == "":
+        print("no mask selected")
+        return
+      if inImages != None:
+        inImages.update({Image:{"mask":filename}})
+      else:
+        inImages={Image:{"mask":filename}}      
+      
+      
     #return
   
   ctx.field("itkImageFileReader.fileName").setStringValue(filename)
@@ -1653,7 +1729,8 @@ def updateRefImageReconstruction():
 
 def updateParameterRegistration():
   
-  print("to do change parameter registration")
+  #ctx.field("mialImageReconstruction.MetricToUse")
+  print("update Registration parameters")
 
 
 #can't do one function dealing with every condition, have to split in functions depending on which process is done
@@ -1663,6 +1740,14 @@ def updateParameterRegistration():
 #  listOfPossibleTask[Task].touch()
 
 
+def loadPreProcessedAlready():
+  global ToggleLoadPreviousData
+  if ToggleLoadPreviousData==0:
+    ToggleLoadPreviousData = 1
+    g_HorizontalControl['ExpertButtons4'].control("buttonLoadPreProcessed").setTitle("Load Previous Data")
+  elif ToggleLoadPreviousData==1:
+    ToggleLoadPreviousData = 0
+    g_HorizontalControl['ExpertButtons4'].control("buttonLoadPreProcessed").setTitle("Load Raw Data")
 
 
 class temporaryObject():

@@ -38,10 +38,16 @@ Interface {
     Field increaseNbImage {type = Trigger}
     Field decreaseNbImage {type = Trigger}
     Field StatusField {type = String}
+    Field FieldPresentRegistration {type = String}
     Field RefImageFiled {type = Int value = 0}
     Field BackgroundTaskRunning {type = Bool}
     Field StopBackgroundTask {type = Bool}
     Field ExpertMode {type = Bool value = True}
+    Field RegistrationMetric {internalName = mialImageReconstruction.MetricToUse}
+    Field RegistrationGradient {internalName = mialImageReconstruction.GradientMagnitudeToleranceRegistration}
+    Field RegistrationRelaxationFactor {internalName = mialImageReconstruction.RelaxationFactorRegistration}
+    Field RegistrationMinStep {internalName = mialImageReconstruction.MinStepLengthRegistration}
+    Field RegistrationMaxStep {internalName = mialImageReconstruction.MaxStepLengthRegistration}
     
     Field WaitForReconstruction {type = Bool value = False}
     //Field temporaryMasksSwitch {type = MLBase }
