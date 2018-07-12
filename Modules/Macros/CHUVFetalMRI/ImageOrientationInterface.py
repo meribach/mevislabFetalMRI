@@ -363,7 +363,10 @@ def updateImage(Image="Image0"):
         print("no mask selected")
         return
       inImages[Image].update({"mask":filename})
- 
+      valIm = currentImage.split('Image')[-1]
+      g_HorizontalControl[Image].control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
+      g_HorizontalControl[Image].control("GenerateBrainMask%s"%valIm).setEnabled(True)
+      g_HorizontalControl[Image].control("buttonResetBrainMask%s"%valIm).setEnabled(True)
       
       
     #return
