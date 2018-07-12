@@ -367,6 +367,7 @@ def updateImage(Image="Image0"):
       g_HorizontalControl[Image].control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
       g_HorizontalControl[Image].control("GenerateBrainMask%s"%valIm).setEnabled(True)
       g_HorizontalControl[Image].control("buttonResetBrainMask%s"%valIm).setEnabled(True)
+      ctx.control("checkImage%s"%valIm).setChecked(True)
       
       
     #return
