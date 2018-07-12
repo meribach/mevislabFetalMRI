@@ -351,11 +351,10 @@ def updateImage(Image="Image0"):
       #NLM Image
       exp = os.path.dirname(inImages[inImages.keys()[0]]['file'])
       filename = MLABFileDialog.getOpenFileName(exp, "", "Open NLMWorldChanged ex: Axial2_worldmatrixModified_lr_NLM.nii.gz")
-      if filename == "":
+      if filename != "":
+        inImages[Image].update({"NLMWorldChanged":filename})
+      else:
         print("no NLMWorldChanged selected")
-        return
-      inImages[Image].update({"NLMWorldChanged":filename})
-    
       
       #Mask
       exp = os.path.dirname(inImages[inImages.keys()[0]]['file'])
