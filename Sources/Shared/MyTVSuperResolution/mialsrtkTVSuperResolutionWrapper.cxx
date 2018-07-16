@@ -6,7 +6,8 @@
 mialsrtkTVSuperResolutionWrapper::mialsrtkTVSuperResolutionWrapper(std::vector< std::string > _inputFile, std::vector< std::string > _maskFile, const char* _outputFile, const char* _refFile,
 	std::vector< std::string > _transformin, int _Iter, double _lambda, double _deltat, double _gamma, double _stepScale, double _innerConvThreshold,
 	double _outerConvThreshold, int _numberOfLoops, int _numberOfBregmanLoops, bool _boxcar, bool _updateMotion, const char* _refMask,
-	std::vector< std::string > _pre_input, std::vector< std::string > _outTransform, const char* _debugDir, bool _debluring, float _kernelRadiusMultiplicator)
+	std::vector< std::string > _pre_input, std::vector< std::string > _outTransform, const char* _debugDir, bool _debluring, float _kernelRadiusMultiplicator,
+	const char* const _MetricToUse, unsigned int _m_Iterations, double _m_GradientMagnitudeTolerance, double _m_MinStepLength,double _m_MaxStepLength, double _m_RelaxationFactor)
 {
 	inputFile = _inputFile;
 	maskFile = _maskFile;
@@ -30,6 +31,15 @@ mialsrtkTVSuperResolutionWrapper::mialsrtkTVSuperResolutionWrapper(std::vector< 
 	debugDir = _debugDir;
 	debluring = _debluring;
 	kernelRadiusMultiplicator = _kernelRadiusMultiplicator;
+
+	MetricToUse = _MetricToUse;
+
+	m_Iterations = _m_Iterations;
+	m_GradientMagnitudeTolerance = _m_GradientMagnitudeTolerance;
+	m_MinStepLength = _m_MinStepLength;
+	m_MaxStepLength = _m_MaxStepLength;
+	m_RelaxationFactor = _m_RelaxationFactor;
+
 }
 
 
@@ -58,6 +68,12 @@ mialsrtkTVSuperResolutionWrapper::~mialsrtkTVSuperResolutionWrapper()
 	debluring = NULL;
 	kernelRadiusMultiplicator = NULL;
 
+	MetricToUse = NULL;
+	m_Iterations = NULL;
+	m_GradientMagnitudeTolerance = NULL;
+	m_MinStepLength = NULL;
+	m_MaxStepLength = NULL;
+	m_RelaxationFactor = NULL;
 
 }
 
@@ -69,7 +85,7 @@ bool mialsrtkTVSuperResolutionWrapper::runTVSuperResolution()
 		std::cout << outputFile << std::endl;
 		wrap_TVSuperResolution = new mialsrtkTVSuperResolution(inputFile, maskFile, outputFile, refFile, transformIn, Iter, lambda, deltat, gamma, stepScale, 
 			innerConvThreshold,	outerConvThreshold, numberOfLoops, numberOfBregmanLoops, boxcar, updateMotion, refMask, pre_input, outTransform, debugDir,
-			debluring, kernelRadiusMultiplicator);
+			debluring, kernelRadiusMultiplicator, MetricToUse, m_Iterations, m_GradientMagnitudeTolerance, m_MinStepLength, m_MaxStepLength, m_RelaxationFactor);
 		boolExit = wrap_TVSuperResolution->runTVSuperResolution();
 		return boolExit;
 	}
@@ -83,6 +99,42 @@ bool mialsrtkTVSuperResolutionWrapper::runTVSuperResolution()
 	}
 
 
+
+}
+
+int main()
+{
+	std::vector< std::string > inputTest;
+	inputTest.push_back("D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz");
+	inputTest.push_back("D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz");
+	inputTest.push_back("D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz");
+	inputTest.push_back("D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz");
+	inputTest.push_back("D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz");
+	inputTest.push_back("D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz");
+
+	const char* refFile = "D:/Pierre/FoetusTest/SDI_debug.nii.gz";
+	std::vector< std::string > maskFile;
+	maskFile.push_back("D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz");
+	maskFile.push_back("D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz");
+	maskFile.push_back("D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz");
+	maskFile.push_back("D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz");
+	maskFile.push_back("D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz");
+	maskFile.push_back("D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz");
+
+	const char* outputFile = "D:/Pierre/FoetusTest/TV_Test.nii.gz";
+	std::vector< std::string > transformIn;
+	transformIn.push_back("D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_transform_6V_1.txt");
+	transformIn.push_back("D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_transform_6V_1.txt");
+	transformIn.push_back("D:/Pierre/FoetusTest/ Axial2_worldmatrixModified_lr_reoriented_transform_6V_1.txt");
+	transformIn.push_back("D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_transform_6V_1.txt");
+	transformIn.push_back("D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_transform_6V_1.txt");
+	transformIn.push_back("D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_transform_6V_1.txt");
+
+	std::vector< std::string > transformOut;
+	std::vector< std::string > pre_input;
+	mialsrtkTVSuperResolution test(inputTest, maskFile, outputFile, refFile, transformIn, 50,0.1,1,1,1, 0.0001, 0.0001,10,5,false,false,"", pre_input, transformOut, "", false,1.0, "NC", 2000, 0.0001, 0.0001, 0.2, 0.5);
+	bool boolOutput = test.runTVSuperResolution();
+	std::cout << boolOutput << std::endl;
 
 }
 
@@ -128,7 +180,7 @@ int EntryPointTVSuperResolution(int argc, char *argv[])
 		int numberOfLoops;
 		int numberOfBregmanLoops;
 
-		double start_time_unix, end_time_unix, diff_time_unix;
+		//double start_time_unix, end_time_unix, diff_time_unix;
 
 		// Parse arguments
 		TCLAP::CmdLine cmd("Apply super-resolution algorithm using one or multiple input images.", ' ', "Unversioned");

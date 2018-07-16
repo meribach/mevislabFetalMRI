@@ -20,64 +20,15 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Loading okay."
-    numDims = 3
+    info = "File closed"
+    numDims = 0
     fileType = TypeNotApplicable
-    componentType = float
-    pixelType = SCALAR
-    loaderType = NiftiImageIO
-    outputMetaDataStr = "ITK_FileNotes : 
-aux_file : 
-bitpix : 32
-cal_max : 0
-cal_min : 0
-datatype : 16
-descrip : 
-dim[0] : 3
-dim[1] : 320
-dim[2] : 320
-dim[3] : 129
-dim[4] : 1
-dim[5] : 1
-dim[6] : 1
-dim[7] : 1
-dim_info : 
-intent_code : 0
-intent_name : 
-intent_p1 : 0
-intent_p2 : 0
-intent_p3 : 0
-pixdim[0] : 1
-pixdim[1] : 1.125
-pixdim[2] : 1.125
-pixdim[3] : 1.125
-pixdim[4] : 0
-pixdim[5] : 0
-pixdim[6] : 0
-pixdim[7] : 0
-qform_code : 1
-qoffset_x : 106.487
-qoffset_y : -82.1183
-qoffset_z : -240.018
-quatern_b : -0.137682
-quatern_c : -0.69521
-quatern_d : -0.702376
-scl_inter : 0
-scl_slope : 1
-sform_code : 0
-slice_code : 
-slice_duration : 0
-slice_end : 0
-slice_start : 0
-srow_x : 0 0 0 0
-srow_y : 0 0 0 0
-srow_z : 0 0 0 0
-toffset : 0
-vox_offset : 352
-xyzt_units : 
-"
+    componentType = ""
+    pixelType = UNKNOWNPIXELTYPE
+    loaderType = ""
+    outputMetaDataStr = ""
     suppressErrorPosting = FALSE
-    unresolvedFileName = D:/Pierre/FoetusTest/SDI_debug.nii.gz
+    unresolvedFileName = ""
   }
 }
 module OrthoView2D {
@@ -225,6 +176,13 @@ module mialImageReconstruction {
   internal  {
     frame = "877 477 168 56"
     moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "647 256 640 747"
+        sizeHint = "640 747"
+        wasOpen = no
+      }
+    }
   }
   fields  {
     instanceName = mialImageReconstruction

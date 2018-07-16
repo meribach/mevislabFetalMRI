@@ -23,7 +23,7 @@ module GetAtlasMacro {
     instanceName = GetAtlasMacro
     name = "$(MLAB_mevisFetalMRI_MRUser)\\Projects\\TestInterface2\\Data\\CRL_Fetal_Brain_Atlas_2017"
     AtlasPath = "$(MLAB_mevisFetalMRI_MRUser)\\Projects\\TestInterface2\\Data\\CRL_Fetal_Brain_Atlas_2017"
-    currentWeek = 35
+    currentWeek = 33
   }
 }
 module RemoteRendering {
@@ -115,7 +115,7 @@ module SoView2DSlider {
     clipToSlice = FALSE
     cursorShape = UNDEFINED_CURSOR
     minimumValue = 0
-    maximumValue = 23
+    maximumValue = 0
     currentValue = 0
     useTracking = TRUE
     stepSize = 1
@@ -156,7 +156,7 @@ module Switch {
   }
   fields  {
     instanceName = Switch
-    currentInput = 1
+    currentInput = 0
     numberOfInputs = 2
   }
 }
@@ -180,7 +180,7 @@ module Switch {
   }
   fields  {
     instanceName = Switch1
-    currentInput = 0
+    currentInput = 1
     numberOfInputs = 2
   }
 }
@@ -198,7 +198,7 @@ module SoCalculator {
   }
   fields  {
     instanceName = SoCalculator
-    a = 1
+    a = 0
     b = 1
     c = 0
     d = 0
@@ -214,7 +214,7 @@ module SoCalculator {
     vf = "0 0 0"
     vg = "0 0 0"
     vh = "0 0 0"
-    oa = 0
+    oa = 1
     ob = 0
     oc = 0
     od = 0
@@ -248,62 +248,13 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Loading okay."
-    numDims = 3
+    info = "Invalid path"
+    numDims = 0
     fileType = TypeNotApplicable
-    componentType = float
-    pixelType = SCALAR
-    loaderType = NiftiImageIO
-    outputMetaDataStr = "ITK_FileNotes : 
-aux_file : 
-bitpix : 32
-cal_max : 0
-cal_min : 0
-datatype : 16
-descrip : 
-dim[0] : 3
-dim[1] : 320
-dim[2] : 320
-dim[3] : 24
-dim[4] : 1
-dim[5] : 1
-dim[6] : 1
-dim[7] : 1
-dim_info : 
-intent_code : 0
-intent_name : 
-intent_p1 : 0
-intent_p2 : 0
-intent_p3 : 0
-pixdim[0] : -1
-pixdim[1] : 1.125
-pixdim[2] : 1.125
-pixdim[3] : 3.3
-pixdim[4] : 0
-pixdim[5] : 0
-pixdim[6] : 0
-pixdim[7] : 0
-qform_code : 2
-qoffset_x : -195.093
-qoffset_y : 169.402
-qoffset_z : 46.2
-quatern_b : 0
-quatern_c : -0
-quatern_d : -0.680488
-scl_inter : 0
-scl_slope : 1
-sform_code : 1
-slice_code : 
-slice_duration : 0
-slice_end : 0
-slice_start : 0
-srow_x : 0.0831058 1.12193 0 -195.093
-srow_y : -1.12193 0.0831058 -0 169.402
-srow_z : 0 0 -3.3 46.2
-toffset : 0
-vox_offset : 352
-xyzt_units : 
-"
+    componentType = ""
+    pixelType = UNKNOWNPIXELTYPE
+    loaderType = ""
+    outputMetaDataStr = ""
     suppressErrorPosting = FALSE
     unresolvedFileName = ""
   }
@@ -361,11 +312,11 @@ module WorldVoxelConvert {
     voxelX = 64
     voxelY = 86
     voxelZ = 102
-    worldX = 93.8913036981638
-    worldY = -105.264740327773
-    worldZ = -288.75014090538
+    worldX = 64
+    worldY = 86
+    worldZ = 102
     voxelPos = "64 86 102"
-    worldPos = "93.8913036981638 -105.264740327773 -288.75014090538"
+    worldPos = "64 86 102"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -825,7 +776,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 23
+    maxSlice = 0
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -992,7 +943,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 154
+    maxSlice = 0
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -1080,11 +1031,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1742
-    lutGrayWidth = 3484
-    lutAlphaCenter = 1742
-    lutAlphaWidth = 3484
-    lutIsRelative = FALSE
+    lutGrayCenter = 0.5
+    lutGrayWidth = 1
+    lutAlphaCenter = 0.5
+    lutAlphaWidth = 1
+    lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -1159,21 +1110,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1742
-    annoInput04 = 3484
-    annoInput05 = 1
+    annoInput03 = 0.5
+    annoInput04 = 1
+    annoInput05 = 0.5
     annoInput06 = 1
-    annoInput07 = 1742
-    annoInput08 = 3484
+    annoInput07 = 0.5
+    annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 0
-    annoNumInput03 = 1742
-    annoNumInput04 = 3484
-    annoNumInput05 = 1
+    annoNumInput03 = 0.5
+    annoNumInput04 = 1
+    annoNumInput05 = 0.5
     annoNumInput06 = 1
-    annoNumInput07 = 1742
+    annoNumInput07 = 0.5
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -1414,8 +1365,8 @@ module SoToggle {
   }
   fields  {
     instanceName = ToggleBrainMask
-    whichChild = -3
-    on = TRUE
+    whichChild = -1
+    on = FALSE
   }
 }
 module Switch {
@@ -1433,7 +1384,7 @@ module Switch {
   }
   fields  {
     instanceName = AlreadyModifiedMask
-    currentInput = 1
+    currentInput = 0
     numberOfInputs = 2
   }
 }
@@ -1455,62 +1406,13 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Loading okay."
-    numDims = 3
+    info = "File closed"
+    numDims = 0
     fileType = TypeNotApplicable
-    componentType = float
-    pixelType = SCALAR
-    loaderType = NiftiImageIO
-    outputMetaDataStr = "ITK_FileNotes : 
-aux_file : 
-bitpix : 32
-cal_max : 0
-cal_min : 0
-datatype : 16
-descrip : 
-dim[0] : 3
-dim[1] : 320
-dim[2] : 320
-dim[3] : 24
-dim[4] : 1
-dim[5] : 1
-dim[6] : 1
-dim[7] : 1
-dim_info : 
-intent_code : 0
-intent_name : 
-intent_p1 : 0
-intent_p2 : 0
-intent_p3 : 0
-pixdim[0] : -1
-pixdim[1] : 1.125
-pixdim[2] : 1.125
-pixdim[3] : 3.3
-pixdim[4] : 0
-pixdim[5] : 0
-pixdim[6] : 0
-pixdim[7] : 0
-qform_code : 2
-qoffset_x : -195.093
-qoffset_y : 169.402
-qoffset_z : 46.2
-quatern_b : 0
-quatern_c : -0
-quatern_d : -0.680488
-scl_inter : 0
-scl_slope : 1
-sform_code : 1
-slice_code : 
-slice_duration : 0
-slice_end : 0
-slice_start : 0
-srow_x : 0.0831058 1.12193 0 -195.093
-srow_y : -1.12193 0.0831058 -0 169.402
-srow_z : 0 0 -3.3 46.2
-toffset : 0
-vox_offset : 352
-xyzt_units : 
-"
+    componentType = ""
+    pixelType = UNKNOWNPIXELTYPE
+    loaderType = ""
+    outputMetaDataStr = ""
     suppressErrorPosting = FALSE
     unresolvedFileName = ""
   }
@@ -1555,7 +1457,7 @@ module itkImageFileWriter {
     forceDirectionCosineWrite = TRUE
     outputVoxelType = Automatic
     info = ""
-    unresolvedFileName = $(HOME)/Bureau/CHUV/10063_GW_27/testMultipleDicom2Nifti/3MR_SagSSFSESchadel_worldmatrixModifiedAP.nii
+    unresolvedFileName = ""
   }
 }
 module SoView2DLabel {
@@ -1613,7 +1515,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 23
+    maxSlice = 0
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -1716,7 +1618,7 @@ module View2DExtensions {
     lutGrayWidth = 1
     lutAlphaCenter = 1
     lutAlphaWidth = 1
-    lutIsRelative = FALSE
+    lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -1911,11 +1813,11 @@ module WorldVoxelConvert {
     voxelX = 276.786315917969
     voxelY = 249.435897827149
     voxelZ = 11.5012265243338
-    worldX = 161.296300506684
-    worldY = 128.388804389851
-    worldZ = -59.1989446812667
+    worldX = 276.786315917969
+    worldY = 249.435897827149
+    worldZ = 11.5012265243338
     voxelPos = "276.786315917969 249.435897827149 11.5012265243338"
-    worldPos = "161.296300506684 128.388804389851 -59.1989446812667"
+    worldPos = "276.786315917969 249.435897827149 11.5012265243338"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -2103,7 +2005,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 23
+    maxSlice = 0
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -2206,7 +2108,7 @@ module View2DExtensions {
     lutGrayWidth = 1
     lutAlphaCenter = 1
     lutAlphaWidth = 1
-    lutIsRelative = FALSE
+    lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -2508,7 +2410,7 @@ module itkImageFileWriter {
     forceDirectionCosineWrite = TRUE
     outputVoxelType = Automatic
     info = ""
-    unresolvedFileName = D:/Pierre/zurich/Anonymized_data/10063_GW_27/testreorient.nii
+    unresolvedFileName = ""
   }
 }
 module VerifWorldMatrix2MNI {
@@ -2560,11 +2462,11 @@ module OrthoSwapFlip {
     flipVertical = FALSE
     flipDepth = FALSE
     autoPageSizeX = TRUE
-    pageX = 135
+    pageX = 1
     autoPageSizeY = TRUE
-    pageY = 189
+    pageY = 1
     autoPageSizeZ = TRUE
-    pageZ = 56
+    pageZ = 1
   }
 }
 module Resample3D {
@@ -2586,10 +2488,10 @@ module Resample3D {
     isotropic = FALSE
     filterAlways = FALSE
     filterAlwaysTolerance = 0
-    zoom = "0.711110221015083 0.711110221015083 0.242423819882799"
+    zoom = "0.711110221015082 0.711110221015082 0.242423819882799"
     imageSize = "96 134 38"
     voxelSize = "1.125 1.125 3.30000162124634"
-    subVoxelShift = "0.213681938531209 0.00481699934658764 1.18736728636699"
+    subVoxelShift = "0.600921150619072 0.389563564031931 1.30521621476255"
     useReferenceImage = TRUE
   }
 }
@@ -2617,7 +2519,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "2.890602770561 -3.70965709367303 8.25000500679016"
+    center = "0 0 0"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -2683,7 +2585,7 @@ module itkImageFileWriter {
     forceDirectionCosineWrite = TRUE
     outputVoxelType = Automatic
     info = ""
-    unresolvedFileName = D:/Pierre/CRL_Fetal_Brain_Atlas_2016/CRL_Fetal_Brain_Atlas_2016/STA22_worldmatrixModified_lr_brain_mask.nii.gz
+    unresolvedFileName = ""
   }
 }
 module MessageBox {
@@ -2716,7 +2618,7 @@ module Switch {
   }
   fields  {
     instanceName = SwitchAlreadyRegistered
-    currentInput = 1
+    currentInput = 0
     numberOfInputs = 2
   }
 }
@@ -2738,64 +2640,15 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Loading okay."
-    numDims = 3
+    info = "File closed"
+    numDims = 0
     fileType = TypeNotApplicable
-    componentType = "unsigned int16"
-    pixelType = SCALAR
-    loaderType = NiftiImageIO
-    outputMetaDataStr = "ITK_FileNotes : 
-aux_file : 
-bitpix : 16
-cal_max : 0
-cal_min : 0
-datatype : 512
-descrip : 
-dim[0] : 3
-dim[1] : 320
-dim[2] : 320
-dim[3] : 24
-dim[4] : 1
-dim[5] : 1
-dim[6] : 1
-dim[7] : 1
-dim_info : 
-intent_code : 0
-intent_name : 
-intent_p1 : 0
-intent_p2 : 0
-intent_p3 : 0
-pixdim[0] : -1
-pixdim[1] : 1.125
-pixdim[2] : 1.125
-pixdim[3] : 3.3
-pixdim[4] : 0
-pixdim[5] : 0
-pixdim[6] : 0
-pixdim[7] : 0
-qform_code : 2
-qoffset_x : -195.093
-qoffset_y : 169.402
-qoffset_z : 46.2
-quatern_b : 0
-quatern_c : -0
-quatern_d : -0.680488
-scl_inter : 0
-scl_slope : 1
-sform_code : 1
-slice_code : 
-slice_duration : 0
-slice_end : 0
-slice_start : 0
-srow_x : 0.0831057 1.12193 0 -195.093
-srow_y : -1.12193 0.0831057 -0 169.402
-srow_z : 0 0 -3.3 46.2
-toffset : 0
-vox_offset : 352
-xyzt_units : 
-"
+    componentType = ""
+    pixelType = UNKNOWNPIXELTYPE
+    loaderType = ""
+    outputMetaDataStr = ""
     suppressErrorPosting = FALSE
-    unresolvedFileName = D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr.nii.gz
+    unresolvedFileName = ""
   }
 }
 module SoInteractionInfo {

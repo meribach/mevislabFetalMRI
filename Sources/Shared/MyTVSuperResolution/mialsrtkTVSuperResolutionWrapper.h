@@ -4,7 +4,14 @@
 #include <string>
 #include <vector>
 
-# define mialsrtkTVSuperResolutionWrapper_EXPORT  __declspec(dllexport)
+#if defined(_MSC_VER)
+    //  Microsoft 
+#define mialsrtkTVSuperResolutionWrapper_EXPORT __declspec(dllexport)
+
+#elif defined(__GNUC__)
+    //  GCC
+    #define mialsrtkTVSuperResolutionWrapper_EXPORT __attribute__((visibility("default")))
+#endif
 
 
 
@@ -17,7 +24,8 @@ public:
 	mialsrtkTVSuperResolutionWrapper(std::vector< std::string > _inputFile, std::vector< std::string > _maskFile, const char* _outputFile, const char* _refFile,
 		std::vector< std::string > _transformin, int _Iter, double _lambda, double _deltat, double _gamma, double _stepScale, double _innerConvThreshold,
 		double _outerConvThreshold, int _numberOfLoops, int _numberOfBregmanLoops, bool _boxcar, bool _updateMotion, const char* _refMask,
-		std::vector< std::string > _pre_input, std::vector< std::string > _outTransform, const char* _debugDir, bool _debluring, float _kernelRadiusMultiplicator);
+		std::vector< std::string > _pre_input, std::vector< std::string > _outTransform, const char* _debugDir, bool _debluring, float _kernelRadiusMultiplicator,
+		const char* const _MetricToUse, unsigned int _m_Iterations, double _m_GradientMagnitudeTolerance, double _m_MinStepLength, double _m_MaxStepLength, double _m_RelaxationFactor);
 
 	~mialsrtkTVSuperResolutionWrapper();
 
@@ -50,6 +58,14 @@ public:
 	bool debluring;
 
 	float kernelRadiusMultiplicator;
+
+	const char* MetricToUse;
+
+	unsigned int m_Iterations;
+	double m_GradientMagnitudeTolerance;
+	double m_MinStepLength;
+	double m_MaxStepLength;
+	double m_RelaxationFactor;
 
 
 	bool runTVSuperResolution();

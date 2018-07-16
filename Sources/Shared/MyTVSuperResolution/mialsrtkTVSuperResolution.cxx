@@ -55,43 +55,11 @@ Copyright (c) 2017 Medical Image Analysis Laboratory (MIAL), Lausanne
 
 //#include "mialsrtkMaths.h"
 
-
-/* Time profiling */
-/*
-#ifdef __MACH__
-#include <mach/clock.h>
-#include <mach/mach.h>
-#include <mach/mach_time.h>
-#define CLOCK_REALTIME 0
-#define CLOCK_MONOTONIC 0
-#else
-#include <time.h>
-#endif
-
-double getTime(void)
-{
-    struct timespec tv;
-
-#ifdef __MACH__
-    clock_serv_t cclock;
-    mach_timespec_t mts;
-    host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
-    if(clock_get_time(cclock, &mts) != 0) return 0;
-    mach_port_deallocate(mach_task_self(), cclock);
-    tv.tv_sec = mts.tv_sec;
-    tv.tv_nsec = mts.tv_nsec;
-#else
-    if(clock_gettime(CLOCK_REALTIME, &tv) != 0) return 0;
-#endif
-    return (((double) tv.tv_sec) + (double) (tv.tv_nsec / 1000000000.0));
-}
-*/
-
-
 mialsrtkTVSuperResolution::mialsrtkTVSuperResolution(std::vector< std::string > _inputFile, std::vector< std::string > _maskFile, const char* _outputFile, const char* _refFile,
 	std::vector< std::string > _transformin, int _Iter, double _lambda, double _deltat, double _gamma, double _stepScale, double _innerConvThreshold,
 	double _outerConvThreshold, int _numberOfLoops, int _numberOfBregmanLoops, bool _boxcar, bool _updateMotion, const char* _refMask,
-	std::vector< std::string > _pre_input, std::vector< std::string > _outTransform, const char* _debugDir, bool _debluring, float _kernelRadiusMultiplicator)
+	std::vector< std::string > _pre_input, std::vector< std::string > _outTransform, const char* _debugDir, bool _debluring, float _kernelRadiusMultiplicator,
+	const char* const _MetricToUse, unsigned int _m_Iterations, double _m_GradientMagnitudeTolerance, double _m_MinStepLength, double _m_MaxStepLength, double _m_RelaxationFactor)
 {
 	inputFile = _inputFile;
 	maskFile = _maskFile;
@@ -116,6 +84,15 @@ mialsrtkTVSuperResolution::mialsrtkTVSuperResolution(std::vector< std::string > 
 	debluring = _debluring;
 	kernelRadiusMultiplicator = _kernelRadiusMultiplicator;
 
+	MetricToUse = _MetricToUse;
+
+	m_Iterations = _m_Iterations;
+	m_GradientMagnitudeTolerance = _m_GradientMagnitudeTolerance;
+	m_MinStepLength = _m_MinStepLength;
+	m_MaxStepLength = _m_MaxStepLength;
+	m_RelaxationFactor = _m_RelaxationFactor;
+
+
 }
 
 mialsrtkTVSuperResolution::~mialsrtkTVSuperResolution()
@@ -127,44 +104,29 @@ mialsrtkTVSuperResolution::~mialsrtkTVSuperResolution()
 bool mialsrtkTVSuperResolution::runTVSuperResolution()
 {
 
-        double gap = 0.0;
+
+	    double gap = 0.0;
 
         const char *debugfilename = "SR_igd_debug_loop_";
-
-        const char *outImage = NULL;
-        const char *refImage = NULL;
-
-        const char *refMask = NULL;
 
         const char *test = "undefined";
 
         std::vector< int > x1, y1, z1, x2, y2, z2;
 
-        unsigned int iter;
-        float lambda;
-        float deltat = 1.0;
+
         float normD = 12.0; //due to Image dimension ?
         float theta_init = 1.0;
-        float gamma = 1.0;
 
-        float stepScale = 1.0;
         float tau_init = 1 / sqrt (12.0);
         float sigma_init = 1 / sqrt(12.0);
-
-        double innerConvThreshold;
-        double outerConvThreshold;
-
-        int numberOfLoops;
-        int numberOfBregmanLoops;
-
-        double start_time_unix, end_time_unix, diff_time_unix;
 
         tau_init =  stepScale * tau_init;
         sigma_init = ( 1 / stepScale ) * sigma_init;
 
         if (( std::strncmp(refMask, "", 4) == 0 || pre_input.size() == 0 ) && updateMotion)
         {
-		    throw "Execution abandonned - Motion Update during SR is enable but some required input are missing";
+			std::cout << "Problem here ?" << std::endl ;
+			throw "Execution abandonned - Motion Update during SR is enable but some required input are missing";
             return false;
         }
 
@@ -258,11 +220,12 @@ bool mialsrtkTVSuperResolution::runTVSuperResolution()
         ImageType::IndexType  roiIndex;
         ImageType::SizeType   roiSize;
 
+		std::cout << "all init methods done" << std::endl;
         // Filter setup
         for (unsigned int i=0; i<numberOfImages; i++)
         {
             // add image
-            //std::cout<<"Reading image : "<< inputFile[i].c_str()<<std::endl;
+            std::cout<<"Reading image : "<< inputFile[i].c_str()<<std::endl;
             ImageReaderType::Pointer imageReader = ImageReaderType::New();
             imageReader -> SetFileName(inputFile[i].c_str() );
 			try {
@@ -270,7 +233,7 @@ bool mialsrtkTVSuperResolution::runTVSuperResolution()
 			}
 			catch (itk::ExceptionObject &err)
 			{
-				throw "error opening inputFile";
+				throw "error opening inputFile" + std::string(inputFile[i].c_str());
 				return false;
 			}
             resampler -> AddInput(  imageReader -> GetOutput() );
@@ -328,7 +291,8 @@ bool mialsrtkTVSuperResolution::runTVSuperResolution()
             imageRegion.SetIndex(roiIndex);
             imageRegion.SetSize (roiSize);
             resampler -> AddRegion( imageRegion );
-
+			//std::cout << "pre_input" << std::endl;
+			//std::cout << pre_input.size() << std::endl;
             if ( pre_input.size() > 0)
             {
                 // add image
@@ -351,7 +315,7 @@ bool mialsrtkTVSuperResolution::runTVSuperResolution()
 
             if (transformIn.size() > 0 )
             {
-                //std::cout<<"Reading transform:"<<transform[i]<<std::endl;
+                std::cout<<"Reading transform:"<< transformIn[i]<<std::endl;
                 TransformReaderType::Pointer transformReader = TransformReaderType::New();
                 transformReader -> SetFileName(transformIn[i] );
 				try
@@ -382,20 +346,23 @@ bool mialsrtkTVSuperResolution::runTVSuperResolution()
 
         }
 
+		std::cout << "just before reference" << refFile << std::endl;
         // Set the reference image
         //std::cout<<"Reading the reference image : "<<refImage<<std::endl;
         ImageReaderType::Pointer refReader = ImageReaderType::New();
         refReader -> SetFileName(refFile);
+		std::cout << "Here 1" << refMask << std::endl;
 		try
 		{
 			refReader->Update();
 		}
 		catch (itk::ExceptionObject &err)
 		{
-			throw "error opening refFile file";
+			throw "error opening refFile";
 			return false;
 		}
 
+		std::cout << "Here " << refMask << std::endl;
         ImageType::Pointer referenceIm = refReader->GetOutput();
 
         /*
@@ -415,10 +382,10 @@ bool mialsrtkTVSuperResolution::runTVSuperResolution()
 
         // Set the mask of the reference image if provided
         ImageMaskType::Pointer imageMaskCombination;
-        if(std::strncmp(refMask, "", 4) != 0)
-        {
-            MaskReaderType::Pointer refMaskReader = MaskReaderType::New();
-            refMaskReader -> SetFileName( refMask );
+		if (std::strncmp(refMask, "", 4) != 0)
+		{
+			MaskReaderType::Pointer refMaskReader = MaskReaderType::New();
+			refMaskReader->SetFileName(refMask);
 			try
 			{
 				refMaskReader->Update();
@@ -430,23 +397,29 @@ bool mialsrtkTVSuperResolution::runTVSuperResolution()
 			}
 
 
-            imageMaskCombination = refMaskReader -> GetOutput();
+			imageMaskCombination = refMaskReader->GetOutput();
 
-            /*
-            OrientImageMaskFilterType::Pointer orientRefMaskImageFilter = OrientImageMaskFilterType::New();
-            orientRefMaskImageFilter -> UseImageDirectionOn();
-            orientRefMaskImageFilter -> SetDesiredCoordinateOrientation(itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RIP);
-            orientRefMaskImageFilter -> SetInput(refMaskReader -> GetOutput());
-            orientRefMaskImageFilter -> Update();
+			/*
+			OrientImageMaskFilterType::Pointer orientRefMaskImageFilter = OrientImageMaskFilterType::New();
+			orientRefMaskImageFilter -> UseImageDirectionOn();
+			orientRefMaskImageFilter -> SetDesiredCoordinateOrientation(itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RIP);
+			orientRefMaskImageFilter -> SetInput(refMaskReader -> GetOutput());
+			orientRefMaskImageFilter -> Update();
 
-            imageMaskCombination = orientRefMaskImageFilter -> GetOutput()
-            */
-        }
+			imageMaskCombination = orientRefMaskImageFilter -> GetOutput()
+			*/
+			
+		}
+		else
+		{
+			std::cout << "no ref mask" << std::endl;
+		}
+
 
         //std::cout << "==========================================================================" << std::endl << std::endl;
 
         std::cout<<"Performing super resolution (TV using IGD) with the following settings: "<<std::endl<<std::endl;
-        std::cout<<"# iterations max : "<<iter<<std::endl;
+        std::cout<<"# iterations max : "<<Iter<<std::endl;
         std::cout<<"# loop max : "<<numberOfLoops<<std::endl<<std::endl;
         std::cout<<"Lambda (reg.) : "<<lambda<<std::endl;
         std::cout<<"Gamma : "<<gamma<<std::endl;
@@ -525,7 +498,7 @@ bool mialsrtkTVSuperResolution::runTVSuperResolution()
                 resampler -> SetReferenceImage( resampler -> GetOutput() );
             }
 
-            resampler -> SetIterations(iter);
+            resampler -> SetIterations(Iter);
             resampler -> SetLambda( lambda );
             resampler -> SetGamma( gamma );
             resampler -> SetSigma( sigma_init );
@@ -790,97 +763,15 @@ bool mialsrtkTVSuperResolution::runTVSuperResolution()
 
         }//End of bregmann loops
 
-        /*
-		 //Save TVEnergy in CSV file
-        const char * csvFileName="/home/tourbier/Desktop/NewbornWithGapForConvergence/tv_energy_inf.csv";
-        bool writeHeaders = false;
-
-        std::ifstream fin;
-        fin.open(csvFileName,std::ios_base::out | std::ios_base::app);
-
-        if(fin.is_open())
-        {
-            //Test if the file is empty. If so, we add an extra line for headers
-            //std::cout << "Test if CSV  is empty. If so, we add an extra line for headers." << std::endl;
-            int csvLength;
-
-            fin.seekg(0, std::ios::end);
-            csvLength = fin.tellg();
-
-            fin.close();
-
-            if(csvLength == 0)
-            {
-                writeHeaders = true;
-                std::cout << "Write headers in CSV" << std::endl;
-            }
-            else
-            {
-                std::cout << "CSV empty ( length : " << int2str(csvLength) << std::endl;
-            }
-
-
-            //NOT WORKING ON MAC
-            //if(fin.peek() == std::ifstream::traits_type::eof())
-            //{
-            //   writeHeaders = true;
-            //    std::cout << "Write headers in CSV" << std::endl;
-            //}
-            //fin.close();
-        }
-        else
-        {
-            std::cout << "CSV file opening failed." << std::endl;
-        }
-		
-
-        std::ofstream fout(csvFileName, std::ios_base::out | std::ios_base::app);
-
-        if(writeHeaders)
-        {
-            fout << "Date" << "," << "Algo" << "," << "lambda" << "," << "step-scale" << "," << "deltat" << "," << "gamma" << ",";
-            fout << "Innerloops" << "," << "InnerThreshold" << "," << "Outerloops" << "," << "OuterThreshold" << ",";
-            fout << "TVEnergy";
-            fout << std::endl;
-        }
-
-        fout << mialsrtk::getRealCurrentDate() << "," << "TV" << "," << lambda << "," << stepScale << "," << deltat << "," << gamma << ",";
-        fout << iter << "," << innerConvThreshold << "," << numberOfLoops << "," << outerConvThreshold << ",";
-
-        //Add value of TV energy to CSV
-        fout << resampler -> GetTVEnergy();
-
-        fout << std::endl;
-        fout.close();
-
-        std::cout << "Metrics saved in CSV" << std::endl;
-		*/
-
-        //std::cout << std::endl << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
-
-        //
-
-        //std::cout << "h1" << std::endl;
-        //end_time_unix = mialsrtk::getTime();;
-        //std::cout << "h2" << std::endl;
-        //diff_time_unix = end_time_unix - start_time_unix;
-
-        //mialsrtk::printTime("TV (IGD)",diff_time_unix);
-
-        //double innerLoopRunTime = resampler -> GetInnerOptTime();
-        //double initCostFunctionRunTime = resampler -> GetInitTime();
-
-        //mialsrtk::printTime("Initialization for",initCostFunctionRunTime);
-        //mialsrtk::printTime("Inner loop",innerLoopRunTime);
 
         // Write image
 
         WriterType::Pointer writer =  WriterType::New();
-        writer -> SetFileName( outImage );
+        writer -> SetFileName(outputFile);
         writer -> SetInput( resampler -> GetOutput() );
         //writer -> SetInput( outputImage );
 
-        if ( std::strncmp(outImage,"",4) != 0)
+        if ( std::strncmp(outputFile,"",4) != 0)
         {
             try
 			{
@@ -891,7 +782,7 @@ bool mialsrtkTVSuperResolution::runTVSuperResolution()
 				//std::cerr << "Error while saving transform" << std::endl;
 				//std::cerr << excp << std::endl;
 				//std::cout << "[FAILED]" << std::endl;
-				throw "Error while saving outImage";
+				throw "Error while saving outputFile";
 				return false;
 			}
         }
