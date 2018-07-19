@@ -1,0 +1,19 @@
+//----------------------------------------------------------------------------------
+//! TotalVariationInterface module definition
+/*!
+// \file    TotalVariationInterface.def
+// \author  FetalMRI
+// \date    2018-07-17
+*/
+//----------------------------------------------------------------------------------
+
+
+MacroModule TotalVariationInterface {
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+   
+  externalDefinition = "$(LOCAL)/TotalVariationInterface.script"
+}

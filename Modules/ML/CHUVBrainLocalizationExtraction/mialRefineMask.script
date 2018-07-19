@@ -1,0 +1,30 @@
+//----------------------------------------------------------------------------------
+//! CHUVBrainLocalizationExtraction module definitions.
+/*!
+// \file    mialRefineMask.script
+// \author  FetalMRI
+// \date    2018-07-17
+*/
+//----------------------------------------------------------------------------------
+
+
+Window {
+  Category {
+    Field maskFiles {
+    }
+    Field transformIn {
+    }
+    Field maskFiles {
+    }
+    Field outputHRFile {
+    }
+    Field outputLRFiles {
+    }
+    Field referenceFile {
+    }
+    CheckBox radiusDilation {
+    }
+    CheckBox useStaple {
+    }
+  }
+}

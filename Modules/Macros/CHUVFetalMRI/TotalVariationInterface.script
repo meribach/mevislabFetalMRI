@@ -1,0 +1,23 @@
+//----------------------------------------------------------------------------------
+//! Macro module TotalVariationInterface
+/*!
+// \file    TotalVariationInterface.script
+// \author  FetalMRI
+// \date    2018-07-17
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {}
+}
+
+
+Commands {
+  source = $(LOCAL)/TotalVariationInterface.py
+}

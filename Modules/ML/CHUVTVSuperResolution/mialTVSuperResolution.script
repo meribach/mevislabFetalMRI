@@ -1,0 +1,100 @@
+//----------------------------------------------------------------------------------
+//! CHUVTVSuperResolution module definitions.
+/*!
+// \file    mialTVSuperResolution.script
+// \author  FetalMRI
+// \date    2018-06-26
+*/
+//----------------------------------------------------------------------------------
+
+
+Window {
+  mw = 640
+  Category {
+    Field outputFile {
+      tooltip = "Super resolution output image"
+    }
+    Field maskFiles {
+      tooltip = "low-resolution image mask file, use -- as delimeter, ex: C:/file1mask.nii--C:/file2mask.nii"
+    }
+    Field refFile {
+      tooltip = "Reconstructed image for initialization. Typically the output of btkImageReconstruction is used."
+    }
+    Field inputFiles {
+      tooltip = "Low-resolution image file, use -- as delimeter, ex: C:/file1.nii--C:/file2.nii"
+    }
+    Field transformFilesInput {
+      tooltip = "in-transform file, use -- as delimeter, ex: C:/file1transform.txt--C:/file2transform.txt"
+    }
+    Field nbIter {
+      tooltip = "Number of inner iterations (default = 50)"
+    }
+    Field Lambda {
+      tooltip = "Regularization factor (default = 0.1)"
+    }
+    Field DeltaT {
+      tooltip = "Parameter deltat (default = 1.0)"
+    }
+    Field Gamma {
+      tooltip = "Parameter gamma (default = 1.0)"
+    }
+    Field stepScale {
+      tooltip = "Parameter step scale (default = 1.0)"
+    }
+    Field innerConvThreshold {
+      tooltip = "Inner loop convergence threshold (default = 1e-4)"
+    }
+    Field outerConvThreshold {
+      tooltip = "Outer loop convergence threshold (default = 1e-4)"
+    }
+    Field numberOfBregmanLoops {
+      tooltip = "Number of Bregman loops (default = 10)"
+    }
+    Field numberOfLoops {
+      tooltip = "Number of loops (SR/denoising) (default = 5)"
+    }
+    CheckBox boxcar {
+      tooltip = "A boxcar-shaped PSF is assumed as imaging model (by default a Gaussian-shaped PSF is employed.)"
+    }
+    CheckBox updateMotion {
+      tooltip = "Flag to enable the update of motion parameters during SR (by default it is disable.)."
+    }
+    Field refMask {
+      tooltip = "Mask of the reconstructed image for initialization - Only used when motion estimation is updated during SR"
+    }
+    Field pre_input {
+      tooltip = "Low-resolution pre-processed image file - Only used when motion estimation is updated during SR"
+    }
+    Field transformFilesOutput {
+      tooltip = "output transform file - Only used when motion estimation is updated during SR"
+    }
+    Field debugDir {
+      tooltip = "Directory where  SR reconstructed image at each outer loop of the reconstruction optimization is saved"
+    }
+    CheckBox debluring {
+      tooltip = "Flag to set deblurring PSF during SR (double the neighborhood)  (by default it is disable.)."
+    }
+    
+    Field kernelRadiusMultiplicator {
+      tooltip = "radius = maximum size of the bounding box in the HR space, radius = inputSpacing[2] / m_OutputSpacing[i] * kernelRadiusMultiplicator,  default value is 1"
+    }
+    
+    Field CoregistrationMethod {
+      tooltip = "Metric of the Coregistration, NC = Normalized Correlation, MI = Mutual Information, default is NC"
+    }
+    Field NbIterationRegistration {
+    }
+    Field GradientMagnitudeToleranceRegistration {
+    }
+    Field MinStepLengthRegistration {
+    }
+    Field RelaxationFactorRegistration {
+    }
+    Field MaxStepLengthRegistration {
+    }
+    
+    Button startTask {}           //{ dependsOn = !taskRunning }
+    Button startTaskModal {}
+    Field status {}
+  }
+}

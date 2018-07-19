@@ -1,0 +1,20 @@
+//----------------------------------------------------------------------------------
+//! CHUVTVSuperResolution module definitions.
+/*!
+// \file    CHUVTVSuperResolution.def
+// \author  FetalMRI
+// \date    2018-06-26
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule mialTVSuperResolution {
+  DLL                = "CHUVTVSuperResolution"
+
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/mialTVSuperResolution.script
+}  

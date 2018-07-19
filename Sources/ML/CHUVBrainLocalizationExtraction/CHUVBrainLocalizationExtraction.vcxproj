@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build"
+     ToolsVersion="4.0"
+     xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup Label="ProjectConfigurations">
+        <ProjectConfiguration Include="Debug|x64">
+            <Configuration>Debug</Configuration>
+            <Platform>x64</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Release|x64">
+            <Configuration>Release</Configuration>
+            <Platform>x64</Platform>
+        </ProjectConfiguration>
+    </ItemGroup>
+    <PropertyGroup Label="Globals">
+        <ProjectGuid>{6A814805-9C3B-3393-BE1A-207B1B96A74A}</ProjectGuid>
+        <RootNamespace>CHUVBrainLocalizationExtraction</RootNamespace>
+        <Keyword>Qt4VSv1.0</Keyword>
+    </PropertyGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"
+         Label="Configuration">
+        <PlatformToolSet>v140</PlatformToolSet>
+        <OutputDirectory>tmp\debug\obj\</OutputDirectory>
+        <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+        <CharacterSet>NotSet</CharacterSet>
+        <ConfigurationType>DynamicLibrary</ConfigurationType>
+        <IntermediateDirectory>tmp\debug\obj\</IntermediateDirectory>
+        <PrimaryOutput>CHUVBrainLocalizationExtraction</PrimaryOutput>
+        <PlatformToolset>v140</PlatformToolset>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'"
+         Label="Configuration">
+        <PlatformToolSet>v140</PlatformToolSet>
+        <OutputDirectory>tmp\release\obj\</OutputDirectory>
+        <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+        <CharacterSet>NotSet</CharacterSet>
+        <ConfigurationType>DynamicLibrary</ConfigurationType>
+        <IntermediateDirectory>tmp\release\obj\</IntermediateDirectory>
+        <PrimaryOutput>CHUVBrainLocalizationExtraction</PrimaryOutput>
+        <PlatformToolset>v140</PlatformToolset>
+    </PropertyGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
+    <ImportGroup Label="ExtensionSettings"/>
+    <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"
+         Label="PropertySheets">
+        <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
+             Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+    </ImportGroup>
+    <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'"
+         Label="PropertySheets">
+        <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
+             Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+    </ImportGroup>
+    <PropertyGroup Label="UserMacros"/>
+    <PropertyGroup>
+        <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">tmp\debug\obj\</OutDir>
+        <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">tmp\debug\obj\</IntDir>
+        <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CHUVBrainLocalizationExtraction_d</TargetName>
+        <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</IgnoreImportLibrary>
+        <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</PostBuildEventUseInBuild>
+        <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">tmp\release\obj\</OutDir>
+        <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">tmp\release\obj\</IntDir>
+        <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CHUVBrainLocalizationExtraction</TargetName>
+        <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</IgnoreImportLibrary>
+        <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+        <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</PostBuildEventUseInBuild>
+    </PropertyGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+        <ClCompile>
+            <AdditionalIncludeDirectories>.;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\ML\include\deprecated;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\ML\include;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLLinearAlgebra\deprecated;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLLinearAlgebra;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLProfilingManager\Include;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLUtilities;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLMemoryManager\Include;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\ThirdPartyWarnings;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\ThirdParty\Sources\misc\boost;.;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\ThirdParty\Sources\Qt5\qt\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+            <AdditionalOptions>-Zc:throwingNew %(AdditionalOptions)</AdditionalOptions>
+            <AssemblerListingLocation>tmp\debug\obj\</AssemblerListingLocation>
+            <BrowseInformation>false</BrowseInformation>
+            <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+            <DisableSpecificWarnings>4201;4251;4127;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+            <ExceptionHandling>Sync</ExceptionHandling>
+            <MultiProcessorCompilation>true</MultiProcessorCompilation>
+            <ObjectFileName>tmp\debug\obj\</ObjectFileName>
+            <Optimization>Disabled</Optimization>
+            <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;NOMINMAX;MEVIS_TARGET=CHUVBrainLocalizationExtraction;MEVIS_64BIT;MEVISLAB_VERSION=300;MEVISLAB_VERSION_STRING=3.0.2;ML_VERSION_2;BOOST_ALL_DYN_LINK;DEBUG;MeVisLab;MEVISLAB;__LITTLE_ENDIAN__;ML_LIBRARY_EXPORT_ATTRIBUTE=__declspec(dllexport);ML_LIBRARY_IMPORT_ATTRIBUTE=__declspec(dllimport);ML_RETURN_VALUE_SHOULD_BE_USED=;_CRT_SECURE_NO_DEPRECATE;CHUVBRAINLOCALIZATIONEXTRACTION_EXPORTS;ML_WARN_DEPRECATED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <PreprocessToFile>false</PreprocessToFile>
+            <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+            <RuntimeTypeInfo>true</RuntimeTypeInfo>
+            <SuppressStartupBanner>true</SuppressStartupBanner>
+            <TreatSpecificWarningsAsErrors>4102;4131;4218;4431;4715;4723;4002;4013;4056;4054;4067;4068;4130;4146;4150;4172;4210;4351;4373;4366;4552;4553;4804;4910;%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
+            <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+            <WarningLevel>Level4</WarningLevel>
+        </ClCompile>
+        <Link>
+            <AdditionalDependencies>ML_d.lib;MLLinearAlgebra_d.lib;MLMemoryManager_d.lib;MLProfilingManager_d.lib;MLUtilities_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+            <AdditionalLibraryDirectories>&quot;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\ThirdParty\lib&quot;;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser\lib;&quot;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVisLab\Standard\lib&quot;;&quot;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\lib&quot;;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+            <DataExecutionPrevention>true</DataExecutionPrevention>
+            <GenerateDebugInformation>true</GenerateDebugInformation>
+            <IgnoreImportLibrary>true</IgnoreImportLibrary>
+            <LargeAddressAware>true</LargeAddressAware>
+            <LinkDLL>true</LinkDLL>
+            <OutputFile>$(OutDir)CHUVBrainLocalizationExtraction_d.dll</OutputFile>
+            <RandomizedBaseAddress>true</RandomizedBaseAddress>
+            <SubSystem>Windows</SubSystem>
+            <SuppressStartupBanner>true</SuppressStartupBanner>
+        </Link>
+        <Midl>
+            <DefaultCharType>Unsigned</DefaultCharType>
+            <EnableErrorChecks>None</EnableErrorChecks>
+            <WarningLevel>0</WarningLevel>
+        </Midl>
+        <ResourceCompile>
+            <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;NOMINMAX;MEVIS_TARGET=CHUVBrainLocalizationExtraction;MEVIS_64BIT;MEVISLAB_VERSION=300;MEVISLAB_VERSION_STRING=3.0.2;ML_VERSION_2;BOOST_ALL_DYN_LINK;DEBUG;MeVisLab;MEVISLAB;__LITTLE_ENDIAN__;ML_LIBRARY_EXPORT_ATTRIBUTE=__declspec(dllexport);ML_LIBRARY_IMPORT_ATTRIBUTE=__declspec(dllimport);ML_RETURN_VALUE_SHOULD_BE_USED=;_CRT_SECURE_NO_DEPRECATE;CHUVBRAINLOCALIZATIONEXTRACTION_EXPORTS;ML_WARN_DEPRECATED;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+        </ResourceCompile>
+        <PostBuildEvent>
+            <Command>if not exist &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot; mkdir &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+if exist &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated\CHUVBrainLocalizationExtraction_d.dll&quot; (
+  echo removing old updated DLL
+  del &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated\CHUVBrainLocalizationExtraction_d.dll&quot;
+)
+echo copy &quot;$(OutDir)CHUVBrainLocalizationExtraction_d.dll&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\CHUVBrainLocalizationExtraction_d.dll&quot;
+copy &quot;$(OutDir)CHUVBrainLocalizationExtraction_d.dll&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\CHUVBrainLocalizationExtraction_d.dll&quot;
+if errorLevel 1 (
+  echo DLL locked, copying to /updated subdir - and removing source file
+  if not exist &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated&quot; mkdir &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated&quot;
+  copy &quot;$(OutDir)CHUVBrainLocalizationExtraction_d.dll&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated\CHUVBrainLocalizationExtraction_d.dll&quot;
+  del &quot;$(OutDir)CHUVBrainLocalizationExtraction_d.dll&quot;
+)
+echo copy &quot;$(OutDir)CHUVBrainLocalizationExtraction_d.pdb&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+copy &quot;$(OutDir)CHUVBrainLocalizationExtraction_d.pdb&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+echo if exist &quot;$(OutDir)CHUVBrainLocalizationExtraction_d.lib&quot; copy &quot;$(OutDir)CHUVBrainLocalizationExtraction_d.lib&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+if exist &quot;$(OutDir)CHUVBrainLocalizationExtraction_d.lib&quot; copy &quot;$(OutDir)CHUVBrainLocalizationExtraction_d.lib&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;</Command>
+            <Message>Running postbuild commands...</Message>
+        </PostBuildEvent>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+        <ClCompile>
+            <AdditionalIncludeDirectories>.;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\ML\include\deprecated;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\ML\include;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLLinearAlgebra\deprecated;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLLinearAlgebra;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLProfilingManager\Include;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLUtilities;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLMemoryManager\Include;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\ThirdPartyWarnings;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\ThirdParty\Sources\misc\boost;.;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\ThirdParty\Sources\Qt5\qt\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+            <AdditionalOptions>-Zc:throwingNew %(AdditionalOptions)</AdditionalOptions>
+            <AssemblerListingLocation>tmp\release\obj\</AssemblerListingLocation>
+            <BrowseInformation>false</BrowseInformation>
+            <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+            <DisableSpecificWarnings>4201;4251;4127;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+            <ExceptionHandling>Sync</ExceptionHandling>
+            <MultiProcessorCompilation>true</MultiProcessorCompilation>
+            <ObjectFileName>tmp\release\obj\</ObjectFileName>
+            <Optimization>MaxSpeed</Optimization>
+            <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;NOMINMAX;MEVIS_TARGET=CHUVBrainLocalizationExtraction;MEVIS_64BIT;MEVISLAB_VERSION=300;MEVISLAB_VERSION_STRING=3.0.2;ML_VERSION_2;BOOST_ALL_DYN_LINK;MeVisLab;MEVISLAB;__LITTLE_ENDIAN__;ML_LIBRARY_EXPORT_ATTRIBUTE=__declspec(dllexport);ML_LIBRARY_IMPORT_ATTRIBUTE=__declspec(dllimport);ML_RETURN_VALUE_SHOULD_BE_USED=;_CRT_SECURE_NO_DEPRECATE;CHUVBRAINLOCALIZATIONEXTRACTION_EXPORTS;ML_WARN_DEPRECATED;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <PreprocessToFile>false</PreprocessToFile>
+            <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+            <RuntimeTypeInfo>true</RuntimeTypeInfo>
+            <SuppressStartupBanner>true</SuppressStartupBanner>
+            <TreatSpecificWarningsAsErrors>4102;4131;4218;4431;4715;4723;4002;4013;4056;4054;4067;4068;4130;4146;4150;4172;4210;4351;4373;4366;4552;4553;4804;4910;%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
+            <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+            <WarningLevel>Level4</WarningLevel>
+        </ClCompile>
+        <Link>
+            <AdditionalDependencies>ML.lib;MLLinearAlgebra.lib;MLMemoryManager.lib;MLProfilingManager.lib;MLUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
+            <AdditionalLibraryDirectories>&quot;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\ThirdParty\lib&quot;;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser\lib;&quot;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVisLab\Standard\lib&quot;;&quot;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\lib&quot;;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+            <DataExecutionPrevention>true</DataExecutionPrevention>
+            <EnableCOMDATFolding>true</EnableCOMDATFolding>
+            <GenerateDebugInformation>true</GenerateDebugInformation>
+            <IgnoreImportLibrary>true</IgnoreImportLibrary>
+            <LargeAddressAware>true</LargeAddressAware>
+            <LinkDLL>true</LinkDLL>
+            <LinkIncremental>false</LinkIncremental>
+            <OptimizeReferences>true</OptimizeReferences>
+            <OutputFile>$(OutDir)CHUVBrainLocalizationExtraction.dll</OutputFile>
+            <RandomizedBaseAddress>true</RandomizedBaseAddress>
+            <SubSystem>Windows</SubSystem>
+            <SuppressStartupBanner>true</SuppressStartupBanner>
+        </Link>
+        <Midl>
+            <DefaultCharType>Unsigned</DefaultCharType>
+            <EnableErrorChecks>None</EnableErrorChecks>
+            <WarningLevel>0</WarningLevel>
+        </Midl>
+        <ResourceCompile>
+            <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;NOMINMAX;MEVIS_TARGET=CHUVBrainLocalizationExtraction;MEVIS_64BIT;MEVISLAB_VERSION=300;MEVISLAB_VERSION_STRING=3.0.2;ML_VERSION_2;BOOST_ALL_DYN_LINK;MeVisLab;MEVISLAB;__LITTLE_ENDIAN__;ML_LIBRARY_EXPORT_ATTRIBUTE=__declspec(dllexport);ML_LIBRARY_IMPORT_ATTRIBUTE=__declspec(dllimport);ML_RETURN_VALUE_SHOULD_BE_USED=;_CRT_SECURE_NO_DEPRECATE;CHUVBRAINLOCALIZATIONEXTRACTION_EXPORTS;ML_WARN_DEPRECATED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+        </ResourceCompile>
+        <PostBuildEvent>
+            <Command>if not exist &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot; mkdir &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+if exist &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated\CHUVBrainLocalizationExtraction.dll&quot; (
+  echo removing old updated DLL
+  del &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated\CHUVBrainLocalizationExtraction.dll&quot;
+)
+echo copy &quot;$(OutDir)CHUVBrainLocalizationExtraction.dll&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\CHUVBrainLocalizationExtraction.dll&quot;
+copy &quot;$(OutDir)CHUVBrainLocalizationExtraction.dll&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\CHUVBrainLocalizationExtraction.dll&quot;
+if errorLevel 1 (
+  echo DLL locked, copying to /updated subdir - and removing source file
+  if not exist &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated&quot; mkdir &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated&quot;
+  copy &quot;$(OutDir)CHUVBrainLocalizationExtraction.dll&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated\CHUVBrainLocalizationExtraction.dll&quot;
+  del &quot;$(OutDir)CHUVBrainLocalizationExtraction.dll&quot;
+)
+echo if exist &quot;$(OutDir)CHUVBrainLocalizationExtraction.pdb&quot; copy &quot;$(OutDir)CHUVBrainLocalizationExtraction.pdb&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+if exist &quot;$(OutDir)CHUVBrainLocalizationExtraction.pdb&quot; copy &quot;$(OutDir)CHUVBrainLocalizationExtraction.pdb&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+echo if exist &quot;$(OutDir)CHUVBrainLocalizationExtraction.lib&quot; copy &quot;$(OutDir)CHUVBrainLocalizationExtraction.lib&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+if exist &quot;$(OutDir)CHUVBrainLocalizationExtraction.lib&quot; copy &quot;$(OutDir)CHUVBrainLocalizationExtraction.lib&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;</Command>
+            <Message>Running postbuild commands...</Message>
+        </PostBuildEvent>
+    </ItemDefinitionGroup>
+    <ItemGroup>
+        <ClCompile Include="CHUVBrainLocalizationExtractionInit.cpp"/>
+        <ClCompile Include="mlmialRefineMask.cpp"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ClInclude Include="CHUVBrainLocalizationExtractionInit.h"/>
+        <ClInclude Include="CHUVBrainLocalizationExtractionSystem.h"/>
+        <ClInclude Include="mlmialRefineMask.h"/>
+    </ItemGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
+    <ImportGroup Label="ExtensionTargets"/>
+    <ItemGroup>
+        <CustomBuild Include="CHUVBrainLocalizationExtraction.pro">
+            <Command>set MLAB_COMPILER_VERSION=VC14-64
+&quot;C:\Program Files\MeVisLab3.0.2VC14-64\Packages/MeVis/ThirdParty/Python/MeVisPython.exe&quot; &quot;C:/Program Files/MeVisLab3.0.2VC14-64/Packages/MeVis/BuildSystem\BuildTools\Scripts\createProject.py&quot; CHUVBrainLocalizationExtraction.pro</Command>
+            <Outputs>tmp\.#CHUVBrainLocalizationExtraction.vcxproj</Outputs>
+            <Message>Compiling CHUVBrainLocalizationExtraction.pro...</Message>
+        </CustomBuild>
+    </ItemGroup>
+</Project>

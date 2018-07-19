@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build"
+     ToolsVersion="4.0"
+     xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup Label="ProjectConfigurations">
+        <ProjectConfiguration Include="Debug|x64">
+            <Configuration>Debug</Configuration>
+            <Platform>x64</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Release|x64">
+            <Configuration>Release</Configuration>
+            <Platform>x64</Platform>
+        </ProjectConfiguration>
+    </ItemGroup>
+    <PropertyGroup Label="Globals">
+        <ProjectGuid>{AC89CF0D-F7DB-3660-AE38-ACE2559EE816}</ProjectGuid>
+        <RootNamespace>CHUVTVSuperResolution</RootNamespace>
+        <Keyword>Qt4VSv1.0</Keyword>
+    </PropertyGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"
+         Label="Configuration">
+        <PlatformToolSet>v140</PlatformToolSet>
+        <OutputDirectory>tmp\debug\obj\</OutputDirectory>
+        <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+        <CharacterSet>NotSet</CharacterSet>
+        <ConfigurationType>DynamicLibrary</ConfigurationType>
+        <IntermediateDirectory>tmp\debug\obj\</IntermediateDirectory>
+        <PrimaryOutput>CHUVTVSuperResolution</PrimaryOutput>
+        <PlatformToolset>v140</PlatformToolset>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'"
+         Label="Configuration">
+        <PlatformToolSet>v140</PlatformToolSet>
+        <OutputDirectory>tmp\release\obj\</OutputDirectory>
+        <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+        <CharacterSet>NotSet</CharacterSet>
+        <ConfigurationType>DynamicLibrary</ConfigurationType>
+        <IntermediateDirectory>tmp\release\obj\</IntermediateDirectory>
+        <PrimaryOutput>CHUVTVSuperResolution</PrimaryOutput>
+        <PlatformToolset>v140</PlatformToolset>
+    </PropertyGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
+    <ImportGroup Label="ExtensionSettings"/>
+    <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"
+         Label="PropertySheets">
+        <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
+             Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+    </ImportGroup>
+    <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'"
+         Label="PropertySheets">
+        <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
+             Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+    </ImportGroup>
+    <PropertyGroup Label="UserMacros"/>
+    <PropertyGroup>
+        <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">tmp\debug\obj\</OutDir>
+        <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">tmp\debug\obj\</IntDir>
+        <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CHUVTVSuperResolution_d</TargetName>
+        <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</IgnoreImportLibrary>
+        <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</PostBuildEventUseInBuild>
+        <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">tmp\release\obj\</OutDir>
+        <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">tmp\release\obj\</IntDir>
+        <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CHUVTVSuperResolution</TargetName>
+        <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</IgnoreImportLibrary>
+        <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+        <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</PostBuildEventUseInBuild>
+    </PropertyGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+        <ClCompile>
+            <AdditionalIncludeDirectories>.;..\..\Shared\MyTVSuperResolution;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLBackgroundTasks;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\ML\include\deprecated;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\ML\include;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLLinearAlgebra\deprecated;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLLinearAlgebra;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLProfilingManager\Include;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLUtilities;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLMemoryManager\Include;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\ThirdPartyWarnings;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\ThirdParty\Sources\misc\boost;.;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\ThirdParty\Sources\Qt5\qt\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+            <AdditionalOptions>-Zc:throwingNew %(AdditionalOptions)</AdditionalOptions>
+            <AssemblerListingLocation>tmp\debug\obj\</AssemblerListingLocation>
+            <BrowseInformation>false</BrowseInformation>
+            <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+            <DisableSpecificWarnings>4201;4251;4127;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+            <ExceptionHandling>Sync</ExceptionHandling>
+            <MultiProcessorCompilation>true</MultiProcessorCompilation>
+            <ObjectFileName>tmp\debug\obj\</ObjectFileName>
+            <OpenMPSupport>true</OpenMPSupport>
+            <Optimization>Disabled</Optimization>
+            <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;NOMINMAX;MEVIS_TARGET=CHUVTVSuperResolution;MEVIS_64BIT;MEVISLAB_VERSION=300;MEVISLAB_VERSION_STRING=3.0.2;ML_VERSION_2;BOOST_ALL_DYN_LINK;DEBUG;MeVisLab;MEVISLAB;__LITTLE_ENDIAN__;ML_LIBRARY_EXPORT_ATTRIBUTE=__declspec(dllexport);ML_LIBRARY_IMPORT_ATTRIBUTE=__declspec(dllimport);ML_RETURN_VALUE_SHOULD_BE_USED=;_CRT_SECURE_NO_DEPRECATE;CHUVTVSUPERRESOLUTION_EXPORTS;ML_WARN_DEPRECATED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <PreprocessToFile>false</PreprocessToFile>
+            <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+            <RuntimeTypeInfo>true</RuntimeTypeInfo>
+            <SuppressStartupBanner>true</SuppressStartupBanner>
+            <TreatSpecificWarningsAsErrors>4102;4131;4218;4431;4715;4723;4002;4013;4056;4054;4067;4068;4130;4146;4150;4172;4210;4351;4373;4366;4552;4553;4804;4910;%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
+            <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+            <WarningLevel>Level4</WarningLevel>
+        </ClCompile>
+        <Link>
+            <AdditionalDependencies>mialsrtkTVSuperResolutionLib.lib_d;mialsrtkTVSuperResolutionWrapper.lib_d;ITKBiasCorrection-4.13.lib;ITKIOImageBase-4.13.lib;ITKNrrdIO-4.13.lib;itkgdcmMSFF-4.13.lib;ITKBioCell-4.13.lib;ITKIOJPEG-4.13.lib;ITKOptimizers-4.13.lib;itkgdcmcharls-4.13.lib;ITKCommon-4.13.lib;ITKIOLSM-4.13.lib;ITKOptimizersv4-4.13.lib;itkgdcmjpeg12-4.13.lib;ITKIOMINC-4.13.lib;ITKPath-4.13.lib;itkgdcmjpeg16-4.13.lib;ITKCommon1TestDriver.lib;ITKIOMRC-4.13.lib;ITKPolynomials-4.13.lib;itkgdcmjpeg8-4.13.lib;ITKDICOMParser-4.13.lib;ITKIOMesh-4.13.lib;ITKQuadEdgeMesh-4.13.lib;itkgdcmopenjp2-4.13.lib;ITKEXPAT-4.13.lib;ITKIOMeta-4.13.lib;ITKSpatialObjects-4.13.lib;itkgdcmsocketxx-4.13.lib;ITKFEM-4.13.lib;ITKIONIFTI-4.13.lib;ITKStatistics-4.13.lib;itkgtest-4.13.lib;ITKIONIFTI-TestSupport.lib;ITKTransform-4.13.lib;itkgtest_main-4.13.lib;ITKFEMHeaderTest1.lib;ITKIONRRD-4.13.lib;ITKTransformFactory-4.13.lib;itkjpeg-4.13.lib;ITKIOPNG-4.13.lib;ITKVNLInstantiation-4.13.lib;itklbfgs-4.13.lib;ITKFEMRegistrationHeaderTest1.lib;ITKIOSiemens-4.13.lib;ITKVTK-4.13.lib;itkminc2-4.13.lib;ITKIOSpatialObjects-4.13.lib;ITKVideoCore-4.13.lib;itknetlib-4.13.lib;ITKFEMRegistrationTestDriver.lib;ITKIOStimulate-4.13.lib;ITKVideoIO-4.13.lib;itkpng-4.13.lib;ITKIOTIFF-4.13.lib;ITKWatersheds-4.13.lib;itksys-4.13.lib;ITKFEMTestDriver.lib;ITKIOTransformBase-4.13.lib;ITKgiftiio-4.13.lib;itktestlib-4.13.lib;ITKIOBMP-4.13.lib;ITKIOTransformHDF5-4.13.lib;ITKniftiio-4.13.lib;itktiff-4.13.lib;ITKIOBioRad-4.13.lib;ITKIOTransformInsightLegacy-4.13.lib;ITKznz-4.13.lib;itkv3p_netlib-4.13.lib;ITKIOBruker-4.13.lib;ITKIOTransformMatlab-4.13.lib;itkNetlibSlatec-4.13.lib;itkvcl-4.13.lib;ITKIOCSV-4.13.lib;ITKIOVTK-4.13.lib;itkdouble-conversion-4.13.lib;itkvnl-4.13.lib;ITKIOGDCM-4.13.lib;ITKIOXML-4.13.lib;itkgdcmCommon-4.13.lib;itkvnl_algo-4.13.lib;ITKIOGE-4.13.lib;ITKKLMRegionGrowing-4.13.lib;itkgdcmDICT-4.13.lib;itkzlib-4.13.lib;ITKIOGIPL-4.13.lib;ITKLabelMap-4.13.lib;itkgdcmDSED-4.13.lib;libitkhdf5.lib;ITKIOHDF5-4.13.lib;ITKMesh-4.13.lib;itkgdcmIOD-4.13.lib;libitkhdf5_cpp.lib;ITKIOIPL-4.13.lib;ITKMetaIO-4.13.lib;itkgdcmMEXD-4.13.lib;Ws2_32.lib;Rpcrt4.lib;Snmpapi.lib;psapi.lib;MLBackgroundTasks_d.lib;ML_d.lib;MLLinearAlgebra_d.lib;MLMemoryManager_d.lib;MLProfilingManager_d.lib;MLUtilities_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+            <AdditionalLibraryDirectories>=;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser\lib\MyTVSuperResolution;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser\lib\MyITK;&quot;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\ThirdParty\lib&quot;;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser\lib;&quot;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVisLab\Standard\lib&quot;;&quot;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\lib&quot;;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+            <DataExecutionPrevention>true</DataExecutionPrevention>
+            <GenerateDebugInformation>true</GenerateDebugInformation>
+            <IgnoreImportLibrary>true</IgnoreImportLibrary>
+            <LargeAddressAware>true</LargeAddressAware>
+            <LinkDLL>true</LinkDLL>
+            <OutputFile>$(OutDir)CHUVTVSuperResolution_d.dll</OutputFile>
+            <RandomizedBaseAddress>true</RandomizedBaseAddress>
+            <SubSystem>Windows</SubSystem>
+            <SuppressStartupBanner>true</SuppressStartupBanner>
+        </Link>
+        <Midl>
+            <DefaultCharType>Unsigned</DefaultCharType>
+            <EnableErrorChecks>None</EnableErrorChecks>
+            <WarningLevel>0</WarningLevel>
+        </Midl>
+        <ResourceCompile>
+            <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;NOMINMAX;MEVIS_TARGET=CHUVTVSuperResolution;MEVIS_64BIT;MEVISLAB_VERSION=300;MEVISLAB_VERSION_STRING=3.0.2;ML_VERSION_2;BOOST_ALL_DYN_LINK;DEBUG;MeVisLab;MEVISLAB;__LITTLE_ENDIAN__;ML_LIBRARY_EXPORT_ATTRIBUTE=__declspec(dllexport);ML_LIBRARY_IMPORT_ATTRIBUTE=__declspec(dllimport);ML_RETURN_VALUE_SHOULD_BE_USED=;_CRT_SECURE_NO_DEPRECATE;CHUVTVSUPERRESOLUTION_EXPORTS;ML_WARN_DEPRECATED;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+        </ResourceCompile>
+        <PostBuildEvent>
+            <Command>if not exist &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot; mkdir &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+if exist &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated\CHUVTVSuperResolution_d.dll&quot; (
+  echo removing old updated DLL
+  del &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated\CHUVTVSuperResolution_d.dll&quot;
+)
+echo copy &quot;$(OutDir)CHUVTVSuperResolution_d.dll&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\CHUVTVSuperResolution_d.dll&quot;
+copy &quot;$(OutDir)CHUVTVSuperResolution_d.dll&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\CHUVTVSuperResolution_d.dll&quot;
+if errorLevel 1 (
+  echo DLL locked, copying to /updated subdir - and removing source file
+  if not exist &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated&quot; mkdir &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated&quot;
+  copy &quot;$(OutDir)CHUVTVSuperResolution_d.dll&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated\CHUVTVSuperResolution_d.dll&quot;
+  del &quot;$(OutDir)CHUVTVSuperResolution_d.dll&quot;
+)
+echo copy &quot;$(OutDir)CHUVTVSuperResolution_d.pdb&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+copy &quot;$(OutDir)CHUVTVSuperResolution_d.pdb&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+echo if exist &quot;$(OutDir)CHUVTVSuperResolution_d.lib&quot; copy &quot;$(OutDir)CHUVTVSuperResolution_d.lib&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+if exist &quot;$(OutDir)CHUVTVSuperResolution_d.lib&quot; copy &quot;$(OutDir)CHUVTVSuperResolution_d.lib&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;</Command>
+            <Message>Running postbuild commands...</Message>
+        </PostBuildEvent>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+        <ClCompile>
+            <AdditionalIncludeDirectories>.;..\..\Shared\MyTVSuperResolution;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLBackgroundTasks;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\ML\include\deprecated;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\ML\include;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLLinearAlgebra\deprecated;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLLinearAlgebra;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLProfilingManager\Include;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLUtilities;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\MLMemoryManager\Include;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\Sources\ThirdPartyWarnings;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\ThirdParty\Sources\misc\boost;.;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\ThirdParty\Sources\Qt5\qt\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+            <AdditionalOptions>-Zc:throwingNew %(AdditionalOptions)</AdditionalOptions>
+            <AssemblerListingLocation>tmp\release\obj\</AssemblerListingLocation>
+            <BrowseInformation>false</BrowseInformation>
+            <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+            <DisableSpecificWarnings>4201;4251;4127;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+            <ExceptionHandling>Sync</ExceptionHandling>
+            <MultiProcessorCompilation>true</MultiProcessorCompilation>
+            <ObjectFileName>tmp\release\obj\</ObjectFileName>
+            <OpenMPSupport>true</OpenMPSupport>
+            <Optimization>MaxSpeed</Optimization>
+            <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;NOMINMAX;MEVIS_TARGET=CHUVTVSuperResolution;MEVIS_64BIT;MEVISLAB_VERSION=300;MEVISLAB_VERSION_STRING=3.0.2;ML_VERSION_2;BOOST_ALL_DYN_LINK;MeVisLab;MEVISLAB;__LITTLE_ENDIAN__;ML_LIBRARY_EXPORT_ATTRIBUTE=__declspec(dllexport);ML_LIBRARY_IMPORT_ATTRIBUTE=__declspec(dllimport);ML_RETURN_VALUE_SHOULD_BE_USED=;_CRT_SECURE_NO_DEPRECATE;CHUVTVSUPERRESOLUTION_EXPORTS;ML_WARN_DEPRECATED;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <PreprocessToFile>false</PreprocessToFile>
+            <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+            <RuntimeTypeInfo>true</RuntimeTypeInfo>
+            <SuppressStartupBanner>true</SuppressStartupBanner>
+            <TreatSpecificWarningsAsErrors>4102;4131;4218;4431;4715;4723;4002;4013;4056;4054;4067;4068;4130;4146;4150;4172;4210;4351;4373;4366;4552;4553;4804;4910;%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
+            <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+            <WarningLevel>Level4</WarningLevel>
+        </ClCompile>
+        <Link>
+            <AdditionalDependencies>mialsrtkTVSuperResolutionLib.lib;mialsrtkTVSuperResolutionWrapper.lib;ITKBiasCorrection-4.13.lib;ITKIOImageBase-4.13.lib;ITKNrrdIO-4.13.lib;itkgdcmMSFF-4.13.lib;ITKBioCell-4.13.lib;ITKIOJPEG-4.13.lib;ITKOptimizers-4.13.lib;itkgdcmcharls-4.13.lib;ITKCommon-4.13.lib;ITKIOLSM-4.13.lib;ITKOptimizersv4-4.13.lib;itkgdcmjpeg12-4.13.lib;ITKIOMINC-4.13.lib;ITKPath-4.13.lib;itkgdcmjpeg16-4.13.lib;ITKCommon1TestDriver.lib;ITKIOMRC-4.13.lib;ITKPolynomials-4.13.lib;itkgdcmjpeg8-4.13.lib;ITKDICOMParser-4.13.lib;ITKIOMesh-4.13.lib;ITKQuadEdgeMesh-4.13.lib;itkgdcmopenjp2-4.13.lib;ITKEXPAT-4.13.lib;ITKIOMeta-4.13.lib;ITKSpatialObjects-4.13.lib;itkgdcmsocketxx-4.13.lib;ITKFEM-4.13.lib;ITKIONIFTI-4.13.lib;ITKStatistics-4.13.lib;itkgtest-4.13.lib;ITKIONIFTI-TestSupport.lib;ITKTransform-4.13.lib;itkgtest_main-4.13.lib;ITKFEMHeaderTest1.lib;ITKIONRRD-4.13.lib;ITKTransformFactory-4.13.lib;itkjpeg-4.13.lib;ITKIOPNG-4.13.lib;ITKVNLInstantiation-4.13.lib;itklbfgs-4.13.lib;ITKFEMRegistrationHeaderTest1.lib;ITKIOSiemens-4.13.lib;ITKVTK-4.13.lib;itkminc2-4.13.lib;ITKIOSpatialObjects-4.13.lib;ITKVideoCore-4.13.lib;itknetlib-4.13.lib;ITKFEMRegistrationTestDriver.lib;ITKIOStimulate-4.13.lib;ITKVideoIO-4.13.lib;itkpng-4.13.lib;ITKIOTIFF-4.13.lib;ITKWatersheds-4.13.lib;itksys-4.13.lib;ITKFEMTestDriver.lib;ITKIOTransformBase-4.13.lib;ITKgiftiio-4.13.lib;itktestlib-4.13.lib;ITKIOBMP-4.13.lib;ITKIOTransformHDF5-4.13.lib;ITKniftiio-4.13.lib;itktiff-4.13.lib;ITKIOBioRad-4.13.lib;ITKIOTransformInsightLegacy-4.13.lib;ITKznz-4.13.lib;itkv3p_netlib-4.13.lib;ITKIOBruker-4.13.lib;ITKIOTransformMatlab-4.13.lib;itkNetlibSlatec-4.13.lib;itkvcl-4.13.lib;ITKIOCSV-4.13.lib;ITKIOVTK-4.13.lib;itkdouble-conversion-4.13.lib;itkvnl-4.13.lib;ITKIOGDCM-4.13.lib;ITKIOXML-4.13.lib;itkgdcmCommon-4.13.lib;itkvnl_algo-4.13.lib;ITKIOGE-4.13.lib;ITKKLMRegionGrowing-4.13.lib;itkgdcmDICT-4.13.lib;itkzlib-4.13.lib;ITKIOGIPL-4.13.lib;ITKLabelMap-4.13.lib;itkgdcmDSED-4.13.lib;libitkhdf5.lib;ITKIOHDF5-4.13.lib;ITKMesh-4.13.lib;itkgdcmIOD-4.13.lib;libitkhdf5_cpp.lib;ITKIOIPL-4.13.lib;ITKMetaIO-4.13.lib;itkgdcmMEXD-4.13.lib;Ws2_32.lib;Rpcrt4.lib;Snmpapi.lib;psapi.lib;MLBackgroundTasks.lib;ML.lib;MLLinearAlgebra.lib;MLMemoryManager.lib;MLProfilingManager.lib;MLUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
+            <AdditionalLibraryDirectories>=;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser\lib\MyTVSuperResolution;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser\lib\MyITK;&quot;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\ThirdParty\lib&quot;;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser\lib;&quot;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVisLab\Standard\lib&quot;;&quot;C:\Program Files\MeVisLab3.0.2VC14-64\Packages\MeVis\Foundation\lib&quot;;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+            <DataExecutionPrevention>true</DataExecutionPrevention>
+            <EnableCOMDATFolding>true</EnableCOMDATFolding>
+            <GenerateDebugInformation>true</GenerateDebugInformation>
+            <IgnoreImportLibrary>true</IgnoreImportLibrary>
+            <LargeAddressAware>true</LargeAddressAware>
+            <LinkDLL>true</LinkDLL>
+            <LinkIncremental>false</LinkIncremental>
+            <OptimizeReferences>true</OptimizeReferences>
+            <OutputFile>$(OutDir)CHUVTVSuperResolution.dll</OutputFile>
+            <RandomizedBaseAddress>true</RandomizedBaseAddress>
+            <SubSystem>Windows</SubSystem>
+            <SuppressStartupBanner>true</SuppressStartupBanner>
+        </Link>
+        <Midl>
+            <DefaultCharType>Unsigned</DefaultCharType>
+            <EnableErrorChecks>None</EnableErrorChecks>
+            <WarningLevel>0</WarningLevel>
+        </Midl>
+        <ResourceCompile>
+            <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;NOMINMAX;MEVIS_TARGET=CHUVTVSuperResolution;MEVIS_64BIT;MEVISLAB_VERSION=300;MEVISLAB_VERSION_STRING=3.0.2;ML_VERSION_2;BOOST_ALL_DYN_LINK;MeVisLab;MEVISLAB;__LITTLE_ENDIAN__;ML_LIBRARY_EXPORT_ATTRIBUTE=__declspec(dllexport);ML_LIBRARY_IMPORT_ATTRIBUTE=__declspec(dllimport);ML_RETURN_VALUE_SHOULD_BE_USED=;_CRT_SECURE_NO_DEPRECATE;CHUVTVSUPERRESOLUTION_EXPORTS;ML_WARN_DEPRECATED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+        </ResourceCompile>
+        <PostBuildEvent>
+            <Command>if not exist &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot; mkdir &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+if exist &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated\CHUVTVSuperResolution.dll&quot; (
+  echo removing old updated DLL
+  del &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated\CHUVTVSuperResolution.dll&quot;
+)
+echo copy &quot;$(OutDir)CHUVTVSuperResolution.dll&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\CHUVTVSuperResolution.dll&quot;
+copy &quot;$(OutDir)CHUVTVSuperResolution.dll&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\CHUVTVSuperResolution.dll&quot;
+if errorLevel 1 (
+  echo DLL locked, copying to /updated subdir - and removing source file
+  if not exist &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated&quot; mkdir &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated&quot;
+  copy &quot;$(OutDir)CHUVTVSuperResolution.dll&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib\updated\CHUVTVSuperResolution.dll&quot;
+  del &quot;$(OutDir)CHUVTVSuperResolution.dll&quot;
+)
+echo if exist &quot;$(OutDir)CHUVTVSuperResolution.pdb&quot; copy &quot;$(OutDir)CHUVTVSuperResolution.pdb&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+if exist &quot;$(OutDir)CHUVTVSuperResolution.pdb&quot; copy &quot;$(OutDir)CHUVTVSuperResolution.pdb&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+echo if exist &quot;$(OutDir)CHUVTVSuperResolution.lib&quot; copy &quot;$(OutDir)CHUVTVSuperResolution.lib&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;
+if exist &quot;$(OutDir)CHUVTVSuperResolution.lib&quot; copy &quot;$(OutDir)CHUVTVSuperResolution.lib&quot; &quot;D:\Pierre\PackageFetalMRI\CHUV\FetalMRIBis\mevisFetalMRI\MRUser/lib&quot;</Command>
+            <Message>Running postbuild commands...</Message>
+        </PostBuildEvent>
+    </ItemDefinitionGroup>
+    <ItemGroup>
+        <ClCompile Include="CHUVTVSuperResolutionInit.cpp"/>
+        <ClCompile Include="mlmialTVSuperResolution.cpp"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ClInclude Include="CHUVTVSuperResolutionInit.h"/>
+        <ClInclude Include="CHUVTVSuperResolutionSystem.h"/>
+        <ClInclude Include="mlmialTVSuperResolution.h"/>
+    </ItemGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
+    <ImportGroup Label="ExtensionTargets"/>
+    <ItemGroup>
+        <CustomBuild Include="CHUVTVSuperResolution.pro">
+            <Command>set MLAB_COMPILER_VERSION=VC14-64
+&quot;C:\Program Files\MeVisLab3.0.2VC14-64\Packages/MeVis/ThirdParty/Python/MeVisPython.exe&quot; &quot;C:/Program Files/MeVisLab3.0.2VC14-64/Packages/MeVis/BuildSystem\BuildTools\Scripts\createProject.py&quot; CHUVTVSuperResolution.pro</Command>
+            <Outputs>tmp\.#CHUVTVSuperResolution.vcxproj</Outputs>
+            <Message>Compiling CHUVTVSuperResolution.pro...</Message>
+        </CustomBuild>
+    </ItemGroup>
+</Project>

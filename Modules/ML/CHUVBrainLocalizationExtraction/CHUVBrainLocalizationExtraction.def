@@ -1,0 +1,20 @@
+//----------------------------------------------------------------------------------
+//! CHUVBrainLocalizationExtraction module definitions.
+/*!
+// \file    CHUVBrainLocalizationExtraction.def
+// \author  FetalMRI
+// \date    2018-07-17
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule mialRefineMask {
+  DLL                = "CHUVBrainLocalizationExtraction"
+
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/mialRefineMask.script
+}  
