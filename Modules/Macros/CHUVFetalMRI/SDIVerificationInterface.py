@@ -106,6 +106,23 @@ def RunSuperResolution():
   
 def resetSDI():
   print("resetSDIImages")
+  
+def updateSDI():
+  inImages = ctx.field("inImageInfos").object()
+  #if in inImages.keys():
+    
+  #  ctx.field("itkImageFileReader.fileName").setStringValue()
+  
+def updateImage():
+  ctx.field("CreateBoundingVolumeAxial.add").touch()
+  ctx.field("ReformatAxial.apply").touch()
+  ctx.field("BoundingBoxAxial.update").touch()
+  ctx.field("CreateBoundingVolumeSagittal.add").touch()
+  ctx.field("ReformatSagittal.apply").touch()
+  ctx.field("BoundingBoxSagittal.update").touch()
+  ctx.field("CreateBoundingVolumeCoronal.add").touch()
+  ctx.field("ReformatCoronal.apply").touch()
+  ctx.field("BoundingBoxCoronal.update").touch()
 
 
 def sort_human(l):

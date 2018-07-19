@@ -21,8 +21,8 @@ module GetAtlasMacro {
   }
   fields  {
     instanceName = GetAtlasMacro
-    name = "$(MLAB_mevisFetalMRI_MRUser)\\Projects\\TestInterface2\\Data\\CRL_Fetal_Brain_Atlas_2017"
-    AtlasPath = "$(MLAB_mevisFetalMRI_MRUser)\\Projects\\TestInterface2\\Data\\CRL_Fetal_Brain_Atlas_2017"
+    name = ""
+    AtlasPath = D:/Pierre/CRL_Fetal_Brain_Atlas_2016/CRL_Fetal_Brain_Atlas_2016
     currentWeek = 33
   }
 }
@@ -55,27 +55,6 @@ module RemoteRendering {
     transparencyType = BLEND
     bgColor = "0 0 0"
     inputDevicesList = ""
-  }
-}
-module SoGroup {
-  internal  {
-    frame = "886 -211 352 64"
-    moduleGroupName = ViewerInterface
-    windows  {
-      window _viewer {
-        geometry = "342 433 641 647"
-        sizeHint = "400 400"
-        wasOpen = no
-      }
-      window _automatic {
-        geometry = "717 329 500 600"
-        sizeHint = "260 252"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = viewerOld
   }
 }
 module SoView2DSlider {
@@ -261,8 +240,20 @@ module itkImageFileReader {
 }
 module MessageBox {
   internal  {
-    frame = "1733 -119 152 64"
+    frame = "1733 -118 152 64"
     moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "894 526 184 206"
+        sizeHint = "146 206"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
   }
   fields  {
     instanceName = MessageBoxImOrient
@@ -321,61 +312,6 @@ module WorldVoxelConvert {
     worldMode = FALSE
     intVoxelCoords = FALSE
     keepConstant = Voxel
-  }
-}
-module SoView2DOverlay {
-  internal  {
-    frame = "1885 221 168 56"
-    moduleGroupName = ViewerInterface
-    showNetworkPanel = true
-    windows  {
-      window _default {
-        geometry = "672 364 436 472"
-        sizeHint = "436 472"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = SoView2DOverlay
-    interactionProviderID = ""
-    drawingOn = TRUE
-    editingOn = TRUE
-    fixZOn = TRUE
-    color = "1 1 1"
-    selectionTolerance = 4
-    needsValidVoxel = TRUE
-    button1 = IGNORED
-    button2 = IGNORED
-    button3 = IGNORED
-    shift = IGNORED
-    control = IGNORED
-    alt = IGNORED
-    wantsAllEvents = TRUE
-    wantsKeyEvents = TRUE
-    wantsMouseWheelEvents = FALSE
-    setEventHandled = FALSE
-    ignoreHandledEvents = FALSE
-    createNewMode = FALSE
-    renderOnSlab = TRUE
-    clipToSlice = TRUE
-    cursorShape = UNDEFINED_CURSOR
-    overlayName = ""
-    cacheTextures = TRUE
-    blendMode = BLEND_BLEND
-    overwriteCurrentTimePoint = FALSE
-    timePoint = 0
-    maxTimePoint = 0
-    filterMode = FILTER_LINEAR
-    inheritFilterMode = TRUE
-    lutPrecision = VIEW2D_LUT_AUTO
-    alphaFactor = 0
-    baseColor = "1 1 0.498039215803146"
-    useWorldCoords = TRUE
-    applyLut = TRUE
-    isCheckerTiling = FALSE
-    checkerTileSize = 2
-    areCheckerTilesInverted = FALSE
   }
 }
 module View2DExtensions {
@@ -907,338 +843,6 @@ module SoView2DSliceZoom {
     zoomAroundClickPosition = TRUE
   }
 }
-module SoGroup {
-  internal  {
-    frame = "618 1665 96 56"
-    moduleGroupName = checkAtlasImage
-    windows  {
-      window _viewer {
-        geometry = "985 291 400 400"
-        sizeHint = "400 400"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = SoGroup
-  }
-}
-module SoView2D {
-  internal  {
-    frame = "657 1829 96 56"
-    moduleGroupName = checkAtlasImage
-    windows  {
-      window _default {
-        geometry = "748 379 439 501"
-        sizeHint = "439 501"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = SoView2D1
-    interactionProviderID = ""
-    viewerId = viewer
-    startSlice = 0
-    sliceStep = 1
-    numSlices = 1
-    numXSlices = 1
-    maxSlice = 0
-    keepSlicesInView = FALSE
-    slab = 1
-    lowerLeft = "0 0"
-    upperRight = "1 1"
-    margin = "2 2"
-    spacing = "4 4"
-    sliceZoom = 1
-    sliceZoomSynchronized = 1
-    zoomCenter = "0.5 0.5"
-    minSliceZoomKeyboard = 1
-    sliceOrigin = "0 0"
-    viewingCenter = "0 0 0"
-    enableViewingCenter = FALSE
-    unzoomOnImageChange = FALSE
-    drawImageData = TRUE
-    timePoint = 0
-    maxTimePoint = 0
-    snapToCenter = FALSE
-    standardKeys = TRUE
-    standardKeysNumbers = TRUE
-    standardKeysNeedValidPosition = FALSE
-    passHandledFlagToInventor = FALSE
-    reverseExtensionDrawingOrder = FALSE
-    blendMode = BLEND_REPLACE
-    filterMode = FILTER_LINEAR
-    cacheMode = SLICE_CACHING_OFF
-    sliceAlignX = SLICE_ALIGNX_CENTER
-    sliceAlignY = SLICE_ALIGNY_CENTER
-    useShaders = TRUE
-    applyLut = TRUE
-    lutPrecision = VIEW2D_LUT_AUTO
-    zoomMode = VIEW2D_AUTO_ZOOM
-    zoomModeParameter = 1
-    invertKeyPanningDirections = FALSE
-    invertKeySlicingDirection = FALSE
-    overrideAspectRatio = FALSE
-    overrideAspectRatioValue = 1
-    alphaFactor = 1
-    baseColor = "1 1 1"
-    backgroundAlphaFactor = 0
-    backgroundColor = "0 0 0"
-    cineCenterT = 0
-    cineIntervalT = 0
-    cineCenterZ = 0
-    cineIntervalZ = 0
-    cineMode = CINE_Z
-    cineDirection = CINE_PINGPONG
-    cineRepeat = CINE_ONCE
-    cineSpeed = 0.1
-    cineFullRangeZ = TRUE
-    cineFullRangeT = TRUE
-    cineAlwaysReset = TRUE
-    deletingEnabled = TRUE
-    handle2DEvents = TRUE
-    handle3DEvents = TRUE
-    useManagedInteraction = FALSE
-    devicePixelSize = 1
-    enableZBuffer = TRUE
-    enableZWrite = TRUE
-  }
-}
-module View2DExtensions {
-  internal  {
-    frame = "514 1753 144 56"
-    moduleGroupName = checkAtlasImage
-    windows  {
-      window _default {
-        geometry = "588 276 759 707"
-        sizeHint = "759 707"
-        wasOpen = no
-      }
-      window _automatic {
-        geometry = "717 329 500 600"
-        sizeHint = "260 223"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = View2DExtensions1
-    slicerOn = TRUE
-    zoomOn = TRUE
-    panOn = TRUE
-    autoCenterOn = TRUE
-    position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
-    positionMode = Off
-    lutAlphaSync = TRUE
-    lutGrayCenter = 0.5
-    lutGrayWidth = 1
-    lutAlphaCenter = 0.5
-    lutAlphaWidth = 1
-    lutIsRelative = TRUE
-    lutSetDefaultOnce = FALSE
-    useRelativeLUTIfNoInputImage = TRUE
-    lutColorFactor = "1 1 1"
-    lutAlphaFactor = 1
-    annoCoords = World
-    annoCTValue = ToHounsfield
-    valueHighPrecision = TRUE
-    annotationOn = TRUE
-    annotFontSize = ANNO_SIZE_AUTO
-    annotShowOrientation = ANNO_ORIENTATION_SIZE_WEIGHTED
-    annotVerticalRuler = TRUE
-    annotHorizontalRuler = FALSE
-    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
-    annotationMode = ANNO_MODE_AUTO
-    annotShowAnnot = ANNO_SHOW_DETAILED
-    annotUserTopLeft = "$(PatientsName)
-$(PatientID) $(PatientsSex)
-$(PatientsBirthDate)
-($(input00)): $(input01)"
-    annotUserTopRight = "$(InstitutionName)
-$(ManufacturersModelName)
-$(Modality)"
-    annotUserBottomLeft = "slice:  $(slice)
-Timepoint: $(timepoint)
-$(sizex),$(sizey),$(sizez),$(sizec),$(sizet),$(sizeu)
-$(voxelx),$(voxely),$(voxelz)
-$(SeriesDescription)"
-    annotUserBottomRight = "User Mode
-Scan: $(AcquisitionDate)
-LUT C/W: $(numInput03) / $(numInput04)"
-    annotUserBottomCenter = ""
-    annotShortTopLeft = "$(PatientsName)
-($(input00)):
- $(input01) GV"
-    annotShortTopRight = $(Modality)
-    annotShortBottomLeft = "Slice: $(slice)"
-    annotShortBottomRight = "LUT C/W: $(numInput03) / $(numInput04)"
-    annotShortBottomCenter = ""
-    annotMRTopLeft = "$(PatientsName)
-$(PatientsBirthDate)  $(PatientsSex)
-$(PatientID)
-($(input00)):
-$(input01) GV"
-    annotMRTopRight = "$(InstitutionName)
-$(ManufacturersModelName)
-$(Modality)"
-    annotMRBottomLeft = "Slice: $(slice)
-Timepoint: $(timepoint)
-$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
-$(voxelx),$(voxely),$(voxelz)
-$(SeriesDescription)
-$(ImageComments)"
-    annotMRBottomRight = "MR Mode
-Scan: $(AcquisitionDate)
-LUT C/W: $(numInput03) / $(numInput04)"
-    annotMRBottomCenter = ""
-    annotCTTopLeft = "$(PatientsName)
-$(PatientsBirthDate)  $(PatientsSex)
-$(PatientID)
-($(input00)): 
-$(numInput02) $(input09)"
-    annotCTTopRight = "$(InstitutionName)
-$(ManufacturersModelName)
-$(Modality) "
-    annotCTBottomLeft = "Slice: $(slice)
-Timepoint: $(timepoint)
-$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
-$(voxelx),$(voxely),$(voxelz)
-$(SeriesDescription)
-$(ImageComments)"
-    annotCTBottomRight = "CT Mode
-Scan: $(AcquisitionDate)
-LUT C/W: $(numInput07) / $(numInput08)"
-    annotCTBottomCenter = ""
-    annoInput03 = 0.5
-    annoInput04 = 1
-    annoInput05 = 0.5
-    annoInput06 = 1
-    annoInput07 = 0.5
-    annoInput08 = 1
-    annoInput09 = HU
-    annoNumInput00 = 0
-    annoNumInput01 = 0
-    annoNumInput02 = 0
-    annoNumInput03 = 0.5
-    annoNumInput04 = 1
-    annoNumInput05 = 0.5
-    annoNumInput06 = 1
-    annoNumInput07 = 0.5
-    maxPrecision = 4
-    showColorChannelValues = FALSE
-    colorChannelSeparator = " / "
-    annoMouseOn = TRUE
-    borderOn = FALSE
-    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    borderWidth = 1
-    borderEvaluateFocus = FALSE
-    borderFocusColor = "1 1 1"
-    borderFocusWidth = 2
-    mouseGrabberMode = FALSE
-    lutOn = TRUE
-    lutMouseOn = TRUE
-    lutMouseButton1 = IGNORED
-    lutMouseButton2 = IGNORED
-    lutMouseButton3 = PRESSED
-    lutMouseShift = RELEASED
-    lutMouseCtrl = RELEASED
-    lutMouseAlt = RELEASED
-    positionMouseButton1 = PRESSED
-    positionMouseButton2 = RELEASED
-    positionMouseButton3 = RELEASED
-    positionMouseShift = PRESSED
-    positionMouseCtrl = RELEASED
-    positionMouseAlt = IGNORED
-    positionColor = "0.886206984519958 0.875320017337799 0.560474991798401"
-    positionDrawingOn = FALSE
-    slicerMouseButton1 = IGNORED
-    slicerMouseButton2 = PRESSED
-    slicerMouseButton3 = IGNORED
-    slicerMouseShift = RELEASED
-    slicerMouseCtrl = RELEASED
-    slicerMouseAlt = RELEASED
-    zoomMouseButton1 = IGNORED
-    zoomMouseButton2 = PRESSED
-    zoomMouseButton3 = IGNORED
-    zoomMouseShift = RELEASED
-    zoomMouseCtrl = PRESSED
-    zoomMouseAlt = IGNORED
-    panMouseButton1 = IGNORED
-    panMouseButton2 = PRESSED
-    panMouseButton3 = IGNORED
-    panMouseShift = PRESSED
-    panMouseCtrl = RELEASED
-    panMouseAlt = IGNORED
-    autoCenterMouseButton1 = IGNORED
-    autoCenterMouseButton2 = PRESSED
-    autoCenterMouseButton3 = IGNORED
-    autoCenterMouseShift = PRESSED
-    autoCenterMouseCtrl = PRESSED
-    autoCenterMouseAlt = IGNORED
-  }
-}
-module SoView2DOverlayMPR {
-  internal  {
-    frame = "1873 85 160 56"
-    moduleGroupName = ViewerInterface
-    windows  {
-      window _default {
-        geometry = "221 315 411 650"
-        sizeHint = "373 650"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = SoView2DOverlayMPR
-    interactionProviderID = ""
-    drawingOn = TRUE
-    editingOn = TRUE
-    fixZOn = TRUE
-    color = "1 1 1"
-    selectionTolerance = 4
-    needsValidVoxel = TRUE
-    button1 = IGNORED
-    button2 = IGNORED
-    button3 = IGNORED
-    shift = IGNORED
-    control = IGNORED
-    alt = IGNORED
-    wantsAllEvents = FALSE
-    wantsKeyEvents = FALSE
-    wantsMouseWheelEvents = FALSE
-    setEventHandled = FALSE
-    ignoreHandledEvents = FALSE
-    createNewMode = FALSE
-    renderOnSlab = TRUE
-    clipToSlice = TRUE
-    cursorShape = UNDEFINED_CURSOR
-    overlayName = ""
-    blendMode = BLEND_BLEND
-    overwriteCurrentTimePoint = FALSE
-    timePoint = 0
-    useInputResolutionIfAxisAligned = FALSE
-    filterMode = FILTER_LINEAR
-    inheritFilterMode = TRUE
-    lutPrecision = VIEW2D_LUT_AUTO
-    fillValue = 1
-    fillValueMode = IMAGE_MIN_VALUE
-    resampleInterpolation = MPR_TRILINEAR
-    resampleBorderHandling = MPR_CLAMP_TO_EDGE
-    memoryAccess = GLOBAL
-    slabSize = 1
-    slabMode = USE_VIEW2D_SLAB_SIZE
-    depthSlabRenderMode = MPR_MAXIMUM
-    timeSlabRenderMode = MPR_AVERAGE
-    timeSlabSize = 1
-    alphaFactor = 1
-    baseColor = "1 1 0.498039215803146"
-    applyLut = TRUE
-    renderBoundingBox = FALSE
-    boundingBoxColor = "1 1 1"
-  }
-}
 module SetWorldMatrix {
   internal  {
     frame = "-18 1043 120 56"
@@ -1406,7 +1010,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "File closed"
+    info = "Invalid path"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -2413,31 +2017,6 @@ module itkImageFileWriter {
     unresolvedFileName = ""
   }
 }
-module VerifWorldMatrix2MNI {
-  internal  {
-    frame = "813 1773 152 56"
-    moduleGroupName = checkAtlasImage
-  }
-  fields  {
-    instanceName = VerifWorldMatrix2MNI
-  }
-}
-module SoGroup {
-  internal  {
-    frame = "881 1677 96 56"
-    moduleGroupName = checkAtlasImage
-    windows  {
-      window _viewer {
-        geometry = "1255 341 400 400"
-        sizeHint = "400 400"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = SoGroup2
-  }
-}
 module OrthoSwapFlip {
   internal  {
     frame = "1577 1637 112 56"
@@ -2462,11 +2041,11 @@ module OrthoSwapFlip {
     flipVertical = FALSE
     flipDepth = FALSE
     autoPageSizeX = TRUE
-    pageX = 1
+    pageX = 135
     autoPageSizeY = TRUE
-    pageY = 1
+    pageY = 189
     autoPageSizeZ = TRUE
-    pageZ = 1
+    pageZ = 56
   }
 }
 module Resample3D {
@@ -2539,31 +2118,6 @@ module Reformat {
     ctrlRotate = Released
     altRotate = Released
     updateMode = AutoUpdate
-  }
-}
-module VerifWorldMatrix2MNI {
-  internal  {
-    frame = "705 1637 160 56"
-    moduleGroupName = checkAtlasImage
-  }
-  fields  {
-    instanceName = VerifWorldMatrix2MNI3
-  }
-}
-module SoGroup {
-  internal  {
-    frame = "779 1566 88 56"
-    moduleGroupName = checkAtlasImage
-    windows  {
-      window _viewer {
-        geometry = "759 367 400 400"
-        sizeHint = "400 400"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = SoGroup5
   }
 }
 module itkImageFileWriter {
@@ -2640,7 +2194,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "File closed"
+    info = "Invalid path"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -2651,27 +2205,9 @@ module itkImageFileReader {
     unresolvedFileName = ""
   }
 }
-module SoInteractionInfo {
-  internal  {
-    frame = "537 -371 128 56"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "808 291 412 340"
-        sizeHint = "412 340"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = SoInteractionInfo
-    selectedActionID = annotation.ToggleAnnotation
-    selectedActionType = COMMAND_ACTION
-  }
-}
 module SoInteractionMapping {
   internal  {
-    frame = "1177 -90 160 56"
+    frame = "1177 -89 160 56"
     moduleGroupName = ViewerInterface
     windows  {
       window _default {
@@ -2814,330 +2350,9 @@ module SoRenderArea {
     inputDevicesList = ""
   }
 }
-module mialOrientImage {
-  internal  {
-    frame = "-2301 361 120 56"
-    moduleGroupName = BackgroundTasks
-    windows  {
-      window _automatic {
-        geometry = "717 329 500 600"
-        sizeHint = "256 192"
-        wasOpen = no
-      }
-      window _default {
-        geometry = "1096 778 480 180"
-        sizeHint = "480 180"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = mialOrientImage
-    inputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM.nii.gz
-    outputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented.nii.gz
-    orientation = coronal--coronal--axial--axial--sagittal--sagittal
-    inProgress = FALSE
-    outputSucceed = TRUE
-  }
-}
-module mevisbtkDenoising {
-  internal  {
-    frame = "-2640 127 136 56"
-    moduleGroupName = BackgroundTasks
-    windows  {
-      window _default {
-        geometry = "126 621 480 508"
-        sizeHint = "480 508"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = mevisbtkDenoising
-    inputFileName = ""
-    outputFileName = ""
-    maskFileName = ""
-    referenceFileName = ""
-    paddingValue = 0
-    patchHalfSize = 1
-    halfsizeVolumeSearchArea = 5
-    smoothingParameterBeta = 1
-    block = 1
-    opt = TRUE
-    lowerMeanThreshold = 0.94999999
-    lowerVarianceThreshold = 0.5
-    differenceFile = ""
-    smoothingParameterEstimation = FALSE
-    center = -1
-    inProgress = FALSE
-    outputSucceed = FALSE
-  }
-}
-module mialCorrectSliceIntensity {
-  internal  {
-    frame = "-2069 377 168 56"
-    moduleGroupName = BackgroundTasks
-    windows  {
-      window _automatic {
-        geometry = "717 329 500 600"
-        sizeHint = "256 192"
-        wasOpen = no
-      }
-      window _default {
-        geometry = "118 699 480 180"
-        sizeHint = "480 180"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = mialCorrectSliceIntensity
-    inputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented.nii.gz
-    outputFileName = ""
-    maskFileName = ""
-    inProgress = FALSE
-    outputSucceed = FALSE
-  }
-}
-module mialSliceBySliceBiasEstimation {
-  internal  {
-    frame = "-1785 137 200 56"
-    moduleGroupName = BackgroundTasks
-    windows  {
-      window _default {
-        geometry = "767 561 480 210"
-        sizeHint = "480 210"
-        wasOpen = no
-      }
-      window _automatic {
-        geometry = "717 329 500 600"
-        sizeHint = "256 192"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = mialSliceBySliceBiasEstimation
-    inputImageFile = ""
-    inputMaskFile = ""
-    outputImageFile = ""
-    outputBiasFieldFile = ""
-    inProgress = FALSE
-    outputSucceed = FALSE
-  }
-}
-module mialSliceBySliceBiasFieldCorrection {
-  internal  {
-    frame = "-1796 303 224 56"
-    moduleGroupName = BackgroundTasks
-    windows  {
-      window _default {
-        geometry = "812 678 480 180"
-        sizeHint = "480 180"
-        wasOpen = no
-      }
-      window _automatic {
-        geometry = "717 329 500 600"
-        sizeHint = "256 192"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = mialSliceBySliceBiasFieldCorrection
-    inputImageFile = ""
-    inputMaskFile = ""
-    inputBiasFieldFile = ""
-    outputImageFile = ""
-    inProgress = FALSE
-    outputSucceed = FALSE
-  }
-}
-module mialIntensityStandardization {
-  internal  {
-    frame = "-1191 260 184 56"
-    moduleGroupName = BackgroundTasks
-    windows  {
-      window _automatic {
-        geometry = "717 329 500 600"
-        sizeHint = "256 192"
-        wasOpen = no
-      }
-      window _default {
-        geometry = "746 632 480 180"
-        sizeHint = "480 180"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = mialIntensityStandardization
-    inputFileNames = ""
-    outputFileNames = ""
-    maxIntensity = 255
-    inProgress = FALSE
-    outputSucceed = FALSE
-  }
-}
-module mialOrientImage {
-  internal  {
-    frame = "-2333 125 152 64"
-    moduleGroupName = BackgroundTasks
-    windows  {
-      window _automatic {
-        geometry = "717 329 500 600"
-        sizeHint = "256 192"
-        wasOpen = no
-      }
-      window _default {
-        geometry = "991 686 480 180"
-        sizeHint = "480 180"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = mialOrientImageNLM
-    inputFileName = ""
-    outputFileName = ""
-    orientation = axial
-    inProgress = FALSE
-    outputSucceed = FALSE
-  }
-}
-module mialOrientImage {
-  internal  {
-    frame = "-2245 237 152 64"
-    moduleGroupName = BackgroundTasks
-    windows  {
-      window _automatic {
-        geometry = "717 329 500 600"
-        sizeHint = "256 192"
-        wasOpen = no
-      }
-      window _default {
-        geometry = "788 821 480 180"
-        sizeHint = "480 180"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = mialOrientImageMask
-    inputFileName = ""
-    outputFileName = ""
-    orientation = axial
-    inProgress = FALSE
-    outputSucceed = FALSE
-  }
-}
-module mialCorrectSliceIntensity {
-  internal  {
-    frame = "-2081 125 192 64"
-    moduleGroupName = BackgroundTasks
-    windows  {
-      window _automatic {
-        geometry = "717 329 500 600"
-        sizeHint = "256 192"
-        wasOpen = no
-      }
-      window _default {
-        geometry = "129 197 480 180"
-        sizeHint = "480 180"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = mialCorrectSliceIntensityNLM
-    inputFileName = ""
-    outputFileName = ""
-    maskFileName = ""
-    inProgress = FALSE
-    outputSucceed = FALSE
-  }
-}
-module mialCorrectSliceIntensity {
-  internal  {
-    frame = "-1516 243 272 64"
-    moduleGroupName = BackgroundTasks
-    windows  {
-      window _automatic {
-        geometry = "717 329 500 600"
-        sizeHint = "256 192"
-        wasOpen = no
-      }
-      window _default {
-        geometry = "198 694 480 180"
-        sizeHint = "480 180"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = mialCorrectSliceIntensityPostBiasCorrection
-    inputFileName = ""
-    outputFileName = ""
-    maskFileName = ""
-    inProgress = FALSE
-    outputSucceed = FALSE
-  }
-}
-module mialCorrectSliceIntensity {
-  internal  {
-    frame = "-1531 145 296 64"
-    moduleGroupName = BackgroundTasks
-    windows  {
-      window _automatic {
-        geometry = "717 329 500 600"
-        sizeHint = "256 192"
-        wasOpen = no
-      }
-      window _default {
-        geometry = "223 644 480 180"
-        sizeHint = "480 180"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = mialCorrectSliceIntensityNLMPostBiasCorrection
-    inputFileName = ""
-    outputFileName = ""
-    maskFileName = ""
-    inProgress = FALSE
-    outputSucceed = FALSE
-  }
-}
-module mialIntensityStandardization {
-  internal  {
-    frame = "-1203 136 208 64"
-    moduleGroupName = BackgroundTasks
-    windows  {
-      window _automatic {
-        geometry = "717 329 500 600"
-        sizeHint = "256 192"
-        wasOpen = no
-      }
-      window _default {
-        geometry = "783 599 480 180"
-        sizeHint = "480 180"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = mialIntensityStandardizationNLM
-    inputFileNames = ""
-    outputFileNames = ""
-    maxIntensity = 255
-    inProgress = FALSE
-    outputSucceed = FALSE
-  }
-}
 module updateWorldOrientation {
   internal  {
-    frame = "-735 781 160 56"
+    frame = "-734 781 160 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -3149,6 +2364,564 @@ module updateWorldOrientation {
   }
   fields  {
     instanceName = updateWorldOrientation
+  }
+}
+module SoView2DOverlay {
+  internal  {
+    frame = "1885 221 168 56"
+    moduleGroupName = ViewerInterface
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "672 364 436 472"
+        sizeHint = "436 472"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DOverlay
+    interactionProviderID = ""
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = TRUE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = TRUE
+    clipToSlice = TRUE
+    cursorShape = UNDEFINED_CURSOR
+    overlayName = ""
+    cacheTextures = TRUE
+    blendMode = BLEND_BLEND
+    overwriteCurrentTimePoint = FALSE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    inheritFilterMode = TRUE
+    lutPrecision = VIEW2D_LUT_AUTO
+    alphaFactor = 0
+    baseColor = "1 1 0.498039215803146"
+    useWorldCoords = TRUE
+    applyLut = TRUE
+    isCheckerTiling = FALSE
+    checkerTileSize = 2
+    areCheckerTilesInverted = FALSE
+  }
+}
+module SoView2DOverlayMPR {
+  internal  {
+    frame = "1873 85 160 56"
+    moduleGroupName = ViewerInterface
+    windows  {
+      window _default {
+        geometry = "221 315 411 650"
+        sizeHint = "373 650"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DOverlayMPR
+    interactionProviderID = ""
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = TRUE
+    clipToSlice = TRUE
+    cursorShape = UNDEFINED_CURSOR
+    overlayName = ""
+    blendMode = BLEND_BLEND
+    overwriteCurrentTimePoint = FALSE
+    timePoint = 0
+    useInputResolutionIfAxisAligned = FALSE
+    filterMode = FILTER_LINEAR
+    inheritFilterMode = TRUE
+    lutPrecision = VIEW2D_LUT_AUTO
+    fillValue = 1
+    fillValueMode = IMAGE_MIN_VALUE
+    resampleInterpolation = MPR_TRILINEAR
+    resampleBorderHandling = MPR_CLAMP_TO_EDGE
+    memoryAccess = GLOBAL
+    slabSize = 1
+    slabMode = USE_VIEW2D_SLAB_SIZE
+    depthSlabRenderMode = MPR_MAXIMUM
+    timeSlabRenderMode = MPR_AVERAGE
+    timeSlabSize = 1
+    alphaFactor = 1
+    baseColor = "1 1 0.498039215803146"
+    applyLut = TRUE
+    renderBoundingBox = FALSE
+    boundingBoxColor = "1 1 1"
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "886 -211 352 64"
+    moduleGroupName = ViewerInterface
+    windows  {
+      window _viewer {
+        geometry = "342 433 641 647"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "260 252"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = viewerOld
+  }
+}
+module SoInteractionInfo {
+  internal  {
+    frame = "537 -371 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "808 291 412 340"
+        sizeHint = "412 340"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoInteractionInfo
+    selectedActionID = annotation.ToggleAnnotation
+    selectedActionType = COMMAND_ACTION
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "779 1566 88 56"
+    moduleGroupName = checkAtlasImage
+    windows  {
+      window _viewer {
+        geometry = "759 367 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGroup5
+  }
+}
+module VerifWorldMatrix2MNI {
+  internal  {
+    frame = "705 1637 160 56"
+    moduleGroupName = checkAtlasImage
+  }
+  fields  {
+    instanceName = VerifWorldMatrix2MNI3
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "881 1677 96 56"
+    moduleGroupName = checkAtlasImage
+    windows  {
+      window _viewer {
+        geometry = "1255 341 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGroup2
+  }
+}
+module VerifWorldMatrix2MNI {
+  internal  {
+    frame = "813 1773 152 56"
+    moduleGroupName = checkAtlasImage
+  }
+  fields  {
+    instanceName = VerifWorldMatrix2MNI
+  }
+}
+module View2DExtensions {
+  internal  {
+    frame = "514 1753 144 56"
+    moduleGroupName = checkAtlasImage
+    windows  {
+      window _default {
+        geometry = "588 276 759 707"
+        sizeHint = "759 707"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2DExtensions1
+    slicerOn = TRUE
+    zoomOn = TRUE
+    panOn = TRUE
+    autoCenterOn = TRUE
+    position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
+    positionMode = Off
+    lutAlphaSync = TRUE
+    lutGrayCenter = 1742
+    lutGrayWidth = 3484
+    lutAlphaCenter = 1742
+    lutAlphaWidth = 3484
+    lutIsRelative = FALSE
+    lutSetDefaultOnce = FALSE
+    useRelativeLUTIfNoInputImage = TRUE
+    lutColorFactor = "1 1 1"
+    lutAlphaFactor = 1
+    annoCoords = World
+    annoCTValue = ToHounsfield
+    valueHighPrecision = TRUE
+    annotationOn = TRUE
+    annotFontSize = ANNO_SIZE_AUTO
+    annotShowOrientation = ANNO_ORIENTATION_SIZE_WEIGHTED
+    annotVerticalRuler = TRUE
+    annotHorizontalRuler = FALSE
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationMode = ANNO_MODE_AUTO
+    annotShowAnnot = ANNO_SHOW_DETAILED
+    annotUserTopLeft = "$(PatientsName)
+$(PatientID) $(PatientsSex)
+$(PatientsBirthDate)
+($(input00)): $(input01)"
+    annotUserTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotUserBottomLeft = "slice:  $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet),$(sizeu)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)"
+    annotUserBottomRight = "User Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(numInput03) / $(numInput04)"
+    annotUserBottomCenter = ""
+    annotShortTopLeft = "$(PatientsName)
+($(input00)):
+ $(input01) GV"
+    annotShortTopRight = $(Modality)
+    annotShortBottomLeft = "Slice: $(slice)"
+    annotShortBottomRight = "LUT C/W: $(numInput03) / $(numInput04)"
+    annotShortBottomCenter = ""
+    annotMRTopLeft = "$(PatientsName)
+$(PatientsBirthDate)  $(PatientsSex)
+$(PatientID)
+($(input00)):
+$(input01) GV"
+    annotMRTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotMRBottomLeft = "Slice: $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotMRBottomRight = "MR Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(numInput03) / $(numInput04)"
+    annotMRBottomCenter = ""
+    annotCTTopLeft = "$(PatientsName)
+$(PatientsBirthDate)  $(PatientsSex)
+$(PatientID)
+($(input00)): 
+$(numInput02) $(input09)"
+    annotCTTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality) "
+    annotCTBottomLeft = "Slice: $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotCTBottomRight = "CT Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(numInput07) / $(numInput08)"
+    annotCTBottomCenter = ""
+    annoInput03 = 1742
+    annoInput04 = 3484
+    annoInput05 = 1
+    annoInput06 = 1
+    annoInput07 = 1742
+    annoInput08 = 3484
+    annoInput09 = HU
+    annoNumInput00 = 0
+    annoNumInput01 = 0
+    annoNumInput02 = 0
+    annoNumInput03 = 1742
+    annoNumInput04 = 3484
+    annoNumInput05 = 1
+    annoNumInput06 = 1
+    annoNumInput07 = 1742
+    maxPrecision = 4
+    showColorChannelValues = FALSE
+    colorChannelSeparator = " / "
+    annoMouseOn = TRUE
+    borderOn = FALSE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    borderWidth = 1
+    borderEvaluateFocus = FALSE
+    borderFocusColor = "1 1 1"
+    borderFocusWidth = 2
+    mouseGrabberMode = FALSE
+    lutOn = TRUE
+    lutMouseOn = TRUE
+    lutMouseButton1 = IGNORED
+    lutMouseButton2 = IGNORED
+    lutMouseButton3 = PRESSED
+    lutMouseShift = RELEASED
+    lutMouseCtrl = RELEASED
+    lutMouseAlt = RELEASED
+    positionMouseButton1 = PRESSED
+    positionMouseButton2 = RELEASED
+    positionMouseButton3 = RELEASED
+    positionMouseShift = PRESSED
+    positionMouseCtrl = RELEASED
+    positionMouseAlt = IGNORED
+    positionColor = "0.886206984519958 0.875320017337799 0.560474991798401"
+    positionDrawingOn = FALSE
+    slicerMouseButton1 = IGNORED
+    slicerMouseButton2 = PRESSED
+    slicerMouseButton3 = IGNORED
+    slicerMouseShift = RELEASED
+    slicerMouseCtrl = RELEASED
+    slicerMouseAlt = RELEASED
+    zoomMouseButton1 = IGNORED
+    zoomMouseButton2 = PRESSED
+    zoomMouseButton3 = IGNORED
+    zoomMouseShift = RELEASED
+    zoomMouseCtrl = PRESSED
+    zoomMouseAlt = IGNORED
+    panMouseButton1 = IGNORED
+    panMouseButton2 = PRESSED
+    panMouseButton3 = IGNORED
+    panMouseShift = PRESSED
+    panMouseCtrl = RELEASED
+    panMouseAlt = IGNORED
+    autoCenterMouseButton1 = IGNORED
+    autoCenterMouseButton2 = PRESSED
+    autoCenterMouseButton3 = IGNORED
+    autoCenterMouseShift = PRESSED
+    autoCenterMouseCtrl = PRESSED
+    autoCenterMouseAlt = IGNORED
+  }
+}
+module SoView2D {
+  internal  {
+    frame = "657 1829 96 56"
+    moduleGroupName = checkAtlasImage
+    windows  {
+      window _default {
+        geometry = "748 379 439 501"
+        sizeHint = "439 501"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2D1
+    interactionProviderID = ""
+    viewerId = viewer
+    startSlice = 0
+    sliceStep = 1
+    numSlices = 1
+    numXSlices = 1
+    maxSlice = 154
+    keepSlicesInView = FALSE
+    slab = 1
+    lowerLeft = "0 0"
+    upperRight = "1 1"
+    margin = "2 2"
+    spacing = "4 4"
+    sliceZoom = 1
+    sliceZoomSynchronized = 1
+    zoomCenter = "0.5 0.5"
+    minSliceZoomKeyboard = 1
+    sliceOrigin = "0 0"
+    viewingCenter = "0 0 0"
+    enableViewingCenter = FALSE
+    unzoomOnImageChange = FALSE
+    drawImageData = TRUE
+    timePoint = 0
+    maxTimePoint = 0
+    snapToCenter = FALSE
+    standardKeys = TRUE
+    standardKeysNumbers = TRUE
+    standardKeysNeedValidPosition = FALSE
+    passHandledFlagToInventor = FALSE
+    reverseExtensionDrawingOrder = FALSE
+    blendMode = BLEND_REPLACE
+    filterMode = FILTER_LINEAR
+    cacheMode = SLICE_CACHING_OFF
+    sliceAlignX = SLICE_ALIGNX_CENTER
+    sliceAlignY = SLICE_ALIGNY_CENTER
+    useShaders = TRUE
+    applyLut = TRUE
+    lutPrecision = VIEW2D_LUT_AUTO
+    zoomMode = VIEW2D_AUTO_ZOOM
+    zoomModeParameter = 1
+    invertKeyPanningDirections = FALSE
+    invertKeySlicingDirection = FALSE
+    overrideAspectRatio = FALSE
+    overrideAspectRatioValue = 1
+    alphaFactor = 1
+    baseColor = "1 1 1"
+    backgroundAlphaFactor = 0
+    backgroundColor = "0 0 0"
+    cineCenterT = 0
+    cineIntervalT = 0
+    cineCenterZ = 0
+    cineIntervalZ = 0
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    cineFullRangeZ = TRUE
+    cineFullRangeT = TRUE
+    cineAlwaysReset = TRUE
+    deletingEnabled = TRUE
+    handle2DEvents = TRUE
+    handle3DEvents = TRUE
+    useManagedInteraction = FALSE
+    devicePixelSize = 1
+    enableZBuffer = TRUE
+    enableZWrite = TRUE
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "618 1665 96 56"
+    moduleGroupName = checkAtlasImage
+    windows  {
+      window _viewer {
+        geometry = "985 291 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module mialHistogramNormalization {
+  isRemote = true
+  internal  {
+    frame = "-919 261 240 56"
+    moduleGroupName = BackgroundTasks
+    windows  {
+      window _default {
+        geometry = "307 664 480 142"
+        sizeHint = "480 142"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialHistogramNormalization
+    inputFiles = ""
+    outputFiles = ""
+    maskFiles = ""
+  }
+}
+module mialHistogramNormalization {
+  isRemote = true
+  internal  {
+    frame = "-919 129 240 64"
+    moduleGroupName = BackgroundTasks
+    windows  {
+      window _default {
+        geometry = "247 589 480 142"
+        sizeHint = "480 142"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialHistogramNormalizationNLM
+    inputFiles = ""
+    outputFiles = ""
+    maskFiles = ""
+  }
+}
+module mialIntensityStandardization {
+  internal  {
+    frame = "-607 129 224 64"
+    moduleGroupName = BackgroundTasks
+    windows  {
+      window _default {
+        geometry = "833 580 480 180"
+        sizeHint = "480 180"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialIntensityStandardizationNLMBis
+    inputFileNames = ""
+    outputFileNames = ""
+    maxIntensity = 255
+    inProgress = FALSE
+    outputSucceed = FALSE
+  }
+}
+module mialIntensityStandardization {
+  internal  {
+    frame = "-602 273 200 64"
+    moduleGroupName = BackgroundTasks
+    windows  {
+      window _default {
+        geometry = "927 727 480 180"
+        sizeHint = "480 180"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialIntensityStandardizationBis
+    inputFileNames = ""
+    outputFileNames = ""
+    maxIntensity = 255
+    inProgress = FALSE
+    outputSucceed = FALSE
   }
 }
 module mialImageReconstruction {
@@ -3193,39 +2966,179 @@ module mialImageReconstruction {
 }
 module mialIntensityStandardization {
   internal  {
-    frame = "-602 273 200 64"
+    frame = "-1203 136 208 64"
     moduleGroupName = BackgroundTasks
     windows  {
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
       window _default {
-        geometry = "927 727 480 180"
+        geometry = "783 599 480 180"
         sizeHint = "480 180"
         wasOpen = no
       }
     }
   }
   fields  {
-    instanceName = mialIntensityStandardizationBis
+    instanceName = mialIntensityStandardizationNLM
     inputFileNames = ""
     outputFileNames = ""
     maxIntensity = 255
+    inProgress = FALSE
+    outputSucceed = FALSE
+  }
+}
+module mialCorrectSliceIntensity {
+  internal  {
+    frame = "-1531 145 296 64"
+    moduleGroupName = BackgroundTasks
+    windows  {
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "223 644 480 180"
+        sizeHint = "480 180"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialCorrectSliceIntensityNLMPostBiasCorrection
+    inputFileName = ""
+    outputFileName = ""
+    maskFileName = ""
+    inProgress = FALSE
+    outputSucceed = FALSE
+  }
+}
+module mialCorrectSliceIntensity {
+  internal  {
+    frame = "-1516 243 272 64"
+    moduleGroupName = BackgroundTasks
+    windows  {
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "198 694 480 180"
+        sizeHint = "480 180"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialCorrectSliceIntensityPostBiasCorrection
+    inputFileName = ""
+    outputFileName = ""
+    maskFileName = ""
+    inProgress = FALSE
+    outputSucceed = FALSE
+  }
+}
+module mialCorrectSliceIntensity {
+  internal  {
+    frame = "-2081 125 192 64"
+    moduleGroupName = BackgroundTasks
+    windows  {
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "129 197 480 180"
+        sizeHint = "480 180"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialCorrectSliceIntensityNLM
+    inputFileName = ""
+    outputFileName = ""
+    maskFileName = ""
+    inProgress = FALSE
+    outputSucceed = FALSE
+  }
+}
+module mialOrientImage {
+  internal  {
+    frame = "-2245 237 152 64"
+    moduleGroupName = BackgroundTasks
+    windows  {
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "788 821 480 180"
+        sizeHint = "480 180"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialOrientImageMask
+    inputFileName = ""
+    outputFileName = ""
+    orientation = axial
+    inProgress = FALSE
+    outputSucceed = FALSE
+  }
+}
+module mialOrientImage {
+  internal  {
+    frame = "-2333 125 152 64"
+    moduleGroupName = BackgroundTasks
+    windows  {
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "991 686 480 180"
+        sizeHint = "480 180"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialOrientImageNLM
+    inputFileName = ""
+    outputFileName = ""
+    orientation = axial
     inProgress = FALSE
     outputSucceed = FALSE
   }
 }
 module mialIntensityStandardization {
   internal  {
-    frame = "-607 129 224 64"
+    frame = "-1191 260 184 56"
     moduleGroupName = BackgroundTasks
     windows  {
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
       window _default {
-        geometry = "833 580 480 180"
+        geometry = "746 632 480 180"
         sizeHint = "480 180"
         wasOpen = no
       }
     }
   }
   fields  {
-    instanceName = mialIntensityStandardizationNLMBis
+    instanceName = mialIntensityStandardization
     inputFileNames = ""
     outputFileNames = ""
     maxIntensity = 255
@@ -3233,74 +3146,147 @@ module mialIntensityStandardization {
     outputSucceed = FALSE
   }
 }
-module mialHistogramNormalization {
+module mialSliceBySliceBiasFieldCorrection {
   internal  {
-    frame = "-1591 -355 192 56"
-    moduleGroupName = ""
+    frame = "-1796 303 224 56"
+    moduleGroupName = BackgroundTasks
     windows  {
       window _default {
-        geometry = "678 242 480 142"
-        sizeHint = "480 142"
+        geometry = "812 678 480 180"
+        sizeHint = "480 180"
         wasOpen = no
       }
       window _automatic {
-        geometry = "502 345 500 600"
+        geometry = "717 329 500 600"
         sizeHint = "256 192"
         wasOpen = no
       }
     }
   }
   fields  {
-    instanceName = mialHistogramNormalization1
-    inputFiles = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
-    outputFiles = D:/Pierre/test.nii.gz
-    maskFiles = "
-D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz"
+    instanceName = mialSliceBySliceBiasFieldCorrection
+    inputImageFile = ""
+    inputMaskFile = ""
+    inputBiasFieldFile = ""
+    outputImageFile = ""
+    inProgress = FALSE
+    outputSucceed = FALSE
   }
 }
-module mialHistogramNormalization {
-  isRemote = true
+module mialSliceBySliceBiasEstimation {
   internal  {
-    frame = "-919 129 240 64"
+    frame = "-1785 137 200 56"
     moduleGroupName = BackgroundTasks
     windows  {
       window _default {
-        geometry = "247 589 480 142"
-        sizeHint = "480 142"
+        geometry = "767 561 480 210"
+        sizeHint = "480 210"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
         wasOpen = no
       }
     }
   }
   fields  {
-    instanceName = mialHistogramNormalizationNLM
-    inputFiles = ""
-    outputFiles = ""
-    maskFiles = ""
+    instanceName = mialSliceBySliceBiasEstimation
+    inputImageFile = ""
+    inputMaskFile = ""
+    outputImageFile = ""
+    outputBiasFieldFile = ""
+    inProgress = FALSE
+    outputSucceed = FALSE
   }
 }
-module mialHistogramNormalization {
-  isRemote = true
+module mialCorrectSliceIntensity {
   internal  {
-    frame = "-919 261 240 56"
+    frame = "-2069 377 168 56"
     moduleGroupName = BackgroundTasks
     windows  {
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
       window _default {
-        geometry = "307 664 480 142"
-        sizeHint = "480 142"
+        geometry = "118 699 480 180"
+        sizeHint = "480 180"
         wasOpen = no
       }
     }
   }
   fields  {
-    instanceName = mialHistogramNormalization
-    inputFiles = ""
-    outputFiles = ""
-    maskFiles = ""
+    instanceName = mialCorrectSliceIntensity
+    inputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented.nii.gz
+    outputFileName = ""
+    maskFileName = ""
+    inProgress = FALSE
+    outputSucceed = FALSE
+  }
+}
+module mevisbtkDenoising {
+  internal  {
+    frame = "-2640 127 136 56"
+    moduleGroupName = BackgroundTasks
+    windows  {
+      window _default {
+        geometry = "126 621 480 508"
+        sizeHint = "480 508"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mevisbtkDenoising
+    inputFileName = ""
+    outputFileName = ""
+    maskFileName = ""
+    referenceFileName = ""
+    paddingValue = 0
+    patchHalfSize = 1
+    halfsizeVolumeSearchArea = 5
+    smoothingParameterBeta = 1
+    block = 1
+    opt = TRUE
+    lowerMeanThreshold = 0.94999999
+    lowerVarianceThreshold = 0.5
+    differenceFile = ""
+    smoothingParameterEstimation = FALSE
+    center = -1
+    inProgress = FALSE
+    outputSucceed = FALSE
+  }
+}
+module mialOrientImage {
+  internal  {
+    frame = "-2301 361 120 56"
+    moduleGroupName = BackgroundTasks
+    windows  {
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "1096 778 480 180"
+        sizeHint = "480 180"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialOrientImage
+    inputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM.nii.gz
+    outputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented.nii.gz
+    orientation = coronal--coronal--axial--axial--sagittal--sagittal
+    inProgress = FALSE
+    outputSucceed = TRUE
   }
 }
 connections  {
   RemoteRendering.sceneGraph = viewer.self
-  viewerOld.children = "SoView2DSlider.self SoView2DSliceZoom.self SoToggle.self LabelIH.self LabelT.self LabelB.self LabelA.self LabelP.self ToggleBrainMask.self SoInteractionMapping1.self LabelViewerMode.self"
   SoView2DSlider.maximumValue = ImageStatistics.bBoxZ2
   SoView2DSlider.currentValue = SoView2D.startSlice
   Switch.input0 = itkImageFileReader.output0
@@ -3311,16 +3297,11 @@ connections  {
   itkImageFileReader.unresolvedFileName = FieldBypass.inputString0
   GetVoxelValue.input0 = itkImageFileReader.output0
   WorldVoxelConvert.input0 = itkImageFileReader.output0
-  SoView2DOverlay.image = Switch1.output0
   View2DExtensions.inLUT = itkImageFileReader.output0
   SoToggle.children = View2DExtensions.outNode
   SoView2D.image = Switch.output0
   SoView2D.startSlice = SoView2DSlider.currentValue
   ImageStatistics.input0 = itkImageFileReader.output0
-  SoGroup.children = "View2DExtensions1.outNode SoView2D1.self"
-  SoView2D1.image = GetAtlasMacro.outImage
-  View2DExtensions1.inLUT = GetAtlasMacro.outImage
-  SoView2DOverlayMPR.image = Switch1.output0
   SetWorldMatrix.input0 = itkImageFileReader.output0
   adaptTemplateMask.inImage = AlreadyModifiedMask.output0
   ToggleBrainMask.children = adaptTemplateMask.outAdaptTemplateMask
@@ -3337,51 +3318,57 @@ connections  {
   SoGroupBT.children = "View2DExtensions5.outNode SoView2DLabel12.self SoView2DLabel11.self SoView2DLabel13.self SoView2DLabel14.self SoView2DLabel10.self SoView2D5.self"
   View2DExtensions5.inLUT = TransformWorldMatrixBT.output0
   itkImageFileWriterWorldMatrixChanged.input0 = TransformWorldMatrixBT.output0
-  VerifWorldMatrix2MNI.input0 = GetAtlasMacro.outMask
-  SoGroup2.children = "VerifWorldMatrix2MNI.output0 VerifWorldMatrix2MNI.output0"
   OrthoSwapFlip.input0 = GetAtlasMacro.outMask
   Resample3D.input0 = OrthoSwapFlip.output0
   Resample3D.input1 = SwitchAlreadyRegistered.output0
   Reformat.input0 = Resample3D.output0
   Reformat.input1 = SwitchAlreadyRegistered.output0
-  VerifWorldMatrix2MNI3.input0 = GetAtlasMacro.outImage
-  SoGroup5.children = VerifWorldMatrix2MNI3.output0
   itkImageFileWriterMask.input0 = adaptTemplateMask.outAdaptMaskImage
   SwitchAlreadyRegistered.input0 = TransformWorldMatrixBT.output0
   SwitchAlreadyRegistered.input1 = itkImageFileReader1.output0
-  SoInteractionInfo.children = viewerOld.self
   viewer.children = "SoView2DSlider.self SoView2DSliceZoom.self SoToggle.self LabelIH.self LabelT.self LabelB.self LabelA.self LabelP.self SoInteractionMapping1.self ToggleBrainMask.self LabelViewerMode.self SoView2D.self"
-  mialCorrectSliceIntensity.inputFileName = mialOrientImage.outputFileName
-  mialCorrectSliceIntensity.maskFileName = mialOrientImageMask.outputFileName
-  mialSliceBySliceBiasEstimation.inputImageFile = mialCorrectSliceIntensityNLM.outputFileName
-  mialSliceBySliceBiasEstimation.inputMaskFile = mialOrientImageMask.outputFileName
-  mialSliceBySliceBiasFieldCorrection.inputImageFile = mialCorrectSliceIntensity.outputFileName
-  mialSliceBySliceBiasFieldCorrection.inputMaskFile = mialOrientImageMask.outputFileName
-  mialSliceBySliceBiasFieldCorrection.inputBiasFieldFile = mialSliceBySliceBiasEstimation.outputBiasFieldFile
-  mialIntensityStandardization.inputFileNames = mialCorrectSliceIntensityPostBiasCorrection.outputFileName
-  mialIntensityStandardization.outputFileNames = mialCorrectSliceIntensityPostBiasCorrection.outputFileName
-  mialCorrectSliceIntensityNLM.inputFileName = mialOrientImageNLM.outputFileName
-  mialCorrectSliceIntensityNLM.maskFileName = mialOrientImageMask.outputFileName
-  mialCorrectSliceIntensityPostBiasCorrection.inputFileName = mialSliceBySliceBiasFieldCorrection.outputImageFile
-  mialCorrectSliceIntensityPostBiasCorrection.outputFileName = mialSliceBySliceBiasFieldCorrection.outputImageFile
-  mialCorrectSliceIntensityPostBiasCorrection.maskFileName = mialOrientImageMask.outputFileName
-  mialCorrectSliceIntensityNLMPostBiasCorrection.inputFileName = mialSliceBySliceBiasEstimation.outputImageFile
-  mialCorrectSliceIntensityNLMPostBiasCorrection.outputFileName = mialSliceBySliceBiasEstimation.outputImageFile
-  mialCorrectSliceIntensityNLMPostBiasCorrection.maskFileName = mialOrientImageMask.outputFileName
-  mialIntensityStandardizationNLM.inputFileNames = mialCorrectSliceIntensityNLMPostBiasCorrection.outputFileName
-  mialIntensityStandardizationNLM.outputFileNames = mialCorrectSliceIntensityNLMPostBiasCorrection.outputFileName
-  mialImageReconstruction.inputFiles = mialIntensityStandardizationNLMBis.outputFileNames
-  mialImageReconstruction.maskFiles = mialOrientImageMask.outputFileName
-  mialIntensityStandardizationBis.inputFileNames = mialHistogramNormalization.outputFiles
-  mialIntensityStandardizationBis.outputFileNames = mialHistogramNormalization.outputFiles
-  mialIntensityStandardizationNLMBis.inputFileNames = mialHistogramNormalizationNLM.outputFiles
-  mialIntensityStandardizationNLMBis.outputFileNames = mialHistogramNormalizationNLM.outputFiles
-  mialHistogramNormalizationNLM.inputFiles = mialIntensityStandardizationNLM.outputFileNames
-  mialHistogramNormalizationNLM.outputFiles = mialIntensityStandardizationNLM.outputFileNames
-  mialHistogramNormalizationNLM.maskFiles = mialOrientImageMask.outputFileName
+  SoView2DOverlay.image = Switch1.output0
+  SoView2DOverlayMPR.image = Switch1.output0
+  viewerOld.children = "SoView2DSlider.self SoView2DSliceZoom.self SoToggle.self LabelIH.self LabelT.self LabelB.self LabelA.self LabelP.self ToggleBrainMask.self SoInteractionMapping1.self LabelViewerMode.self"
+  SoInteractionInfo.children = viewerOld.self
+  SoGroup5.children = VerifWorldMatrix2MNI3.output0
+  VerifWorldMatrix2MNI3.input0 = GetAtlasMacro.outImage
+  SoGroup2.children = "VerifWorldMatrix2MNI.output0 VerifWorldMatrix2MNI.output0"
+  VerifWorldMatrix2MNI.input0 = GetAtlasMacro.outMask
+  View2DExtensions1.inLUT = GetAtlasMacro.outImage
+  SoView2D1.image = GetAtlasMacro.outImage
+  SoGroup.children = "View2DExtensions1.outNode SoView2D1.self"
   mialHistogramNormalization.inputFiles = mialIntensityStandardization.outputFileNames
   mialHistogramNormalization.outputFiles = mialIntensityStandardization.outputFileNames
   mialHistogramNormalization.maskFiles = mialOrientImageMask.outputFileName
+  mialHistogramNormalizationNLM.inputFiles = mialIntensityStandardizationNLM.outputFileNames
+  mialHistogramNormalizationNLM.outputFiles = mialIntensityStandardizationNLM.outputFileNames
+  mialHistogramNormalizationNLM.maskFiles = mialOrientImageMask.outputFileName
+  mialIntensityStandardizationNLMBis.inputFileNames = mialHistogramNormalizationNLM.outputFiles
+  mialIntensityStandardizationNLMBis.outputFileNames = mialHistogramNormalizationNLM.outputFiles
+  mialIntensityStandardizationBis.inputFileNames = mialHistogramNormalization.outputFiles
+  mialIntensityStandardizationBis.outputFileNames = mialHistogramNormalization.outputFiles
+  mialImageReconstruction.inputFiles = mialIntensityStandardizationNLMBis.outputFileNames
+  mialImageReconstruction.maskFiles = mialOrientImageMask.outputFileName
+  mialIntensityStandardizationNLM.inputFileNames = mialCorrectSliceIntensityNLMPostBiasCorrection.outputFileName
+  mialIntensityStandardizationNLM.outputFileNames = mialCorrectSliceIntensityNLMPostBiasCorrection.outputFileName
+  mialCorrectSliceIntensityNLMPostBiasCorrection.inputFileName = mialSliceBySliceBiasEstimation.outputImageFile
+  mialCorrectSliceIntensityNLMPostBiasCorrection.outputFileName = mialSliceBySliceBiasEstimation.outputImageFile
+  mialCorrectSliceIntensityNLMPostBiasCorrection.maskFileName = mialOrientImageMask.outputFileName
+  mialCorrectSliceIntensityPostBiasCorrection.inputFileName = mialSliceBySliceBiasFieldCorrection.outputImageFile
+  mialCorrectSliceIntensityPostBiasCorrection.outputFileName = mialSliceBySliceBiasFieldCorrection.outputImageFile
+  mialCorrectSliceIntensityPostBiasCorrection.maskFileName = mialOrientImageMask.outputFileName
+  mialCorrectSliceIntensityNLM.inputFileName = mialOrientImageNLM.outputFileName
+  mialCorrectSliceIntensityNLM.maskFileName = mialOrientImageMask.outputFileName
+  mialIntensityStandardization.inputFileNames = mialCorrectSliceIntensityPostBiasCorrection.outputFileName
+  mialIntensityStandardization.outputFileNames = mialCorrectSliceIntensityPostBiasCorrection.outputFileName
+  mialSliceBySliceBiasFieldCorrection.inputImageFile = mialCorrectSliceIntensity.outputFileName
+  mialSliceBySliceBiasFieldCorrection.inputMaskFile = mialOrientImageMask.outputFileName
+  mialSliceBySliceBiasFieldCorrection.inputBiasFieldFile = mialSliceBySliceBiasEstimation.outputBiasFieldFile
+  mialSliceBySliceBiasEstimation.inputImageFile = mialCorrectSliceIntensityNLM.outputFileName
+  mialSliceBySliceBiasEstimation.inputMaskFile = mialOrientImageMask.outputFileName
+  mialCorrectSliceIntensity.inputFileName = mialOrientImage.outputFileName
+  mialCorrectSliceIntensity.maskFileName = mialOrientImageMask.outputFileName
 }
 networkModel  {
   parentItems  {
@@ -3411,17 +3398,6 @@ networkModel  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
         uniqueId = 205
         objectName = ModifyWorldToMatrix
-        parentUniqueId = 0
-        color  {
-          r = 45
-          g = 226
-          b = 226
-          a = 40
-        }
-      }
-      MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 208
-        objectName = checkAtlasImage
         parentUniqueId = 0
         color  {
           r = 45
@@ -3488,6 +3464,17 @@ OrthoSwapFlip ferait l'affaire ?</p>
         isCollapsed = False
         drawAsComment = False
         titleFrame = "1715 1448 268 22"
+      }
+      MLABNetworkModelItem MLABNetworkModelItemGroup {
+        uniqueId = 208
+        objectName = checkAtlasImage
+        parentUniqueId = 0
+        color  {
+          r = 45
+          g = 226
+          b = 226
+          a = 40
+        }
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
         uniqueId = 549

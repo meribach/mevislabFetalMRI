@@ -35,6 +35,7 @@ def setSceneBackgroundColor(scene):
   scene.setBackgroundBrush(QtGui.QColor(0,0,0,255))
 
 def initImageOrientationGraphicsView(view):
+  print("##### here")
   global g_ImageOrientationGraphicsView
   g_ImageOrientationGraphicsView = view
   global TempObj
@@ -71,6 +72,7 @@ def initImageOrientationGraphicsView(view):
   showImageOrientationInterface()
   resetZoom()
   TempObj=temporaryObject()
+  
   
 def showImageOrientationInterface():
   
@@ -248,7 +250,7 @@ def resetImages():
     if ctx.hasControl("comboImage%i"%iterIm):
       ctx.control("comboImage%i"%iterIm).setCurrentItem(0)
     else:
-      print("why not .....")
+      g_HorizontalControl["Image%i"%iterIm].control("comboImage%i"%iterIm).setCurrentItem(0)
 
   inImages = None
   ctx.field("inImageInfos").setObject(inImages)
@@ -298,6 +300,7 @@ def updateImage(Image="Image0"):
   #first backup current cso if there is one
   global TempObj
   global currentImage
+  global g_HorizontalControl
   #if currentImage !=  None:
   #  TempObj.getTempCSOs()
   
@@ -382,7 +385,6 @@ def updateImage(Image="Image0"):
     except:
       print("test background has control didn't work")
   else:
-    global g_HorizontalControl
     try:
       g_HorizontalControl[Image].control("button%s"%Image).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
     except:
@@ -1621,7 +1623,8 @@ def runHistogramNormalization(WhatToRun):
   elif WhatToRun=="DenoisedImage":
     WHichHistoNormToRun="mialHistogramNormalizationNLM"
     
-  ctx.module(WHichHistoNormToRun).call("runHistoNormalization")
+  ctx.field("%s.validate"%WHichHistoNormToRun).touch()
+  #ctx.module(WHichHistoNormToRun).call("runHistoNormalization")
  
   if WhatToRun=="RawImage":
     runIntensityStandardization("postHistoNorm")
@@ -1668,6 +1671,11 @@ def runImageReconstruction():
   
   print("test")
 
+
+def insertImageReconstruction():
+  
+  inImages = ctx.field("inImageInfos").object()
+  print("test")
 
 def insertNLMDenoisingResults():
   

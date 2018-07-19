@@ -73,7 +73,7 @@ module OrthoView2D {
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "9.58290481567383 -6.48614454269409 15.7741603851318"
+    worldPosition = "-28.259313583374 -29.4918212890625 1.06260859966278"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
@@ -120,7 +120,7 @@ module OrthoView2D {
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "9.58290481567383 -6.48614454269409 15.7741603851318"
+    worldPosition = "-28.259313583374 -29.4918212890625 1.06260859966278"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
@@ -167,7 +167,7 @@ module OrthoView2D {
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "9.58290481567383 -6.48614454269409 15.7741603851318"
+    worldPosition = "-28.259313583374 -29.4918212890625 1.06260859966278"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
@@ -236,7 +236,7 @@ module CreateBoundingVolume {
 }
 module View2D {
   internal  {
-    frame = "13 305 120 64"
+    frame = "-11 161 120 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -364,7 +364,7 @@ module CreateBoundingVolume {
 }
 module View2D {
   internal  {
-    frame = "93 581 120 56"
+    frame = "13 561 120 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -617,8 +617,8 @@ module SyncVector {
   }
   fields  {
     instanceName = SyncVector
-    vector1 = "9.58290481567383 -6.48614454269409 15.7741603851318 0"
-    vector2 = "9.58290481567383 -6.48614454269409 15.7741603851318 0"
+    vector1 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
+    vector2 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
     epsilon = 9.9999997e-05
     epsilonVec = "0.001 0.001 0.001 0.001"
     mode = EpsilonScalar
@@ -643,8 +643,8 @@ module SyncVector {
   }
   fields  {
     instanceName = SyncVector1
-    vector1 = "9.58290481567383 -6.48614454269409 15.7741603851318 0"
-    vector2 = "9.58290481567383 -6.48614454269409 15.7741603851318 0"
+    vector1 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
+    vector2 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
     epsilon = 9.9999997e-05
     epsilonVec = "0.001 0.001 0.001 0.001"
     mode = EpsilonScalar
@@ -664,34 +664,97 @@ module SyncVector {
   }
   fields  {
     instanceName = SyncVector2
-    vector1 = "9.58290481567383 -6.48614454269409 15.7741603851318 0"
-    vector2 = "9.58290481567383 -6.48614454269409 15.7741603851318 0"
+    vector1 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
+    vector2 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
     epsilon = 9.9999997e-05
     epsilonVec = "0.001 0.001 0.001 0.001"
     mode = EpsilonScalar
   }
 }
+module BoundingBox {
+  internal  {
+    frame = "149 173 136 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "734 777 464 286"
+        sizeHint = "423 286"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BoundingBoxAxial
+    objectMin = 1
+    objectMax = 255
+    updateMode = AutoUpdate
+  }
+}
+module BoundingBox {
+  internal  {
+    frame = "809 689 176 80"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "756 486 464 286"
+        sizeHint = "423 286"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BoundingBoxSagittal
+    objectMin = 1
+    objectMax = 255
+    updateMode = AutoUpdate
+  }
+}
+module BoundingBox {
+  internal  {
+    frame = "1237 741 136 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "756 486 464 286"
+        sizeHint = "423 286"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BoundingBoxCoronal
+    objectMin = 1
+    objectMax = 255
+    updateMode = AutoUpdate
+  }
+}
 connections  {
-  OrthoView2DAxial.image = ReformatAxial.output0
+  OrthoView2DAxial.image = BoundingBoxAxial.output0
   OrthoView2DAxial.worldPosition = SyncVector2.vector2
-  OrthoView2DSagittal.image = ReformatSagittal.output0
+  OrthoView2DSagittal.image = BoundingBoxSagittal.output0
   OrthoView2DSagittal.worldPosition = SyncVector.vector2
-  OrthoView2DCoronal.image = ReformatCoronal.output0
+  OrthoView2DCoronal.image = BoundingBoxCoronal.output0
   OrthoView2DCoronal.worldPosition = SyncVector1.vector2
   CreateBoundingVolumeAxial.input0 = itkImageFileReader.output0
-  View2DAxial.inImage = ReformatAxial.output0
+  View2DAxial.inImage = BoundingBoxAxial.output0
   ReformatAxial.input0 = itkImageFileReader.output0
   ReformatAxial.input1 = CreateBoundingVolumeAxial.output0
   CreateBoundingVolumeSagittal.input0 = itkImageFileReader.output0
-  View2DSagittal.inImage = ReformatSagittal.output0
+  View2DSagittal.inImage = BoundingBoxSagittal.output0
   ReformatSagittal.input0 = itkImageFileReader.output0
   ReformatSagittal.input1 = CreateBoundingVolumeSagittal.output0
   CreateBoundingVolumeCoronal.input0 = itkImageFileReader.output0
-  View2DCoronal.inImage = ReformatCoronal.output0
+  View2DCoronal.inImage = BoundingBoxCoronal.output0
   ReformatCoronal.input0 = itkImageFileReader.output0
   ReformatCoronal.input1 = CreateBoundingVolumeCoronal.output0
   SyncVector.vector1 = OrthoView2DAxial.worldPosition
   SyncVector1.vector1 = OrthoView2DSagittal.worldPosition
   SyncVector2.vector1 = OrthoView2DCoronal.worldPosition
+  BoundingBoxAxial.input0 = ReformatAxial.output0
+  BoundingBoxSagittal.input0 = ReformatSagittal.output0
+  BoundingBoxCoronal.input0 = ReformatCoronal.output0
 }
 networkModel = ""

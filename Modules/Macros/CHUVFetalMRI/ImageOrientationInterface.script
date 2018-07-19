@@ -115,6 +115,7 @@ Commands {
   FieldListener mialIntensityStandardizationNLMBis.outputSucceed {command = "py: updateWaitForReconstrucion()"}
   FieldListener mialIntensityStandardizationBis.outputSucceed {command = "py: updateWaitForReconstrucion()"}
   FieldListener WaitForReconstruction {command = "py: runImageReconstruction()"}
+  FieldListener mialImageReconstruction.outputSucceed {command = "py: insertImageReconstruction()"}
   FieldListener ExpertMode {command = showImageOrientationInterface}
   
   FieldListener RefImageFiled {command = updateRefImageReconstruction}
