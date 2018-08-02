@@ -18,7 +18,7 @@ g_SDIGraphicsView = None
 def initSDIVerificationGraphicsView(view):
   global g_SDIGraphicsView
   g_SDIGraphicsView = view
-  
+  print("##### initSDIVerificationGraphicsView")
   updateInterface()
   
 def updateInterface():

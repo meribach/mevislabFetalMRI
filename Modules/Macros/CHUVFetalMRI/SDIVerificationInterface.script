@@ -38,6 +38,8 @@ Interface {
 
 Commands {
   source = $(LOCAL)/SDIVerificationInterface.py
+  FieldListener itkImageFileReader.fileName {command = updateImage}
+  FieldListener inImageInfos {command = updateSDI}
 
 }
 
@@ -62,7 +64,7 @@ Window SDIVerificationInterface {
         Horizontal {
           CheckBox outlierRejection {toggledCommand = OutlierRejectionStatusChanged}
           Button {title = "ReRun SDI Estimation" command = ReRunImageReconstruction}
-          Button {title = "Run Super Resolution" command = RunSuperVariation}
+          Button {title = "Run Super Resolution" command = RunSuperResolution}
         }
       }
       

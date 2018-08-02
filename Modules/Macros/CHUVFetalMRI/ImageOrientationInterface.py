@@ -35,7 +35,7 @@ def setSceneBackgroundColor(scene):
   scene.setBackgroundBrush(QtGui.QColor(0,0,0,255))
 
 def initImageOrientationGraphicsView(view):
-  print("##### here")
+  print("##### initImageOrientationGraphicsView")
   global g_ImageOrientationGraphicsView
   g_ImageOrientationGraphicsView = view
   global TempObj
