@@ -32,7 +32,14 @@ Interface {
     Field NumberImages {type = Int}
     Field outlierRejection { type = bool value = false}
     Field ExpertMode {type = Bool value = True}
+    Field Gamma {internalName = mialTVSuperResolution.Lambda}
+    Field DeltaT {internalName = mialTVSuperResolution.DeltaT}
   }
+}
+
+Description {
+  Field Gamma {min = 0 max = 5}
+  Field DeltaT {min = 0 max = 5}
 }
 
 
@@ -62,6 +69,24 @@ Window TotalVariationInterface {
     
         Horizontal {
           Button {title = "ReRun Super Resolution" command = RunSuperResolution}
+        }
+        Horizontal {
+          Label "Gamma (default = 0.1): " {}
+          Slider Gamma {pageStep = 0.1}
+          NumberEdit Gamma {
+            step      = 0.1
+            stepstep  = 1
+            format    = "%.1f"
+          }
+        }
+        Horizontal {
+          Label "DeltaT (default = 1): " {}
+          Slider DeltaT {pageStep = 0.1 }
+          NumberEdit DeltaT {
+            step     = 0.1
+            stepstep = 1
+            format   = "%.1f"
+          }
         }
       }
       

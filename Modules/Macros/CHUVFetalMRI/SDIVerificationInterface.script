@@ -32,6 +32,11 @@ Interface {
     Field NumberImages {type = Int}
     Field outlierRejection { type = bool value = false}
     Field ExpertMode {type = Bool value = True}
+    Field RegistrationMetric {internalName = mialImageReconstruction.MetricToUse}
+    Field RegistrationGradient {internalName = mialImageReconstruction.GradientMagnitudeToleranceRegistration}
+    Field RegistrationRelaxationFactor {internalName = mialImageReconstruction.RelaxationFactorRegistration}
+    Field RegistrationMinStep {internalName = mialImageReconstruction.MinStepLengthRegistration}
+    Field RegistrationMaxStep {internalName = mialImageReconstruction.MaxStepLengthRegistration}
   }
 }
 
@@ -61,10 +66,24 @@ Window SDIVerificationInterface {
         expandY = yes
         //expandX = No
     
-        Horizontal {
+        Box{
+          Horizontal {
+          Label "Registration parameters: " {}
           CheckBox outlierRejection {toggledCommand = OutlierRejectionStatusChanged}
-          Button {title = "ReRun SDI Estimation" command = ReRunImageReconstruction}
+          ComboBox RegistrationMetric {tooltip = "Nc = Normalized Correlation, MI = Mutual Information, default = NC"}
+          Field RegistrationGradient {title = "Gradient"}
+          Field RegistrationMinStep {title = "Min Step"}
+          Field RegistrationMaxStep {title = "Max Step"}
+          Field RegistrationRelaxationFactor { title = "Relaxation Factor"}
+          }
+          Horizontal {
+            Button {title = "ReRun SDI Estimation" command = ReRunImageReconstruction}
+          }
+        }
+        Box {
+        Horizontal {
           Button {title = "Run Super Resolution" command = RunSuperResolution}
+        }
         }
       }
       

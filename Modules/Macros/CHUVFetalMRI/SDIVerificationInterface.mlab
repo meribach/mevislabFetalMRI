@@ -4,8 +4,8 @@ network  {
 }
 module itkImageFileReader {
   internal  {
-    frame = "597 661 136 56"
-    moduleGroupName = ""
+    frame = "-73 659 136 56"
+    moduleGroupName = Visu
     windows  {
       window _default {
         geometry = "803 432 328 395"
@@ -20,7 +20,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "File closed"
+    info = "Invalid path"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -33,8 +33,8 @@ module itkImageFileReader {
 }
 module OrthoView2D {
   internal  {
-    frame = "317 305 136 64"
-    moduleGroupName = ""
+    frame = "-353 303 136 64"
+    moduleGroupName = Visu
     windows  {
       window _default {
         geometry = "767 414 400 430"
@@ -80,8 +80,8 @@ module OrthoView2D {
 }
 module OrthoView2D {
   internal  {
-    frame = "609 425 144 64"
-    moduleGroupName = ""
+    frame = "-61 423 144 64"
+    moduleGroupName = Visu
     windows  {
       window _default {
         geometry = "767 414 400 430"
@@ -127,8 +127,8 @@ module OrthoView2D {
 }
 module OrthoView2D {
   internal  {
-    frame = "925 281 152 64"
-    moduleGroupName = ""
+    frame = "255 279 152 64"
+    moduleGroupName = Visu
     windows  {
       window _default {
         geometry = "767 414 400 430"
@@ -174,8 +174,8 @@ module OrthoView2D {
 }
 module mialImageReconstruction {
   internal  {
-    frame = "877 477 168 56"
-    moduleGroupName = ""
+    frame = "207 475 168 56"
+    moduleGroupName = Visu
     windows  {
       window _default {
         geometry = "647 256 640 747"
@@ -214,8 +214,8 @@ module mialImageReconstruction {
 }
 module CreateBoundingVolume {
   internal  {
-    frame = "249 509 160 56"
-    moduleGroupName = ""
+    frame = "-433 503 184 64"
+    moduleGroupName = Visu
     windows  {
       window _default {
         geometry = "897 770 321 212"
@@ -236,8 +236,8 @@ module CreateBoundingVolume {
 }
 module View2D {
   internal  {
-    frame = "-11 161 120 64"
-    moduleGroupName = ""
+    frame = "-681 159 120 64"
+    moduleGroupName = Visu
     windows  {
       window _default {
         geometry = "767 429 400 400"
@@ -303,8 +303,8 @@ module View2D {
 }
 module Reformat {
   internal  {
-    frame = "65 425 144 64"
-    moduleGroupName = ""
+    frame = "-605 423 144 64"
+    moduleGroupName = Visu
     showNetworkPanel = true
   }
   fields  {
@@ -342,8 +342,8 @@ module Reformat {
 }
 module CreateBoundingVolume {
   internal  {
-    frame = "213 773 168 56"
-    moduleGroupName = ""
+    frame = "-473 767 200 64"
+    moduleGroupName = Visu
     windows  {
       window _default {
         geometry = "897 770 321 212"
@@ -364,8 +364,8 @@ module CreateBoundingVolume {
 }
 module View2D {
   internal  {
-    frame = "13 561 120 64"
-    moduleGroupName = ""
+    frame = "-657 559 120 64"
+    moduleGroupName = Visu
     windows  {
       window _default {
         geometry = "1093 502 400 400"
@@ -431,8 +431,8 @@ module View2D {
 }
 module Reformat {
   internal  {
-    frame = "45 693 120 56"
-    moduleGroupName = ""
+    frame = "-645 687 160 64"
+    moduleGroupName = Visu
     showNetworkPanel = true
   }
   fields  {
@@ -470,8 +470,8 @@ module Reformat {
 }
 module CreateBoundingVolume {
   internal  {
-    frame = "1285 577 200 64"
-    moduleGroupName = ""
+    frame = "615 575 200 64"
+    moduleGroupName = Visu
     windows  {
       window _default {
         geometry = "897 770 321 212"
@@ -492,8 +492,8 @@ module CreateBoundingVolume {
 }
 module View2D {
   internal  {
-    frame = "1181 385 120 64"
-    moduleGroupName = ""
+    frame = "511 383 120 64"
+    moduleGroupName = Visu
     windows  {
       window _default {
         geometry = "767 429 400 400"
@@ -559,8 +559,8 @@ module View2D {
 }
 module Reformat {
   internal  {
-    frame = "1113 497 160 64"
-    moduleGroupName = ""
+    frame = "443 495 160 64"
+    moduleGroupName = Visu
     showNetworkPanel = true
     windows  {
       window _default {
@@ -605,8 +605,8 @@ module Reformat {
 }
 module SyncVector {
   internal  {
-    frame = "489 229 96 56"
-    moduleGroupName = ""
+    frame = "-181 227 96 56"
+    moduleGroupName = Visu
     windows  {
       window _default {
         geometry = "800 552 334 154"
@@ -626,8 +626,8 @@ module SyncVector {
 }
 module SyncVector {
   internal  {
-    frame = "749 317 104 56"
-    moduleGroupName = ""
+    frame = "79 315 104 56"
+    moduleGroupName = Visu
     windows  {
       window _automatic {
         geometry = "717 329 500 600"
@@ -652,8 +652,8 @@ module SyncVector {
 }
 module SyncVector {
   internal  {
-    frame = "1109 205 104 56"
-    moduleGroupName = ""
+    frame = "439 203 104 56"
+    moduleGroupName = Visu
     windows  {
       window _automatic {
         geometry = "1209 456 500 600"
@@ -673,8 +673,8 @@ module SyncVector {
 }
 module BoundingBox {
   internal  {
-    frame = "149 173 136 72"
-    moduleGroupName = ""
+    frame = "-537 167 168 80"
+    moduleGroupName = Visu
     showNetworkPanel = true
     windows  {
       window _default {
@@ -693,8 +693,8 @@ module BoundingBox {
 }
 module BoundingBox {
   internal  {
-    frame = "809 689 176 80"
-    moduleGroupName = ""
+    frame = "139 687 176 80"
+    moduleGroupName = Visu
     showNetworkPanel = true
     windows  {
       window _default {
@@ -713,8 +713,8 @@ module BoundingBox {
 }
 module BoundingBox {
   internal  {
-    frame = "1237 741 136 72"
-    moduleGroupName = ""
+    frame = "543 735 184 80"
+    moduleGroupName = Visu
     showNetworkPanel = true
     windows  {
       window _default {
@@ -729,6 +729,79 @@ module BoundingBox {
     objectMin = 1
     objectMax = 255
     updateMode = AutoUpdate
+  }
+}
+module mialImageReconstruction {
+  internal  {
+    frame = "937 221 176 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = mialImageReconstruction1
+    inputFiles = ""
+    maskFiles = ""
+    outputFile = ""
+    refFile = ""
+    transformoutFiles = ""
+    resampledFiles = ""
+    combinedMasks = ""
+    itMax = 10
+    espilon = 0.0001
+    margin = 0
+    rigid3D = FALSE
+    noreg = FALSE
+    debluring = FALSE
+    methodRoiCalculation = mask
+    ImageBaseOfRecon = 0
+    MetricToUse = NC
+    nbIterationsRegistration = 2000
+    GradientMagnitudeToleranceRegistration = 0.0001
+    MinStepLengthRegistration = 0.0001
+    MaxStepLengthRegistration = 0.2
+    RelaxationFactorRegistration = 0.5
+    resampleKernelMultiplicator = 1
+    inProgress = FALSE
+    outputSucceed = FALSE
+  }
+}
+module mialTVSuperResolution {
+  internal  {
+    frame = "945 357 160 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = mialTVSuperResolution
+    outputFile = ""
+    maskFiles = ""
+    refFile = ""
+    inputFiles = ""
+    transformFilesInput = ""
+    nbIter = 50
+    Lambda = 0.1
+    DeltaT = 1
+    Gamma = 1
+    stepScale = 1
+    innerConvThreshold = 0.0001
+    outerConvThreshold = 0.0001
+    numberOfBregmanLoops = 10
+    numberOfLoops = 5
+    boxcar = FALSE
+    updateMotion = FALSE
+    refMask = ""
+    pre_input = ""
+    transformFilesOutput = ""
+    debugDir = ""
+    debluring = FALSE
+    kernelRadiusMultiplicator = 1
+    CoregistrationMethod = NC
+    NbIterationRegistration = 2000
+    GradientMagnitudeToleranceRegistration = 0.0001
+    MinStepLengthRegistration = 0.0001
+    RelaxationFactorRegistration = 0.5
+    MaxStepLengthRegistration = 0.2
+    status = ""
+    inProgress = FALSE
+    outputSucceed = FALSE
   }
 }
 connections  {
@@ -757,4 +830,20 @@ connections  {
   BoundingBoxSagittal.input0 = ReformatSagittal.output0
   BoundingBoxCoronal.input0 = ReformatCoronal.output0
 }
-networkModel = ""
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNetworkModelItemGroup {
+        uniqueId = 51
+        objectName = Visu
+        parentUniqueId = 0
+        color  {
+          r = 45
+          g = 226
+          b = 226
+          a = 40
+        }
+      }
+    }
+  }
+}
