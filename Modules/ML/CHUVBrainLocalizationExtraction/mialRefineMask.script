@@ -9,8 +9,9 @@
 
 
 Window {
+  mw = 640
   Category {
-    Field maskFiles {
+    Field inputFiles {
     }
     Field transformIn {
     }
@@ -26,5 +27,9 @@ Window {
     }
     CheckBox useStaple {
     }
+    
+    Button startTask {}           //{ dependsOn = !taskRunning }
+    Button startTaskModal {}
+    Field status {}
   }
 }

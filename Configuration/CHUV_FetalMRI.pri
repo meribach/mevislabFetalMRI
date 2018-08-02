@@ -124,6 +124,16 @@ MyTVSuperResolution {
                 -lmialsrtkTVSuperResolutionWrapper$${d} \
 }
 
+MyBrainLocalization {
+   CONFIG_FOUND += MyBrainLocalization 
+   INCLUDEPATH += $${PACKAGE_SOURCES}/Shared/MyBrainLocalization
+   QMAKE_LIBDIR += $${PACKAGE_LIB}/MyBrainLocalization
+   win32:LIBS += mialsrtkRefineHRMaskByIntersectionLib.lib \
+                 mialsrtkRefineHRMaskByIntersectionWrapper.lib
+   unix:LIBS += -lmialsrtkRefineHRMaskByIntersectionLib \
+                -lmialsrtkRefineHRMaskByIntersectionWrapper \
+}
+
 MyITK {
   CONFIG_FOUND += MyITK
   QMAKE_LIBDIR += $${PACKAGE_LIB}/MyITK 
