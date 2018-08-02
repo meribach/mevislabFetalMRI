@@ -196,7 +196,7 @@ void mialIntensityStandardization::clear()
 	//reset variable
 	splitInputs.clear();
 	splitOutputs.clear();
-	std::cout << "dynamic vector cleared" << std::endl;
+	std::cout << "mialIntensityStandardization dynamic vector cleared" << std::endl;
 	_outputSucceedFld->setBoolValue(false);
 
 }

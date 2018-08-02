@@ -234,7 +234,7 @@ void mialSliceBySliceBiasFieldCorrection::clear()
 	splitMasks.clear();
 	splitOutputs.clear();
 	splitinputBiasField.clear();
-	std::cout << "dynamic vector cleared" << std::endl;
+	std::cout << "mialSliceBySliceBiasFieldCorrection dynamic vector cleared" << std::endl;
 	_outputSucceedFld->setBoolValue(false);
 
 }

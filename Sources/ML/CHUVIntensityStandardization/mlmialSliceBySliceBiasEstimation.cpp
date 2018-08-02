@@ -230,7 +230,7 @@ void mialSliceBySliceBiasEstimation::clear()
 	splitMasks.clear();
 	splitOutputs.clear();
 	splitoutputBiasField.clear();
-	std::cout << "dynamic vector cleared" << std::endl;
+	std::cout << "mialSliceBySliceBiasEstimation dynamic vector cleared" << std::endl;
 	_outputSucceedFld->setBoolValue(false);
 
 }

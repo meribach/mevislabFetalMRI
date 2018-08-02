@@ -19,7 +19,7 @@ WARN = HIGH
 # Add used projects here (see included pri files below for available projects)
 CONFIG += dll ML MLBackgroundTasks boost MyTools MyITK
 
-MLAB_PACKAGES += CHUV_FetalMRI \
+MLAB_PACKAGES += mevisFetalMRI_MRUser \
                  MeVisLab_Standard \
 
 # make sure that this file is included after CONFIG and MLAB_PACKAGES

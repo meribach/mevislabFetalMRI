@@ -282,7 +282,7 @@ void mialImageReconstruction::clear()
 	splitmaskFile.clear();
 	splittransformout.clear();
 	splitresampled.clear();
-	std::cout << "dynamic vector cleared" << std::endl;
+	std::cout << "mialImageReconstruction dynamic vector cleared" << std::endl;
 	_outputSucceedFld->setBoolValue(false);
 
 

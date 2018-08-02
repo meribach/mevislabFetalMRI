@@ -299,7 +299,7 @@ void mevisbtkDenoising::clear()
 	splitOutputs.clear();
 	splitRefs.clear();
 	splitDiffs.clear();
-	std::cout << "dynamic vector cleared" << std::endl;
+	std::cout << "mevisbtkDenoising dynamic vector cleared" << std::endl;
 	_outputSucceedFld->setBoolValue(false);
 
 }

@@ -116,7 +116,7 @@ void mialOrientImage::clear()
 	splitInputs.clear();
 	splitOrientation.clear();
 	splitOutputs.clear();
-	std::cout << "dynamic vector cleared" << std::endl;
+	std::cout << "mialOrientImage dynamic vector cleared" << std::endl;
 	_outputSucceedFld->setBoolValue(false);
 
 }

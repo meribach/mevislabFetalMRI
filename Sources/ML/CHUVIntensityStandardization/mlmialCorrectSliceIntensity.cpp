@@ -227,7 +227,7 @@ void mialCorrectSliceIntensity::clear()
 	splitInputs.clear();
 	splitMasks.clear();
 	splitOutputs.clear();
-	std::cout << "dynamic vector cleared" << std::endl;
+	std::cout << "mialCorrectSliceIntensity dynamic vector cleared" << std::endl;
 	_outputSucceedFld->setBoolValue(false);
 
 }
