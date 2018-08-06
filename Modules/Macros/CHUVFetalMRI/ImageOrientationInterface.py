@@ -1635,7 +1635,7 @@ def runHistogramNormalization(WhatToRun):
 
 def updateBackgroundTaskStatus(Task):
   
-  listOfPossibleTask = {"Denoising":ctx.field("mevisbtkDenoising.status"),"mialOrientImage":ctx.field("mialOrientImage.status"),"mialCorrectSliceIntensity":ctx.field("mialCorrectSliceIntensity.status"),"mialBiasEstimation":ctx.field("mialSliceBySliceBiasEstimation.status"),"mialBiasCorrection":ctx.field("mialSliceBySliceBiasFieldCorrection.status"),"mialIntensityStandardization":ctx.field("mialIntensityStandardization.status")}
+  listOfPossibleTask = {"Denoising":ctx.field("mevisbtkDenoising.status"),"mialOrientImage":ctx.field("mialOrientImage.status"),"mialCorrectSliceIntensity":ctx.field("mialCorrectSliceIntensity.status"),"mialBiasEstimation":ctx.field("mialSliceBySliceBiasEstimation.status"),"mialBiasCorrection":ctx.field("mialSliceBySliceBiasFieldCorrection.status"),"mialIntensityStandardization":ctx.field("mialIntensityStandardization.status"),"mialImageReconstruction":ctx.field("mialImageReconstruction.status")}
   
   newMessage =listOfPossibleTask[Task].stringValue()
   ctx.field("StatusField").setStringValue(newMessage)
@@ -1643,7 +1643,7 @@ def updateBackgroundTaskStatus(Task):
   
 def updateBackgroundTaskRunningField():
   
-  ctx.field("BackgroundTaskRunning").setBoolValue(ctx.field("mevisbtkDenoising.inProgress").value | ctx.field("mialOrientImage.inProgress").value | ctx.field("mialCorrectSliceIntensity.inProgress").value | ctx.field("mialSliceBySliceBiasEstimation.inProgress").value | ctx.field("mialSliceBySliceBiasFieldCorrection.inProgress").value | ctx.field("mialIntensityStandardization.inProgress").value | ctx.field("mialOrientImageMask.inProgress").value | ctx.field("mialOrientImageNLM.inProgress").value | ctx.field("mialCorrectSliceIntensityNLM.inProgress").value |ctx.field("mialCorrectSliceIntensityNLMPostBiasCorrection.inProgress").value | ctx.field("mialIntensityStandardizationNLM.inProgress").value | ctx.field("mialCorrectSliceIntensityPostBiasCorrection.inProgress").value )
+  ctx.field("BackgroundTaskRunning").setBoolValue(ctx.field("mevisbtkDenoising.inProgress").value | ctx.field("mialOrientImage.inProgress").value | ctx.field("mialCorrectSliceIntensity.inProgress").value | ctx.field("mialSliceBySliceBiasEstimation.inProgress").value | ctx.field("mialSliceBySliceBiasFieldCorrection.inProgress").value | ctx.field("mialIntensityStandardization.inProgress").value | ctx.field("mialOrientImageMask.inProgress").value | ctx.field("mialOrientImageNLM.inProgress").value | ctx.field("mialCorrectSliceIntensityNLM.inProgress").value |ctx.field("mialCorrectSliceIntensityNLMPostBiasCorrection.inProgress").value | ctx.field("mialIntensityStandardizationNLM.inProgress").value | ctx.field("mialCorrectSliceIntensityPostBiasCorrection.inProgress").value | ctx.field("mialImageReconstruction.inProgress").value )
   
  
 def updateWaitForReconstrucion():
@@ -1667,15 +1667,14 @@ def runImageReconstruction():
     
   ctx.field("mialImageReconstruction.transformoutFiles").setStringValue(outTransform)
   ctx.field("mialImageReconstruction.outputFile").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SDI_ITER1.nii.gz"))
-  #ctx.field("mialImageReconstruction.startTask").touch()
+  ctx.field("mialImageReconstruction.startTask").touch()
   
-  print("test")
-
 
 def insertImageReconstruction():
   
   inImages = ctx.field("inImageInfos").object()
-  print("test")
+  print("insertImageReconstruction")
+  inImages.update({"SDI_ITER1":os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SDI_ITER1.nii.gz")})
 
 def insertNLMDenoisingResults():
   

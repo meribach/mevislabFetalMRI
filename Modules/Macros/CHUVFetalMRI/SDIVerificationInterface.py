@@ -109,9 +109,9 @@ def resetSDI():
   
 def updateSDI():
   inImages = ctx.field("inImageInfos").object()
-  #if in inImages.keys():
-    
-  #  ctx.field("itkImageFileReader.fileName").setStringValue()
+  if inImages is not None:
+    if "SDI_ITER1" in inImages.keys():
+      ctx.field("itkImageFileReader.fileName").setStringValue(inImages["SDI_ITER1"])
   
 def updateImage():
   ctx.field("CreateBoundingVolumeAxial.add").touch()

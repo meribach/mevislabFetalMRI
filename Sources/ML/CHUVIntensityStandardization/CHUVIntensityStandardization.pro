@@ -47,6 +47,7 @@ HEADERS += \
     mlmialCorrectSliceIntensity.h \
     mlmialSliceBySliceBiasEstimation.h \
     mlmialSliceBySliceBiasFieldCorrection.h \
+	mlmialN4BiasField.h \
 
 
 
@@ -56,3 +57,4 @@ SOURCES += \
     mlmialCorrectSliceIntensity.cpp \
     mlmialSliceBySliceBiasEstimation.cpp \
     mlmialSliceBySliceBiasFieldCorrection.cpp \
+	mlmialN4BiasField.cpp \

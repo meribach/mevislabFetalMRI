@@ -51,3 +51,14 @@ MLModule mialSliceBySliceBiasFieldCorrection {
   seeAlso            = ""
   externalDefinition = $(LOCAL)/mialSliceBySliceBiasFieldCorrection.script
 }  
+
+MLModule mialN4BiasField {
+  DLL                = "CHUVIntensityStandardization"
+
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/mialN4BiasField.script
+}  

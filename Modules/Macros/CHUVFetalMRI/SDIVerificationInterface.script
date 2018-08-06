@@ -37,6 +37,8 @@ Interface {
     Field RegistrationRelaxationFactor {internalName = mialImageReconstruction.RelaxationFactorRegistration}
     Field RegistrationMinStep {internalName = mialImageReconstruction.MinStepLengthRegistration}
     Field RegistrationMaxStep {internalName = mialImageReconstruction.MaxStepLengthRegistration}
+    Field Gamma {internalName = mialTVSuperResolution.Lambda}
+    Field DeltaT {internalName = mialTVSuperResolution.DeltaT}
   }
 }
 
@@ -71,16 +73,38 @@ Window SDIVerificationInterface {
           Label "Registration parameters: " {}
           CheckBox outlierRejection {toggledCommand = OutlierRejectionStatusChanged}
           ComboBox RegistrationMetric {tooltip = "Nc = Normalized Correlation, MI = Mutual Information, default = NC"}
-          Field RegistrationGradient {title = "Gradient"}
-          Field RegistrationMinStep {title = "Min Step"}
-          Field RegistrationMaxStep {title = "Max Step"}
-          Field RegistrationRelaxationFactor { title = "Relaxation Factor"}
+            Label "Gradient" {}
+            NumberEdit RegistrationGradient {step = 0.0001}
+            Label "Min Step" {}
+            NumberEdit RegistrationMinStep {step = 0.0001}
+            Label "Max Step" {}
+            NumberEdit RegistrationMaxStep {step = 0.001}
+            Label "Relaxation Factor" {}
+            NumberEdit RegistrationRelaxationFactor { step = 0.05}
           }
           Horizontal {
             Button {title = "ReRun SDI Estimation" command = ReRunImageReconstruction}
           }
         }
         Box {
+          Horizontal {
+            Label "Gamma (default = 0.1): " {}
+            Slider Gamma {pageStep = 0.1}
+            NumberEdit Gamma {
+              step     = 0.1
+              stepstep = 1
+              format   = "%.1f"
+            }
+          }
+          Horizontal {
+            Label "DeltaT (default = 1): " {}
+            Slider DeltaT {pageStep = 0.1 }
+            NumberEdit DeltaT {
+              step     = 0.1
+              stepstep = 1
+              format   = "%.1f"
+            }
+          }
         Horizontal {
           Button {title = "Run Super Resolution" command = RunSuperResolution}
         }

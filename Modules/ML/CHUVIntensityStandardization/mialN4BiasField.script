@@ -1,0 +1,27 @@
+//----------------------------------------------------------------------------------
+//! CHUVIntensityStandardization module definitions.
+/*!
+// \file    mialN4BiasField.script
+// \author  FetalMRI
+// \date    2018-08-03
+*/
+//----------------------------------------------------------------------------------
+
+
+Window {
+  mw = 640
+  Category {
+    Field inputFile {
+    }
+    Field maskFile {
+    }
+    Field outputFile {
+    }
+    Field outputBiasField {
+    }
+    
+    Button startTask {}           //{ dependsOn = !taskRunning }
+    Button startTaskModal {}
+    Field status {}
+  }
+}

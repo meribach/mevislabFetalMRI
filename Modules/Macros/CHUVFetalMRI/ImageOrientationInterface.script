@@ -84,6 +84,7 @@ Commands {
   FieldListener mialSliceBySliceBiasEstimation.status {command = "py: updateBackgroundTaskStatus('mialBiasEstimation')"}
   FieldListener mialSliceBySliceBiasFieldCorrection.status {command = "py: updateBackgroundTaskStatus('mialBiasCorrection')"}
   FieldListener mialIntensityStandardization.status {command = "py: updateBackgroundTaskStatus('mialIntensityStandardization')"}
+  FieldListener mialImageReconstruction.status {command = "py: updateBackgroundTaskStatus('mialImageReconstruction')"}
   
   FieldListener mevisbtkDenoising.inProgress {command = "py: updateBackgroundTaskRunningField()"}
   FieldListener mialOrientImage.inProgress {command = "py: updateBackgroundTaskRunningField()"}
@@ -99,6 +100,7 @@ Commands {
   FieldListener mialIntensityStandardizationNLM.inProgress {command = "py: updateBackgroundTaskRunningField()"}
   FieldListener mialIntensityStandardizationNLMBis.inProgress {command = "py: updateBackgroundTaskRunningField()"}
   FieldListener mialIntensityStandardizationBis.inProgress {command = "py: updateBackgroundTaskRunningField()"}
+  FieldListener mialImageReconstruction.inProgress {command = "py: updateBackgroundTaskRunningField()"} 
   
   FieldListener mevisbtkDenoising.outputSucceed {command = "py: insertNLMDenoisingResults()"} //or next step instead of denoising ?
   FieldListener mialOrientImage.outputSucceed {command = "py: insertReOrient('RawImage')"} //runCorrectSliceIntensity('RawImage')"}

@@ -60,7 +60,7 @@ private:
   //! 
   StringField* _referenceFileFld;
   //! 
-  BoolField* _radiusDilationFld;
+  IntField* _radiusDilationFld;
   //! 
   BoolField* _useStapleFld;
   //@}
