@@ -3,7 +3,7 @@
 /*!
 // \file    
 // \author  FetalMRI
-// \date    2018-04-12
+// \date    2018-08-06
 */
 //----------------------------------------------------------------------------------
 
@@ -13,9 +13,9 @@
 #include <mlLibraryInitMacros.h>
 
 // Include all module headers ...
+#include "mlmialsrtkMaskImage.h"
 #include "mlmialOrientImage.h"
 #include "mlmevisbtkDenoising.h"
-
 
 
 ML_START_NAMESPACE
@@ -29,6 +29,7 @@ int CHUVToolsInit()
   // Add initClass calls from modules here.
   mialOrientImage::initClass();
   mevisbtkDenoising::initClass();
+  mialsrtkMaskImage::initClass();
 
   return 1;
 }

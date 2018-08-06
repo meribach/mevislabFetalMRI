@@ -3,10 +3,9 @@
 /*!
 // \file    CHUVTools.def
 // \author  FetalMRI
-// \date    2018-04-12
+// \date    2018-08-06
 */
 //----------------------------------------------------------------------------------
-
 
 MLModule mialOrientImage {
   DLL                = "CHUVTools"
@@ -28,4 +27,15 @@ MLModule mevisbtkDenoising {
   keywords           = ""
   seeAlso            = ""
   externalDefinition = $(LOCAL)/mevisbtkDenoising.script
-}   
+} 
+
+MLModule mialsrtkMaskImage {
+  DLL                = "CHUVTools"
+
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/mialsrtkMaskImage.script
+}  

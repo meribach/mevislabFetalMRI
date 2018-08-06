@@ -17,6 +17,7 @@
 #include "mlmialCorrectSliceIntensity.h"
 #include "mlmialSliceBySliceBiasEstimation.h"
 #include "mlmialSliceBySliceBiasFieldCorrection.h"
+#include "mlmialN4BiasField.h"
 
 
 ML_START_NAMESPACE
@@ -32,6 +33,7 @@ int CHUVIntensityStandardizationInit()
   mialCorrectSliceIntensity::initClass();
   mialSliceBySliceBiasEstimation::initClass();
   mialSliceBySliceBiasFieldCorrection::initClass();
+  mialN4BiasField::initClass();
 
   return 1;
 }

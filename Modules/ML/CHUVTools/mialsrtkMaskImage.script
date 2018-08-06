@@ -1,0 +1,25 @@
+//----------------------------------------------------------------------------------
+//! CHUVTools module definitions.
+/*!
+// \file    mialsrtkMaskImage.script
+// \author  FetalMRI
+// \date    2018-08-06
+*/
+//----------------------------------------------------------------------------------
+
+
+Window {
+  mw = 640
+  Category {
+    Field inputFile {
+    }
+    Field maskFile {
+    }
+    Field outputFile {
+    }
+    
+    Button startTask {}           //{ dependsOn = !taskRunning }
+    Button startTaskModal {}
+    Field status {}
+  }
+}

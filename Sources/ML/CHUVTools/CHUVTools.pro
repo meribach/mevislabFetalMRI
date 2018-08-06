@@ -48,9 +48,11 @@ HEADERS += \
     CHUVToolsInit.h \
     CHUVToolsSystem.h \
     mlmialOrientImage.h \
-	mlmevisbtkDenoising.h \
+    mlmevisbtkDenoising.h \
+    mlmialsrtkMaskImage.h \
 
 SOURCES += \
     CHUVToolsInit.cpp \
     mlmialOrientImage.cpp \
-	mlmevisbtkDenoising.cpp \
+    mlmevisbtkDenoising.cpp \
+    mlmialsrtkMaskImage.cpp \

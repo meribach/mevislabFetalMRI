@@ -75,11 +75,16 @@ MyTools {
    win32:LIBS += mialsrtkOrientImageLib.lib$${d} \
                  mialsrtkOrientImageWrapper.lib$${d} \
                  btkNLMDenoisingLib.lib$${d} \
-                 btkNLMDenoisingWrapper.lib$${d} 
+                 btkNLMDenoisingWrapper.lib$${d} \
+                 mialsrtkMaskImageLib.lib \
+                 mialsrtkMaskImageWrapper.lib 
+
    unix:LIBS +=	 -lmialsrtkOrientImageLib$${d} \
                  -lmialsrtkOrientImageWrapper$${d} \
                  -lbtkNLMDenoisingLib$${d} \
-                 -lbtkNLMDenoisingWrapper$${d} \  
+                 -lbtkNLMDenoisingWrapper$${d} \
+                 -lmialsrtkMaskImageLib \
+                 -lmialsrtkMaskImageWrapper  
 }
 
 MyIntensityStandardization {
@@ -93,7 +98,9 @@ MyIntensityStandardization {
                  mialsrtkSliceBySliceCorrectBiasFieldLib.lib$${d} \
                  mialsrtkSliceBySliceCorrectBiasFieldWrapper.lib$${d} \
                  mialsrtkSliceBySliceN4BiasFieldCorrectionLib.lib$${d} \
-                 mialsrtkSliceBySliceN4BiasFieldCorrectionWrapper.lib$${d} 
+                 mialsrtkSliceBySliceN4BiasFieldCorrectionWrapper.lib$${d} \
+				 mialsrtkN4BiasFieldCorrectionLib.lib \
+				 mialsrtkN4BiasFieldCorrectionWrapper.lib
    unix:LIBS +=	 -lmialsrtkCorrectSliceIntensityLib$${d} \
                  -lmialsrtkCorrectSliceIntensityWrapper$${d} \
                  -lmialsrtkIntensityStandardizationLib$${d} \
@@ -101,7 +108,9 @@ MyIntensityStandardization {
                  -lmialsrtkSliceBySliceCorrectBiasFieldLib$${d} \
                  -lmialsrtkSliceBySliceCorrectBiasFieldWrapper$${d} \
                  -lmialsrtkSliceBySliceN4BiasFieldCorrectionLib$${d} \
-                 -lmialsrtkSliceBySliceN4BiasFieldCorrectionWrapper$${d}\		 
+                 -lmialsrtkSliceBySliceN4BiasFieldCorrectionWrapper$${d} \
+                 -lmialsrtkN4BiasFieldCorrectionLib \
+                 -lmialsrtkN4BiasFieldCorrectionWrapper				 
 }
 
 MyImageReconstruction {
@@ -122,6 +131,17 @@ MyTVSuperResolution {
                  mialsrtkTVSuperResolutionWrapper.lib$${d} 
    unix:LIBS += -lmialsrtkTVSuperResolutionLib$${d} \
                 -lmialsrtkTVSuperResolutionWrapper$${d} \
+}
+
+
+MyBrainLocalization {
+   CONFIG_FOUND += MyBrainLocalization 
+   INCLUDEPATH += $${PACKAGE_SOURCES}/Shared/MyBrainLocalization
+   QMAKE_LIBDIR += $${PACKAGE_LIB}/MyBrainLocalization
+   win32:LIBS += mialsrtkRefineHRMaskByIntersectionLib.lib \
+                 mialsrtkRefineHRMaskByIntersectionWrapper.lib
+   unix:LIBS += -lmialsrtkRefineHRMaskByIntersectionLib \
+                -lmialsrtkRefineHRMaskByIntersectionWrapper \
 }
 
 MyITK {

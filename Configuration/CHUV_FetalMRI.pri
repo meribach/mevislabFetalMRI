@@ -76,10 +76,15 @@ MyTools {
                  mialsrtkOrientImageWrapper.lib$${d} \
                  btkNLMDenoisingLib.lib$${d} \
                  btkNLMDenoisingWrapper.lib$${d} 
+                 mialsrtkMaskImageLib.lib \
+                 mialsrtkMaskImageWrapper.lib 
+
    unix:LIBS +=	 -lmialsrtkOrientImageLib$${d} \
                  -lmialsrtkOrientImageWrapper$${d} \
                  -lbtkNLMDenoisingLib$${d} \
-                 -lbtkNLMDenoisingWrapper$${d} \  
+                 -lbtkNLMDenoisingWrapper$${d} \
+                 -lmialsrtkMaskImageLib \
+                 -lmialsrtkMaskImageWrapper   
 }
 
 MyIntensityStandardization {
@@ -103,8 +108,8 @@ MyIntensityStandardization {
                  -lmialsrtkSliceBySliceCorrectBiasFieldLib$${d} \
                  -lmialsrtkSliceBySliceCorrectBiasFieldWrapper$${d} \
                  -lmialsrtkSliceBySliceN4BiasFieldCorrectionLib$${d} \
-                 -lmialsrtkSliceBySliceN4BiasFieldCorrectionWrapper$${d}
-                 -lmialsrtkN4BiasFieldCorrectionLib
+                 -lmialsrtkSliceBySliceN4BiasFieldCorrectionWrapper$${d} \
+                 -lmialsrtkN4BiasFieldCorrectionLib \
                  -lmialsrtkN4BiasFieldCorrectionWrapper			 
 }
 
