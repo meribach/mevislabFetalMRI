@@ -93,7 +93,9 @@ MyIntensityStandardization {
                  mialsrtkSliceBySliceCorrectBiasFieldLib.lib$${d} \
                  mialsrtkSliceBySliceCorrectBiasFieldWrapper.lib$${d} \
                  mialsrtkSliceBySliceN4BiasFieldCorrectionLib.lib$${d} \
-                 mialsrtkSliceBySliceN4BiasFieldCorrectionWrapper.lib$${d} 
+                 mialsrtkSliceBySliceN4BiasFieldCorrectionWrapper.lib$${d} \
+				 mialsrtkN4BiasFieldCorrectionLib.lib \
+				 mialsrtkN4BiasFieldCorrectionWrapper.lib
    unix:LIBS +=	 -lmialsrtkCorrectSliceIntensityLib$${d} \
                  -lmialsrtkCorrectSliceIntensityWrapper$${d} \
                  -lmialsrtkIntensityStandardizationLib$${d} \
@@ -101,7 +103,9 @@ MyIntensityStandardization {
                  -lmialsrtkSliceBySliceCorrectBiasFieldLib$${d} \
                  -lmialsrtkSliceBySliceCorrectBiasFieldWrapper$${d} \
                  -lmialsrtkSliceBySliceN4BiasFieldCorrectionLib$${d} \
-                 -lmialsrtkSliceBySliceN4BiasFieldCorrectionWrapper$${d}\		 
+                 -lmialsrtkSliceBySliceN4BiasFieldCorrectionWrapper$${d}
+                 -lmialsrtkN4BiasFieldCorrectionLib
+                 -lmialsrtkN4BiasFieldCorrectionWrapper			 
 }
 
 MyImageReconstruction {
