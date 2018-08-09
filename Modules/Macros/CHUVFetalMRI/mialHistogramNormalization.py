@@ -122,10 +122,10 @@ def mean_nonzero(image):
     return mean
 
 def intensityNormalization(image,landmarks):
-    print 'min ='+str(landmarks['p1'])
-    print 'max (99.8%) ='+str(landmarks['p2'])
+    print('min ='+str(landmarks['p1']))
+    print('max (99.8%) ='+str(landmarks['p2']))
         #print 'mean ='+str(landmarks['mean'])
-    print 'quartiles [25%,50%,75%] ='+str(landmarks['quartiles'])
+    print('quartiles [25%,50%,75%] ='+str(landmarks['quartiles']))
     return 1
 
 def displayHistogram(image,loffset,roffset):
