@@ -1,0 +1,287 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/CHUVImageReconstruction/CHUVImageReconstruction.def
+    moduleName = mialImageReconstruction
+    moduleType = MLModule
+    author = FetalMRI
+    DLL = CHUVImageReconstruction
+    genre = ""
+    keywords = ""
+    seeAlso = ""
+    package = FetalMRI
+    packageGroup = CHUV
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = mialImageReconstruction
+    }
+    Field inputFiles {
+      type = String
+      text = "input file name, multiple files: use -- as delimeter, ex: C:/file1.nii--C:/file2.nii"
+      title = "Input Files"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field maskFiles {
+      type = String
+      text = "input mask file name, multiple files: use -- as delimeter, ex: C:/filemask1.nii--C:/filemask2.nii"
+      title = "Mask Files"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field outputFile {
+      type = String
+      text = "output file name"
+      title = "Output File"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field refFile {
+      type = String
+      text = "Reference Image"
+      title = "Ref File"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field transformoutFiles {
+      type = String
+      text = "transform output files, multiple files: use -- as delimeter, ex: C:/file1transform.nii--C:/file2transform.nii"
+      title = "Transformout Files"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field resampledFiles {
+      type = String
+      text = "Resampled image file name with initial transform (this is an output to check initial transform consistency), multiple files: use -- as delimeter, ex: C:/fileresampled1.nii--C:/fileresampled2.nii"
+      title = "Resampled Files"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field combinedMasks {
+      type = String
+      text = "All image masks combined in a single one, output filename"
+      title = "Combined Masks"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field itMax {
+      type = Integer
+      text = "Maximum number of iterations"
+      title = "It Max"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 10
+    }
+    Field espilon {
+      type = Double
+      text = "Minimal percent change between two iterations considered as convergence. (default 0.0001)"
+      title = Espilon
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0.0001
+    }
+    Field margin {
+      type = Double
+      text = ""
+      title = Margin
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0
+    }
+    Field rigid3D {
+      type = Bool
+      text = "Use of 3D rigid transforms, Recommended for adult subjects."
+      title = Rigid3D
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field noreg {
+      type = Bool
+      text = "No registration is performed, the image is reconstructed with the identity transform. This option is important to have a reference for performance assessment."
+      title = Noreg
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field debluring {
+      type = Bool
+      text = "Flag to set deblurring kernel for SDI (double the neighborhood) (by default it is disable.)."
+      title = Debluring
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field methodRoiCalculation {
+      type = Enum
+      text = "box: Use intersections for roi calculation ; mask:Use masks for roi calculation ; all:Use the whole image FOV, default is mask"
+      title = "Method Roi Calculation"
+      visibleInGUI = Yes
+      items  {
+        item box {
+          title = box
+          text = ""
+        }
+        item mask {
+          title = mask
+          text = ""
+        }
+        item all {
+          title = all
+          text = ""
+        }
+      }
+      persistent = Yes
+      default = mask
+    }
+    Field ImageBaseOfRecon {
+      type = Integer
+      text = "targetImage of the lowToHighResFilter (should be the one with the less movement), default is 0"
+      title = "Image Base Of Recon"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0
+    }
+    Field MetricToUse {
+      type = Enum
+      text = "Metric of the Coregistration, NC = Normalized Correlation, MI = Mutual Information, default is NC"
+      title = "Metric To Use"
+      visibleInGUI = Yes
+      items  {
+        item NC {
+          title = Nc
+          text = ""
+        }
+        item MI {
+          title = Mi
+          text = ""
+        }
+      }
+      persistent = Yes
+      default = NC
+    }
+    Field nbIterationsRegistration {
+      type = Integer
+      text = ""
+      title = "Nb Iterations Registration"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 2000
+    }
+    Field GradientMagnitudeToleranceRegistration {
+      type = Double
+      text = ""
+      title = "Gradient Magnitude Tolerance Registration"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0.0001
+    }
+    Field MinStepLengthRegistration {
+      type = Double
+      text = ""
+      title = "Min Step Length Registration"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0.0001
+    }
+    Field MaxStepLengthRegistration {
+      type = Double
+      text = ""
+      title = "Max Step Length Registration"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0.2
+    }
+    Field RelaxationFactorRegistration {
+      type = Double
+      text = ""
+      title = "Relaxation Factor Registration"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0.5
+    }
+    Field resampleKernelMultiplicator {
+      type = Float
+      text = ""
+      title = "Resample Kernel Multiplicator"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 1
+    }
+    Field status {
+      type = String
+      text = ""
+      title = Status
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field startTask {
+      type = Trigger
+      text = ""
+      title = "Start Task"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field startTaskModal {
+      type = Trigger
+      text = ""
+      title = "Start Task Modal"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field inProgress {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = FALSE
+    }
+    Field outputSucceed {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = FALSE
+    }
+    text = ""
+  }
+}

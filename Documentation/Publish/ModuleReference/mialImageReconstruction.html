@@ -1,0 +1,464 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mialImageReconstruction &mdash; MeVisLab  documentation</title>
+    
+    <link rel="stylesheet" href="_static/MeVisLab.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/MeVisLab.ico"/>
+    <link rel="top" title="MeVisLab  documentation" href="#" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="mialimagereconstruction">
+<h1>mialImageReconstruction<a class="headerlink" href="#mialimagereconstruction" title="Permalink to this headline">¶</a></h1>
+<dl class="module">
+<dt id="mlabmodule-mialImageReconstruction">
+<code class="descname">MLModule</code><a class="headerlink" href="#mlabmodule-mialImageReconstruction" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>author</td>
+<td><a class="reference internal" href="author.html# FetalMRI" title="FetalMRI"><code class="xref mlab mlab-author docutils literal"><span class="pre">FetalMRI</span></code></a></td>
+</tr>
+<tr class="row-even"><td>package</td>
+<td><a class="reference internal" href="index.html#top" title="CHUV/FetalMRI"><code class="xref mlab mlab-package docutils literal"><span class="pre">CHUV/FetalMRI</span></code></a></td>
+</tr>
+<tr class="row-odd"><td>dll</td>
+<td><a class="reference internal" href="dll.html#CHUVImageReconstruction" title="CHUVImageReconstruction"><code class="xref mlab mlab-dll docutils literal"><span class="pre">CHUVImageReconstruction</span></code></a></td>
+</tr>
+<tr class="row-even"><td>definition</td>
+<td><a class="reference external" href="../../../Modules/ML/CHUVImageReconstruction/CHUVImageReconstruction.def">CHUVImageReconstruction.def</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="windows">
+<h1>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="default-panel">
+<h2>Default Panel<a class="headerlink" href="#default-panel" title="Permalink to this headline">¶</a></h2>
+<img alt="Images/Screenshots/mialImageReconstruction._default.png" src="Images/Screenshots/mialImageReconstruction._default.png" />
+</div>
+</div>
+<div class="section" id="parameter-fields">
+<span id="id1"></span><h1>Parameter Fields<a class="headerlink" href="#parameter-fields" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="field-index">
+<h2>Field Index<a class="headerlink" href="#field-index" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="parameter-fields-index docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#mlabfield-combinedmasks" title="Combined Masks"><code class="xref mlab mlab-field docutils literal"><span class="pre">Combined</span> <span class="pre">Masks</span></code></a>: <code class="docutils literal"><span class="pre">String</span></code></td>
+<td><a class="reference internal" href="#mlabfield-maskfiles" title="Mask Files"><code class="xref mlab mlab-field docutils literal"><span class="pre">Mask</span> <span class="pre">Files</span></code></a>: <code class="docutils literal"><span class="pre">String</span></code></td>
+<td><a class="reference internal" href="#mlabfield-reffile" title="Ref File"><code class="xref mlab mlab-field docutils literal"><span class="pre">Ref</span> <span class="pre">File</span></code></a>: <code class="docutils literal"><span class="pre">String</span></code></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mlabfield-debluring" title="Debluring"><code class="xref mlab mlab-field docutils literal"><span class="pre">Debluring</span></code></a>: <code class="docutils literal"><span class="pre">Bool</span></code></td>
+<td><a class="reference internal" href="#mlabfield-maxsteplengthregistration" title="Max Step Length Registration"><code class="xref mlab mlab-field docutils literal"><span class="pre">Max</span> <span class="pre">Step</span> <span class="pre">Length</span> <span class="pre">Registration</span></code></a>: <code class="docutils literal"><span class="pre">Double</span></code></td>
+<td><a class="reference internal" href="#mlabfield-relaxationfactorregistration" title="Relaxation Factor Registration"><code class="xref mlab mlab-field docutils literal"><span class="pre">Relaxation</span> <span class="pre">Factor</span> <span class="pre">Registration</span></code></a>: <code class="docutils literal"><span class="pre">Double</span></code></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#mlabfield-espilon" title="Espilon"><code class="xref mlab mlab-field docutils literal"><span class="pre">Espilon</span></code></a>: <code class="docutils literal"><span class="pre">Double</span></code></td>
+<td><a class="reference internal" href="#mlabfield-methodroicalculation" title="Method Roi Calculation"><code class="xref mlab mlab-field docutils literal"><span class="pre">Method</span> <span class="pre">Roi</span> <span class="pre">Calculation</span></code></a>: <code class="docutils literal"><span class="pre">Enum</span></code></td>
+<td><a class="reference internal" href="#mlabfield-resamplekernelmultiplicator" title="Resample Kernel Multiplicator"><code class="xref mlab mlab-field docutils literal"><span class="pre">Resample</span> <span class="pre">Kernel</span> <span class="pre">Multiplicator</span></code></a>: <code class="docutils literal"><span class="pre">Float</span></code></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mlabfield-gradientmagnitudetoleranceregistration" title="Gradient Magnitude Tolerance Registration"><code class="xref mlab mlab-field docutils literal"><span class="pre">Gradient</span> <span class="pre">Magnitude</span> <span class="pre">Tolerance</span> <span class="pre">Registration</span></code></a>: <code class="docutils literal"><span class="pre">Double</span></code></td>
+<td><a class="reference internal" href="#mlabfield-metrictouse" title="Metric To Use"><code class="xref mlab mlab-field docutils literal"><span class="pre">Metric</span> <span class="pre">To</span> <span class="pre">Use</span></code></a>: <code class="docutils literal"><span class="pre">Enum</span></code></td>
+<td><a class="reference internal" href="#mlabfield-resampledfiles" title="Resampled Files"><code class="xref mlab mlab-field docutils literal"><span class="pre">Resampled</span> <span class="pre">Files</span></code></a>: <code class="docutils literal"><span class="pre">String</span></code></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#mlabfield-imagebaseofrecon" title="Image Base Of Recon"><code class="xref mlab mlab-field docutils literal"><span class="pre">Image</span> <span class="pre">Base</span> <span class="pre">Of</span> <span class="pre">Recon</span></code></a>: <code class="docutils literal"><span class="pre">Integer</span></code></td>
+<td><a class="reference internal" href="#mlabfield-minsteplengthregistration" title="Min Step Length Registration"><code class="xref mlab mlab-field docutils literal"><span class="pre">Min</span> <span class="pre">Step</span> <span class="pre">Length</span> <span class="pre">Registration</span></code></a>: <code class="docutils literal"><span class="pre">Double</span></code></td>
+<td><a class="reference internal" href="#mlabfield-rigid3d" title="Rigid3D"><code class="xref mlab mlab-field docutils literal"><span class="pre">Rigid3D</span></code></a>: <code class="docutils literal"><span class="pre">Bool</span></code></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mlabfield-inprogress" title="inProgress"><code class="xref mlab mlab-field docutils literal"><span class="pre">inProgress</span></code></a>: <code class="docutils literal"><span class="pre">Bool</span></code></td>
+<td><a class="reference internal" href="#mlabfield-nbiterationsregistration" title="Nb Iterations Registration"><code class="xref mlab mlab-field docutils literal"><span class="pre">Nb</span> <span class="pre">Iterations</span> <span class="pre">Registration</span></code></a>: <code class="docutils literal"><span class="pre">Integer</span></code></td>
+<td><a class="reference internal" href="#mlabfield-starttask" title="Start Task"><code class="xref mlab mlab-field docutils literal"><span class="pre">Start</span> <span class="pre">Task</span></code></a>: <code class="docutils literal"><span class="pre">Trigger</span></code></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#mlabfield-inputfiles" title="Input Files"><code class="xref mlab mlab-field docutils literal"><span class="pre">Input</span> <span class="pre">Files</span></code></a>: <code class="docutils literal"><span class="pre">String</span></code></td>
+<td><a class="reference internal" href="#mlabfield-noreg" title="Noreg"><code class="xref mlab mlab-field docutils literal"><span class="pre">Noreg</span></code></a>: <code class="docutils literal"><span class="pre">Bool</span></code></td>
+<td><a class="reference internal" href="#mlabfield-starttaskmodal" title="Start Task Modal"><code class="xref mlab mlab-field docutils literal"><span class="pre">Start</span> <span class="pre">Task</span> <span class="pre">Modal</span></code></a>: <code class="docutils literal"><span class="pre">Trigger</span></code></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mlabfield-itmax" title="It Max"><code class="xref mlab mlab-field docutils literal"><span class="pre">It</span> <span class="pre">Max</span></code></a>: <code class="docutils literal"><span class="pre">Integer</span></code></td>
+<td><a class="reference internal" href="#mlabfield-outputfile" title="Output File"><code class="xref mlab mlab-field docutils literal"><span class="pre">Output</span> <span class="pre">File</span></code></a>: <code class="docutils literal"><span class="pre">String</span></code></td>
+<td><a class="reference internal" href="#mlabfield-status" title="Status"><code class="xref mlab mlab-field docutils literal"><span class="pre">Status</span></code></a>: <code class="docutils literal"><span class="pre">String</span></code></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#mlabfield-margin" title="Margin"><code class="xref mlab mlab-field docutils literal"><span class="pre">Margin</span></code></a>: <code class="docutils literal"><span class="pre">Double</span></code></td>
+<td><a class="reference internal" href="#mlabfield-outputsucceed" title="outputSucceed"><code class="xref mlab mlab-field docutils literal"><span class="pre">outputSucceed</span></code></a>: <code class="docutils literal"><span class="pre">Bool</span></code></td>
+<td><a class="reference internal" href="#mlabfield-transformoutfiles" title="Transformout Files"><code class="xref mlab mlab-field docutils literal"><span class="pre">Transformout</span> <span class="pre">Files</span></code></a>: <code class="docutils literal"><span class="pre">String</span></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="visible-fields">
+<h2>Visible Fields<a class="headerlink" href="#visible-fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="input-files">
+<span id="mlabfield-inputfiles"></span><h3>Input Files<a class="headerlink" href="#input-files" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-inputFiles">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">inputFiles</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">String</code><a class="headerlink" href="#mlabfieldname-inputFiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>input file name, multiple files: use -- as delimeter, ex: C:/file1.nii--C:/file2.nii</p>
+</dd></dl>
+
+</div>
+<div class="section" id="mask-files">
+<span id="mlabfield-maskfiles"></span><h3>Mask Files<a class="headerlink" href="#mask-files" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-maskFiles">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">maskFiles</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">String</code><a class="headerlink" href="#mlabfieldname-maskFiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>input mask file name, multiple files: use -- as delimeter, ex: C:/filemask1.nii--C:/filemask2.nii</p>
+</dd></dl>
+
+</div>
+<div class="section" id="output-file">
+<span id="mlabfield-outputfile"></span><h3>Output File<a class="headerlink" href="#output-file" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-outputFile">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">outputFile</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">String</code><a class="headerlink" href="#mlabfieldname-outputFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>output file name</p>
+</dd></dl>
+
+</div>
+<div class="section" id="ref-file">
+<span id="mlabfield-reffile"></span><h3>Ref File<a class="headerlink" href="#ref-file" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-refFile">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">refFile</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">String</code><a class="headerlink" href="#mlabfieldname-refFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reference Image</p>
+</dd></dl>
+
+</div>
+<div class="section" id="transformout-files">
+<span id="mlabfield-transformoutfiles"></span><h3>Transformout Files<a class="headerlink" href="#transformout-files" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-transformoutFiles">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">transformoutFiles</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">String</code><a class="headerlink" href="#mlabfieldname-transformoutFiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>transform output files, multiple files: use -- as delimeter, ex: C:/file1transform.nii--C:/file2transform.nii</p>
+</dd></dl>
+
+</div>
+<div class="section" id="resampled-files">
+<span id="mlabfield-resampledfiles"></span><h3>Resampled Files<a class="headerlink" href="#resampled-files" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-resampledFiles">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">resampledFiles</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">String</code><a class="headerlink" href="#mlabfieldname-resampledFiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resampled image file name with initial transform (this is an output to check initial transform consistency), multiple files: use -- as delimeter, ex: C:/fileresampled1.nii--C:/fileresampled2.nii</p>
+</dd></dl>
+
+</div>
+<div class="section" id="combined-masks">
+<span id="mlabfield-combinedmasks"></span><h3>Combined Masks<a class="headerlink" href="#combined-masks" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-combinedMasks">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">combinedMasks</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">String</code><a class="headerlink" href="#mlabfieldname-combinedMasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>All image masks combined in a single one, output filename</p>
+</dd></dl>
+
+</div>
+<div class="section" id="it-max">
+<span id="mlabfield-itmax"></span><h3>It Max<a class="headerlink" href="#it-max" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-itMax">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">itMax</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Integer</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">10</code><a class="headerlink" href="#mlabfieldname-itMax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum number of iterations</p>
+</dd></dl>
+
+</div>
+<div class="section" id="espilon">
+<span id="mlabfield-espilon"></span><h3>Espilon<a class="headerlink" href="#espilon" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-espilon">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">espilon</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Double</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">0.0001</code><a class="headerlink" href="#mlabfieldname-espilon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimal percent change between two iterations considered as convergence. (default 0.0001)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="margin">
+<span id="mlabfield-margin"></span><h3>Margin<a class="headerlink" href="#margin" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-margin">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">margin</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Double</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">0</code><a class="headerlink" href="#mlabfieldname-margin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="rigid3d">
+<span id="mlabfield-rigid3d"></span><h3>Rigid3D<a class="headerlink" href="#rigid3d" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-rigid3D">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">rigid3D</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Bool</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">FALSE</code><a class="headerlink" href="#mlabfieldname-rigid3D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use of 3D rigid transforms, Recommended for adult subjects.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="noreg">
+<span id="mlabfield-noreg"></span><h3>Noreg<a class="headerlink" href="#noreg" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-noreg">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">noreg</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Bool</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">FALSE</code><a class="headerlink" href="#mlabfieldname-noreg" title="Permalink to this definition">¶</a></dt>
+<dd><p>No registration is performed, the image is reconstructed with the identity transform. This option is important to have a reference for performance assessment.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="debluring">
+<span id="mlabfield-debluring"></span><h3>Debluring<a class="headerlink" href="#debluring" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-debluring">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">debluring</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Bool</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">FALSE</code><a class="headerlink" href="#mlabfieldname-debluring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flag to set deblurring kernel for SDI (double the neighborhood) (by default it is disable.).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="method-roi-calculation">
+<span id="mlabfield-methodroicalculation"></span><h3>Method Roi Calculation<a class="headerlink" href="#method-roi-calculation" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-methodRoiCalculation">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">methodRoiCalculation</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Enum</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">mask</code><a class="headerlink" href="#mlabfieldname-methodRoiCalculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>box: Use intersections for roi calculation ; mask:Use masks for roi calculation ; all:Use the whole image FOV, default is mask</p>
+</dd></dl>
+
+<p class="enum-field-values">Values:</p>
+<table border="1" class="enum-field-values docutils">
+<colgroup>
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Title</th>
+<th class="head">Name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>box</td>
+<td>box</td>
+</tr>
+<tr class="row-odd"><td>mask</td>
+<td>mask</td>
+</tr>
+<tr class="row-even"><td>all</td>
+<td>all</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="image-base-of-recon">
+<span id="mlabfield-imagebaseofrecon"></span><h3>Image Base Of Recon<a class="headerlink" href="#image-base-of-recon" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-ImageBaseOfRecon">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">ImageBaseOfRecon</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Integer</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">0</code><a class="headerlink" href="#mlabfieldname-ImageBaseOfRecon" title="Permalink to this definition">¶</a></dt>
+<dd><p>targetImage of the lowToHighResFilter (should be the one with the less movement), default is 0</p>
+</dd></dl>
+
+</div>
+<div class="section" id="metric-to-use">
+<span id="mlabfield-metrictouse"></span><h3>Metric To Use<a class="headerlink" href="#metric-to-use" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-MetricToUse">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">MetricToUse</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Enum</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">NC</code><a class="headerlink" href="#mlabfieldname-MetricToUse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric of the Coregistration, NC = Normalized Correlation, MI = Mutual Information, default is NC</p>
+</dd></dl>
+
+<p class="enum-field-values">Values:</p>
+<table border="1" class="enum-field-values docutils">
+<colgroup>
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Title</th>
+<th class="head">Name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Nc</td>
+<td>NC</td>
+</tr>
+<tr class="row-odd"><td>Mi</td>
+<td>MI</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="nb-iterations-registration">
+<span id="mlabfield-nbiterationsregistration"></span><h3>Nb Iterations Registration<a class="headerlink" href="#nb-iterations-registration" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-nbIterationsRegistration">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">nbIterationsRegistration</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Integer</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">2000</code><a class="headerlink" href="#mlabfieldname-nbIterationsRegistration" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="gradient-magnitude-tolerance-registration">
+<span id="mlabfield-gradientmagnitudetoleranceregistration"></span><h3>Gradient Magnitude Tolerance Registration<a class="headerlink" href="#gradient-magnitude-tolerance-registration" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-GradientMagnitudeToleranceRegistration">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">GradientMagnitudeToleranceRegistration</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Double</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">0.0001</code><a class="headerlink" href="#mlabfieldname-GradientMagnitudeToleranceRegistration" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="min-step-length-registration">
+<span id="mlabfield-minsteplengthregistration"></span><h3>Min Step Length Registration<a class="headerlink" href="#min-step-length-registration" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-MinStepLengthRegistration">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">MinStepLengthRegistration</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Double</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">0.0001</code><a class="headerlink" href="#mlabfieldname-MinStepLengthRegistration" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="max-step-length-registration">
+<span id="mlabfield-maxsteplengthregistration"></span><h3>Max Step Length Registration<a class="headerlink" href="#max-step-length-registration" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-MaxStepLengthRegistration">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">MaxStepLengthRegistration</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Double</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">0.2</code><a class="headerlink" href="#mlabfieldname-MaxStepLengthRegistration" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="relaxation-factor-registration">
+<span id="mlabfield-relaxationfactorregistration"></span><h3>Relaxation Factor Registration<a class="headerlink" href="#relaxation-factor-registration" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-RelaxationFactorRegistration">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">RelaxationFactorRegistration</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Double</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">0.5</code><a class="headerlink" href="#mlabfieldname-RelaxationFactorRegistration" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="resample-kernel-multiplicator">
+<span id="mlabfield-resamplekernelmultiplicator"></span><h3>Resample Kernel Multiplicator<a class="headerlink" href="#resample-kernel-multiplicator" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-resampleKernelMultiplicator">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">resampleKernelMultiplicator</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Float</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">1</code><a class="headerlink" href="#mlabfieldname-resampleKernelMultiplicator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="status">
+<span id="mlabfield-status"></span><h3>Status<a class="headerlink" href="#status" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-status">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">status</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">String</code><code class="descclassname" id="mlab_title">, persistent: </code><code class="descname" id="mlab_title">no</code><a class="headerlink" href="#mlabfieldname-status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="start-task">
+<span id="mlabfield-starttask"></span><h3>Start Task<a class="headerlink" href="#start-task" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-startTask">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">startTask</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Trigger</code><a class="headerlink" href="#mlabfieldname-startTask" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="start-task-modal">
+<span id="mlabfield-starttaskmodal"></span><h3>Start Task Modal<a class="headerlink" href="#start-task-modal" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-startTaskModal">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">startTaskModal</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Trigger</code><a class="headerlink" href="#mlabfieldname-startTaskModal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="hidden-fields">
+<h2>Hidden Fields<a class="headerlink" href="#hidden-fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="inprogress">
+<span id="mlabfield-inprogress"></span><h3>inProgress<a class="headerlink" href="#inprogress" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-inProgress">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">inProgress</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Bool</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">FALSE</code><a class="headerlink" href="#mlabfieldname-inProgress" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="outputsucceed">
+<span id="mlabfield-outputsucceed"></span><h3>outputSucceed<a class="headerlink" href="#outputsucceed" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-outputSucceed">
+<code class="descclassname" id="mlab_title">name: </code><code class="descname" id="mlab_title">outputSucceed</code><code class="descclassname" id="mlab_title">, type: </code><code class="descname" id="mlab_title">Bool</code><code class="descclassname" id="mlab_title">, default: </code><code class="descname" id="mlab_title">FALSE</code><a class="headerlink" href="#mlabfieldname-outputSucceed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">mialImageReconstruction</a></li>
+<li><a class="reference internal" href="#windows">Windows</a><ul>
+<li><a class="reference internal" href="#default-panel">Default Panel</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#parameter-fields">Parameter Fields</a><ul>
+<li><a class="reference internal" href="#field-index">Field Index</a></li>
+<li><a class="reference internal" href="#visible-fields">Visible Fields</a><ul>
+<li><a class="reference internal" href="#input-files">Input Files</a></li>
+<li><a class="reference internal" href="#mask-files">Mask Files</a></li>
+<li><a class="reference internal" href="#output-file">Output File</a></li>
+<li><a class="reference internal" href="#ref-file">Ref File</a></li>
+<li><a class="reference internal" href="#transformout-files">Transformout Files</a></li>
+<li><a class="reference internal" href="#resampled-files">Resampled Files</a></li>
+<li><a class="reference internal" href="#combined-masks">Combined Masks</a></li>
+<li><a class="reference internal" href="#it-max">It Max</a></li>
+<li><a class="reference internal" href="#espilon">Espilon</a></li>
+<li><a class="reference internal" href="#margin">Margin</a></li>
+<li><a class="reference internal" href="#rigid3d">Rigid3D</a></li>
+<li><a class="reference internal" href="#noreg">Noreg</a></li>
+<li><a class="reference internal" href="#debluring">Debluring</a></li>
+<li><a class="reference internal" href="#method-roi-calculation">Method Roi Calculation</a></li>
+<li><a class="reference internal" href="#image-base-of-recon">Image Base Of Recon</a></li>
+<li><a class="reference internal" href="#metric-to-use">Metric To Use</a></li>
+<li><a class="reference internal" href="#nb-iterations-registration">Nb Iterations Registration</a></li>
+<li><a class="reference internal" href="#gradient-magnitude-tolerance-registration">Gradient Magnitude Tolerance Registration</a></li>
+<li><a class="reference internal" href="#min-step-length-registration">Min Step Length Registration</a></li>
+<li><a class="reference internal" href="#max-step-length-registration">Max Step Length Registration</a></li>
+<li><a class="reference internal" href="#relaxation-factor-registration">Relaxation Factor Registration</a></li>
+<li><a class="reference internal" href="#resample-kernel-multiplicator">Resample Kernel Multiplicator</a></li>
+<li><a class="reference internal" href="#status">Status</a></li>
+<li><a class="reference internal" href="#start-task">Start Task</a></li>
+<li><a class="reference internal" href="#start-task-modal">Start Task Modal</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hidden-fields">Hidden Fields</a><ul>
+<li><a class="reference internal" href="#inprogress">inProgress</a></li>
+<li><a class="reference internal" href="#outputsucceed">outputSucceed</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>
