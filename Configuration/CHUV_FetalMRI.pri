@@ -75,10 +75,9 @@ MyTools {
    win32:LIBS += mialsrtkOrientImageLib.lib$${d} \
                  mialsrtkOrientImageWrapper.lib$${d} \
                  btkNLMDenoisingLib.lib$${d} \
-                 btkNLMDenoisingWrapper.lib$${d} 
+                 btkNLMDenoisingWrapper.lib$${d} \
                  mialsrtkMaskImageLib.lib \
                  mialsrtkMaskImageWrapper.lib 
-
    unix:LIBS +=	 -lmialsrtkOrientImageLib \
                  -lmialsrtkOrientImageWrapper \
                  -lbtkNLMDenoisingLib \
