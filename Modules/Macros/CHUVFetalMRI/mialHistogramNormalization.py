@@ -170,7 +170,7 @@ def trainImageLandmarks(list_landmarks):
     ymax=np.max(maxLR)
     ymax_index=maxLR.index(max(maxLR))
     dS = float(ymax*(mup_L[ymax_index]+mup_R[ymax_index]))
-    print 'Ymax  =  '+str(ymax)+'  at position '+str(ymax_index)+'  ,  dS = '+str(dS)+' (=s2 when s1=0)'
+    print('Ymax  =  '+str(ymax)+'  at position '+str(ymax_index)+'  ,  dS = '+str(dS)+' (=s2 when s1=0)')
     return list_landmarks,dS
 
 def mapImageLandmarks(list_landmarks,s1,s2):
@@ -178,13 +178,13 @@ def mapImageLandmarks(list_landmarks,s1,s2):
     index=0
     while index<len(list_landmarks):
         land_index=0
-        print 'Image index: '+str(index)
+        print('Image index: '+str(index))
         while land_index<len(list_landmarks[index]['quartiles']):
             print 'old landmark: '+str(list_landmarks_mapped[index]['quartiles'][land_index])
             list_landmarks_mapped[index]['quartiles'][land_index]=s1+float((list_landmarks_mapped[index]['quartiles'][land_index]-list_landmarks_mapped[index]['p1'])/float(list_landmarks_mapped[index]['p2']-list_landmarks_mapped[index]['p1']))*float((s2-s1))
             print 'new landmark: '+str(list_landmarks_mapped[index]['quartiles'][land_index])
             land_index+=1
-        print 'p1, p2 = '+str(list_landmarks_mapped[index]['p1'])+', '+str(list_landmarks_mapped[index]['p2'])
+        print('p1, p2 = '+str(list_landmarks_mapped[index]['p1'])+', '+str(list_landmarks_mapped[index]['p2']))
         index+=1
     return list_landmarks_mapped
 
@@ -256,6 +256,6 @@ def computeMeanMapImageLandmarks(list_landmarks):
         mean_landmarks[str(land_index)] = mean_landmarks[str(land_index)] / len(list_landmarks)
         land_index+=1
 
-    print 'Final landmark average : '
-    print mean_landmarks
+    print('Final landmark average : ')
+    print(mean_landmarks)
     return mean_landmarks

@@ -1,0 +1,86 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ImageOrientationInterface {
+  internal  {
+    frame = "685 319 232 56"
+    moduleGroupName = FetalMRIExample
+    showNetworkPanel = true
+  }
+  fields  {
+    instanceName = ImageOrientationInterface
+    GestationalAge = 33
+    AtlasPath = $(HOME)/Bureau/CHUV/CRL_Fetal_Brain_Atlas_2016
+    AtlasImage = /home/neuropsynov/Bureau/CHUV/CRL_Fetal_Brain_Atlas_2016
+    NumberImages = 2
+    pathImages = ""
+    eventChoice = 0
+    StatusField = ""
+    FieldPresentRegistration = ""
+    RefImageFiled = 0
+    BackgroundTaskRunning = FALSE
+    StopBackgroundTask = FALSE
+    ExpertMode = TRUE
+    RegistrationMetric = NC
+    RegistrationGradient = 0.0001
+    RegistrationRelaxationFactor = 0.5
+    RegistrationMinStep = 0.0001
+    RegistrationMaxStep = 0.2
+    WaitForReconstruction = FALSE
+  }
+}
+module SDIVerificationInterface {
+  internal  {
+    frame = "729 199 160 56"
+    moduleGroupName = FetalMRIExample
+  }
+  fields  {
+    instanceName = SDIVerificationInterface
+    NumberImages = 0
+    outlierRejection = FALSE
+    ExpertMode = TRUE
+    RegistrationMetric = NC
+    RegistrationGradient = 0.0001
+    RegistrationRelaxationFactor = 0.5
+    RegistrationMinStep = 0.0001
+    RegistrationMaxStep = 0.2
+    Gamma = 0.1
+    DeltaT = 1
+  }
+}
+module TotalVariationInterface {
+  internal  {
+    frame = "741 39 152 56"
+    moduleGroupName = FetalMRIExample
+  }
+  fields  {
+    instanceName = TotalVariationInterface
+    NumberImages = 0
+    outlierRejection = FALSE
+    ExpertMode = TRUE
+    Gamma = 0.13699999
+    DeltaT = 1.005
+  }
+}
+connections  {
+  SDIVerificationInterface.inImageInfos = ImageOrientationInterface.outImagesInfosStep1
+  TotalVariationInterface.inImageInfos = SDIVerificationInterface.outImagesInfosStep2
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNetworkModelItemGroup {
+        uniqueId = 7
+        objectName = FetalMRIExample
+        parentUniqueId = 0
+        color  {
+          r = 45
+          g = 226
+          b = 226
+          a = 40
+        }
+      }
+    }
+  }
+}

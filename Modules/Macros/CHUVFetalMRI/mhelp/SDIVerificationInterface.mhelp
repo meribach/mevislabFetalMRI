@@ -1,0 +1,167 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/Macros/CHUVFetalMRI/SDIVerificationInterface.def
+    moduleName = SDIVerificationInterface
+    moduleType = MacroModule
+    author = FetalMRI
+    dll = ""
+    genre = ""
+    keywords = ""
+    seeAlso = ""
+    package = FetalMRI
+    packageGroup = CHUV
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window SDIVerificationInterface {
+      title = ""
+      text = ".. screenshot:: SDIVerificationInterface"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field inImageInfos {
+      type = MLBase
+      text = ""
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outImagesInfosStep2 {
+      type = MLBase
+      text = ""
+    }
+    Field viewer2DAxial {
+      hidden = true
+      type = SoNode
+      text = ""
+    }
+    Field viewer2DCoronal {
+      hidden = true
+      type = SoNode
+      text = ""
+    }
+    Field viewer2DSagittal {
+      hidden = true
+      type = SoNode
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = SDIVerificationInterface
+    }
+    Field NumberImages {
+      type = Integer
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 0
+    }
+    Field outlierRejection {
+      type = Bool
+      text = ""
+      title = "Outlier Rejection"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field ExpertMode {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field RegistrationMetric {
+      type = Enum
+      text = "Nc = Normalized Correlation, MI = Mutual Information, default = NC"
+      title = "Registration Metric"
+      visibleInGUI = Yes
+      items  {
+        item NC {
+          title = Nc
+          text = ""
+        }
+        item MI {
+          title = Mi
+          text = ""
+        }
+      }
+      persistent = Yes
+      default = NC
+    }
+    Field RegistrationGradient {
+      type = Double
+      text = ""
+      title = "Registration Gradient"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0.0001
+    }
+    Field RegistrationRelaxationFactor {
+      type = Double
+      text = ""
+      title = "Registration Relaxation Factor"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0.5
+    }
+    Field RegistrationMinStep {
+      type = Double
+      text = ""
+      title = "Registration Min Step"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0.0001
+    }
+    Field RegistrationMaxStep {
+      type = Double
+      text = ""
+      title = "Registration Max Step"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0.2
+    }
+    Field Gamma {
+      type = Float
+      text = ""
+      title = Gamma
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0.1
+    }
+    Field DeltaT {
+      type = Float
+      text = ""
+      title = "Delta T"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 1
+    }
+    text = ""
+  }
+}

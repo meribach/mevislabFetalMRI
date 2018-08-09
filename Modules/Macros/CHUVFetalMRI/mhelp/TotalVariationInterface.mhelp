@@ -1,0 +1,121 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/Macros/CHUVFetalMRI/TotalVariationInterface.def
+    moduleName = TotalVariationInterface
+    moduleType = MacroModule
+    author = FetalMRI
+    dll = ""
+    genre = ""
+    keywords = ""
+    seeAlso = ""
+    package = FetalMRI
+    packageGroup = CHUV
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window TotalVariationInterface {
+      title = ""
+      text = ".. screenshot:: TotalVariationInterface"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field inImageInfos {
+      type = MLBase
+      text = ""
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outImagesInfosStep2 {
+      type = MLBase
+      text = ""
+    }
+    Field viewer2DAxial {
+      hidden = true
+      type = SoNode
+      text = ""
+    }
+    Field viewer2DCoronal {
+      hidden = true
+      type = SoNode
+      text = ""
+    }
+    Field viewer2DSagittal {
+      hidden = true
+      type = SoNode
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = TotalVariationInterface
+    }
+    Field NumberImages {
+      type = Integer
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 0
+    }
+    Field outlierRejection {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = FALSE
+    }
+    Field ExpertMode {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field Gamma {
+      type = Float
+      text = ""
+      title = Gamma
+      visibleInGUI = Yes
+      min = 0
+      max = 5
+      persistent = Yes
+      default = 0.13699999
+    }
+    Field DeltaT {
+      type = Float
+      text = ""
+      title = "Delta T"
+      visibleInGUI = Yes
+      min = 0
+      max = 5
+      persistent = Yes
+      default = 1.005
+    }
+    text = ""
+  }
+}

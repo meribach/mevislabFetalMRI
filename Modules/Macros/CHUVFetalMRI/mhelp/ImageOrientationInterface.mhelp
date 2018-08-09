@@ -1,0 +1,275 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/Macros/CHUVFetalMRI/ImageOrientationInterface.def
+    moduleName = ImageOrientationInterface
+    moduleType = MacroModule
+    author = FetalMRI
+    dll = ""
+    genre = ""
+    keywords = ""
+    seeAlso = ""
+    package = FetalMRI
+    packageGroup = CHUV
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window ImageOrientationPanel {
+      title = ""
+      text = ".. screenshot:: ImageOrientationPanel"
+    }
+    Window ButtonOnly {
+      title = ""
+      text = ".. screenshot:: ButtonOnly"
+    }
+    Window ViewerOnly {
+      title = ""
+      text = ".. screenshot:: ViewerOnly"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field inImageInfos {
+      type = MLBase
+      text = ""
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outImagesInfosStep1 {
+      type = MLBase
+      text = ""
+    }
+    Field viewer2D {
+      hidden = true
+      type = SoNode
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = ImageOrientationInterface
+    }
+    Field GestationalAge {
+      type = Integer
+      text = ""
+      title = "Gestational Age"
+      visibleInGUI = Yes
+      min = 21
+      max = 37
+      persistent = Yes
+      default = 33
+    }
+    Field AtlasPath {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = D:/Pierre/CRL_Fetal_Brain_Atlas_2016/CRL_Fetal_Brain_Atlas_2016
+    }
+    Field AtlasImage {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field NumberImages {
+      type = Integer
+      text = ""
+      title = ""
+      visibleInGUI = No
+      min = 1
+      max = 15
+      persistent = Yes
+      default = 2
+    }
+    Field fileSelectionCompleted {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field resetAll {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field pathImages {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field eventChoice {
+      type = Integer
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 0
+    }
+    Field resetZoomButton {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field increaseNbImage {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field decreaseNbImage {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field StatusField {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field FieldPresentRegistration {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field RefImageFiled {
+      type = Integer
+      text = ""
+      title = ""
+      visibleInGUI = No
+      min = 0
+      max = 1
+      persistent = Yes
+      default = 0
+    }
+    Field BackgroundTaskRunning {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = FALSE
+    }
+    Field StopBackgroundTask {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = FALSE
+    }
+    Field ExpertMode {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field RegistrationMetric {
+      type = Enum
+      text = ""
+      title = ""
+      visibleInGUI = No
+      items  {
+        item NC {
+          title = Nc
+          text = ""
+        }
+        item MI {
+          title = Mi
+          text = ""
+        }
+      }
+      persistent = Yes
+      default = NC
+    }
+    Field RegistrationGradient {
+      type = Double
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 0.0001
+    }
+    Field RegistrationRelaxationFactor {
+      type = Double
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 0.5
+    }
+    Field RegistrationMinStep {
+      type = Double
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 0.0001
+    }
+    Field RegistrationMaxStep {
+      type = Double
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 0.2
+    }
+    Field WaitForReconstruction {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = FALSE
+    }
+    text = ""
+  }
+}

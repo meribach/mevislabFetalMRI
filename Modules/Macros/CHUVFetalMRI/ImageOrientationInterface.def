@@ -14,6 +14,6 @@ MacroModule ImageOrientationInterface {
   comment            = ""
   keywords           = ""
   seeAlso            = ""
-   
+  exampleNetwork     = "$(MLAB_CHUV_FetalMRI)/doc/FetalMRIExample.mlab"
   externalDefinition = "$(LOCAL)/ImageOrientationInterface.script"
 }

@@ -14,6 +14,6 @@ MacroModule TotalVariationInterface {
   comment            = ""
   keywords           = ""
   seeAlso            = ""
-   
+  exampleNetwork     = "$(MLAB_CHUV_FetalMRI)/doc/FetalMRIExample.mlab"
   externalDefinition = "$(LOCAL)/TotalVariationInterface.script"
 }
