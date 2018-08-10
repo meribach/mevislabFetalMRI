@@ -67,8 +67,9 @@ def initImageOrientationGraphicsView(view):
   ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
   ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
   ctx.field("mialImageReconstruction.ImageBaseOfRecon").setIntValue(ctx.field("RefImageFiled").value)
-  ctx.field("GetAtlasMacro.name").setStringValue("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
-  ctx.field("GetAtlasMacro.AtlasPath").setStringValue("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
+  if MLABFileManager.exists(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")):
+    ctx.field("GetAtlasMacro.name").setStringValue("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
+    ctx.field("GetAtlasMacro.AtlasPath").setStringValue("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
   showImageOrientationInterface()
   resetZoom()
   TempObj=temporaryObject()
@@ -97,18 +98,23 @@ def showImageOrientationInterface():
   mdlToSet = ""
   numIm = ctx.field("NumberImages").value
   print("number of images: %s"%numIm)
+  tooltipButtonPosition = "Set IH T B A P, by putting the mouse over the posterior comissure and then press I, any position on the inter hemisphere plan Top/Bottom/Anterior/Posterior position and then press T/B/A/P. you can set the position in whatever order; enter to validate"
+  tooltipCheckBox = "All images checked will be taken as input for AllBackgroundTasks button"
+  tooltipComboBox = "to be set at the beginning: the orientation of the brain"
+  tooltipGenerateMask = "if you want to modify the automatically generated brain mask: left click mouse button and draw, 4,6,2,8 to translate in antero-posterior and top-bottom direction, 1,9 to rotate, backspace to delete the mask on the slice, enter to validate "
+  tooltipResetMask = "delete all mask editing and redraw brain mask according to positioning and gestational age"
   for i in range(numIm):
     buttonDefinition = """Button {expandX = No title = \"Image %i\" name = buttonImage%i command = "py: updateImage(\'Image%i\')"}"""%(i,i,i)
     #buttonImage = g_sceneImageOrientation.addMDL(buttonDefinition, True)
-    buttonPositioningDef = """Button {expandX = No title = "Set IH T B A P positons" name = buttonPositioning%i command = "py: setPositioning(\'Image%i\')"}"""%(i,i)
+    buttonPositioningDef = """Button {expandX = No title = "Set IH T B A P positons" name = buttonPositioning%i tooltip = "%s" command = "py: setPositioning(\'Image%i\')"}"""%(i,tooltipButtonPosition,i)
     #buttonPositioning = g_sceneImageOrientation.addMDL(buttonPositioningDef, True)
-    buttonResetBrainMaskDef = """Button {expandX = No title ="Reset Brain Mask" name = buttonResetBrainMask%i enabled = False command = "py: resetBrainMask(\'Image%i\')"}"""%(i,i)
+    buttonResetBrainMaskDef = """Button {expandX = No title ="Reset Brain Mask" name = buttonResetBrainMask%i tooltip = "%s" enabled = False command = "py: resetBrainMask(\'Image%i\')"}"""%(i,tooltipResetMask,i)
     #buttonManualPositioning = g_sceneImageOrientation.addMDL(buttonManualPositioningDef, True)
-    buttonGenerateMaskDef = """Button {expandX = No title = "Edit Brain Mask" name = GenerateBrainMask%i enabled = False command = "py: generateBrainMask(\'Image%i\')"}"""%(i,i)
+    buttonGenerateMaskDef = """Button {expandX = No title = "Edit Brain Mask" name = GenerateBrainMask%i tooltip = "%s" enabled = False command = "py: generateBrainMask(\'Image%i\')"}"""%(i,tooltipGenerateMask,i)
     #buttonGenerateMask = g_sceneImageOrientation.addMDL(buttonGenerateMaskDef, True)
-    checkBoxDefinition = "CheckBox {name = checkImage%i}"%(i)
+    checkBoxDefinition = """CheckBox {name = checkImage%i tooltip = "%s"}"""%(i,tooltipCheckBox)
     #checkBoxImage = g_sceneImageOrientation.addMDL(checkBoxDefinition,True)
-    comboboxDefinition = """ComboBox {expandX = No name = \"comboImage%i\" items {item = unknown item = axial item = sagittal item = coronal} textChangedCommand = "py: registerplaneOrientation(\'Image%i\')"}"""%(i,i)
+    comboboxDefinition = """ComboBox {expandX = No name = \"comboImage%i\" items {item = unknown item = axial item = sagittal item = coronal} tooltip = "%s" textChangedCommand = "py: registerplaneOrientation(\'Image%i\')"}"""%(i,tooltipComboBox,i)
     
     #mdlToSet +="""Horizontal { name = \"horizontal%i\"  "+ buttonDefinition + buttonPositioningDef + buttonManualPositioningDef + buttonGenerateMaskDef + comboboxDefinition + checkBoxDefinition " Execute = "py: getHorizontalControl(\'horizontal%i\')" } """%(i,i)
     mdlToSet +="""Horizontal { name = \"horizontal%i\"  """%i + buttonDefinition + buttonPositioningDef + buttonGenerateMaskDef + buttonResetBrainMaskDef+ comboboxDefinition + checkBoxDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)
@@ -187,7 +193,7 @@ def updateComboBox():
              except Exception as err:
                ctx.control("combo%s"%imiter).setCurrentItem(0)
             else:
-              #valIm = imiter.split('Image')[-1]
+              valIm = imiter.split('Image')[-1]
               try:
                 g_HorizontalControl[imiter].control("comboImage%s"%valIm).setCurrentItem(dictItem[inImages[imiter]['planeOrientation']])
               except Exception as err:
