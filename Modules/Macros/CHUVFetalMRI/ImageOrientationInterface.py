@@ -172,25 +172,25 @@ def updateComboBox():
           if ctx.hasControl("button%s"%imiter):
             try:
               ctx.control("button%s"%imiter).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
-            except:
+            except Exception as err:
               print("test background has control didn't work")
           else:
             try:
               g_HorizontalControl[imiter].control("button%s"%imiter).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
-            except:
+            except Exception as err:
               print("test background g_horizontalcontrol didn't work")
         
         if 'planeOrientation' in inImages[imiter].keys():
             if ctx.hasControl("combo%s"%imiter):
              try:
                ctx.control("combo%s"%imiter).setCurrentItem(dictItem[inImages[imiter]['planeOrientation']])
-             except:
+             except Exception as err:
                ctx.control("combo%s"%imiter).setCurrentItem(0)
             else:
               #valIm = imiter.split('Image')[-1]
               try:
                 g_HorizontalControl[imiter].control("comboImage%s"%valIm).setCurrentItem(dictItem[inImages[imiter]['planeOrientation']])
-              except:
+              except Exception as err:
                 g_HorizontalControl[imiter].control("comboImage%s"%valIm).setCurrentItem(0)
                 
         if 'mask' in inImages[imiter].keys():
@@ -199,13 +199,13 @@ def updateComboBox():
             try:
               ctx.control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
               ctx.control("buttonResetBrainMask%s"%valIm).setEnabled(True)
-            except:
+            except Exception as err:
               print("test background has control didn't work")
           else:
             try:
               g_HorizontalControl[imiter].control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
               g_HorizontalControl[imiter].control("buttonResetBrainMask%s"%valIm).setEnabled(True)
-            except:
+            except Exception as err:
               print("test background g_horizontalcontrol didn't work")
          
         if "WorldChanged" in inImages[imiter].keys():
@@ -213,16 +213,16 @@ def updateComboBox():
           if ctx.hasControl("GenerateBrainMask%s"%valIm):
             try:
               ctx.control("GenerateBrainMask%s"%valIm).setEnabled(True)
-            except:
+            except Exception as err:
               print("don't know")
           else:
             try:
               g_HorizontalControl[imiter].control("GenerateBrainMask%s"%valIm).setEnabled(True)
-            except:
+            except Exception as err:
               print("don't know")
                 
             
-  except:
+  except Exception as err:
     pass
  
   #g_layoutImageOrientation.addItem(buttonResetIm)
@@ -263,36 +263,36 @@ def resetImages():
     if ctx.hasControl("buttonImage%i"%iterbutton):
       try:
         ctx.control("buttonImage%i"%iterbutton).setStyleSheetFromString('QPushButton { background-color: "white"; }')
-      except:
+      except Exception as err:
         print("test background has control didn't work")
     else:
       try:
         g_HorizontalControl["Image%i"%iterbutton].control("buttonImage%i"%iterbutton).setStyleSheetFromString('QPushButton { background-color: "white"; }')
-      except:
+      except Exception as err:
         print("test background g_horizontalcontrol didn't work")
 
     if ctx.hasControl("GenerateBrainMask%s"%iterbutton):
       try:
         ctx.control("GenerateBrainMask%s"%iterbutton).setStyleSheetFromString('QPushButton { background-color: "white"; }')
         ctx.control("GenerateBrainMask%s"%iterbutton).setEnabled(False)
-      except:
+      except Exception as err:
         print("test background has control didn't work")
     else:
       try:
         g_HorizontalControl[imiter].control("GenerateBrainMask%s"%iterbutton).setStyleSheetFromString('QPushButton { background-color: "white"; }')
         g_HorizontalControl[currentImage].control("GenerateBrainMask%s"%iterbutton).setEnabled(False)
-      except:
+      except Exception as err:
         print("test background g_horizontalcontrol didn't work")   
         
     if ctx.hasControl("buttonResetBrainMask%s"%iterbutton):
       try:
          ctx.control("buttonResetBrainMask%s"%iterbutton).setEnabled(False)
-      except:
+      except Exception as err:
          print("don't know")
     else:
       try:
          g_HorizontalControl[currentImage].control("buttonResetBrainMask%s"%iterbutton).setEnabled(False)
-      except:
+      except Exception as err:
          print("don't know")    
 
 def updateImage(Image="Image0"):
@@ -311,7 +311,7 @@ def updateImage(Image="Image0"):
   print("New Image : %s"%Image)
   try:
     filename = inImages[Image]["file"]
-  except:
+  except Exception as err:
     print("inImages must be a dictionnary with 'Image0' etc as keys and inImage['Image0'] must be a dictionnary with at least 'file' as key")
     
     if ToggleLoadPreviousData == 0:
@@ -319,7 +319,7 @@ def updateImage(Image="Image0"):
       if inImages == None:
         exp = ctx.expandFilename(ctx.field("AtlasImage").stringValue())
       else:
-        exp = os.path.dirname(inImages[inImages.keys()[0]]['file'])
+        exp = os.path.dirname(inImages[list(inImages.keys())[0]]['file'])
       filename = MLABFileDialog.getOpenFileName(exp, "", "Open file")
       if filename == "":
         print("no file selected")
@@ -334,7 +334,7 @@ def updateImage(Image="Image0"):
       if inImages == None:
         exp = ctx.expandFilename(ctx.field("AtlasImage").stringValue())
       else:
-        exp = os.path.dirname(inImages[inImages.keys()[0]]['file'])
+        exp = os.path.dirname(inImages[list(inImages.keys())[0]]['file'])
       filename = MLABFileDialog.getOpenFileName(exp, "", "Open file ex: Axial2.nii.gz")
       if filename == "":
         print("no file selected")
@@ -344,7 +344,7 @@ def updateImage(Image="Image0"):
       else:
         inImages={Image:{"file":filename}}
       #Reoriented Image
-      exp = os.path.dirname(inImages[inImages.keys()[0]]['file'])
+      exp = os.path.dirname(inImages[list(inImages.keys())[0]]['file'])
       filename = MLABFileDialog.getOpenFileName(exp, "", "Open WorldChanged ex: Axial2_worldmatrixModified_lr.nii.gz")
       if filename == "":
         print("no WorldChanged selected")
@@ -352,7 +352,7 @@ def updateImage(Image="Image0"):
       inImages[Image].update({"WorldChanged":filename})
       
       #NLM Image
-      exp = os.path.dirname(inImages[inImages.keys()[0]]['file'])
+      exp = os.path.dirname(inImages[list(inImages.keys())[0]]['file'])
       filename = MLABFileDialog.getOpenFileName(exp, "", "Open NLMWorldChanged ex: Axial2_worldmatrixModified_lr_NLM.nii.gz")
       if filename != "":
         inImages[Image].update({"NLMWorldChanged":filename})
@@ -360,7 +360,7 @@ def updateImage(Image="Image0"):
         print("no NLMWorldChanged selected")
       
       #Mask
-      exp = os.path.dirname(inImages[inImages.keys()[0]]['file'])
+      exp = os.path.dirname(inImages[list(inImages.keys())[0]]['file'])
       filename = MLABFileDialog.getOpenFileName(exp, "", "Open mask ex: Axial2_worldmatrixModified_lr_brain_mask.nii.gz")
       if filename == "":
         print("no mask selected")
@@ -382,12 +382,12 @@ def updateImage(Image="Image0"):
   if ctx.hasControl("button%s"%Image):
     try:
       ctx.control("button%s"%Image).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
-    except:
+    except Exception as err:
       print("test background has control didn't work")
   else:
     try:
       g_HorizontalControl[Image].control("button%s"%Image).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
-    except:
+    except Exception as err:
       print("test background g_horizontalcontrol didn't work")
   
   #la il faut aussi gerer les labels anatomics qu'on affiche
@@ -533,7 +533,7 @@ def registerplaneOrientation(Image="Image0"):
       else:
         inImages.update({Image:{"planeOrientation":ctx.control("combo%s"%Image).currentText()}})
 
-  except:
+  except Exception as err:
     pass
   
   #a actualiser seulement si Image == currentImage
@@ -884,13 +884,13 @@ def button1PressedImOrient(event,control):
             try:
               ctx.control("GenerateBrainMask%s"%valIm).setEnabled(True)
               ctx.control("buttonResetBrainMask%s"%valIm).setEnabled(True)
-            except:
+            except Exception as err:
               print("don't know")
           else:
             try:
               g_HorizontalControl[currentImage].control("GenerateBrainMask%s"%valIm).setEnabled(True)
               g_HorizontalControl[currentImage].control("buttonResetBrainMask%s"%valIm).setEnabled(True)
-            except:
+            except Exception as err:
               print("don't know")
               
           #modify mask
@@ -1096,13 +1096,13 @@ def button1PressedMaskRefine(event):
       if ctx.hasControl("GenerateBrainMask%s"%valIm):
         try:
           ctx.control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
-        except:
+        except Exception as err:
           print("test background has control didn't work")
       else:
         global g_HorizontalControl
         try:
           g_HorizontalControl[imiter].control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
-        except:
+        except Exception as err:
           print("test background g_horizontalcontrol didn't work")  
       
       
@@ -1149,13 +1149,13 @@ def resetBrainMask(Image):
     if ctx.hasControl("GenerateBrainMask%s"%valIm):
       try:
         ctx.control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "white"; }')
-      except:
+      except Exception as err:
         print("test background has control didn't work")
     else:
       global g_HorizontalControl
       try:
         g_HorizontalControl[Image].control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "white"; }')
-      except:
+      except Exception as err:
         print("test background g_horizontalcontrol didn't work") 
   
   ctx.field("inImageInfos").setObject(inImages)
@@ -1184,7 +1184,7 @@ def runAllFirstSetBackgroundTasks():
     #if !ctx.field("mevisbtkDenoising.outputSucceed").value:
     #if denoise images as run on native image we have to reorient them
     SomeToDenoise=False
-    for kk,vv in inImages.iteritems():
+    for kk,vv in inImages.items():
       if 'NLMWorldChanged' in vv:
         print("nothing to do")
       elif 'NLM' in vv:
@@ -1207,7 +1207,7 @@ def runAllFirstSetBackgroundTasks():
     
     
     ImageToOrient=False
-    for kk,vv in inImages.iteritems():
+    for kk,vv in inImages.items():
       #if "ImReOriented" not in vv:
         ImageToOrient=True
     
@@ -1251,7 +1251,7 @@ def denoiseImages(BackgroundTask=True):
     #if worldmatrix exists we run denoise image on world matrix.
     #else on native
     checkWorldMatrix = True
-    for kk,vv in inImages.iteritems():
+    for kk,vv in inImages.items():
        if "WorldChanged" not in vv:
          checkWorldMatrix = False
     
@@ -1305,7 +1305,7 @@ def OrientImages(WhatToOrient):
   elif WhatToOrient=="Denoised":
     WhichMial = "mialOrientImageNLM"
     
-  for kk,vv in inImages.iteritems():
+  for kk,vv in inImages.items():
      
     if inputsOrient != "":
       inputsOrient = inputsOrient+"--"
@@ -1354,7 +1354,7 @@ def insertReOrient(WhatToInsert):
     print("no images to denoise")
     return
   
-  for kk,vv in inImages.iteritems():
+  for kk,vv in inImages.items():
     if WhatToInsert=="RawImage":  
       inImages[kk].update({"ImReOriented":vv["WorldChanged"].replace('.nii','_reoriented.nii')})
     elif WhatToInsert=="MaskImage":
@@ -1399,7 +1399,7 @@ def runCorrectSliceIntensity(WhatToCorrect):
   elif WhatToCorrect=="PostBiasCorrection":
     WhichCorrectSlice="mialCorrectSliceIntensityPostBiasCorrection"
     
-  for kk,vv in inImages.iteritems():
+  for kk,vv in inImages.items():
      
     if inputsCorrectSliceintensity != "":
       inputsCorrectSliceintensity = inputsCorrectSliceintensity+"--"
@@ -1449,7 +1449,7 @@ def inserCorrectSliceIntensity(WhatToInsert):
     print("no images to denoise")
     return
   
-  for kk,vv in inImages.iteritems(): 
+  for kk,vv in inImages.items(): 
     if WhatToInsert=="RawImage":
       inImages[kk].update({"FirstUni":vv["ImReOriented"].replace(".nii","_uni.nii")})
     elif WhatToInsert=="NLMImage":
@@ -1480,7 +1480,7 @@ def runSliceBySliceBiasEstimation():
   outputsBiasEstimation=""
   fieldBiasEstimation=""
    
-  for kk,vv in inImages.iteritems():
+  for kk,vv in inImages.items():
      
     if inputsBiasEstimation != "":
       inputsBiasEstimation = inputsBiasEstimation+"--"
@@ -1511,7 +1511,7 @@ def insertSliceBiasEstimation():
     print("no images to denoise")
     return
   
-  for kk,vv in inImages.iteritems():
+  for kk,vv in inImages.items():
     inImages[kk].update({"NLMBCorr":vv["FirstNLMUni"].replace(".nii","_bcorr.nii")})
     inImages[kk].update({"BiasField":vv["FirstNLMUni"].replace(".nii","_nlm_n4bias.nii")})
 
@@ -1537,7 +1537,7 @@ def runSliceBySliceBiasFieldCorrection():
   fieldBiasCorrection=""
   outputBiasCorrection=""
   
-  for kk,vv in inImages.iteritems():
+  for kk,vv in inImages.items():
      
     if inputsBiasCorrection != "":
       inputsBiasCorrection = inputsBiasCorrection+"--"
@@ -1564,7 +1564,7 @@ def insertSliceBiasCorrection():
   if not ctx.field("mialSliceBySliceBiasFieldCorrection.outputSucceed").value:
     return
   
-  for kk,vv in inImages.iteritems():
+  for kk,vv in inImages.items():
     inImages[kk].update({"BCorr":vv["FirstUni"].replace(".nii","_bcorr.nii")})
     
   ctx.field("inImageInfos").setObject(inImages)
@@ -1591,7 +1591,7 @@ def runIntensityStandardization(WhatToRun):
   inputsIntensityStandardization=""
   outputsIntensityStandardization=""
   
-  for kk,vv in inImages.iteritems():
+  for kk,vv in inImages.items():
     if inputsIntensityStandardization!="":
       inputsIntensityStandardization=inputsIntensityStandardization+"--"
       outputsIntensityStandardization=outputsIntensityStandardization+"--"
@@ -1659,7 +1659,7 @@ def runImageReconstruction():
   
   numIm = ctx.field("NumberImages").value
   outTransform = ""
-  for kk,vv in inImages.iteritems():
+  for kk,vv in inImages.items():
     if outTransform!="":
       outTransform=outTransform+"--"
       
@@ -1700,7 +1700,7 @@ def insertNLMDenoisingResults():
     
   inImages = ctx.field("inImageInfos").object()
   for iterImage in range(len(splitNames)):
-    for kk,vv in inImages.iteritems():
+    for kk,vv in inImages.items():
       if insertNLMOriented:
         if splitInputNames[iterImage]==vv['WorldChanged']:
            inImages[kk].update({'NLMWorldChanged':splitNames[iterImage]})

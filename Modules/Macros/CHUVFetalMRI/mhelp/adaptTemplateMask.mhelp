@@ -1,0 +1,74 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/Macros/CHUVFetalMRI/adaptTemplateMask.def
+    moduleName = adaptTemplateMask
+    moduleType = MacroModule
+    author = FetalMRI
+    dll = ""
+    genre = ""
+    keywords = ""
+    seeAlso = ""
+    package = FetalMRI
+    packageGroup = CHUV
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field inImage {
+      type = Image
+      text = ""
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outAdaptTemplateMask {
+      type = SoNode
+      text = ""
+    }
+    Field outAdaptMaskImage {
+      type = Image
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = adaptTemplateMask
+    }
+    Field updateCSOButton {
+      type = Trigger
+      text = ""
+      title = Update
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    text = ""
+  }
+}
