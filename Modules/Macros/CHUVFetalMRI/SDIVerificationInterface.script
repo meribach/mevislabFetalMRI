@@ -108,6 +108,11 @@ Window SDIVerificationInterface {
         Horizontal {
           Button {title = "Run Super Resolution" command = RunSuperResolution}
         }
+          
+
+        }
+        Horizontal {
+          Button {title = "Help" command = showHelp}
         }
       }
       

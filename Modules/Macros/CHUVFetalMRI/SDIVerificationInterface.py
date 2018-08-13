@@ -124,6 +124,11 @@ def updateImage():
   ctx.field("ReformatCoronal.apply").touch()
   ctx.field("BoundingBoxCoronal.update").touch()
 
+def showHelp():
+  import webbrowser
+  webbrowser.open_new("/home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI/Documentation/Publish/ModuleReference/author.html")
+
+
 
 def sort_human(l):
   convert = lambda text: float(text) if text.isdigit() else text

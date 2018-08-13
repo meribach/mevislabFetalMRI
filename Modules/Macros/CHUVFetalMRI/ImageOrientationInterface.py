@@ -1796,6 +1796,10 @@ def updateParameterRegistration():
 #  listOfPossibleTask = {"Denoising":ctx.field("mevisbtkDenoising.startTask"),"mialOrientImage":ctx.field("mialOrientImage.startTask"),"mialCorrectSliceIntensity":ctx.field("mialCorrectSliceIntensity.startTask"),"mialBiasEstimation":ctx.field("mialSliceBySliceBiasEstimation.startTask"),"mialBiasCorrection":ctx.field("mialSliceBySliceBiasFieldCorrection.startTask"),"mialIntensityStandardization":ctx.field("mialIntensityStandardization.startTask")}
 #  listOfPossibleTask[Task].touch()
 
+def showHelp():
+  import webbrowser
+  webbrowser.open_new("/home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI/Documentation/Publish/ModuleReference/author.html")
+
 
 def loadPreProcessedAlready():
   global ToggleLoadPreviousData
