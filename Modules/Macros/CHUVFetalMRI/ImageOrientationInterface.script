@@ -165,7 +165,7 @@ Window ImageOrientationPanel {
         Button { title = "Choose manually the atlas" command = getAtlasManually tooltip = "if you want other mask than the predefined ones based on Gholipour A et. al (DOI: 10.1038/s41598-017-00525-w)"}
         CheckBox { title = "+/1 week from Gestational Age" enabled = False}
       }
-      Horitontal {
+      Horizontal {
         Button { title = "Help" command = showHelp}
       
     }
