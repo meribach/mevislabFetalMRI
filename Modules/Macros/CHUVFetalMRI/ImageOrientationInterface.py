@@ -1178,8 +1178,11 @@ def resetZoom():
 def runAllFirstSetBackgroundTasks():
     
     global runAllFirstBackgroundTask
+    global g_HorizontalControl
+    
     runAllFirstBackgroundTask = True
     inImages = ctx.field("inImageInfos").object()
+    global ImagesToDoBackgroundTasks
     
     if inImages == None:
       print("no images to work on")
@@ -1187,40 +1190,47 @@ def runAllFirstSetBackgroundTasks():
     listTasks=[]
     i=0
     
+    listImageToSendBackgroundTasks=[]
+    for imageIter in inImages:
+      if g_HorizontalControl[imageIter].control("check%s"%imageIter).isChecked():
+        #if ctx.control("check%s"%imageIter).isChecked():
+        listImageToSendBackgroundTasks.append(imageIter)
+        
+    ImagesToDoBackgroundTasks = listImageToSendBackgroundTasks
     #if !ctx.field("mevisbtkDenoising.outputSucceed").value:
     #if denoise images as run on native image we have to reorient them
     SomeToDenoise=False
-    for kk,vv in inImages.items():
-      if 'NLMWorldChanged' in vv:
+    for imageIter in listImageToSendBackgroundTasks:
+      if 'NLMWorldChanged' in inImages[imageIter]:
         print("nothing to do")
-      elif 'NLM' in vv:
-        ctx.field("updateWorldOrientation.itkImageFileReader.fileName").setStringValue(vv['NLM'])
-        ctx.field("updateWorldOrientation.itkImageFileReaderModel.fileName").setStringValue(vv['WorldChanged'])
+      elif 'NLM' in inImages[imageIter]:
+        ctx.field("updateWorldOrientation.itkImageFileReader.fileName").setStringValue(inImages[imageIter]['NLM'])
+        ctx.field("updateWorldOrientation.itkImageFileReaderModel.fileName").setStringValue(inImages[imageIter]['WorldChanged'])
         newName=vv['WorldChanged'].replace('.nii','_NLM.nii')
         ctx.field("updateWorldOrientation.itkImageFileWriter.fileName").setStringValue(newName)
         ctx.field("updateWorldOrientation.itkImageFileWriter.save").touch()
         #have to add to inImages now
-        inImages[kk].update({'NLMWorldChanged':newName})
+        inImages[imageIter].update({'NLMWorldChanged':newName})
 
         
       else:
         SomeToDenoise=True
       
     if SomeToDenoise:
-      denoiseImages(BackgroundTask=True)
+      denoiseImages(BackgroundTask=True,listImages = listImageToSendBackgroundTasks)
       return
         #denoiseImages(NextStep=runAllFirstSetBackgroundTasks)
     
     
     ImageToOrient=False
-    for kk,vv in inImages.items():
+    for imageIter in listImageToSendBackgroundTasks:
       #if "ImReOriented" not in vv:
         ImageToOrient=True
     
     if ImageToOrient:
-      OrientImages(WhatToOrient="Mask")
-      OrientImages(WhatToOrient="NativeImage")
-      OrientImages(WhatToOrient="Denoised")
+      OrientImages(WhatToOrient="Mask",listImages=listImageToSendBackgroundTasks)
+      OrientImages(WhatToOrient="NativeImage",listImages=listImageToSendBackgroundTasks)
+      OrientImages(WhatToOrient="Denoised",listImages=listImageToSendBackgroundTasks)
       
 
         
@@ -1245,20 +1255,26 @@ def runAllFirstSetBackgroundTasks():
     #  i=i+1
         
 
-def denoiseImages(BackgroundTask=True):
+def denoiseImages(BackgroundTask=True,listImages=None):
 
     
     inImages = ctx.field("inImageInfos").object()
     if inImages == None:
       print("no images to denoise")
       return
+    
+    if listImages is None:
+      ImagestoDo = list(inImages.keys())
+    else:
+      ImagestoDo = listImages
+      
     inputsDenoise=""
     outputsDenoise=""
     #if worldmatrix exists we run denoise image on world matrix.
     #else on native
     checkWorldMatrix = True
-    for kk,vv in inImages.items():
-       if "WorldChanged" not in vv:
+    for imageIter in ImagestoDo:
+       if "WorldChanged" not in inImages[imageIter]:
          checkWorldMatrix = False
     
     if checkWorldMatrix:
@@ -1266,7 +1282,7 @@ def denoiseImages(BackgroundTask=True):
     else:
       print("run denoising on native image, will have to reorient them when possible")
       
-    for imageIter in inImages:
+    for imageIter in ImagestoDo:
       
       if inputsDenoise != "":
         inputsDenoise = inputsDenoise+"--"
@@ -1293,13 +1309,18 @@ def denoiseImages(BackgroundTask=True):
     
 
 
-def OrientImages(WhatToOrient):
+def OrientImages(WhatToOrient,listImages=None):
   
   inImages = ctx.field("inImageInfos").object()
   if inImages == None:
     print("no images to denoise")
     return
   
+  if listImages is None:
+      ImagestoDo = list(inImages.keys())
+  else:
+      ImagestoDo = listImages
+      
   inputsOrient=""
   outputsOrient=""
   inputOrientation=""
@@ -1311,7 +1332,7 @@ def OrientImages(WhatToOrient):
   elif WhatToOrient=="Denoised":
     WhichMial = "mialOrientImageNLM"
     
-  for kk,vv in inImages.items():
+  for imageIter in ImagestoDo:
      
     if inputsOrient != "":
       inputsOrient = inputsOrient+"--"
@@ -1319,24 +1340,24 @@ def OrientImages(WhatToOrient):
       inputOrientation = inputOrientation+"--"
     
     if WhatToOrient=="NativeImage":
-     if "WorldChanged" in vv:
-        if "planeOrientation" in vv:  
-          inputsOrient=inputsOrient+vv["WorldChanged"]
-          newOutput = vv["WorldChanged"].replace('.nii','_reoriented.nii')
+     if "WorldChanged" in inImages[imageIter]:
+        if "planeOrientation" in inImages[imageIter]:  
+          inputsOrient=inputsOrient+inImages[imageIter]["WorldChanged"]
+          newOutput = inImages[imageIter]["WorldChanged"].replace('.nii','_reoriented.nii')
           outputsOrient=outputsOrient+newOutput
-          inputOrientation=inputOrientation+vv["planeOrientation"]
+          inputOrientation=inputOrientation+inImages[imageIter]["planeOrientation"]
     elif WhatToOrient=="Mask":
-      if "planeOrientation" in vv:  
-          inputsOrient=inputsOrient+vv["mask"]
-          newOutput = vv["mask"].replace('.nii','_reoriented.nii')
+      if "planeOrientation" in inImages[imageIter]:  
+          inputsOrient=inputsOrient+inImages[imageIter]["mask"]
+          newOutput = inImages[imageIter]["mask"].replace('.nii','_reoriented.nii')
           outputsOrient=outputsOrient+newOutput
-          inputOrientation=inputOrientation+vv["planeOrientation"]
+          inputOrientation=inputOrientation+inImages[imageIter]["planeOrientation"]
     elif WhatToOrient=="Denoised":
-      if "planeOrientation" in vv:  
-          inputsOrient=inputsOrient+vv["NLMWorldChanged"]
-          newOutput = vv["NLMWorldChanged"].replace('.nii','_reoriented.nii')
+      if "planeOrientation" in inImages[imageIter]:  
+          inputsOrient=inputsOrient+inImages[imageIter]["NLMWorldChanged"]
+          newOutput = inImages[imageIter]["NLMWorldChanged"].replace('.nii','_reoriented.nii')
           outputsOrient=outputsOrient+newOutput
-          inputOrientation=inputOrientation+vv["planeOrientation"]
+          inputOrientation=inputOrientation+inImages[imageIter]["planeOrientation"]
           
   ctx.field("%s.inputFileName"%WhichMial).setStringValue(inputsOrient)
   ctx.field("%s.outputFileName"%WhichMial).setStringValue(outputsOrient)
@@ -1345,6 +1366,8 @@ def OrientImages(WhatToOrient):
   ctx.field("%s.startTask"%WhichMial).touch()
   
 def insertReOrient(WhatToInsert):
+  
+  global ImagesToDoBackgroundTasks 
   
   if WhatToInsert=="RawImage":  
     if not ctx.field("mialOrientImage.outputSucceed").value:
@@ -1360,13 +1383,13 @@ def insertReOrient(WhatToInsert):
     print("no images to denoise")
     return
   
-  for kk,vv in inImages.items():
+  for imageIter in ImagesToDoBackgroundTasks:
     if WhatToInsert=="RawImage":  
-      inImages[kk].update({"ImReOriented":vv["WorldChanged"].replace('.nii','_reoriented.nii')})
+      inImages[imageIter].update({"ImReOriented":inImages[imageIter]["WorldChanged"].replace('.nii','_reoriented.nii')})
     elif WhatToInsert=="MaskImage":
-      inImages[kk].update({"MaskReOriented":vv["mask"].replace('.nii','_reoriented.nii')})
+      inImages[imageIter].update({"MaskReOriented":inImages[imageIter]["mask"].replace('.nii','_reoriented.nii')})
     elif WhatToInsert=="NLMImage":
-      inImages[kk].update({"ImNLMReOriented":vv["NLMWorldChanged"].replace('.nii','_reoriented.nii')})
+      inImages[imageIter].update({"ImNLMReOriented":inImages[imageIter]["NLMWorldChanged"].replace('.nii','_reoriented.nii')})
    
    
   ctx.field("inImageInfos").setObject(inImages)
@@ -1378,8 +1401,11 @@ def insertReOrient(WhatToInsert):
   if WhatToInsert=="NLMImage": 
     runCorrectSliceIntensity('NLMImage')
 
-
+  MLAB.processEvents()
+  
 def runCorrectSliceIntensity(WhatToCorrect):
+  
+  global ImagesToDoBackgroundTasks
   
   inImages = ctx.field("inImageInfos").object()
   if inImages == None:
@@ -1405,7 +1431,7 @@ def runCorrectSliceIntensity(WhatToCorrect):
   elif WhatToCorrect=="PostBiasCorrection":
     WhichCorrectSlice="mialCorrectSliceIntensityPostBiasCorrection"
     
-  for kk,vv in inImages.items():
+  for imageIter in ImagesToDoBackgroundTasks:
      
     if inputsCorrectSliceintensity != "":
       inputsCorrectSliceintensity = inputsCorrectSliceintensity+"--"
@@ -1413,21 +1439,21 @@ def runCorrectSliceIntensity(WhatToCorrect):
       outputsCorrectSliceintensity = outputsCorrectSliceintensity+"--"
       
     if WhatToCorrect=="RawImage":
-      inputsCorrectSliceintensity = inputsCorrectSliceintensity+vv["ImReOriented"]
-      masksCorrectSliceintensity = masksCorrectSliceintensity+vv["MaskReOriented"]
-      outputsCorrectSliceintensity = outputsCorrectSliceintensity+vv["ImReOriented"].replace(".nii","_uni.nii")
+      inputsCorrectSliceintensity = inputsCorrectSliceintensity+inImages[imageIter]["ImReOriented"]
+      masksCorrectSliceintensity = masksCorrectSliceintensity+inImages[imageIter]["MaskReOriented"]
+      outputsCorrectSliceintensity = outputsCorrectSliceintensity+inImages[imageIter]["ImReOriented"].replace(".nii","_uni.nii")
     elif WhatToCorrect=="NLMImage":
-      inputsCorrectSliceintensity = inputsCorrectSliceintensity+vv["ImNLMReOriented"]
-      masksCorrectSliceintensity = masksCorrectSliceintensity+vv["MaskReOriented"]
-      outputsCorrectSliceintensity = outputsCorrectSliceintensity+vv["ImNLMReOriented"].replace(".nii","_uni.nii")
+      inputsCorrectSliceintensity = inputsCorrectSliceintensity+inImages[imageIter]["ImNLMReOriented"]
+      masksCorrectSliceintensity = masksCorrectSliceintensity+inImages[imageIter]["MaskReOriented"]
+      outputsCorrectSliceintensity = outputsCorrectSliceintensity+inImages[imageIter]["ImNLMReOriented"].replace(".nii","_uni.nii")
     elif WhatToCorrect=="NLMPostBiasCorrection":
-      inputsCorrectSliceintensity = inputsCorrectSliceintensity+vv["NLMBCorr"]
-      masksCorrectSliceintensity = masksCorrectSliceintensity+vv["MaskReOriented"]
-      outputsCorrectSliceintensity = outputsCorrectSliceintensity+vv["NLMBCorr"]     
+      inputsCorrectSliceintensity = inputsCorrectSliceintensity+inImages[imageIter]["NLMBCorr"]
+      masksCorrectSliceintensity = masksCorrectSliceintensity+inImages[imageIter]["MaskReOriented"]
+      outputsCorrectSliceintensity = outputsCorrectSliceintensity+inImages[imageIter]["NLMBCorr"]     
     elif WhatToCorrect=="PostBiasCorrection":  
-      inputsCorrectSliceintensity = inputsCorrectSliceintensity+vv["BCorr"]
-      masksCorrectSliceintensity = masksCorrectSliceintensity+vv["MaskReOriented"]
-      outputsCorrectSliceintensity = outputsCorrectSliceintensity+vv["BCorr"]
+      inputsCorrectSliceintensity = inputsCorrectSliceintensity+inImages[imageIter]["BCorr"]
+      masksCorrectSliceintensity = masksCorrectSliceintensity+inImages[imageIter]["MaskReOriented"]
+      outputsCorrectSliceintensity = outputsCorrectSliceintensity+inImages[imageIter]["BCorr"]
       
       
   ctx.field("%s.inputFileName"%WhichCorrectSlice).setStringValue(inputsCorrectSliceintensity)
@@ -1436,6 +1462,8 @@ def runCorrectSliceIntensity(WhatToCorrect):
   ctx.field("%s.startTask"%WhichCorrectSlice).touch()
   
 def inserCorrectSliceIntensity(WhatToInsert):
+  
+  global ImagesToDoBackgroundTasks
   
   if WhatToInsert=="RawImage":  
     if not ctx.field("mialCorrectSliceIntensity.outputSucceed").value:
@@ -1455,11 +1483,11 @@ def inserCorrectSliceIntensity(WhatToInsert):
     print("no images to denoise")
     return
   
-  for kk,vv in inImages.items(): 
+  for imageIter in ImagesToDoBackgroundTasks: 
     if WhatToInsert=="RawImage":
-      inImages[kk].update({"FirstUni":vv["ImReOriented"].replace(".nii","_uni.nii")})
+      inImages[imageIter].update({"FirstUni":inImages[imageIter]["ImReOriented"].replace(".nii","_uni.nii")})
     elif WhatToInsert=="NLMImage":
-      inImages[kk].update({"FirstNLMUni":vv["ImNLMReOriented"].replace(".nii","_uni.nii")})
+      inImages[imageIter].update({"FirstNLMUni":inImages[imageIter]["ImNLMReOriented"].replace(".nii","_uni.nii")})
     #elif WhatToInsert=="NLMPostBiasCorrection":
     #  print("nothing to insert")
     #elif WhatToInsert=="PostBiasCorrection":   
@@ -1473,8 +1501,12 @@ def inserCorrectSliceIntensity(WhatToInsert):
     runIntensityStandardization("NLMPostBiasCorrection")
   elif WhatToInsert=="PostBiasCorrection":
     runIntensityStandardization("PostBiasCorrection")
+    
+  MLAB.processEvents()  
 
 def runSliceBySliceBiasEstimation():
+  
+  global ImagesToDoBackgroundTasks
   
   inImages = ctx.field("inImageInfos").object()
   if inImages == None:
@@ -1486,7 +1518,7 @@ def runSliceBySliceBiasEstimation():
   outputsBiasEstimation=""
   fieldBiasEstimation=""
    
-  for kk,vv in inImages.items():
+  for imageIter in ImagesToDoBackgroundTasks:
      
     if inputsBiasEstimation != "":
       inputsBiasEstimation = inputsBiasEstimation+"--"
@@ -1494,11 +1526,11 @@ def runSliceBySliceBiasEstimation():
       outputsBiasEstimation = outputsBiasEstimation+"--"
       fieldBiasEstimation = fieldBiasEstimation+"--"
       
-    if "FirstNLMUni" in vv:
-      inputsBiasEstimation = inputsBiasEstimation + vv["FirstNLMUni"]
-      masksBiasEstimation = masksBiasEstimation + vv["MaskReOriented"]
-      outputsBiasEstimation = outputsBiasEstimation + vv["FirstNLMUni"].replace(".nii","_bcorr.nii")
-      fieldBiasEstimation = fieldBiasEstimation + vv["FirstNLMUni"].replace(".nii","_nlm_n4bias.nii")
+    if "FirstNLMUni" in inImages[imageIter]:
+      inputsBiasEstimation = inputsBiasEstimation + inImages[imageIter]["FirstNLMUni"]
+      masksBiasEstimation = masksBiasEstimation + inImages[imageIter]["MaskReOriented"]
+      outputsBiasEstimation = outputsBiasEstimation + inImages[imageIter]["FirstNLMUni"].replace(".nii","_bcorr.nii")
+      fieldBiasEstimation = fieldBiasEstimation + inImages[imageIter]["FirstNLMUni"].replace(".nii","_nlm_n4bias.nii")
       
   
   ctx.field("mialSliceBySliceBiasEstimation.inputImageFile").setStringValue(inputsBiasEstimation)
@@ -1509,6 +1541,8 @@ def runSliceBySliceBiasEstimation():
   
 def insertSliceBiasEstimation():
   
+  global ImagesToDoBackgroundTasks
+  
   if not ctx.field("mialSliceBySliceBiasEstimation.outputSucceed").value:
     return
     
@@ -1517,16 +1551,19 @@ def insertSliceBiasEstimation():
     print("no images to denoise")
     return
   
-  for kk,vv in inImages.items():
-    inImages[kk].update({"NLMBCorr":vv["FirstNLMUni"].replace(".nii","_bcorr.nii")})
-    inImages[kk].update({"BiasField":vv["FirstNLMUni"].replace(".nii","_nlm_n4bias.nii")})
+  for imageIter in ImagesToDoBackgroundTasks:
+    inImages[imageIter].update({"NLMBCorr":inImages[imageIter]["FirstNLMUni"].replace(".nii","_bcorr.nii")})
+    inImages[imageIter].update({"BiasField":inImages[imageIter]["FirstNLMUni"].replace(".nii","_nlm_n4bias.nii")})
 
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep1").setObject(inImages)
   
   runSliceBySliceBiasFieldCorrection()
+  MLAB.processEvents()
 
 def runSliceBySliceBiasFieldCorrection():
+  
+  global ImagesToDoBackgroundTasks
   
   inImages = ctx.field("inImageInfos").object()
   if inImages == None:
@@ -1543,7 +1580,7 @@ def runSliceBySliceBiasFieldCorrection():
   fieldBiasCorrection=""
   outputBiasCorrection=""
   
-  for kk,vv in inImages.items():
+  for imageIter in ImagesToDoBackgroundTasks:
      
     if inputsBiasCorrection != "":
       inputsBiasCorrection = inputsBiasCorrection+"--"
@@ -1551,11 +1588,11 @@ def runSliceBySliceBiasFieldCorrection():
       fieldBiasCorrection = fieldBiasCorrection+"--"
       outputBiasCorrection = outputBiasCorrection+"--"
       
-    if "FirstUni" in vv:
-      inputsBiasCorrection = inputsBiasCorrection+vv["FirstUni"]
-      masksBiasCorrection = masksBiasCorrection+vv["MaskReOriented"]
-      fieldBiasCorrection = fieldBiasCorrection+vv["BiasField"]
-      outputBiasCorrection = outputBiasCorrection+vv["FirstUni"].replace(".nii","_bcorr.nii")
+    if "FirstUni" in inImages[imageIter]:
+      inputsBiasCorrection = inputsBiasCorrection+inImages[imageIter]["FirstUni"]
+      masksBiasCorrection = masksBiasCorrection+inImages[imageIter]["MaskReOriented"]
+      fieldBiasCorrection = fieldBiasCorrection+inImages[imageIter]["BiasField"]
+      outputBiasCorrection = outputBiasCorrection+inImages[imageIter]["FirstUni"].replace(".nii","_bcorr.nii")
    
   ctx.field("mialSliceBySliceBiasFieldCorrection.inputImageFile").setStringValue(inputsBiasCorrection)
   ctx.field("mialSliceBySliceBiasFieldCorrection.inputMaskFile").setStringValue(masksBiasCorrection)
@@ -1565,22 +1602,27 @@ def runSliceBySliceBiasFieldCorrection():
   
 def insertSliceBiasCorrection():  
   
+  global ImagesToDoBackgroundTasks
+  
   inImages = ctx.field("inImageInfos").object()
   
   if not ctx.field("mialSliceBySliceBiasFieldCorrection.outputSucceed").value:
     return
   
-  for kk,vv in inImages.items():
-    inImages[kk].update({"BCorr":vv["FirstUni"].replace(".nii","_bcorr.nii")})
+  for imageIter in ImagesToDoBackgroundTasks:
+    inImages[imageIter].update({"BCorr":inImages[imageIter]["FirstUni"].replace(".nii","_bcorr.nii")})
     
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep1").setObject(inImages)
   
   runCorrectSliceIntensity("NLMPostBiasCorrection")
   runCorrectSliceIntensity("PostBiasCorrection")
+  MLAB.processEvents()
 
 
 def runIntensityStandardization(WhatToRun):
+  
+  global ImagesToDoBackgroundTasks
   
   inImages = ctx.field("inImageInfos").object()
   
@@ -1597,17 +1639,17 @@ def runIntensityStandardization(WhatToRun):
   inputsIntensityStandardization=""
   outputsIntensityStandardization=""
   
-  for kk,vv in inImages.items():
+  for imageIter in ImagesToDoBackgroundTasks:
     if inputsIntensityStandardization!="":
       inputsIntensityStandardization=inputsIntensityStandardization+"--"
       outputsIntensityStandardization=outputsIntensityStandardization+"--"
       
     if WhatToRun == "NLMPostBiasCorrection" or WhatToRun == "postHistoNormNLM": 
-      inputsIntensityStandardization=inputsIntensityStandardization+vv["NLMBCorr"]
-      outputsIntensityStandardization=outputsIntensityStandardization+vv["NLMBCorr"]
+      inputsIntensityStandardization=inputsIntensityStandardization+inImages[imageIter]["NLMBCorr"]
+      outputsIntensityStandardization=outputsIntensityStandardization+inImages[imageIter]["NLMBCorr"]
     elif WhatToRun == "PostBiasCorrection" or WhatToRun == "postHistoNorm":
-      inputsIntensityStandardization=inputsIntensityStandardization+vv["BCorr"]
-      outputsIntensityStandardization=outputsIntensityStandardization+vv["BCorr"]
+      inputsIntensityStandardization=inputsIntensityStandardization+inImages[imageIter]["BCorr"]
+      outputsIntensityStandardization=outputsIntensityStandardization+inImages[imageIter]["BCorr"]
       
   ctx.field("%s.inputFileNames"%WhichIntensityStandardization).setStringValue(inputsIntensityStandardization)
   ctx.field("%s.outputFileNames"%WhichIntensityStandardization).setStringValue(outputsIntensityStandardization)
@@ -1615,6 +1657,7 @@ def runIntensityStandardization(WhatToRun):
     
 
 def runHistogramNormalization(WhatToRun):
+  
   
   if WhatToRun=="RawImage":
     if not ctx.field("mialIntensityStandardization.outputSucceed").value:
@@ -1631,11 +1674,20 @@ def runHistogramNormalization(WhatToRun):
     
   ctx.field("%s.validate"%WHichHistoNormToRun).touch()
   #ctx.module(WHichHistoNormToRun).call("runHistoNormalization")
+  
+def insertHistogramNormalization(WhatToRun):
  
-  if WhatToRun=="RawImage":
-    runIntensityStandardization("postHistoNorm")
-  elif WhatToRun=="DenoisedImage":
-    runIntensityStandardization("postHistoNormNLM")
+  if WhatToRun == "RawImage":
+    if not ctx.field("mialHistogramNormalization.outputSucceed").value:
+      return
+  if WhatToRun == "DenoisedImage":
+    if not ctx.field("mialHistogramNormalizationNLM.outputSucceed").value:
+      return
+  
+    if WhatToRun=="RawImage":
+      runIntensityStandardization("postHistoNorm")
+    elif WhatToRun=="DenoisedImage":
+      runIntensityStandardization("postHistoNormNLM")
    
 
 
@@ -1655,8 +1707,11 @@ def updateBackgroundTaskRunningField():
 def updateWaitForReconstrucion():
   
   ctx.field("WaitForReconstruction").setBoolValue(ctx.field("mialIntensityStandardizationNLMBis.outputSucceed").value & ctx.field("mialIntensityStandardizationBis.outputSucceed").value)
-
+  MLAB.processEvents()
+  
 def runImageReconstruction():
+  
+  global ImagesToDoBackgroundTasks
   
   if not ctx.field("WaitForReconstruction").value :
     return
@@ -1665,11 +1720,11 @@ def runImageReconstruction():
   
   numIm = ctx.field("NumberImages").value
   outTransform = ""
-  for kk,vv in inImages.items():
+  for imageIter in ImagesToDoBackgroundTasks:
     if outTransform!="":
       outTransform=outTransform+"--"
       
-    outTransform = outTransform +vv["ImReOriented"].replace(".nii.gz","_transform_%iV_1.txt"%numIm) 
+    outTransform = outTransform +inImages[imageIter]["ImReOriented"].replace(".nii.gz","_transform_%iV_1.txt"%numIm) 
     
   ctx.field("mialImageReconstruction.transformoutFiles").setStringValue(outTransform)
   ctx.field("mialImageReconstruction.outputFile").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SDI_ITER1.nii.gz"))
@@ -1681,10 +1736,12 @@ def insertImageReconstruction():
   inImages = ctx.field("inImageInfos").object()
   print("insertImageReconstruction")
   inImages.update({"SDI_ITER1":os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SDI_ITER1.nii.gz")})
+  MLAB.processEvents()
 
 def insertNLMDenoisingResults():
   
   global runAllFirstBackgroundTask
+  global ImagesToDoBackgroundTasks
   
   if not ctx.field("mevisbtkDenoising.outputSucceed").value:
     #print("denoising failed")
