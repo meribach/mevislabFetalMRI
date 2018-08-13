@@ -116,6 +116,8 @@ Commands {
   FieldListener mialIntensityStandardizationNLM.outputSucceed {command = "py: runHistogramNormalization('DenoisedImage')"}
   FieldListener mialIntensityStandardizationNLMBis.outputSucceed {command = "py: updateWaitForReconstrucion()"}
   FieldListener mialIntensityStandardizationBis.outputSucceed {command = "py: updateWaitForReconstrucion()"}
+  FieldListener mialHistogramNormalization.outputSucceed {command = "py:insertHistogramNormalization('RawImages')"}
+  FieldListener mialHistogramNormalizationNLM.outputSucceed {command = "py:insertHistogramNormalization('DenoisedImage')"} 
   FieldListener WaitForReconstruction {command = "py: runImageReconstruction()"}
   FieldListener mialImageReconstruction.outputSucceed {command = "py: insertImageReconstruction()"}
   FieldListener ExpertMode {command = showImageOrientationInterface}
@@ -159,9 +161,9 @@ Window ImageOrientationPanel {
       //expandX = No
     
       Horizontal {
-        Field GestationalAge {step = 1}
-        Button { title = "Choose manually the atlas" command = getAtlasManually }
-        CheckBox { title = "+/1 week from Gestational Age" }
+        Field GestationalAge {step = 1 tooltip = "Doesn't have to be the real gestational Age, it is used for the predefined mask of the brain, the mask has to include all brain, but can include a little more than the brain"}
+        Button { title = "Choose manually the atlas" command = getAtlasManually tooltip = "if you want other mask than the predefined ones based on Gholipour A et. al (DOI: 10.1038/s41598-017-00525-w)"}
+        CheckBox { title = "+/1 week from Gestational Age" enabled = False}
       }
       
     }

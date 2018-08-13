@@ -99,6 +99,7 @@ def runHistoNormalization():
     ctx.field("itkImageFileWriter.save").touch()
     
   
+  ctx.field("outputSucceed").setBoolValue(True)
   print("histonormalization done")
   
   

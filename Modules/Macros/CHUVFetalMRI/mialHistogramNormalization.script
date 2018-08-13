@@ -33,6 +33,7 @@ Interface {
     }
     
     Field validate { type = Trigger}
+    Field outputSucceed {type = Bool value = False}
 
   }
 }
