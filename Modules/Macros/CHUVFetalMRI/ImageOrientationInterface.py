@@ -1623,7 +1623,8 @@ def insertSliceBiasCorrection():
 def runIntensityStandardization(WhatToRun):
   
   global ImagesToDoBackgroundTasks
-  
+  print("runIntensityStandardization")
+  print(WhatToRun)
   inImages = ctx.field("inImageInfos").object()
   
   
@@ -1677,14 +1678,17 @@ def runHistogramNormalization(WhatToRun):
   
 def insertHistogramNormalization(WhatToRun):
  
-  if WhatToRun == "RawImage":
+  print("insert HistoNormal")
+  print(WhatToRun)
+  
+  if WhatToRun == "RawImages":
     if not ctx.field("mialHistogramNormalization.outputSucceed").value:
       return
   if WhatToRun == "DenoisedImage":
     if not ctx.field("mialHistogramNormalizationNLM.outputSucceed").value:
       return
   
-    if WhatToRun=="RawImage":
+    if WhatToRun=="RawImages":
       runIntensityStandardization("postHistoNorm")
     elif WhatToRun=="DenoisedImage":
       runIntensityStandardization("postHistoNormNLM")

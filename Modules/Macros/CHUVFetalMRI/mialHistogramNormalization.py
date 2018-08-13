@@ -101,6 +101,7 @@ def runHistoNormalization():
   
   ctx.field("outputSucceed").setBoolValue(True)
   print("histonormalization done")
+  MLAB.processEvents()
   
   
 def percentile_nonzero(image, percentile_nonzero):
