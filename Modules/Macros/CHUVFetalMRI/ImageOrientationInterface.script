@@ -167,7 +167,7 @@ Window ImageOrientationPanel {
       }
       Horizontal {
         Button { title = "Help" command = showHelp}
-      
+      }
     }
     
     //expandX = No
