@@ -1193,9 +1193,10 @@ def runAllFirstSetBackgroundTasks():
     
     listImageToSendBackgroundTasks=[]
     for imageIter in inImages:
-      if g_HorizontalControl[imageIter].control("check%s"%imageIter).isChecked():
-        #if ctx.control("check%s"%imageIter).isChecked():
-        listImageToSendBackgroundTasks.append(imageIter)
+      if "Image" in inImages:
+        if g_HorizontalControl[imageIter].control("check%s"%imageIter).isChecked():
+          #if ctx.control("check%s"%imageIter).isChecked():
+          listImageToSendBackgroundTasks.append(imageIter)
         
     ImagesToDoBackgroundTasks = listImageToSendBackgroundTasks
     #if !ctx.field("mevisbtkDenoising.outputSucceed").value:
