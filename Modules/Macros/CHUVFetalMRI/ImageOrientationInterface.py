@@ -1266,7 +1266,7 @@ def denoiseImages(BackgroundTask=True,listImages=None):
       return
     
     if listImages is None:
-      ImagestoDo = list(inImages.keys())
+      ImagestoDo = [keyImage for keyImage in list(inImages.keys()) if "Image" in keyImage]
     else:
       ImagestoDo = listImages
       

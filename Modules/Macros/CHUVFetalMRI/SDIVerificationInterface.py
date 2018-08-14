@@ -31,8 +31,9 @@ def updateInterface():
   
   try:
    inImages = ctx.field("inImageInfos").object()
-   listImage=sort_human(inImages.keys())
-   numImage = len(inImages.keys())
+   listLRImage = [keyImage for keyImage in list(inImages.keys()) if "Image" in keyImage]
+   listImage=sort_human(listLRImage)
+   numImage = len(listLRImage)
    GetInfoInput=True
    
   except:
