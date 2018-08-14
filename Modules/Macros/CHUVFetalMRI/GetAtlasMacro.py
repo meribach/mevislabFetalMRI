@@ -17,7 +17,7 @@ import os
 def init():
   print("Init GetAtlasMacro")
   print(ctx.field("AtlasPath").stringValue())
-  updateAtlas()
+  #updateAtlas()
 
 #def fileDropped(filename):
 #  ctx.field("name").value = ctx.unexpandFilename(filename)

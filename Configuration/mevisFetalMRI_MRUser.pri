@@ -78,13 +78,12 @@ MyTools {
                  btkNLMDenoisingWrapper.lib$${d} \
                  mialsrtkMaskImageLib.lib \
                  mialsrtkMaskImageWrapper.lib 
-
-   unix:LIBS +=	 -lmialsrtkOrientImageLib$${d} \
-                 -lmialsrtkOrientImageWrapper$${d} \
-                 -lbtkNLMDenoisingLib$${d} \
-                 -lbtkNLMDenoisingWrapper$${d} \
+   unix:LIBS +=	 -lmialsrtkOrientImageLib \
+                 -lmialsrtkOrientImageWrapper \
+                 -lbtkNLMDenoisingLib \
+                 -lbtkNLMDenoisingWrapper \
                  -lmialsrtkMaskImageLib \
-                 -lmialsrtkMaskImageWrapper  
+                 -lmialsrtkMaskImageWrapper   
 }
 
 MyIntensityStandardization {
@@ -101,16 +100,16 @@ MyIntensityStandardization {
                  mialsrtkSliceBySliceN4BiasFieldCorrectionWrapper.lib$${d} \
 				 mialsrtkN4BiasFieldCorrectionLib.lib \
 				 mialsrtkN4BiasFieldCorrectionWrapper.lib
-   unix:LIBS +=	 -lmialsrtkCorrectSliceIntensityLib$${d} \
-                 -lmialsrtkCorrectSliceIntensityWrapper$${d} \
-                 -lmialsrtkIntensityStandardizationLib$${d} \
-                 -lmialsrtkIntensityStandardizationWrapper$${d} \
-                 -lmialsrtkSliceBySliceCorrectBiasFieldLib$${d} \
-                 -lmialsrtkSliceBySliceCorrectBiasFieldWrapper$${d} \
-                 -lmialsrtkSliceBySliceN4BiasFieldCorrectionLib$${d} \
-                 -lmialsrtkSliceBySliceN4BiasFieldCorrectionWrapper$${d} \
+   unix:LIBS +=	 -lmialsrtkCorrectSliceIntensityLib \
+                 -lmialsrtkCorrectSliceIntensityWrapper \
+                 -lmialsrtkIntensityStandardizationLib \
+                 -lmialsrtkIntensityStandardizationWrapper \
+                 -lmialsrtkSliceBySliceCorrectBiasFieldLib \
+                 -lmialsrtkSliceBySliceCorrectBiasFieldWrapper \
+                 -lmialsrtkSliceBySliceN4BiasFieldCorrectionLib \
+                 -lmialsrtkSliceBySliceN4BiasFieldCorrectionWrapper \
                  -lmialsrtkN4BiasFieldCorrectionLib \
-                 -lmialsrtkN4BiasFieldCorrectionWrapper				 
+                 -lmialsrtkN4BiasFieldCorrectionWrapper			 
 }
 
 MyImageReconstruction {
@@ -119,8 +118,8 @@ MyImageReconstruction {
    QMAKE_LIBDIR += $${PACKAGE_LIB}/MyImageReconstruction 
    win32:LIBS += mialsrtkImageReconstructionLib.lib$${d} \
                  mialsrtkImageReconstructionWrapper.lib$${d} 
-   unix:LIBS += -lmialsrtkImageReconstructionLib$${d} \
-                -lmialsrtkImageReconstructionWrapper$${d} 
+   unix:LIBS += -lmialsrtkImageReconstructionLib \
+                -lmialsrtkImageReconstructionWrapper 
 }
 
 MyTVSuperResolution {
@@ -129,10 +128,9 @@ MyTVSuperResolution {
    QMAKE_LIBDIR += $${PACKAGE_LIB}/MyTVSuperResolution
    win32:LIBS += mialsrtkTVSuperResolutionLib.lib$${d} \
                  mialsrtkTVSuperResolutionWrapper.lib$${d} 
-   unix:LIBS += -lmialsrtkTVSuperResolutionLib$${d} \
-                -lmialsrtkTVSuperResolutionWrapper$${d} \
+   unix:LIBS += -lmialsrtkTVSuperResolutionLib \
+                -lmialsrtkTVSuperResolutionWrapper \
 }
-
 
 MyBrainLocalization {
    CONFIG_FOUND += MyBrainLocalization 
