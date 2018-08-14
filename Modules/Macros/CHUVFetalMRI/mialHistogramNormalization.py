@@ -29,7 +29,8 @@ import copy
 def runHistoNormalization():
   
   interface = ctx.module("PythonImage").call("getInterface")
-  
+  print("histoNorm instance name")
+  print(ctx.field("instanceName").value)
   inputFileNames = ctx.field("inputFiles").value
   allinputNames = inputFileNames.split("--")
   
@@ -134,7 +135,7 @@ def displayHistogram(image,loffset,roffset):
     bins = np.round(np.arange(loffset,np.max(image)-roffset,40))
     histo, bins = np.histogram(image, bins=bins) 
     bins_center = 0.5*(bins[1:] + bins[:-1])
-    #pyplot.plot(bins_center,histo,alpha=0.5)
+    #pyplot.plot(bins_center,#histo,alpha=0.5)
     ##pyplot.hist(fit(np.random.uniform(x[0],x[-1],len(image))),bins=y)
     ##pyplot.hist(image,bins,histtype='step',alpha=0.5,label=image_name)
     return 1
@@ -172,7 +173,7 @@ def trainImageLandmarks(list_landmarks):
     ymax=np.max(maxLR)
     ymax_index=maxLR.index(max(maxLR))
     dS = float(ymax*(mup_L[ymax_index]+mup_R[ymax_index]))
-    print('Ymax  =  '+str(ymax)+'  at position '+str(ymax_index)+'  ,  dS = '+str(dS)+' (=s2 when s1=0)')
+    #print('Ymax  =  '+str(ymax)+'  at position '+str(ymax_index)+'  ,  dS = '+str(dS)+' (=s2 when s1=0)')
     return list_landmarks,dS
 
 def mapImageLandmarks(list_landmarks,s1,s2):
@@ -182,9 +183,9 @@ def mapImageLandmarks(list_landmarks,s1,s2):
         land_index=0
         print('Image index: '+str(index))
         while land_index<len(list_landmarks[index]['quartiles']):
-            print('old landmark: '+str(list_landmarks_mapped[index]['quartiles'][land_index]))
+            #print('old landmark: '+str(list_landmarks_mapped[index]['quartiles'][land_index]))
             list_landmarks_mapped[index]['quartiles'][land_index]=s1+float((list_landmarks_mapped[index]['quartiles'][land_index]-list_landmarks_mapped[index]['p1'])/float(list_landmarks_mapped[index]['p2']-list_landmarks_mapped[index]['p1']))*float((s2-s1))
-            print('new landmark: '+str(list_landmarks_mapped[index]['quartiles'][land_index]))
+            #print('new landmark: '+str(list_landmarks_mapped[index]['quartiles'][land_index]))
             land_index+=1
         print('p1, p2 = '+str(list_landmarks_mapped[index]['p1'])+', '+str(list_landmarks_mapped[index]['p2']))
         index+=1
@@ -261,3 +262,6 @@ def computeMeanMapImageLandmarks(list_landmarks):
     print('Final landmark average : ')
     print(mean_landmarks)
     return mean_landmarks
+
+def testLog():
+  ctx.log("triggered")

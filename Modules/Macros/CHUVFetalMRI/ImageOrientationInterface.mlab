@@ -8,8 +8,8 @@ module GetAtlasMacro {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "545 515 504 109"
-        sizeHint = "504 109"
+        geometry = "545 543 737 109"
+        sizeHint = "737 109"
         wasOpen = no
       }
       window _automatic {
@@ -21,8 +21,8 @@ module GetAtlasMacro {
   }
   fields  {
     instanceName = GetAtlasMacro
-    name = ""
-    AtlasPath = D:/Pierre/CRL_Fetal_Brain_Atlas_2016/CRL_Fetal_Brain_Atlas_2016
+    name = /home/neuropsynov/Bureau/CHUV/CRL_Fetal_Brain_Atlas_2016
+    AtlasPath = $(HOME)/Bureau/CHUV/CRL_Fetal_Brain_Atlas_2016
     currentWeek = 33
   }
 }
@@ -94,8 +94,8 @@ module SoView2DSlider {
     clipToSlice = FALSE
     cursorShape = UNDEFINED_CURSOR
     minimumValue = 0
-    maximumValue = 0
-    currentValue = 0
+    maximumValue = 23
+    currentValue = 10
     useTracking = TRUE
     stepSize = 1
     snapSize = 1
@@ -223,17 +223,66 @@ module itkImageFileReader {
   }
   fields  {
     instanceName = itkImageFileReader
-    fileDataType = float
+    fileDataType = "unsigned int16"
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
-    numDims = 0
+    info = "Loading okay."
+    numDims = 3
     fileType = TypeNotApplicable
-    componentType = ""
-    pixelType = UNKNOWNPIXELTYPE
-    loaderType = ""
-    outputMetaDataStr = ""
+    componentType = "unsigned int16"
+    pixelType = SCALAR
+    loaderType = NiftiImageIO
+    outputMetaDataStr = "ITK_FileNotes : 
+aux_file : 
+bitpix : 16
+cal_max : 0
+cal_min : 0
+datatype : 512
+descrip : 
+dim[0] : 3
+dim[1] : 320
+dim[2] : 320
+dim[3] : 24
+dim[4] : 1
+dim[5] : 1
+dim[6] : 1
+dim[7] : 1
+dim_info : 
+intent_code : 0
+intent_name : 
+intent_p1 : 0
+intent_p2 : 0
+intent_p3 : 0
+pixdim[0] : 1
+pixdim[1] : 1.125
+pixdim[2] : 1.125
+pixdim[3] : 3.3
+pixdim[4] : 0
+pixdim[5] : 0
+pixdim[6] : 0
+pixdim[7] : 0
+qform_code : 2
+qoffset_x : 51.2663
+qoffset_y : 246.982
+qoffset_z : -15.1102
+quatern_b : 0.622966
+quatern_c : -0.307731
+quatern_d : -0.653945
+scl_inter : 0
+scl_slope : 1
+sform_code : 1
+slice_code : 
+slice_duration : 0
+slice_end : 0
+slice_start : 0
+srow_x : -0.0502703 0.00902271 -3.2966 51.2663
+srow_y : -0.871698 -0.710393 0.0976462 246.982
+srow_z : -0.709394 0.872287 0.113623 -15.1102
+toffset : 0
+vox_offset : 352
+xyzt_units : 
+"
     suppressErrorPosting = FALSE
     unresolvedFileName = ""
   }
@@ -303,11 +352,11 @@ module WorldVoxelConvert {
     voxelX = 64
     voxelY = 86
     voxelZ = 102
-    worldX = 64
-    worldY = 86
-    worldZ = 102
+    worldX = 285.759558931064
+    worldY = -140.802103412446
+    worldZ = 25.9564679495978
     voxelPos = "64 86 102"
-    worldPos = "64 86 102"
+    worldPos = "285.759558931064 -140.802103412446 25.9564679495978"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -340,10 +389,10 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 0.342499703168869
-    lutGrayWidth = 0.615000188350677
-    lutAlphaCenter = 0.342499703168869
-    lutAlphaWidth = 0.615000188350677
+    lutGrayCenter = 0.5
+    lutGrayWidth = 1
+    lutAlphaCenter = 0.5
+    lutAlphaWidth = 1
     lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
@@ -419,21 +468,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 0.342499703168869
-    annoInput04 = 0.615000188350677
-    annoInput05 = 0.342499703168869
-    annoInput06 = 0.615000188350677
-    annoInput07 = 0.342499703168869
-    annoInput08 = 0.615000188350677
+    annoInput03 = 0.5
+    annoInput04 = 1
+    annoInput05 = 0.5
+    annoInput06 = 1
+    annoInput07 = 0.5
+    annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 1
-    annoNumInput03 = 0.342499703168869
-    annoNumInput04 = 0.615000188350677
-    annoNumInput05 = 0.342499703168869
-    annoNumInput06 = 0.615000188350677
-    annoNumInput07 = 0.342499703168869
+    annoNumInput03 = 0.5
+    annoNumInput04 = 1
+    annoNumInput05 = 0.5
+    annoNumInput06 = 1
+    annoNumInput07 = 0.5
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -708,11 +757,11 @@ module SoView2D {
     instanceName = SoView2D
     interactionProviderID = ""
     viewerId = viewer
-    startSlice = 0
+    startSlice = 10
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -1010,7 +1059,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
+    info = "File closed"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -1119,7 +1168,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -1218,11 +1267,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
+    lutGrayCenter = 0.5
     lutGrayWidth = 1
-    lutAlphaCenter = 1
+    lutAlphaCenter = 0.5
     lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -1297,21 +1346,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
+    annoInput03 = 0.5
     annoInput04 = 1
-    annoInput05 = 1
+    annoInput05 = 0.5
     annoInput06 = 1
-    annoInput07 = 1
+    annoInput07 = 0.5
     annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 760
-    annoNumInput03 = 1
+    annoNumInput03 = 0.5
     annoNumInput04 = 1
-    annoNumInput05 = 1
+    annoNumInput05 = 0.5
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 0.5
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -1417,11 +1466,11 @@ module WorldVoxelConvert {
     voxelX = 276.786315917969
     voxelY = 249.435897827149
     voxelZ = 11.5012265243338
-    worldX = 276.786315917969
-    worldY = 249.435897827149
-    worldZ = 11.5012265243338
+    worldX = 161.296300506684
+    worldY = 128.388804389851
+    worldZ = -59.1989446812667
     voxelPos = "276.786315917969 249.435897827149 11.5012265243338"
-    worldPos = "276.786315917969 249.435897827149 11.5012265243338"
+    worldPos = "161.296300506684 128.388804389851 -59.1989446812667"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -1609,7 +1658,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 23
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -1708,11 +1757,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
+    lutGrayCenter = 0.5
     lutGrayWidth = 1
-    lutAlphaCenter = 1
+    lutAlphaCenter = 0.5
     lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -1787,21 +1836,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
+    annoInput03 = 0.5
     annoInput04 = 1
-    annoInput05 = 1
+    annoInput05 = 0.5
     annoInput06 = 1
-    annoInput07 = 1
+    annoInput07 = 0.5
     annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 892
-    annoNumInput03 = 1
+    annoNumInput03 = 0.5
     annoNumInput04 = 1
-    annoNumInput05 = 1
+    annoNumInput05 = 0.5
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 0.5
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -2034,18 +2083,18 @@ module OrthoSwapFlip {
     useGlobalInputImage = FALSE
     mode = UseViewDir
     useViewDir = TRUE
-    view = Transversal
+    view = Sagittal
     useOrientation = FALSE
-    orientation = XYZ
+    orientation = YZX
     flipHorizontal = FALSE
-    flipVertical = FALSE
-    flipDepth = FALSE
+    flipVertical = TRUE
+    flipDepth = TRUE
     autoPageSizeX = TRUE
-    pageX = 135
+    pageX = 189
     autoPageSizeY = TRUE
-    pageY = 189
+    pageY = 155
     autoPageSizeZ = TRUE
-    pageZ = 56
+    pageZ = 74
   }
 }
 module Resample3D {
@@ -2067,10 +2116,10 @@ module Resample3D {
     isotropic = FALSE
     filterAlways = FALSE
     filterAlwaysTolerance = 0
-    zoom = "0.711110221015082 0.711110221015082 0.242423819882799"
-    imageSize = "96 134 38"
-    voxelSize = "1.125 1.125 3.30000162124634"
-    subVoxelShift = "0.600921150619072 0.389563564031931 1.30521621476255"
+    zoom = "1 1 1"
+    imageSize = "189 155 135"
+    voxelSize = "0.799998998641968 0.799998998641968 0.799998998641968"
+    subVoxelShift = "-0.241659328912704 8.94070709023254e-07 -0.087767961206211"
     useReferenceImage = TRUE
   }
 }
@@ -2098,7 +2147,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "0 0 0"
+    center = "70.3997315692129 53.6493498318907 -58.7999264001846"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -2194,7 +2243,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
+    info = "File closed"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -2249,7 +2298,7 @@ module SoView2DLabel {
     interactionProviderID = ""
     drawingOn = TRUE
     color = "0.882352948188782 0.968627452850342 0.0352941192686558"
-    text = "Viewer Mode Image1"
+    text = "Viewer Mode Image5"
     viewerId = ""
     textPositioning = RELATIVE_TO_VIEWER
     worldPosition = "0 0 0"
@@ -2857,29 +2906,10 @@ module mialHistogramNormalization {
   }
   fields  {
     instanceName = mialHistogramNormalization
-    inputFiles = ""
-    outputFiles = ""
-    maskFiles = ""
-  }
-}
-module mialHistogramNormalization {
-  isRemote = true
-  internal  {
-    frame = "-919 129 240 64"
-    moduleGroupName = BackgroundTasks
-    windows  {
-      window _default {
-        geometry = "247 589 480 142"
-        sizeHint = "480 142"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = mialHistogramNormalizationNLM
-    inputFiles = ""
-    outputFiles = ""
-    maskFiles = ""
+    inputFiles = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
+    outputFiles = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
+    maskFiles = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
+    outputSucceed = TRUE
   }
 }
 module mialIntensityStandardization {
@@ -2896,8 +2926,8 @@ module mialIntensityStandardization {
   }
   fields  {
     instanceName = mialIntensityStandardizationNLMBis
-    inputFileNames = ""
-    outputFileNames = ""
+    inputFileNames = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
+    outputFileNames = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
     maxIntensity = 255
     inProgress = FALSE
     outputSucceed = FALSE
@@ -2917,11 +2947,11 @@ module mialIntensityStandardization {
   }
   fields  {
     instanceName = mialIntensityStandardizationBis
-    inputFileNames = ""
-    outputFileNames = ""
+    inputFileNames = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
+    outputFileNames = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
     maxIntensity = 255
     inProgress = FALSE
-    outputSucceed = FALSE
+    outputSucceed = TRUE
   }
 }
 module mialImageReconstruction {
@@ -2938,8 +2968,8 @@ module mialImageReconstruction {
   }
   fields  {
     instanceName = mialImageReconstruction
-    inputFiles = ""
-    maskFiles = ""
+    inputFiles = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
+    maskFiles = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
     outputFile = ""
     refFile = ""
     transformoutFiles = ""
@@ -2983,11 +3013,11 @@ module mialIntensityStandardization {
   }
   fields  {
     instanceName = mialIntensityStandardizationNLM
-    inputFileNames = ""
-    outputFileNames = ""
+    inputFileNames = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
+    outputFileNames = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
     maxIntensity = 255
     inProgress = FALSE
-    outputSucceed = FALSE
+    outputSucceed = TRUE
   }
 }
 module mialCorrectSliceIntensity {
@@ -3009,11 +3039,11 @@ module mialCorrectSliceIntensity {
   }
   fields  {
     instanceName = mialCorrectSliceIntensityNLMPostBiasCorrection
-    inputFileName = ""
-    outputFileName = ""
-    maskFileName = ""
+    inputFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
+    outputFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
+    maskFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
     inProgress = FALSE
-    outputSucceed = FALSE
+    outputSucceed = TRUE
   }
 }
 module mialCorrectSliceIntensity {
@@ -3035,11 +3065,11 @@ module mialCorrectSliceIntensity {
   }
   fields  {
     instanceName = mialCorrectSliceIntensityPostBiasCorrection
-    inputFileName = ""
-    outputFileName = ""
-    maskFileName = ""
+    inputFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
+    outputFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
+    maskFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
     inProgress = FALSE
-    outputSucceed = FALSE
+    outputSucceed = TRUE
   }
 }
 module mialCorrectSliceIntensity {
@@ -3061,11 +3091,11 @@ module mialCorrectSliceIntensity {
   }
   fields  {
     instanceName = mialCorrectSliceIntensityNLM
-    inputFileName = ""
-    outputFileName = ""
-    maskFileName = ""
+    inputFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented.nii.gz
+    outputFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz
+    maskFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
     inProgress = FALSE
-    outputSucceed = FALSE
+    outputSucceed = TRUE
   }
 }
 module mialOrientImage {
@@ -3087,11 +3117,11 @@ module mialOrientImage {
   }
   fields  {
     instanceName = mialOrientImageMask
-    inputFileName = ""
-    outputFileName = ""
-    orientation = axial
+    inputFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask.nii.gz
+    outputFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
+    orientation = coronal--coronal--axial--axial--sagittal
     inProgress = FALSE
-    outputSucceed = FALSE
+    outputSucceed = TRUE
   }
 }
 module mialOrientImage {
@@ -3113,11 +3143,11 @@ module mialOrientImage {
   }
   fields  {
     instanceName = mialOrientImageNLM
-    inputFileName = ""
-    outputFileName = ""
-    orientation = axial
+    inputFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM.nii.gz
+    outputFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented.nii.gz
+    orientation = coronal--coronal--axial--axial--sagittal
     inProgress = FALSE
-    outputSucceed = FALSE
+    outputSucceed = TRUE
   }
 }
 module mialIntensityStandardization {
@@ -3139,11 +3169,11 @@ module mialIntensityStandardization {
   }
   fields  {
     instanceName = mialIntensityStandardization
-    inputFileNames = ""
-    outputFileNames = ""
+    inputFileNames = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
+    outputFileNames = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
     maxIntensity = 255
     inProgress = FALSE
-    outputSucceed = FALSE
+    outputSucceed = TRUE
   }
 }
 module mialSliceBySliceBiasFieldCorrection {
@@ -3165,12 +3195,12 @@ module mialSliceBySliceBiasFieldCorrection {
   }
   fields  {
     instanceName = mialSliceBySliceBiasFieldCorrection
-    inputImageFile = ""
-    inputMaskFile = ""
-    inputBiasFieldFile = ""
-    outputImageFile = ""
+    inputImageFile = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni.nii.gz
+    inputMaskFile = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
+    inputBiasFieldFile = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz
+    outputImageFile = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
     inProgress = FALSE
-    outputSucceed = FALSE
+    outputSucceed = TRUE
   }
 }
 module mialSliceBySliceBiasEstimation {
@@ -3192,12 +3222,12 @@ module mialSliceBySliceBiasEstimation {
   }
   fields  {
     instanceName = mialSliceBySliceBiasEstimation
-    inputImageFile = ""
-    inputMaskFile = ""
-    outputImageFile = ""
-    outputBiasFieldFile = ""
+    inputImageFile = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz
+    inputMaskFile = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
+    outputImageFile = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
+    outputBiasFieldFile = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz
     inProgress = FALSE
-    outputSucceed = FALSE
+    outputSucceed = TRUE
   }
 }
 module mialCorrectSliceIntensity {
@@ -3219,11 +3249,11 @@ module mialCorrectSliceIntensity {
   }
   fields  {
     instanceName = mialCorrectSliceIntensity
-    inputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented.nii.gz
-    outputFileName = ""
-    maskFileName = ""
+    inputFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented.nii.gz
+    outputFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni.nii.gz
+    maskFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
     inProgress = FALSE
-    outputSucceed = FALSE
+    outputSucceed = TRUE
   }
 }
 module mevisbtkDenoising {
@@ -3278,10 +3308,31 @@ module mialOrientImage {
   }
   fields  {
     instanceName = mialOrientImage
-    inputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM.nii.gz
-    outputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented.nii.gz
-    orientation = coronal--coronal--axial--axial--sagittal--sagittal
+    inputFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr.nii.gz
+    outputFileName = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented.nii.gz
+    orientation = coronal--coronal--axial--axial--sagittal
     inProgress = FALSE
+    outputSucceed = TRUE
+  }
+}
+module mialHistogramNormalization {
+  isRemote = true
+  internal  {
+    frame = "-919 129 240 64"
+    moduleGroupName = BackgroundTasks
+    windows  {
+      window _default {
+        geometry = "247 701 480 140"
+        sizeHint = "480 140"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = mialHistogramNormalizationNLM
+    inputFiles = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
+    outputFiles = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
+    maskFiles = /home/neuropsynov/Bureau/CHUV/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--/home/neuropsynov/Bureau/CHUV/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
     outputSucceed = TRUE
   }
 }
@@ -3341,9 +3392,6 @@ connections  {
   mialHistogramNormalization.inputFiles = mialIntensityStandardization.outputFileNames
   mialHistogramNormalization.outputFiles = mialIntensityStandardization.outputFileNames
   mialHistogramNormalization.maskFiles = mialOrientImageMask.outputFileName
-  mialHistogramNormalizationNLM.inputFiles = mialIntensityStandardizationNLM.outputFileNames
-  mialHistogramNormalizationNLM.outputFiles = mialIntensityStandardizationNLM.outputFileNames
-  mialHistogramNormalizationNLM.maskFiles = mialOrientImageMask.outputFileName
   mialIntensityStandardizationNLMBis.inputFileNames = mialHistogramNormalizationNLM.outputFiles
   mialIntensityStandardizationNLMBis.outputFileNames = mialHistogramNormalizationNLM.outputFiles
   mialIntensityStandardizationBis.inputFileNames = mialHistogramNormalization.outputFiles
@@ -3369,6 +3417,9 @@ connections  {
   mialSliceBySliceBiasEstimation.inputMaskFile = mialOrientImageMask.outputFileName
   mialCorrectSliceIntensity.inputFileName = mialOrientImage.outputFileName
   mialCorrectSliceIntensity.maskFileName = mialOrientImageMask.outputFileName
+  mialHistogramNormalizationNLM.inputFiles = mialIntensityStandardizationNLM.outputFileNames
+  mialHistogramNormalizationNLM.outputFiles = mialIntensityStandardizationNLM.outputFileNames
+  mialHistogramNormalizationNLM.maskFiles = mialOrientImageMask.outputFileName
 }
 networkModel  {
   parentItems  {

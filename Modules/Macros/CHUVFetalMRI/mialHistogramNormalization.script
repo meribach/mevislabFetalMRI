@@ -62,4 +62,5 @@ Window {
 Commands {
   source = $(LOCAL)/mialHistogramNormalization.py
   FieldListener validate {command = runHistoNormalization}
+  FieldListener validate {command = testLog}
 }
