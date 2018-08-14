@@ -70,6 +70,7 @@ def initImageOrientationGraphicsView(view):
   if MLABFileManager.exists(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")):
     ctx.field("GetAtlasMacro.name").setStringValue("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
     ctx.field("GetAtlasMacro.AtlasPath").setStringValue("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
+    ctx.module("GetAtlasMacro").call("updateAtlas")
   showImageOrientationInterface()
   resetZoom()
   TempObj=temporaryObject()
