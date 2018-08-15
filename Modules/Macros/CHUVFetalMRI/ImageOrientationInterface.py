@@ -1814,7 +1814,7 @@ def updateParameterRegistration():
 
 def showHelp():
   import webbrowser
-  webbrowser.open_new("/home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI/Documentation/Publish/ModuleReference/author.html")
+  webbrowser.open_new(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html"))
 
 
 def loadPreProcessedAlready():
