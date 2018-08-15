@@ -20,13 +20,62 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
-    numDims = 0
+    info = "Loading okay."
+    numDims = 3
     fileType = TypeNotApplicable
-    componentType = ""
-    pixelType = UNKNOWNPIXELTYPE
-    loaderType = ""
-    outputMetaDataStr = ""
+    componentType = float
+    pixelType = SCALAR
+    loaderType = NiftiImageIO
+    outputMetaDataStr = "ITK_FileNotes : 
+aux_file : 
+bitpix : 32
+cal_max : 0
+cal_min : 0
+datatype : 16
+descrip : 
+dim[0] : 3
+dim[1] : 320
+dim[2] : 320
+dim[3] : 126
+dim[4] : 1
+dim[5] : 1
+dim[6] : 1
+dim[7] : 1
+dim_info : 
+intent_code : 0
+intent_name : 
+intent_p1 : 0
+intent_p2 : 0
+intent_p3 : 0
+pixdim[0] : 1
+pixdim[1] : 1.125
+pixdim[2] : 1.125
+pixdim[3] : 1.125
+pixdim[4] : 0
+pixdim[5] : 0
+pixdim[6] : 0
+pixdim[7] : 0
+qform_code : 1
+qoffset_x : 94.9468
+qoffset_y : -93.3507
+qoffset_z : -241.865
+quatern_b : -0.171402
+quatern_c : -0.700917
+quatern_d : -0.690393
+scl_inter : 0
+scl_slope : 1
+sform_code : 0
+slice_code : 
+slice_duration : 0
+slice_end : 0
+slice_start : 0
+srow_x : 0 0 0 0
+srow_y : 0 0 0 0
+srow_z : 0 0 0 0
+toffset : 0
+vox_offset : 352
+xyzt_units : 
+"
     suppressErrorPosting = FALSE
     unresolvedFileName = ""
   }
@@ -65,15 +114,15 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 1
-    grayCenter = 1
+    grayWidth = 216.645065307617
+    grayCenter = 108.322532653809
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "-28.259313583374 -29.4918212890625 1.06260859966278"
+    worldPosition = "-1.80348205566406 5.61343002319336 7.37653732299805"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
@@ -112,15 +161,15 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 1
-    grayCenter = 1
+    grayWidth = 216.645065307617
+    grayCenter = 108.322532653809
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "-28.259313583374 -29.4918212890625 1.06260859966278"
+    worldPosition = "-1.80348205566406 5.61343002319336 7.37653732299805"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
@@ -159,15 +208,15 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 1
-    grayCenter = 1
+    grayWidth = 216.645065307617
+    grayCenter = 108.322532653809
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "-28.259313583374 -29.4918212890625 1.06260859966278"
+    worldPosition = "-1.80348205566406 5.61343002319336 7.37653732299805"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
@@ -256,7 +305,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 0
+    startSlice = 41
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -281,8 +330,8 @@ module View2D {
     sliceOrigin = "0 0"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 1
-    lutWidth = 1
+    lutCenter = 108.322532653809
+    lutWidth = 216.645065307617
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -318,7 +367,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "0 0 0"
+    center = "5.50901777424599 -4.0401665234498 -18.3458812260616"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -384,7 +433,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 0
+    startSlice = 42
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -409,8 +458,8 @@ module View2D {
     sliceOrigin = "46.5332183837891 110.516395568848"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 1
-    lutWidth = 1
+    lutCenter = 108.322532653809
+    lutWidth = 216.645065307617
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -446,7 +495,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "0 0 0"
+    center = "5.50901777424599 -4.0401665234498 -18.3458812260616"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -512,7 +561,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 0
+    startSlice = 47
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -537,8 +586,8 @@ module View2D {
     sliceOrigin = "49.2503433227539 47.9289855957031"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 1
-    lutWidth = 1
+    lutCenter = 108.322532653809
+    lutWidth = 216.645065307617
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -581,7 +630,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "0 0 0"
+    center = "5.50901777424599 -4.0401665234498 -18.3458812260616"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -617,8 +666,8 @@ module SyncVector {
   }
   fields  {
     instanceName = SyncVector
-    vector1 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
-    vector2 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
+    vector1 = "-1.80348205566406 5.61343002319336 7.37653732299805 0"
+    vector2 = "-1.80348205566406 5.61343002319336 7.37653732299805 0"
     epsilon = 9.9999997e-05
     epsilonVec = "0.001 0.001 0.001 0.001"
     mode = EpsilonScalar
@@ -643,8 +692,8 @@ module SyncVector {
   }
   fields  {
     instanceName = SyncVector1
-    vector1 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
-    vector2 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
+    vector1 = "-1.80348205566406 5.61343002319336 7.37653732299805 0"
+    vector2 = "-1.80348205566406 5.61343002319336 7.37653732299805 0"
     epsilon = 9.9999997e-05
     epsilonVec = "0.001 0.001 0.001 0.001"
     mode = EpsilonScalar
@@ -664,8 +713,8 @@ module SyncVector {
   }
   fields  {
     instanceName = SyncVector2
-    vector1 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
-    vector2 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
+    vector1 = "-1.80348205566406 5.61343002319336 7.37653732299805 0"
+    vector2 = "-1.80348205566406 5.61343002319336 7.37653732299805 0"
     epsilon = 9.9999997e-05
     epsilonVec = "0.001 0.001 0.001 0.001"
     mode = EpsilonScalar
@@ -804,6 +853,57 @@ module mialTVSuperResolution {
     outputSucceed = FALSE
   }
 }
+module mialRefineMask {
+  internal  {
+    frame = "981 525 120 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = mialRefineMask
+    inputFiles = ""
+    transformIn = ""
+    maskFiles = ""
+    outputHRFile = ""
+    outputLRFiles = ""
+    referenceFile = ""
+    radiusDilation = 1
+    useStaple = TRUE
+    status = ""
+    inProgress = FALSE
+    outputSucceed = FALSE
+  }
+}
+module mialsrtkMaskImage {
+  internal  {
+    frame = "973 645 136 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = mialsrtkMaskImage
+    inputFile = ""
+    maskFile = ""
+    outputFile = ""
+    status = ""
+    inProgress = FALSE
+    outputSucceed = FALSE
+  }
+}
+module mialN4BiasField {
+  internal  {
+    frame = "989 773 120 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = mialN4BiasField
+    inputFile = ""
+    maskFile = ""
+    outputFile = ""
+    outputBiasField = ""
+    status = ""
+    inProgress = FALSE
+    outputSucceed = FALSE
+  }
+}
 connections  {
   OrthoView2DAxial.image = BoundingBoxAxial.output0
   OrthoView2DAxial.worldPosition = SyncVector2.vector2
@@ -834,7 +934,7 @@ networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 51
+        uniqueId = 53
         objectName = Visu
         parentUniqueId = 0
         color  {

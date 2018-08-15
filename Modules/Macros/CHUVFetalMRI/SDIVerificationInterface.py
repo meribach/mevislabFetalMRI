@@ -30,7 +30,7 @@ def updateInterface():
   
   
   try:
-   inImages = ctx.field("inImageInfos").object()
+     inImages = ctx.field("inImageInfos").object()
    listLRImage = [keyImage for keyImage in list(inImages.keys()) if "Image" in keyImage]
    listImage=sort_human(listLRImage)
    numImage = len(listLRImage)
@@ -127,7 +127,7 @@ def updateImage():
 
 def showHelp():
   import webbrowser
-  webbrowser.open_new("/home/neuropsynov/Bureau/CHUV/PackageFetalMRI/CHUV/FetalMRI/Documentation/Publish/ModuleReference/author.html")
+  webbrowser.open_new(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html")
 
 
 
