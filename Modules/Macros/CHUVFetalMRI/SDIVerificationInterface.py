@@ -28,7 +28,6 @@ def updateInterface():
   
   mdlToSet = ""
   
-  
   try:
    inImages = ctx.field("inImageInfos").object()
    listLRImage = [keyImage for keyImage in list(inImages.keys()) if "Image" in keyImage]

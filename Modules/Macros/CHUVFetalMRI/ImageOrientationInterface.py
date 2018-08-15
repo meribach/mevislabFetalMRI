@@ -1180,7 +1180,6 @@ def runAllFirstSetBackgroundTasks():
     
     global runAllFirstBackgroundTask
     global g_HorizontalControl
-    
     runAllFirstBackgroundTask = True
     inImages = ctx.field("inImageInfos").object()
     global ImagesToDoBackgroundTasks
@@ -1193,7 +1192,7 @@ def runAllFirstSetBackgroundTasks():
     
     listImageToSendBackgroundTasks=[]
     for imageIter in inImages:
-      if "Image" in inImages:
+      if "Image" in imageIter:
         if g_HorizontalControl[imageIter].control("check%s"%imageIter).isChecked():
           #if ctx.control("check%s"%imageIter).isChecked():
           listImageToSendBackgroundTasks.append(imageIter)
