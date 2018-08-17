@@ -47,6 +47,7 @@ Commands {
   source = $(LOCAL)/SDIVerificationInterface.py
   FieldListener itkImageFileReader.fileName {command = updateImage}
   FieldListener inImageInfos {command = updateSDI}
+  FieldListener mialImageReconstruction.outputSucceed {command = "py: insertImageReconstruction()"}
 
 }
 
