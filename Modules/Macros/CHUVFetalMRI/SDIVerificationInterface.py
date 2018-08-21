@@ -38,7 +38,7 @@ def updateInterface():
    ctx.field("NumberImages").setIntValue(numImage)
    GetInfoInput=True
    
-  except:
+  except Exception as err:
    numImage = ctx.field("NumberImages").value
    GetInfoInput=False
   
@@ -83,6 +83,8 @@ def updateInterface():
         
   g_sceneSDI.addMDL("Vertical {" + mdlToSet + "}")
   
+  
+  updateSDI()
 
 def OutlierRejectionStatusChanged():
   
@@ -100,13 +102,140 @@ def buttonPressedSagittal():
   
 
 def RunSuperResolution():
+  
+  global ImagesToDoBackgroundTasks
+  
   print("run SuperVariation")
   inImages = ctx.field("inImageInfos").object()
   
+  numIm = ctx.field("NumberImages").value
+  inTransforms = ""
+  inputFiles = ""
+  maskFiles = ""
+  ImagesToDoBackgroundTasks = {}
   
+  for imageIter in inImages:
+    if "Image" in imageIter:
+      if g_HorizontalControl[imageIter].control("check%s"%imageIter).isChecked():
+        ImagesToDoBackgroundTasks.append(imageIter)
+        if inTransforms!="":
+          inTransforms=inTransforms+"--"
+          inputFiles=inputFiles+"--"
+          maskFiles=maskFiles+"--"
+          
+        try:
+          inTransforms=inTransforms+inImages[imageIter]["Transform"]
+        except Exception as err:
+          print("error, transform has not been estimated for imageIter, reRun SDI including this image")
+        inputFiles=inputFiles+inImages[imageIter]["BCorr"]
+        maskFiles=maskFiles+inImages[imageIter]["MaskReOriented"]
+        
+  ctx.field("mialTVSuperResolution.outputFile").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SRTV_ITER1.nii.gz"))
+  ctx.field("mialTVSuperResolution.refFile").setStringValue(inImages["SDI_ITER1"])
+  ctx.field("mialTVSuperResolution.maskFiles").setStringValue(maskFiles)
+  ctx.field("mialTVSuperResolution.inputFiles").setStringValue(inputFiles)
+  ctx.field("mialTVSuperResolution.transformFilesInput").setStringValue(inTransforms)
+  
+  ctx.field("mialTVSuperResolution.startTask").touch()
+  
+  
+def insertTVSuperResolution():
+  
+  if not ctx.field("mialTVSuperResolution.outputSucceed").value:
+    return
+  
+  inImages = ctx.field("inImageInfos").object()
+  
+  if inImages is None:
+    return
+  
+  inImages.update({"SRTV_ITER1":os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SRTV_ITER1.nii.gz")})
+  
+  runRefineMask()
+
+def runRefineMask():
+  
+  global ImagesToDoBackgroundTasks
+  
+  inImages = ctx.field("inImageInfos").object()
+  
+  inTransforms = ""
+  inputFiles = ""
+  maskFiles = ""
+  outputLRFiles = ""
+  
+  for imageIter in ImagesToDoBackgroundTasks:
+    if inTransforms!="":
+       inTransforms=inTransforms+"--"
+       inputFiles=inputFiles+"--"
+       maskFiles=maskFiles+"--"
+       outputLRFiles =outputLRFiles+"--"
+
+    inTransforms=inTransforms+inImages[imageIter]["Transform"]
+    inputFiles=inputFiles+inImages[imageIter]["BCorr"]
+    maskFiles=maskFiles+inImages[imageIter]["MaskReOriented"]
+    outputLRFiles =outputLRFiles+inImages[imageIter]["MaskReOriented"].replace(".nii.gz","LR_ITER_1.nii.gz")
+    
+  ctx.field("mialRefineMask.inputFiles").setStringValue(inputFiles)
+  ctx.field("mialRefineMask.transformIn").setStringValue(inTransforms)
+  ctx.field("mialRefineMask.maskFiles").setStringValue(maskFiles)
+  ctx.field("mialRefineMask.outputHRFile").setStringValue(os.path.join(os.path.dirname(inImages["SDI_ITER1"]),"brainmaskHR_ITER_1.nii.gz"))
+  ctx.field("mialRefineMask.outputLRFiles").setStringValue(outputLRFiles)
+  ctx.field("mialRefineMask.referenceFile").setStringValue(inImages["SDI_ITER1"])
+  
+  ctx.field("mialRefineMask.startTask").touch()
+    
+def insertRefinedMask():
+  
+ global ImagesToDoBackgroundTasks
+ if not ctx.field("mialRefineMask.outputSucceed").value:
+   return
+  
+ inImages = ctx.field("inImageInfos").object()
+ 
+ for imageIter in ImagesToDoBackgroundTasks:
+   inImages[imageIter].update({["BrainMaskLR_Iter1"]:inImages[imageIter]["MaskReOriented"].replace(".nii.gz","LR_ITER_1.nii.gz")})  
+   
+ inImages.update({["BrainMaskHR_Iter1"]:os.path.join(os.path.dirname(inImages["SDI_ITER1"]),"brainmaskHR_ITER_1.nii.gz")})
+ 
+ runN4BiasFieldCorrection()
+ 
+def runN4BiasFieldCorrection():
+  
+  global ImagesToDoBackgroundTasks
+  
+  inImages = ctx.field("inImageInfos").object()
+  
+  ctx.field("mialN4BiasField.inputFile").setStringValue(inImages["SRTV_ITER1"])
+  ctx.field("mialN4BiasField.maskFile").setStringValue(inImages["BrainMaskHR_Iter1"])
+  ctx.field("mialN4BiasField.outputFile").setStringValue(inImages["SRTV_ITER1"].replace(".nii.gz","_gbcorr.nii.gz"))
+  ctx.field("mialN4BiasField.outputBiasField").setStringValue(inImages["SRTV_ITER1"].replace(".nii.gz","_gbcorrfield.nii.gz"))
+  
+  ctx.field("mialN4BiasField.startTask").touch()
+  
+  
+def insertN4BiasFieldCorrectedHRImage():
+  
+  if not ctx.field("mialN4BiasField.outputSucceed").value:
+    return
+  
+  inImages = ctx.field("inImageInfos").object()
+  
+  
+  inImages.update({"SRTV_ITER1_BCorr":inImages["SRTV_ITER1"].replace(".nii.gz","_gbcorr.nii.gz")})
+  inImages.update({"SRTV_ITER1_BCorrField":inImages["SRTV_ITER1"].replace(".nii.gz","_gbcorrfield.nii.gz")})
+  
+  
+
+
 def ReRunImageReconstruction():
+  
+  global ImagesToDoBackgroundTasks
+  
   print("reRunImageReconstruction")
   inImages = ctx.field("inImageInfos").object()
+  
+  ImagesToDoBackgroundTasks = {}
   
   numIm = ctx.field("NumberImages").value
   outTransform = ""
@@ -115,6 +244,7 @@ def ReRunImageReconstruction():
   for imageIter in inImages:
     if "Image" in imageIter:
       if g_HorizontalControl[imageIter].control("check%s"%imageIter).isChecked():
+        ImagesToDoBackgroundTasks.append(imageIter)
         if outTransform!="":
           outTransform=outTransform+"--"
           inputFiles=inputFiles+"--"
@@ -132,19 +262,34 @@ def ReRunImageReconstruction():
  
 
 def insertImageReconstruction():
+  
+  if not ctx.field("mialImageReconstruction.outputSucceed").value:
+    return
+  
   inImages = ctx.field("inImageInfos").object()
+  numIm = ctx.field("NumberImages").value
   print("insertImageReconstruction")
   inImages.update({"SDI_ITER1":os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SDI_ITER1.nii.gz")})
+  
+  global ImagesToDoBackgroundTasks
+  
+  for imageIter in ImagesToDoBackgroundTasks:   
+    inImages[imageIter].update({"Transform":inImages[imageIter]["ImReOriented"].replace(".nii.gz","_transform_%iV_1.txt"%numIm)})
+  
   updateSDI()
   MLAB.processEvents()
 
 def updateSDI():
+  
   inImages = ctx.field("inImageInfos").object()
   if inImages is not None:
     if "SDI_ITER1" in inImages.keys():
+      print("enter updateSDI")
       ctx.field("itkImageFileReader.fileName").setStringValue(inImages["SDI_ITER1"])
+      
   
 def updateImage():
+  print("enter updateImage")
   ctx.field("CreateBoundingVolumeAxial.add").touch()
   ctx.field("ReformatAxial.apply").touch()
   ctx.field("BoundingBoxAxial.update").touch()
@@ -154,10 +299,12 @@ def updateImage():
   ctx.field("CreateBoundingVolumeCoronal.add").touch()
   ctx.field("ReformatCoronal.apply").touch()
   ctx.field("BoundingBoxCoronal.update").touch()
+  ctx.field("OrthoView2DAxial.worldPosition").setValue([0,0,0])
 
 def showHelp():
+  print("showHelp")
   import webbrowser
-  webbrowser.open_new(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html"))
+  webbrowser.open_new(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html"))
 
 def getHorizontalControl(image,horizon):
   

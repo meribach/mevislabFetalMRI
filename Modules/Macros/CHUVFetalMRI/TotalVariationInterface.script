@@ -47,6 +47,7 @@ Commands {
   source = $(LOCAL)/TotalVariationInterface.py
   FieldListener itkImageFileReader.fileName {command = updateImage}
   FieldListener inImageInfos {command = updateTotalVariationInterface}
+  FieldListener mialTVSuperResolution.outputSucceed {command = updateTotalVariationInterface}
 }
 
 Window TotalVariationInterface {

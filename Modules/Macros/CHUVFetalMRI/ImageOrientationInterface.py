@@ -1188,7 +1188,23 @@ def runAllFirstSetBackgroundTasks():
       print("no images to work on")
       return
 
-    #should set all outputSucceed to False
+    #should set all outputSucceed to False (normally it's already done by the clear functions of the different ML module but it can't hurt)
+    #ctx.field("mialOrientImage.outputSucceed").setBoolValue(False)
+    #ctx.field("mialOrientImageNLM.outputSucceed").setBoolValue(False)
+    #ctx.field("mialOrientImageMask.outputSucceed").setBoolValue(False)
+    #ctx.field("mialCorrectSliceIntensity.outputSucceed").setBoolValue(False)
+    #ctx.field("mialCorrectSliceIntensityNLM.outputSucceed").setBoolValue(False)
+    #ctx.field("mialCorrectSliceIntensityNLMPostBiasCorrection.outputSucceed").setBoolValue(False)
+    #ctx.field("mialCorrectSliceIntensityPostBiasCorrection.outputSucceed").setBoolValue(False)
+    #ctx.field("mialSliceBySliceBiasEstimation.outputSucceed").setBoolValue(False)
+    #ctx.field("mialSliceBySliceBiasFieldCorrection.outputSucceed").setBoolValue(False)
+    #ctx.field("mialIntensityStandardization.outputSucceed").setBoolValue(False)
+    #ctx.field("mialIntensityStandardizationNLM.outputSucceed").setBoolValue(False)
+    #ctx.field("mialIntensityStandardizationNLMBis.outputSucceed").setBoolValue(False)
+    #ctx.field("mialIntensityStandardizationBis.outputSucceed").setBoolValue(False)
+    #ctx.field("mialHistogramNormalization.outputSucceed").setBoolValue(False)
+    #ctx.field("mialHistogramNormalizationNLM.outputSucceed").setBoolValue(False)
+    #ctx.field("mialImageReconstruction.outputSucceed").setBoolValue(False)
     
     listImageToSendBackgroundTasks=[]
     for imageIter in inImages:
@@ -1207,7 +1223,7 @@ def runAllFirstSetBackgroundTasks():
       elif 'NLM' in inImages[imageIter]:
         ctx.field("updateWorldOrientation.itkImageFileReader.fileName").setStringValue(inImages[imageIter]['NLM'])
         ctx.field("updateWorldOrientation.itkImageFileReaderModel.fileName").setStringValue(inImages[imageIter]['WorldChanged'])
-        newName=vv['WorldChanged'].replace('.nii','_NLM.nii')
+        newName=inImages[imageIter]['WorldChanged'].replace('.nii','_NLM.nii')
         ctx.field("updateWorldOrientation.itkImageFileWriter.fileName").setStringValue(newName)
         ctx.field("updateWorldOrientation.itkImageFileWriter.save").touch()
         #have to add to inImages now
@@ -1366,6 +1382,8 @@ def OrientImages(WhatToOrient,listImages=None):
   print("WhichMial : %s"%WhichMial)
   ctx.field("%s.startTask"%WhichMial).touch()
   
+  MLAB.processEvents()
+  
 def insertReOrient(WhatToInsert):
   
   global ImagesToDoBackgroundTasks 
@@ -1496,7 +1514,7 @@ def inserCorrectSliceIntensity(WhatToInsert):
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep1").setObject(inImages)
   
-  if WhatToInsert=="RawImage":
+  if WhatToInsert=="NLMImage":
     runSliceBySliceBiasEstimation()
   elif WhatToInsert=="NLMPostBiasCorrection":
     runIntensityStandardization("NLMPostBiasCorrection")
@@ -1749,8 +1767,14 @@ def runImageReconstruction():
 def insertImageReconstruction():
   
   inImages = ctx.field("inImageInfos").object()
+  numIm = ctx.field("NumberImages").value
   print("insertImageReconstruction")
   inImages.update({"SDI_ITER1":os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SDI_ITER1.nii.gz")})
+  
+  global ImagesToDoBackgroundTasks
+  for imageIter in ImagesToDoBackgroundTasks:   
+    inImages[imageIter].update({"Transform":inImages[imageIter]["ImReOriented"].replace(".nii.gz","_transform_%iV_1.txt"%numIm)})
+  
   MLAB.processEvents()
 
 def insertNLMDenoisingResults():
@@ -1812,8 +1836,10 @@ def updateParameterRegistration():
 #  listOfPossibleTask[Task].touch()
 
 def showHelp():
+  print("showHelp")
   import webbrowser
-  webbrowser.open_new(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html"))
+  print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html")))
+  webbrowser.open_new(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html"))
 
 
 def loadPreProcessedAlready():

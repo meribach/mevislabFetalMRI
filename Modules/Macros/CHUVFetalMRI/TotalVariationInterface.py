@@ -103,9 +103,17 @@ def resetTV():
   
 def updateTotalVariationInterface():
   inImages = ctx.field("inImageInfos").object()
-  #if in inImages.keys():
+  listSRTV_ITER=[]
+  if inImages is not None:
+    for inImagesIter in inImages.keys():
+     if inImagesIter.startswith("SRTV_ITER"):
+       listSRTV_ITER.append(inImagesIter)
     
-  #  ctx.field("itkImageFileReader.fileName").setStringValue()
+  if len(listSRTV_ITER)>0:
+    lastIter = sort_human(listSRTV_ITER)[-1]  
+    ctx.field("itkImageFileReader.fileName").setStringValue(inImages[lastIter])
+    
+    #and now we run the next steps ?
   
 def updateImage():
   ctx.field("CreateBoundingVolumeAxial.add").touch()

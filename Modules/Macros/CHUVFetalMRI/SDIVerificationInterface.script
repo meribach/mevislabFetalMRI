@@ -39,6 +39,7 @@ Interface {
     Field RegistrationMaxStep {internalName = mialImageReconstruction.MaxStepLengthRegistration}
     Field Gamma {internalName = mialTVSuperResolution.Lambda}
     Field DeltaT {internalName = mialTVSuperResolution.DeltaT}
+    Field updateView {type = Trigger}
   }
 }
 
@@ -48,7 +49,9 @@ Commands {
   FieldListener itkImageFileReader.fileName {command = updateImage}
   FieldListener inImageInfos {command = updateSDI}
   FieldListener mialImageReconstruction.outputSucceed {command = "py: insertImageReconstruction()"}
-
+  FieldListener mialTVSuperResolution.outputSucceed {command = "py: insertTVSuperResolution()"}
+  FieldListener updateView {command = updateSDI}
+  FieldListener mialRefineMask.outputSucceed {command = insertRefinedMask}
 }
 
 Window SDIVerificationInterface {
@@ -72,7 +75,7 @@ Window SDIVerificationInterface {
         Box{
           Horizontal {
           Label "Registration parameters: " {}
-          CheckBox outlierRejection {toggledCommand = OutlierRejectionStatusChanged}
+          CheckBox outlierRejection {toggledCommand = OutlierRejectionStatusChanged enabled = False}
           ComboBox RegistrationMetric {tooltip = "Nc = Normalized Correlation, MI = Mutual Information, default = NC"}
             Label "Gradient" {}
             NumberEdit RegistrationGradient {step = 0.0001}
