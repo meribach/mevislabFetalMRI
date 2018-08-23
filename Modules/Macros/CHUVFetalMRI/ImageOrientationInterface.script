@@ -50,6 +50,7 @@ Interface {
     Field RegistrationMaxStep {internalName = mialImageReconstruction.MaxStepLengthRegistration}
     
     Field WaitForReconstruction {type = Bool value = False}
+    Field FromFrontier {type = Bool value = False}
     //Field temporaryMasksSwitch {type = MLBase }
   }
 }

@@ -34,6 +34,7 @@ Interface {
     Field ExpertMode {type = Bool value = True}
     Field Gamma {internalName = mialTVSuperResolution.Lambda}
     Field DeltaT {internalName = mialTVSuperResolution.DeltaT}
+    Field FromFrontier {type = Bool value = False}
   }
 }
 
@@ -88,6 +89,9 @@ Window TotalVariationInterface {
             stepstep = 1
             format   = "%.1f"
           }
+        }
+        Horizontal {
+          Button {title = "Help" command = showHelp}
         }
       }
       

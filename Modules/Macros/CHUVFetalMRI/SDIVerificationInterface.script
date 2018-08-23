@@ -40,6 +40,7 @@ Interface {
     Field Gamma {internalName = mialTVSuperResolution.Lambda}
     Field DeltaT {internalName = mialTVSuperResolution.DeltaT}
     Field updateView {type = Trigger}
+    Field FromFrontier {type = Bool value = False}
   }
 }
 

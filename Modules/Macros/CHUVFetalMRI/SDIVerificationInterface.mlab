@@ -793,6 +793,11 @@ module mialRefineMask {
         sizeHint = "640 332"
         wasOpen = no
       }
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
     }
   }
   fields  {
@@ -840,7 +845,12 @@ module mialN4BiasField {
       window _default {
         geometry = "1142 926 640 214"
         sizeHint = "640 214"
-        wasOpen = yes
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
       }
     }
   }

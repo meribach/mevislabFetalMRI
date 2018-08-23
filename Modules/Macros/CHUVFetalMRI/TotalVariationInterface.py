@@ -127,6 +127,21 @@ def updateImage():
   ctx.field("BoundingBoxCoronal.update").touch()
 
 
+def showHelp():
+  print("showHelp")
+  if not ctx.field("FromFrontier").value:
+    import webbrowser
+    print(webbrowser.browser)
+    print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/TotalVariationInterface.html")))
+    webbrowser.open_new(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/TotalVariationInterface.html"))
+
+  else:
+    global _frontier
+    _frontier = ctx.module("parent:FrontierSyngoInterface").object()
+    url = ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/TotalVariationInterface.html")
+    _frontier._syngoVia.call("FE.AppHosting.ShowUrl", url)
+
+
 def sort_human(l):
   convert = lambda text: float(text) if text.isdigit() else text
   alphanum = lambda key: [ convert(c) for c in re.split('([-+]?[0-9]*\.?[0-9]*)', key) ]
