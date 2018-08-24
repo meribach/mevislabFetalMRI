@@ -50,6 +50,7 @@ Interface {
     Field RegistrationMaxStep {internalName = mialImageReconstruction.MaxStepLengthRegistration}
     
     Field WaitForReconstruction {type = Bool value = False}
+    Field FromFrontier {type = Bool value = False}
     //Field temporaryMasksSwitch {type = MLBase }
   }
 }
@@ -133,11 +134,11 @@ NetworkPanel {
     command = "py: resetZoom()"
   }
   Button increaseNbImage {
-    symbol = "* "$(MLAB_CHUV_FetalMRI)/Modules/Graphics/up-arrow-symbol-icon-68695.png" *"
+    symbol = "* "$(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png" *"
     command = "py: modifyImageNumber(1)"
   }
   Button decreaseNbImage {
-    symbol  = "* "$(MLAB_CHUV_FetalMRI)/Modules/Graphics/down-arrow-symbol-icon-68695.png" *"
+    symbol  = "* "$(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png" *"
     command = "py: modifyImageNumber(-1)"
   }
 }

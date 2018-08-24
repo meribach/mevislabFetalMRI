@@ -103,9 +103,17 @@ def resetTV():
   
 def updateTotalVariationInterface():
   inImages = ctx.field("inImageInfos").object()
-  #if in inImages.keys():
+  listSRTV_ITER=[]
+  if inImages is not None:
+    for inImagesIter in inImages.keys():
+     if inImagesIter.startswith("SRTV_ITER"):
+       listSRTV_ITER.append(inImagesIter)
     
-  #  ctx.field("itkImageFileReader.fileName").setStringValue()
+  if len(listSRTV_ITER)>0:
+    lastIter = sort_human(listSRTV_ITER)[-1]  
+    ctx.field("itkImageFileReader.fileName").setStringValue(inImages[lastIter])
+    
+    #and now we run the next steps ?
   
 def updateImage():
   ctx.field("CreateBoundingVolumeAxial.add").touch()
@@ -117,6 +125,21 @@ def updateImage():
   ctx.field("CreateBoundingVolumeCoronal.add").touch()
   ctx.field("ReformatCoronal.apply").touch()
   ctx.field("BoundingBoxCoronal.update").touch()
+
+
+def showHelp():
+  print("showHelp")
+  if not ctx.field("FromFrontier").value:
+    import webbrowser
+    print(webbrowser.browser)
+    print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/TotalVariationInterface.html")))
+    webbrowser.open_new(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/TotalVariationInterface.html"))
+
+  else:
+    global _frontier
+    _frontier = ctx.module("parent:FrontierSyngoInterface").object()
+    url = ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/TotalVariationInterface.html")
+    _frontier._syngoVia.call("FE.AppHosting.ShowUrl", url)
 
 
 def sort_human(l):
