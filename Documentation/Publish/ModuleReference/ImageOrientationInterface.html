@@ -90,8 +90,36 @@
 </div>
 <div class="section" id="buttondescription">
 <h2>Button Description<a class="headerlink" href="#buttondescription" title="Permalink to this headline">¶</a></h2>
+
 <h3>ImageX</h3>
 <p>Show the image number x. if not already loaded, open a file browser to select a nifti image and load it as image x</p>
+
+<h3>Set IH T B A P positions</h3>
+<p>When Click the yellow title on the image becomes "Set Positioning Mode". If you click on others button it may reinitialize in Viewing mode. it will be shown on this yellow title.</p>
+<p>You have to select the few anatomical points (there is no specific order to do it:</p>
+<p>  -The Posterior Comissure: put the mouse cursor on top of it and press I on the keyboard
+<br>  -A top inter hemispheric brain position: put the mouse cursor on top of it and press T on the keyboard
+<br>  -A bottom inter hemispheric brain position: put the mouse cursor on top of it and press B on the keyboard
+<br>  -A antero inter hemispheric brain position: put the mouse cursor on top of it and press A on the keyboard
+<br>  -A postero inter hemispheric brain position: put the mouse cursor on top of it and press P on the keyboard</p>
+<p> Press Enter to validate the positions </p>
+<p> if the brain mask is completely off you can reedit the anatomical positions by pressing again the button and change only some of the positions </p>
+
+<h3>Edit Brain Mask</h3>
+<p> (enabled only if anatomical positions of the corresponding image is set. enter automatically in this mode just after having set the anatomical points) </p>
+<p> The Orientation of the stack has to be set (comboBox Orientation described below) </p>
+<p> you can move the current slice maks by pressing 2,8,4,6,1,9 to move the mask in the top/bottom,antero/posterior axes and rotate it along the orthogonal axis. </p>
+<p> you can modify the mask by redrawing it using the mouse. it you start from outside the mask and go inside, it will remove the intersection. <br> if you start from inside and go outside it will do the union </p>
+<p> you can remove completly the current mask by pressing backspace once the mouse is over it. and start a new mask by drawing it just after </p>
+<p> Press Enter to Validate </p>
+
+<h3>Reset Brain Mask</h3>
+<p> go back to the mask done only using anatomical positions set by "Set IH T B A P positions" and gestational Age</p>
+
+<h3>Orientation Combo Box</h3>
+<p>Orientation of the Fetus :4 possible values: unknown (by default), axial, sagittal, coronal.</p>
+<p>Best if done before doing anything else</p>
+
 </div>
 
 </div>
@@ -393,7 +421,7 @@ The mask based on the atlas are made using the module generateTemplateMask : <a 
   <ul>
 <li><a class="reference internal" href="#">ImageOrientationInterface</a></li>
 <li><a class="reference internal" href="#windows">Windows</a><ul>
-<li><a class="reference internal" href="#imageorientationpanel">ImageOrientationPanel</a></li>
+<li><a class="reference internal" href="#imageorientationpanel">Interface</a></li>
 <li><a class="reference internal" href="#buttondescription">Button Description</a></li>
 </ul>
 </li>
