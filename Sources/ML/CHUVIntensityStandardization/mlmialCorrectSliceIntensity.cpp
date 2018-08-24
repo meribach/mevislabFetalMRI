@@ -235,7 +235,7 @@ void mialCorrectSliceIntensity::clear()
 void mialCorrectSliceIntensity::postComputation()
 {
 	_inProgressFld->setBoolValue(false);
-	std::cout << "mial Correct Slice Intensity Done" << std::endl;
+	//std::cout << "mial Correct Slice Intensity Done" << std::endl;
 
 }
 

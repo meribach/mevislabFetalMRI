@@ -86,7 +86,7 @@ Window SDIVerificationInterface {
             NumberEdit RegistrationMaxStep {step = 0.001}
             Label "Relaxation Factor" {}
             NumberEdit RegistrationRelaxationFactor { step = 0.05}
-          }
+           dependsOn = ExpertMode}
           Horizontal {
             Button {title = "ReRun SDI Estimation" command = ReRunImageReconstruction}
           }

@@ -148,7 +148,7 @@ void mialN4BiasField::postComputation()
 {
 	_inProgressFld->setBoolValue(false);
 	_statusFld->setStringValue("N4BiasField Correction Done");
-	std::cout << "N4BiasField Correction Done" << std::endl;
+	//std::cout << "N4BiasField Correction Done" << std::endl;
 }
 
 void mialN4BiasField::runN4BiasCorrection()

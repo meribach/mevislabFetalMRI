@@ -204,7 +204,7 @@ void mialIntensityStandardization::clear()
 void mialIntensityStandardization::postComputation()
 {
 	_inProgressFld->setBoolValue(false);
-	std::cout << "mial Intensity Standardization Done" << std::endl;
+	//std::cout << "mial Intensity Standardization Done" << std::endl;
 
 }
 

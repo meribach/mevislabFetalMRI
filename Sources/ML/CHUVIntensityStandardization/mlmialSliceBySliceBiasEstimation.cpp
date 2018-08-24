@@ -194,9 +194,13 @@ void mialSliceBySliceBiasEstimation::handleNotification(Field* field)
 		//loop on the std::vector splitInputs
 		for (std::vector<int>::size_type i = 0; i != splitInputs.size(); i++)
 		{
-			if (!std::ifstream(splitInputs[i]))
+			if (!std::ifstream(splitInputs[i].c_str()).good())
 			{
-				mlError(__FUNCTION__, ML_UNKNOWN_EXCEPTION) << "File not Found  :  " << splitInputs[i];
+				mlError(__FUNCTION__, ML_UNKNOWN_EXCEPTION) << "File not Found  :  " << splitInputs[i].c_str();
+				std::cout << splitInputs[i].c_str() << std::endl;
+				std::cout << !std::ifstream(splitInputs[i]) << std::endl;
+				std::cout << !std::ifstream(splitInputs[i].c_str()) << std::endl;
+				std::cout << !std::ifstream(splitInputs[i].c_str()).good() << std::endl;
 				return;
 			}
 		}
@@ -238,7 +242,7 @@ void mialSliceBySliceBiasEstimation::clear()
 void mialSliceBySliceBiasEstimation::postComputation()
 {
 	_inProgressFld->setBoolValue(false);
-	std::cout << "mial Slice by Slice Bias Estimation Done" << std::endl;
+	//std::cout << "mial Slice by Slice Bias Estimation Done" << std::endl;
 
 }
 

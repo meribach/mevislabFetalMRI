@@ -242,7 +242,7 @@ void mialSliceBySliceBiasFieldCorrection::clear()
 void mialSliceBySliceBiasFieldCorrection::postComputation()
 {
 	_inProgressFld->setBoolValue(false);
-	std::cout << "mial Slice by Slice Bias Correction Done" << std::endl;
+	//std::cout << "mial Slice by Slice Bias Correction Done" << std::endl;
 
 }
 

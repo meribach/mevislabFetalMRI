@@ -1846,7 +1846,9 @@ def showHelp():
   else:
     global _frontier
     _frontier = ctx.module("parent:FrontierSyngoInterface").object()
-    url = ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html")
+    url = "/".join(["frontier_server", "user_manuals", ctx.field("parent:FrontierSyngoInterface.applicationName").value])
+    #url = 
+    #url = ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html")
     _frontier._syngoVia.call("FE.AppHosting.ShowUrl", url)
 
 def loadPreProcessedAlready():
