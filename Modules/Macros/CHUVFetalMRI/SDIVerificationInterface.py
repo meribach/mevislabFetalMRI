@@ -151,6 +151,9 @@ def insertTVSuperResolution():
   
   inImages.update({"SRTV_ITER1":os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SRTV_ITER1.nii.gz")})
   
+  ctx.field("inImageInfos").setObject(inImages)
+  ctx.field("outImagesInfosStep2").setObject(inImages)
+  
   runRefineMask()
 
 def runRefineMask():
@@ -198,6 +201,9 @@ def insertRefinedMask():
    
  inImages.update({["BrainMaskHR_Iter1"]:os.path.join(os.path.dirname(inImages["SDI_ITER1"]),"brainmaskHR_ITER_1.nii.gz")})
  
+ ctx.field("inImageInfos").setObject(inImages)
+ ctx.field("outImagesInfosStep2").setObject(inImages)
+ 
  runN4BiasFieldCorrection()
  
 def runN4BiasFieldCorrection():
@@ -225,7 +231,8 @@ def insertN4BiasFieldCorrectedHRImage():
   inImages.update({"SRTV_ITER1_BCorr":inImages["SRTV_ITER1"].replace(".nii.gz","_gbcorr.nii.gz")})
   inImages.update({"SRTV_ITER1_BCorrField":inImages["SRTV_ITER1"].replace(".nii.gz","_gbcorrfield.nii.gz")})
   
-  
+  ctx.field("inImageInfos").setObject(inImages)
+  ctx.field("outImagesInfosStep2").setObject(inImages)
 
 
 def ReRunImageReconstruction():
@@ -275,6 +282,9 @@ def insertImageReconstruction():
   
   for imageIter in ImagesToDoBackgroundTasks:   
     inImages[imageIter].update({"Transform":inImages[imageIter]["ImReOriented"].replace(".nii.gz","_transform_%iV_1.txt"%numIm)})
+  
+  ctx.field("inImageInfos").setObject(inImages)
+  ctx.field("outImagesInfosStep2").setObject(inImages)
   
   updateSDI()
   MLAB.processEvents()

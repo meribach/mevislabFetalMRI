@@ -35,6 +35,7 @@ Interface {
     Field Gamma {internalName = mialTVSuperResolution.Lambda}
     Field DeltaT {internalName = mialTVSuperResolution.DeltaT}
     Field FromFrontier {type = Bool value = False}
+    Field NumberIteration {type = Int value = 1}
   }
 }
 
@@ -48,7 +49,7 @@ Commands {
   source = $(LOCAL)/TotalVariationInterface.py
   FieldListener itkImageFileReader.fileName {command = updateImage}
   FieldListener inImageInfos {command = updateTotalVariationInterface}
-  FieldListener mialTVSuperResolution.outputSucceed {command = updateTotalVariationInterface}
+  FieldListener mialTVSuperResolution.outputSucceed {command = insertTVSuperResolution}
 }
 
 Window TotalVariationInterface {

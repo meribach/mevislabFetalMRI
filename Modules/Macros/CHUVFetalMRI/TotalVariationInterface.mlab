@@ -737,7 +737,7 @@ module mialTVSuperResolution {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "647 164 640 931"
+        geometry = "50 169 640 931"
         sizeHint = "640 931"
         wasOpen = no
       }
@@ -778,6 +778,246 @@ module mialTVSuperResolution {
     outputSucceed = FALSE
   }
 }
+module DicomTool {
+  internal  {
+    frame = "1677 413 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "94 134 604 500"
+        sizeHint = "604 420"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomTool
+    exportDir = D:/Pierre/testDicomOutput/STRV1
+    exportBaseDir = D:/Pierre/testDicomOutput
+    exportNameTemplate = $S/export$T.dcm
+    addPatNameDir = TRUE
+    addStudyUIDDIR = FALSE
+    addSeriesUIDDIR = FALSE
+    allSlices = TRUE
+    minSlice = 0
+    maxSlice = 1
+    minUsedSlice = 0
+    maxUsedSlice = 0
+    allTimepoints = TRUE
+    minTime = 0
+    maxTime = 1
+    minUsedTime = 0
+    maxUsedTime = 0
+    displayMode1 = Input
+    displayMode2 = All
+    newStudyUID = FALSE
+    newSeriesUID = TRUE
+    restoreFrameSpecific = FALSE
+    storeTimeInfo = None
+    dicomComment = MeVisLab
+    consoleAutoClear = TRUE
+    dicomOutput = ""
+    echoVerbose = TRUE
+    echoDebug = FALSE
+    storeVerbose = TRUE
+    storeDebug = FALSE
+    currentConfigSet = ""
+    dicomName = ""
+    dicomType = PACS
+    dicomCalledAET = ""
+    dicomCallingAET = ""
+    dicomHostname = ""
+    dicomPort = 104
+    autoLoadConfig = TRUE
+    exportAsDerived = TRUE
+    tagModifierTagName0 = ""
+    tagModifierTagValue0 = ""
+    tagModifierRemoveTag0 = FALSE
+    tagModifierTagName1 = ""
+    tagModifierTagValue1 = ""
+    tagModifierRemoveTag1 = FALSE
+    tagModifierTagName2 = ""
+    tagModifierTagValue2 = ""
+    tagModifierRemoveTag2 = FALSE
+    tagModifierTagName3 = ""
+    tagModifierTagValue3 = ""
+    tagModifierRemoveTag3 = FALSE
+    tagModifierTagName4 = ""
+    tagModifierTagValue4 = ""
+    tagModifierRemoveTag4 = FALSE
+    tagModifierTagName5 = ""
+    tagModifierTagValue5 = ""
+    tagModifierRemoveTag5 = FALSE
+    tagModifierTrimSpaces = TRUE
+    tagModifierAutoApply = TRUE
+  }
+}
+module itkImageFileReader {
+  internal  {
+    frame = "1585 862 144 56"
+    moduleGroupName = PrepareDicomConversion
+    windows  {
+      window _default {
+        geometry = "803 432 328 395"
+        sizeHint = "328 395"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReader1
+    fileDataType = float
+    autoDetermineDataType = TRUE
+    correctSubVoxelShift = TRUE
+    fileDimension = 3
+    info = "File closed"
+    numDims = 0
+    fileType = TypeNotApplicable
+    componentType = ""
+    pixelType = UNKNOWNPIXELTYPE
+    loaderType = ""
+    outputMetaDataStr = ""
+    suppressErrorPosting = FALSE
+    unresolvedFileName = ""
+  }
+}
+module Arithmetic1 {
+  internal  {
+    frame = "1705 774 128 72"
+    moduleGroupName = PrepareDicomConversion
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "269 326 285 64"
+        sizeHint = "283 64"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic1
+    function = Multiply
+    constant = 100
+  }
+}
+module DicomTagModify {
+  internal  {
+    frame = "1701 606 120 56"
+    moduleGroupName = PrepareDicomConversion
+    windows  {
+      window _default {
+        geometry = "978 336 518 488"
+        sizeHint = "518 482"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomTagModify
+    tagName0 = RescaleIntercept
+    tagValue0 = 0
+    removeTag0 = FALSE
+    tagVR0 = DS
+    stdTagVR0 = TRUE
+    tagName1 = RescaleSlope
+    tagValue1 = 100
+    removeTag1 = FALSE
+    tagVR1 = DS
+    stdTagVR1 = TRUE
+    tagName2 = RescaleType
+    tagValue2 = US
+    removeTag2 = FALSE
+    tagVR2 = LO
+    stdTagVR2 = TRUE
+    tagName3 = SeriesDescription
+    tagValue3 = STRV1
+    removeTag3 = FALSE
+    tagVR3 = LO
+    stdTagVR3 = TRUE
+    tagName4 = ""
+    tagValue4 = ""
+    removeTag4 = FALSE
+    tagVR4 = ""
+    stdTagVR4 = FALSE
+    tagName5 = ""
+    tagValue5 = ""
+    removeTag5 = FALSE
+    tagVR5 = ""
+    stdTagVR5 = FALSE
+    discardSource = None
+    useTagsString = FALSE
+    modifyTagsString = ""
+    removeTagsString = ""
+    synchronizeTagsString = ""
+    trimSpaces = TRUE
+    autoApply = TRUE
+    updateMode = AutoUpdate
+  }
+}
+module ImagePropertyConvert {
+  internal  {
+    frame = "1701 686 152 72"
+    moduleGroupName = PrepareDicomConversion
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "804 314 326 631"
+        sizeHint = "326 631"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImagePropertyConvert
+    changeDimensionInfo = FALSE
+    cDimInfo = ""
+    tDimInfo = ""
+    uDimInfo = ""
+    a00 = 1
+    a01 = 0
+    a02 = 0
+    a03 = 0
+    a10 = 0
+    a11 = 1
+    a12 = 0
+    a13 = 0
+    a20 = 0
+    a21 = 0
+    a22 = 1
+    a23 = 0
+    a30 = 0
+    a31 = 0
+    a32 = 0
+    a33 = 1
+    worldMatrix = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    changeDatatype = TRUE
+    datatype = int16
+    changePageSize = FALSE
+    pageSizeX = 32
+    pageSizeY = 32
+    pageSizeZ = 1
+    pageSizeC = 1
+    pageSizeT = 1
+    pageSizeU = 1
+    changeMinGrayValue = FALSE
+    minGrayValue = 0
+    changeMaxGrayValue = FALSE
+    maxGrayValue = 1
+    changeWorldMatrix = FALSE
+    voxelSizeX = 1
+    voxelSizeY = 1
+    voxelSizeZ = 1
+    autoApply = TRUE
+  }
+}
 connections  {
   OrthoView2DAxial.image = BoundingBoxAxial.output0
   OrthoView2DAxial.worldPosition = SyncVector2.vector2
@@ -803,13 +1043,30 @@ connections  {
   BoundingBoxAxial.input0 = ReformatAxial.output0
   BoundingBoxSagittal.input0 = ReformatSagittal.output0
   BoundingBoxCoronal.input0 = ReformatCoronal.output0
+  DicomTool.inImage = DicomTagModify.output0
+  itkImageFileReader1.unresolvedFileName = mialTVSuperResolution.outputFile
+  Arithmetic1.input0 = itkImageFileReader1.output0
+  DicomTagModify.input0 = ImagePropertyConvert.output0
+  DicomTagModify.tagValue1 = Arithmetic1.constant
+  ImagePropertyConvert.input0 = Arithmetic1.output0
 }
 networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 52
+        uniqueId = 56
         objectName = Visu
+        parentUniqueId = 0
+        color  {
+          r = 45
+          g = 226
+          b = 226
+          a = 40
+        }
+      }
+      MLABNetworkModelItem MLABNetworkModelItemGroup {
+        uniqueId = 154
+        objectName = PrepareDicomConversion
         parentUniqueId = 0
         color  {
           r = 45

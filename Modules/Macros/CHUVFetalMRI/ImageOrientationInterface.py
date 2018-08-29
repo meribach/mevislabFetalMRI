@@ -1766,6 +1766,9 @@ def runImageReconstruction():
 
 def insertImageReconstruction():
   
+  if not ctx.field("mialImageReconstruction.outputSucceed").value:
+    return
+  
   inImages = ctx.field("inImageInfos").object()
   numIm = ctx.field("NumberImages").value
   print("insertImageReconstruction")
@@ -1774,6 +1777,9 @@ def insertImageReconstruction():
   global ImagesToDoBackgroundTasks
   for imageIter in ImagesToDoBackgroundTasks:   
     inImages[imageIter].update({"Transform":inImages[imageIter]["ImReOriented"].replace(".nii.gz","_transform_%iV_1.txt"%numIm)})
+  
+  ctx.field("inImageInfos").setObject(inImages)
+  ctx.field("outImagesInfosStep1").setObject(inImages)
   
   MLAB.processEvents()
 
@@ -1847,7 +1853,7 @@ def showHelp():
     global _frontier
     _frontier = ctx.module("parent:FrontierSyngoInterface").object()
     url = "/".join(["frontier_server", "user_manuals", ctx.field("parent:FrontierSyngoInterface.applicationName").value])
-    #url = 
+    print(url)
     #url = ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html")
     _frontier._syngoVia.call("FE.AppHosting.ShowUrl", url)
 
