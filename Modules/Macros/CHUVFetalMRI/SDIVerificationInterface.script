@@ -37,6 +37,7 @@ Interface {
     Field RegistrationRelaxationFactor {internalName = mialImageReconstruction.RelaxationFactorRegistration}
     Field RegistrationMinStep {internalName = mialImageReconstruction.MinStepLengthRegistration}
     Field RegistrationMaxStep {internalName = mialImageReconstruction.MaxStepLengthRegistration}
+    Field RegistrationNbIt {internalName = mialImageReconstruction.nbIterationsRegistration}
     Field Gamma {internalName = mialTVSuperResolution.Lambda}
     Field DeltaT {internalName = mialTVSuperResolution.DeltaT}
     Field updateView {type = Trigger}
@@ -84,6 +85,8 @@ Window SDIVerificationInterface {
             NumberEdit RegistrationMinStep {step = 0.0001}
             Label "Max Step" {}
             NumberEdit RegistrationMaxStep {step = 0.001}
+            Label "Nb It" {}
+            NumberEdit RegistrationNbIt {step = 100}
             Label "Relaxation Factor" {}
             NumberEdit RegistrationRelaxationFactor { step = 0.05}
            dependsOn = ExpertMode}

@@ -133,9 +133,9 @@ def convertToDicom(WhatToConvert):
     #we use dicom tool from testinstall, dicomSend
     print("via Frontier")
     _frontier = ctx.module("parent:FrontierSyngoInterface").object()
-    ctx.field("DicomExport.exportBaseDir").setStringValue(_frontier.getOutgoingDicomDirectory())
+    ctx.field("parent:DicomExport.exportBaseDir").setStringValue(_frontier.getOutgoingDicomDirectory())
     DicomToolToUse = ctx.module("parent:DicomExport")
-    print(ctx.field("DicomExport.exportBaseDir").value)
+    print(ctx.field("parent:DicomExport.exportBaseDir").value)
   else:
     #we use dicom tool from TotalVariationInterface, dicomSave
     print("not via Frontier")
@@ -144,7 +144,7 @@ def convertToDicom(WhatToConvert):
   
   ctx.field("DicomTagModify.tagValue3").setValue(WhatToConvert)
   ctx.field("DicomTagModify.apply").touch()
-  DicomToolToUse.field("exportNameTemplate").setStringValue(WhatToConvert)
+  DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+WhatToConvert+"$T.dcm")
   DicomToolToUse.field("saveSlices").touch()
 
 def updateTotalVariationInterface():

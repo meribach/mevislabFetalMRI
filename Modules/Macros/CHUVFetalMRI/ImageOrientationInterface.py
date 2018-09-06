@@ -146,6 +146,7 @@ def showImageOrientationInterface():
      FieldGradient = """Field RegistrationGradient {title = "Gradient"}"""
      FieldMinStep = """Field RegistrationMinStep {title = "Min Step"}"""
      FieldMaxStep = """Field RegistrationMaxStep {title = "Max Step"}"""
+     FieldRegNbIt = """Field RegistrationNbIt {title = "Nb It"}"""
      FieldRelaxFactor = """Field RegistrationRelaxationFactor {title = "Relaxation Factor"}"""
      buttonLoadPreviousData = """Button {expandX = No title = "Load Raw Data" name = buttonLoadPreProcessed command = "py: loadPreProcessedAlready()"}"""
      
@@ -157,7 +158,7 @@ def showImageOrientationInterface():
   if ctx.field("ExpertMode").value:
     mdlToSet += """Horizontal { name = horizontalExportMode alignX = Left """ + buttonRunDenoising + """ Execute = "py: getHorizontalControl(\'ExpertButtons\',\'horizontalExportMode\')" } """
     mdlToSet += """Horizontal { name = horizontalExportMode2 alignX = Left """ + FieldPresentRegistration + """ Execute = "py: getHorizontalControl(\'ExpertButtons2\',\'horizontalExportMode2\')" } """
-    mdlToSet += """Horizontal { name = horizontalExportMode3 alignX = Left """ + comboboxRegistration + FieldGradient + FieldMinStep + FieldMaxStep + FieldRelaxFactor + """ Execute = "py: getHorizontalControl(\'ExpertButtons3\',\'horizontalExportMode3\')" } """
+    mdlToSet += """Horizontal { name = horizontalExportMode3 alignX = Left """ + comboboxRegistration + FieldGradient + FieldMinStep + FieldMaxStep + FieldRegNbIt + FieldRelaxFactor + """ Execute = "py: getHorizontalControl(\'ExpertButtons3\',\'horizontalExportMode3\')" } """
     mdlToSet += """Horizontal { name = horizontalExportMode4 alignX = Left """ + buttonLoadPreviousData + """ Execute = "py: getHorizontalControl(\'ExpertButtons4\',\'horizontalExportMode4\')" } """
     #mdlToSet += buttonRunDenoising
   #mdlToSet += FieldStatus
@@ -563,79 +564,7 @@ def registerplaneOrientation(Image="Image0"):
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep1").setObject(inImages)
 
-def cornerMenuClicked():
-  
-  print("user clicked on the conerMenu")
-  print(ctx.field("cornerMenuIteraction").value)
-  
-  if ctx.field("cornerMenuIteraction").value == '3':
-    print("switch overlay")
-    ctx.field("Switch.currentInput").setValue(1 - ctx.field("Switch.currentInput").value)
-    
-  if ctx.field("cornerMenuIteraction").value == '2':
-    print("add/remove overlay")
-    if ctx.field("SoView2DOverlay.alphaFactor").value != 0:
-      ctx.field("SoView2DOverlay.alphaFactor").setValue(0)
-    else:
-      ctx.field("SoView2DOverlay.alphaFactor").setValue(1)
-      
-  if ctx.field("cornerMenuIteraction").value == '1':
-    
-    global activeShowPosition
-    if activeShowPosition == 1:
-      print("show position")
-      inImages = ctx.field("inImageInfos").object()
-      global currentImage
-      if currentImage in inImages.keys():
-       if "Positioning" in inImages[currentImage].keys():
-        if "A" in inImages[currentImage]["Positioning"].keys():
-          ctx.field("LabelA.drawingOn").setValue(True)
-        else:
-          ctx.field("LabelA.drawingOn").setValue(False)
-    
-        if "P" in inImages[currentImage]["Positioning"].keys():
-          ctx.field("LabelP.drawingOn").setValue(True)
-        else:
-          ctx.field("LabelP.drawingOn").setValue(False)
-    
-        if "IH" in inImages[currentImage]["Positioning"].keys():
-          ctx.field("LabelIH.drawingOn").setValue(True)
-        else:
-          ctx.field("LabelIH.drawingOn").setValue(False)
-    
-        if "T" in inImages[currentImage]["Positioning"].keys():
-          ctx.field("LabelT.drawingOn").setValue(True)
-        else:
-          ctx.field("LabelT.drawingOn").setValue(False)
-    
-        if "B" in inImages[currentImage]["Positioning"].keys():
-          ctx.field("LabelB.drawingOn").setValue(True)
-        else:
-          ctx.field("LabelB.drawingOn").setValue(False)
-      
-       else:
-        ctx.field("LabelIH.drawingOn").setValue(False)
-        ctx.field("LabelA.drawingOn").setValue(False)
-        ctx.field("LabelP.drawingOn").setValue(False)
-        ctx.field("LabelT.drawingOn").setValue(False)
-        ctx.field("LabelB.drawingOn").setValue(False)
-      else:  
-       ctx.field("LabelIH.drawingOn").setValue(False)
-       ctx.field("LabelA.drawingOn").setValue(False)
-       ctx.field("LabelP.drawingOn").setValue(False)
-       ctx.field("LabelT.drawingOn").setValue(False)
-       ctx.field("LabelB.drawingOn").setValue(False)        
-    elif activePositioning == 0:
-      print("unshow position")
-      ctx.field("LabelIH.drawingOn").setValue(False)
-      ctx.field("LabelA.drawingOn").setValue(False)
-      ctx.field("LabelP.drawingOn").setValue(False)
-      ctx.field("LabelT.drawingOn").setValue(False)
-      ctx.field("LabelB.drawingOn").setValue(False)
-      
-    activeShowPosition = 1 - activeShowPosition  
-      
-  
+
 def button1PressedImOrient(event,control):
   
   global activeShowPosition
@@ -644,8 +573,8 @@ def button1PressedImOrient(event,control):
   if event["type"] != "MouseButtonPress":
     control.setEatEvent(True)
   
-  if activeShowPosition == 0:
-    ctx.field("cornerMenuIteraction").setValue(1)
+  #if activeShowPosition == 0:
+  #  ctx.field("cornerMenuIteraction").setValue(1)
   
   inImages = ctx.field("inImageInfos").object()  
 
@@ -748,163 +677,13 @@ def button1PressedImOrient(event,control):
         ctx.field("LabelB.drawingOn").setValue(True)    
       elif event["key"] == "Return":
         print("Enter")
-        ctx.field("eventChoice").setValue(0)
-        ctx.field("View2DExtensions.annotation.editingOn").setBoolValue(True)
-        ctx.field("SoView2D.useManagedInteraction").setBoolValue(False)
-        activePositioning = False
-        print("anatomic position registered")  
-        print("modifying voxel to world transformation matrix")
         if (("IH" in inImages[currentPositioning]["Positioning"].keys()) and ("A" in inImages[currentPositioning]["Positioning"].keys()) and ("P" in inImages[currentPositioning]["Positioning"].keys()) and ("T" in inImages[currentPositioning]["Positioning"].keys()) and ("B" in inImages[currentPositioning]["Positioning"].keys())):
-          print("coucou")
-          imagetorotate = ctx.field("itkImageFileReader.output0")
-          voxelSize = imagetorotate.voxelSize()
-        
-          #reset of the world matrix which correspond to the mother and not the foetus
-          ctx.field("SetWorldMatrix.scale").setValue(voxelSize)
-          ctx.field("SetWorldMatrix.translation").setValue([0,0,0])
-          ctx.field("SetWorldMatrix.center").setValue([0,0,0])
-          ctx.field("SetWorldMatrix.scaleOrientation").setValue([0,0,1,0])
-          ctx.field("SetWorldMatrix.rotation").setValue([0,0,0])
-          #ctx.field("SetWorldMatrix.rotation").setValue()
-          #ca fait quoi si je prend pas en compte la voxel size?
-          PA = numpy.subtract(numpy.multiply(inImages[currentPositioning]["Positioning"]["Avox"],voxelSize),numpy.multiply(inImages[currentPositioning]["Positioning"]["Pvox"],voxelSize))
-          PA = PA/numpy.linalg.norm(PA)
-          orientPA = numpy.cross(PA,numpy.array([0,-1,0]))
-          
-          #I think I have to recalculate T or B to make the vector orthogonal to PA. I think that's why sometimes I get a resulting image with A and P flipped. because the vector BT make a rotation along the axis.
-          BT = numpy.subtract(numpy.multiply(inImages[currentPositioning]["Positioning"]["Bvox"],voxelSize),numpy.multiply(inImages[currentPositioning]["Positioning"]["Tvox"],voxelSize))
-          lengthBT = numpy.linalg.norm(BT)
-          BT=BT/numpy.linalg.norm(BT)
-          vectorOrthoBoth = numpy.cross(PA,BT)
-          recalculateBTortho = numpy.cross(vectorOrthoBoth,PA)
-          newBvox= inImages[currentPositioning]["Positioning"]["Tvox"]+numpy.multiply(recalculateBTortho*lengthBT,numpy.array([1/voxelSize[0],1/voxelSize[1],1/voxelSize[2]]))
-          #orientBT = numpy.cross(BT,numpy.array([0,0,1]))
-          
-          if numpy.linalg.norm(orientPA) != 0:
-            skewMatrixPA = numpy.array(((0,-orientPA[2],orientPA[1]),(orientPA[2],0,-orientPA[0]),(-orientPA[1],orientPA[0],0)))
-            #skewMatrixBT = numpy.array(((0,-orientBT[2],orientBT[1]),(orientBT[2],0,-orientBT[0]),(-orientBT[1],orientBT[0],0)))
-          
-            SquaredPA = numpy.dot(skewMatrixPA,skewMatrixPA)*1/(1+numpy.dot(PA,numpy.array([0,-1,0])))
-            #SquaredBT = numpy.dot(skewMatrixBT,skewMatrixBT)*1/(1+numpy.dot(BT,numpy.array([0,1,0])))
-          
-            #FullRotation = numpy.array(((1,0,0),(0,1,0),(0,0,1))) + skewMatrixAP  + SquaredAP + SquaredBT + skewMatrixBT
-            #ca ne marche pas je ne peux pas composer des matrices de rotations comme ca
-            #PA
-            RotationPA = numpy.array(((1,0,0),(0,1,0),(0,0,1))) + skewMatrixPA  + SquaredPA
-            FullRotationPA = numpy.identity(4)
-            FullRotationPA[0:3,0:3]=RotationPA
-          else:
-           if numpy.sign(PA[1])==-1:
-             FullRotationPA = numpy.identity(4)
-           elif numpy.sign(PA[1])==1:
-             FullRotationPA = numpy.identity(4)
-             FullRotationPA[1,1]=-1
-
-          #la le determinant est bien a 1, numpy.linalg.det(FullRotationAP)
-          
-          #BT
-          #RotationBT = numpy.array(((1,0,0),(0,1,0),(0,0,1))) + skewMatrixBT  + SquaredBT
-          #FullRotationBT = numpy.identity(4)
-          #FullRotationBT[0:3,0:3]=RotationBT          
-          
-          #FullRotation1[:-1,-1]=-numpy.multiply(numpy.array(inImages[currentPositioning]["Positioning"]['IHvox']),voxelSize)
-          Translation = numpy.identity(4)
-          Translation[:-1,-1]=-numpy.multiply(numpy.array(inImages[currentPositioning]["Positioning"]['IHvox']),voxelSize)
-          RotationPAautour0 = numpy.dot(numpy.dot(numpy.linalg.inv(Translation),FullRotationPA),Translation)
-          
-          FirstTransformation = numpy.dot(Translation,RotationPAautour0)
-          #sens2 = numpy.dot(RotationAPautour0,Translation)
-          
-          #ca ca marche pas il faut que je recalcul ma nouvelle position de IH ? et B et T aussi en fait.... 
-          IHinter=list(inImages[currentPositioning]["Positioning"]['IHvox']) #should I use the voxel size ? but normaly not ...
-          IHinter.append(1)
-          newIH = numpy.dot(FirstTransformation,numpy.multiply(IHinter,numpy.array([voxelSize[0],voxelSize[1],voxelSize[2],1])))
-          print("newIH : %s"%str(newIH))
-          Binter=list(newBvox)
-          Binter.append(1)
-          newB = numpy.dot(FirstTransformation,numpy.multiply(Binter,numpy.array([voxelSize[0],voxelSize[1],voxelSize[2],1])))
-          print("newB : %s"%str(newB))
-          Tinter=list(inImages[currentPositioning]["Positioning"]['Tvox'])
-          Tinter.append(1)          
-          newT = numpy.dot(FirstTransformation,numpy.multiply(Tinter,numpy.array([voxelSize[0],voxelSize[1],voxelSize[2],1])))
-          print("newT : %s"%str(newT))
-          ctx.field("SoView2DLabel.worldPosition").setValue([newB[0],newB[1],newB[2]])
-          ctx.field("SoView2DLabel1.worldPosition").setValue([newT[0],newT[1],newT[2]])
-          newBT = numpy.subtract(newB[0:3],newT[0:3])
-          newBT=newBT/numpy.linalg.norm(newBT)
-          print("new BT")
-          print(newBT)
-          orientBT = numpy.cross(newBT,numpy.array([0,0,-1]))
-          if numpy.linalg.norm(orientBT) != 0:
-            skewMatrixBT = numpy.array(((0,-orientBT[2],orientBT[1]),(orientBT[2],0,-orientBT[0]),(-orientBT[1],orientBT[0],0)))
-            SquaredBT = numpy.dot(skewMatrixBT,skewMatrixBT)*1/(1+numpy.dot(newBT,numpy.array([0,0,-1])))
-          
-            RotationBT = numpy.array(((1,0,0),(0,1,0),(0,0,1))) + skewMatrixBT  + SquaredBT
-            FullRotationBT = numpy.identity(4)
-            FullRotationBT[0:3,0:3]=RotationBT
-          else:
-           if numpy.sign(newBT[2])==-1:
-             FullRotationBT = numpy.identity(4)
-           elif numpy.sign(newBT[2])==1:
-             FullRotationBT = numpy.identity(4)
-             FullRotationBT[2,2]=-1
-          print(FullRotationBT)
-          
-          #getnewIHvoxelPosition
-          #ctx.field("getIHvoxel.worldPos").setValue([0,0,0])
-          #voxIH=ctx.field("getIHvoxel.voxelPos").value
-          #print("voxIH")
-          #print(voxIH)
-          #newImage =ctx.field("TransformWorldMatrixTransAndAP.output0")
-          #newVoxelSize = newImage.voxelSize()
-          #make the rotation around voxIH
-          #Translation2 = numpy.identity(4)
-          #Translation2[:-1,-1]=-numpy.multiply(numpy.array(voxIH),newVoxelSize)
-          #RotationBTautour0 = numpy.dot(numpy.dot(numpy.linalg.inv(Translation2),FullRotationBT),Translation2)
-          #print(RotationBTautour0)
-          #print(newBT)
-          #FullTransfo=numpy.dot(FirstTransformation,FullRotationBT)
-          #FullTransfoothersens = numpy.dot(FullRotationBT,FirstTransformation)
-          #print("FullTransfo")
-          #print(FullTransfo)
-          ctx.field("TransformWorldMatrixBT.transformation").setValue(FullRotationBT)
-          #on fait pareil avec juste AP pour comprendre
-          ctx.field("TransformWorldMatrixTransAndAP.transformation").setValue(FirstTransformation)
-          
-          #ctx.field("TransformWorldMatrix.transformation").setValue(FullTransfo)
-          WorldChangedName= inImages[currentImage]['file']
-          WorldChangedNameFull=WorldChangedName.replace('.nii','_worldmatrixModified_lr.nii')
-          #WorldChangedNameAP=WorldChangedName.replace('.nii','_worldmatrixModifiedAP.nii')
-          
-          ctx.field("itkImageFileWriterWorldMatrixChanged.fileName").setValue(WorldChangedNameFull)
-          ctx.field("itkImageFileWriterWorldMatrixChanged.save").touch()
-          #ctx.field("itkImageFileWriterTransAndAP.unresolvedFileName").setValue(WorldChangedNameAP)
-          #ctx.field("itkImageFileWriterTransAndAP.save").touch()
-          inImages[currentImage].update({"WorldChanged":WorldChangedNameFull})
-          
-          #to change
-          #inImages[currentImage].update({"newWorldMatrix":FullTransfo})
-          ctx.field("inImageInfos").setObject(inImages)
-          ctx.field("outImagesInfosStep1").setObject(inImages)
-          valIm = currentImage.split('Image')[-1]
-          if ctx.hasControl("GenerateBrainMask%s"%valIm):
-            try:
-              ctx.control("GenerateBrainMask%s"%valIm).setEnabled(True)
-              ctx.control("buttonResetBrainMask%s"%valIm).setEnabled(True)
-            except Exception as err:
-              print("don't know")
-          else:
-            try:
-              g_HorizontalControl[currentImage].control("GenerateBrainMask%s"%valIm).setEnabled(True)
-              g_HorizontalControl[currentImage].control("buttonResetBrainMask%s"%valIm).setEnabled(True)
-            except Exception as err:
-              print("don't know")
-              
+          PerformReorientation()            
           #modify mask
           ctx.module("GetAtlasMacro").call("updateAtlas")
           generateBrainMask(currentImage)
 
-          #voxelworldmatrix = imagetorotate.voxelToWorldMatrix()
+        #voxelworldmatrix = imagetorotate.voxelToWorldMatrix()
         
   elif activePositioning ==False:
     global activeMasking
@@ -915,7 +694,145 @@ def button1PressedImOrient(event,control):
     #else:
       
       #print("j'en veux pas de ton click souris")
-    
+
+def PerformReorientation():
+  
+  inImages = ctx.field("inImageInfos").object()  
+  ctx.field("eventChoice").setValue(0)
+  ctx.field("View2DExtensions.annotation.editingOn").setBoolValue(True)
+  ctx.field("SoView2D.useManagedInteraction").setBoolValue(False)
+  activePositioning = False
+  print("anatomic position registered")  
+  print("modifying voxel to world transformation matrix")
+  if (("IH" in inImages[currentPositioning]["Positioning"].keys()) and ("A" in inImages[currentPositioning]["Positioning"].keys()) and ("P" in inImages[currentPositioning]["Positioning"].keys()) and ("T" in inImages[currentPositioning]["Positioning"].keys()) and ("B" in inImages[currentPositioning]["Positioning"].keys())):
+    imagetorotate = ctx.field("itkImageFileReader.output0")
+    voxelSize = imagetorotate.voxelSize()
+  
+    #reset of the world matrix which correspond to the mother and not the foetus
+    ctx.field("SetWorldMatrix.scale").setValue(voxelSize)
+    ctx.field("SetWorldMatrix.translation").setValue([0,0,0])
+    ctx.field("SetWorldMatrix.center").setValue([0,0,0])
+    ctx.field("SetWorldMatrix.scaleOrientation").setValue([0,0,1,0])
+    ctx.field("SetWorldMatrix.rotation").setValue([0,0,0])
+    #ctx.field("SetWorldMatrix.rotation").setValue()
+    #ca fait quoi si je prend pas en compte la voxel size?
+    PA = numpy.subtract(numpy.multiply(inImages[currentPositioning]["Positioning"]["Avox"],voxelSize),numpy.multiply(inImages[currentPositioning]["Positioning"]["Pvox"],voxelSize))
+    PA = PA/numpy.linalg.norm(PA)
+    orientPA = numpy.cross(PA,numpy.array([0,-1,0]))
+          
+    #I think I have to recalculate T or B to make the vector orthogonal to PA. I think that's why sometimes I get a resulting image with A and P flipped. because the vector BT make a rotation along the axis.
+    BT = numpy.subtract(numpy.multiply(inImages[currentPositioning]["Positioning"]["Bvox"],voxelSize),numpy.multiply(inImages[currentPositioning]["Positioning"]["Tvox"],voxelSize))
+    lengthBT = numpy.linalg.norm(BT)
+    BT=BT/numpy.linalg.norm(BT)
+    vectorOrthoBoth = numpy.cross(PA,BT)
+    recalculateBTortho = numpy.cross(vectorOrthoBoth,PA)
+    newBvox= inImages[currentPositioning]["Positioning"]["Tvox"]+numpy.multiply(recalculateBTortho*lengthBT,numpy.array([1/voxelSize[0],1/voxelSize[1],1/voxelSize[2]]))
+    #orientBT = numpy.cross(BT,numpy.array([0,0,1]))
+          
+    if numpy.linalg.norm(orientPA) != 0:
+      skewMatrixPA = numpy.array(((0,-orientPA[2],orientPA[1]),(orientPA[2],0,-orientPA[0]),(-orientPA[1],orientPA[0],0)))
+      #skewMatrixBT = numpy.array(((0,-orientBT[2],orientBT[1]),(orientBT[2],0,-orientBT[0]),(-orientBT[1],orientBT[0],0)))
+          
+      SquaredPA = numpy.dot(skewMatrixPA,skewMatrixPA)*1/(1+numpy.dot(PA,numpy.array([0,-1,0])))
+      #SquaredBT = numpy.dot(skewMatrixBT,skewMatrixBT)*1/(1+numpy.dot(BT,numpy.array([0,1,0])))
+          
+      #FullRotation = numpy.array(((1,0,0),(0,1,0),(0,0,1))) + skewMatrixAP  + SquaredAP + SquaredBT + skewMatrixBT
+      #ca ne marche pas je ne peux pas composer des matrices de rotations comme ca
+      #PA
+      RotationPA = numpy.array(((1,0,0),(0,1,0),(0,0,1))) + skewMatrixPA  + SquaredPA
+      FullRotationPA = numpy.identity(4)
+      FullRotationPA[0:3,0:3]=RotationPA
+    else:
+      if numpy.sign(PA[1])==-1:
+        FullRotationPA = numpy.identity(4)
+      elif numpy.sign(PA[1])==1:
+        FullRotationPA = numpy.identity(4)
+        FullRotationPA[1,1]=-1
+
+    #la le determinant est bien a 1, numpy.linalg.det(FullRotationAP)
+          
+    #BT
+    #RotationBT = numpy.array(((1,0,0),(0,1,0),(0,0,1))) + skewMatrixBT  + SquaredBT
+    #FullRotationBT = numpy.identity(4)
+    #FullRotationBT[0:3,0:3]=RotationBT          
+          
+    #FullRotation1[:-1,-1]=-numpy.multiply(numpy.array(inImages[currentPositioning]["Positioning"]['IHvox']),voxelSize)
+    Translation = numpy.identity(4)
+    Translation[:-1,-1]=-numpy.multiply(numpy.array(inImages[currentPositioning]["Positioning"]['IHvox']),voxelSize)
+    RotationPAautour0 = numpy.dot(numpy.dot(numpy.linalg.inv(Translation),FullRotationPA),Translation)
+          
+    FirstTransformation = numpy.dot(Translation,RotationPAautour0)
+    #sens2 = numpy.dot(RotationAPautour0,Translation)
+          
+    #ca ca marche pas il faut que je recalcul ma nouvelle position de IH ? et B et T aussi en fait.... 
+    IHinter=list(inImages[currentPositioning]["Positioning"]['IHvox']) #should I use the voxel size ? but normaly not ...
+    IHinter.append(1)
+    newIH = numpy.dot(FirstTransformation,numpy.multiply(IHinter,numpy.array([voxelSize[0],voxelSize[1],voxelSize[2],1])))
+    print("newIH : %s"%str(newIH))
+    Binter=list(newBvox)
+    Binter.append(1)
+    newB = numpy.dot(FirstTransformation,numpy.multiply(Binter,numpy.array([voxelSize[0],voxelSize[1],voxelSize[2],1])))
+    print("newB : %s"%str(newB))
+    Tinter=list(inImages[currentPositioning]["Positioning"]['Tvox'])
+    Tinter.append(1)          
+    newT = numpy.dot(FirstTransformation,numpy.multiply(Tinter,numpy.array([voxelSize[0],voxelSize[1],voxelSize[2],1])))
+    print("newT : %s"%str(newT))
+    ctx.field("SoView2DLabel.worldPosition").setValue([newB[0],newB[1],newB[2]])
+    ctx.field("SoView2DLabel1.worldPosition").setValue([newT[0],newT[1],newT[2]])
+    newBT = numpy.subtract(newB[0:3],newT[0:3])
+    newBT=newBT/numpy.linalg.norm(newBT)
+    print("new BT")
+    print(newBT)
+    orientBT = numpy.cross(newBT,numpy.array([0,0,-1]))
+    if numpy.linalg.norm(orientBT) != 0:
+      skewMatrixBT = numpy.array(((0,-orientBT[2],orientBT[1]),(orientBT[2],0,-orientBT[0]),(-orientBT[1],orientBT[0],0)))
+      SquaredBT = numpy.dot(skewMatrixBT,skewMatrixBT)*1/(1+numpy.dot(newBT,numpy.array([0,0,-1])))
+          
+      RotationBT = numpy.array(((1,0,0),(0,1,0),(0,0,1))) + skewMatrixBT  + SquaredBT
+      FullRotationBT = numpy.identity(4)
+      FullRotationBT[0:3,0:3]=RotationBT
+    else:
+      if numpy.sign(newBT[2])==-1:
+        FullRotationBT = numpy.identity(4)
+      elif numpy.sign(newBT[2])==1:
+        FullRotationBT = numpy.identity(4)
+        FullRotationBT[2,2]=-1
+        print(FullRotationBT)
+          
+    ctx.field("TransformWorldMatrixBT.transformation").setValue(FullRotationBT)
+    #on fait pareil avec juste AP pour comprendre
+    ctx.field("TransformWorldMatrixTransAndAP.transformation").setValue(FirstTransformation)
+          
+    #ctx.field("TransformWorldMatrix.transformation").setValue(FullTransfo)
+    WorldChangedName= inImages[currentImage]['file']
+    WorldChangedNameFull=WorldChangedName.replace('.nii','_worldmatrixModified_lr.nii')
+    #WorldChangedNameAP=WorldChangedName.replace('.nii','_worldmatrixModifiedAP.nii')
+          
+    ctx.field("itkImageFileWriterWorldMatrixChanged.fileName").setValue(WorldChangedNameFull)
+    ctx.field("itkImageFileWriterWorldMatrixChanged.save").touch()
+    #ctx.field("itkImageFileWriterTransAndAP.unresolvedFileName").setValue(WorldChangedNameAP)
+    #ctx.field("itkImageFileWriterTransAndAP.save").touch()
+    inImages[currentImage].update({"WorldChanged":WorldChangedNameFull})
+          
+    #to change
+    #inImages[currentImage].update({"newWorldMatrix":FullTransfo})
+    ctx.field("inImageInfos").setObject(inImages)
+    ctx.field("outImagesInfosStep1").setObject(inImages)
+    valIm = currentImage.split('Image')[-1]
+    if ctx.hasControl("GenerateBrainMask%s"%valIm):
+       try:
+         ctx.control("GenerateBrainMask%s"%valIm).setEnabled(True)
+         ctx.control("buttonResetBrainMask%s"%valIm).setEnabled(True)
+       except Exception as err:
+         print("don't know")
+    else:
+      try:
+         g_HorizontalControl[currentImage].control("GenerateBrainMask%s"%valIm).setEnabled(True)
+         g_HorizontalControl[currentImage].control("buttonResetBrainMask%s"%valIm).setEnabled(True)
+      except Exception as err:
+         print("don't know")
+  else:
+    return
   
 def generateBrainMask(Image="Image0"): 
   updateImage(Image)
@@ -1085,6 +1002,46 @@ def button1PressedMaskRefine(event):
       NameFull=nameInter.replace('.nii','_brain_mask.nii')
       ctx.field("itkImageFileWriterMask.unresolvedFileName").setStringValue(NameFull)
       ctx.field("itkImageFileWriterMask.save").touch()
+      
+      #we convert them to dicom as well:
+      print("convert Mask To Dicom")
+      originalTree = ctx.field("SetDicomTreeOnImage.input0").getDicomTree()
+      mutableTree = originalTree.createDerivedTree()
+      mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, inImages[currentImage]["Positioning"]["IH"], "FD")
+      mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, inImages[currentImage]["Positioning"]["A"], "FD")
+      mutableTree.setPrivateTag(0x07a1, "pdeman", 0x45, inImages[currentImage]["Positioning"]["P"], "FD")
+      mutableTree.setPrivateTag(0x07a1, "pdeman", 0x46, inImages[currentImage]["Positioning"]["B"], "FD")
+      mutableTree.setPrivateTag(0x07a1, "pdeman", 0x47, inImages[currentImage]["Positioning"]["T"], "FD")
+      mutableTree.setPrivateTag(0x07a1, "pdeman", 0x48, inImages[currentImage]["Positioning"]["IHvox"], "FD")
+      mutableTree.setPrivateTag(0x07a1, "pdeman", 0x49, inImages[currentImage]["Positioning"]["Avox"], "FD")
+      mutableTree.setPrivateTag(0x07a1, "pdeman", 0x4a, inImages[currentImage]["Positioning"]["Pvox"], "FD")
+      mutableTree.setPrivateTag(0x07a1, "pdeman", 0x4b, inImages[currentImage]["Positioning"]["Bvox"], "FD")
+      mutableTree.setPrivateTag(0x07a1, "pdeman", 0x4c, inImages[currentImage]["Positioning"]["Tvox"], "FD")
+      mutableTree.setPrivateTag(0x07a1, "pdeman", 0x4d, inImages[currentImage]['planeOrientation'],"SH")
+      
+      ctx.field("SetDicomTreeOnImage.inDicomTree").setObject(mutableTree)
+      
+      if ctx.field("FromFrontier").value:
+        #we use dicom tool from testinstall, dicomSend
+        print("via Frontier")
+        _frontier = ctx.module("parent:FrontierSyngoInterface").object()
+        ctx.field("parent:DicomExport.exportBaseDir").setStringValue(_frontier.getOutgoingDicomDirectory())
+        DicomToolToUse = ctx.module("parent:DicomExport") #ctx.module("DicomTool") #
+        print(DicomToolToUse.field("exportBaseDir").value)
+        mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, inImages[currentImage]["SeriesInstanceUID"], "UI")
+        #ctx.connectField("parent:DicomExport.inImage","DicomTagModify.output0")
+        ctx.connectField("parent:DicomExport.inImage","SetDicomTreeOnImage.output0")
+      else:
+        #we use dicom tool from TotalVariationInterface, dicomSave
+        print("not via Frontier")
+        DicomToolToUse = ctx.module("DicomTool")
+        ctx.field("DicomTool.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
+  
+      ctx.field("DicomTagModify.tagValue0").setValue("BrainMask")
+      ctx.field("DicomTagModify.apply").touch()
+      DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+"brainMask"+currentImage+"$T.dcm")
+      DicomToolToUse.field("saveSlices").touch()
+      print("DicomTool done")
       
       if currentImage in inImages.keys():
         inImages[currentImage].update({"mask":NameFull})

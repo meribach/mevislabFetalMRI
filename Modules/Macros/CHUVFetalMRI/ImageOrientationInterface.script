@@ -48,6 +48,7 @@ Interface {
     Field RegistrationRelaxationFactor {internalName = mialImageReconstruction.RelaxationFactorRegistration}
     Field RegistrationMinStep {internalName = mialImageReconstruction.MinStepLengthRegistration}
     Field RegistrationMaxStep {internalName = mialImageReconstruction.MaxStepLengthRegistration}
+    Field RegistrationNbIt {internalName = mialImageReconstruction.nbIterationsRegistration}
     
     Field WaitForReconstruction {type = Bool value = False}
     Field FromFrontier {type = Bool value = False}
