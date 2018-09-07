@@ -39,43 +39,48 @@
           <div class="body" role="main">
             
   <div class="section" id="imageorientationinterface">
-<h1>ImageOrientationInterface<a class="headerlink" href="#imageorientationinterface" title="Permalink to this headline">¶</a></h1>
-<dl class="module">
-<dt id="mlabmodule-ImageOrientationInterface">
-<code class="descname">MacroModule</code><a class="headerlink" href="#mlabmodule-ImageOrientationInterface" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>author</td>
-<td><a class="reference internal" href="author.html# FetalMRI" title="FetalMRI"><code class="xref mlab mlab-author docutils literal"><span class="pre">FetalMRI</span></code></a></td>
-</tr>
-<tr class="row-even"><td>package</td>
-<td><a class="reference internal" href="index.html#top" title="CHUV/FetalMRI"><code class="xref mlab mlab-package docutils literal"><span class="pre">CHUV/FetalMRI</span></code></a></td>
-</tr>
-<tr class="row-odd"><td>definition</td>
-<td><a class="reference external" href="../../../Modules/Macros/CHUVFetalMRI/ImageOrientationInterface.def">ImageOrientationInterface.def</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
+    <h1>ImageOrientationInterface<a class="headerlink" href="#imageorientationinterface" title="Permalink to this headline">¶</a></h1>
+    <dl class="module">
+    <dt id="mlabmodule-ImageOrientationInterface">
+    <code class="descname">MacroModule</code><a class="headerlink" href="#mlabmodule-ImageOrientationInterface" title="Permalink to this definition">¶</a></dt>
+    <dd><table border="1" class="docutils">
+    <colgroup>
+    </colgroup>
+    <tbody valign="top">
+    <tr class="row-odd"><td>author</td>
+    <td><a class="reference internal" href="author.html# FetalMRI" title="FetalMRI"><code class="xref mlab mlab-author docutils literal"><span class="pre">FetalMRI</span></code></a></td>
+    </tr>
+    <tr class="row-even"><td>package</td>
+    <td><a class="reference internal" href="index.html#top" title="CHUV/FetalMRI"><code class="xref mlab mlab-package docutils literal"><span class="pre">CHUV/FetalMRI</span></code></a></td>
+    </tr>
+    <tr class="row-odd"><td>definition</td>
+    <td><a class="reference external" href="../../../Modules/Macros/CHUVFetalMRI/ImageOrientationInterface.def">ImageOrientationInterface.def</a></td>
+    </tr>
+    </tbody>
+    </table>
+    </dd></dl>
+  </div>
  
- <div class="section" id = "ExampleVideos">
+ <div class= "section" id="purpose">
+   <h1>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline"></a></h1>
+   <p>Load all low resolution images, reorient them, perform the brain mask and do all preliminary steps to get the first Scatter Data Interpolation</p>  
+  
+ </div>
+ 
+ <div class="section" id="examplevideos">
   <h1>ExampleVideos<a class="headerlink" href="#examplevideos" title="Permalink to this headline"></a></h1>
-  <div class="section" id="usingFrontier">
-    <h2>usingFrontier<a class="headerlink" href="usingfrontier" title="Permalink to this headline"></a></h2>
+  <div class="section" id="usingfrontier">
+    <h2>usingFrontier<a class="headerlink" href="#usingfrontier" title="Permalink to this headline"></a></h2>
      <video width="520" height="440" controls>
        <source src="./Video/startAndGenerateMask.webm" type="video/webm">
        <!--<source src="/assets_tutorials/media/Shaun-the-Sheep-The-Movie-Official-Trailer.ogg" type="video/ogg">-->
        Votre navigateur ne supporte pas la balise vidéo.
      </video>   
   </div>
-  <div class="section" id="usingMevislabOnly">
-    <h2>usingFrontier<a class="headerlink" href="usingmevislabonly" title="Permalink to this headline"></a></h2>
-     <video width="320" height="240" controls>
-       <source src="./Video/startAndGenerateMask.webm" type="video/webm">
+  <div class="section" id="usingmevislabonly">
+    <h2>usingFrontier<a class="headerlink" href="#usingmevislabonly" title="Permalink to this headline"></a></h2>
+     <video width="520" height="440" controls>
+       <source src="./Video/ImageOrientationMevislabOnly.webm" type="video/webm">
        <!--<source src="/assets_tutorials/media/Shaun-the-Sheep-The-Movie-Official-Trailer.ogg" type="video/ogg">-->
        Votre navigateur ne supporte pas la balise vidéo.
      </video>   
@@ -83,7 +88,7 @@
  </div>
  
 <div class="section" id="windows">
-<h1>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h1>
+<h1>Windows<a class="headerlink" href="#windows" title="Permalink to this headline"></a></h1>
 <div class="section" id="imageorientationpanel">
 <h2>ImageOrientationPanel<a class="headerlink" href="#imageorientationpanel" title="Permalink to this headline">¶</a></h2>
 <img alt="Images/Screenshots/ImageOrientationInterface.ImageOrientationPanel.png" src="Images/Screenshots/ImageOrientationInterface.ImageOrientationPanel.png" />
@@ -105,12 +110,15 @@
 <p> Press Enter to validate the positions </p>
 <p> if the brain mask is completely off you can reedit the anatomical positions by pressing again the button and change only some of the positions </p>
 
+<p><b>Positioning of IH</b></p>
+<img alt="Images/Screenshots/Positioning.png" src="Images/Screenshots/Positioning.png" />
+
 <h3>Edit Brain Mask</h3>
-<p> (enabled only if anatomical positions of the corresponding image is set. enter automatically in this mode just after having set the anatomical points) </p>
-<p> The Orientation of the stack has to be set (comboBox Orientation described below) </p>
-<p> you can move the current slice maks by pressing 2,8,4,6,1,9 to move the mask in the top/bottom,antero/posterior axes and rotate it along the orthogonal axis. </p>
-<p> you can modify the mask by redrawing it using the mouse. it you start from outside the mask and go inside, it will remove the intersection. <br> if you start from inside and go outside it will do the union </p>
-<p> you can remove completly the current mask by pressing backspace once the mouse is over it. and start a new mask by drawing it just after </p>
+<p>(enabled only if anatomical positions of the corresponding image is set. enter automatically in this mode just after having set the anatomical points) </p>
+<p>The Orientation of the stack has to be set already(comboBox Orientation described below) </p>
+<p>-you can move the current slice maks by pressing 2,8,4,6,1,9 to move the mask in the top/bottom,antero/posterior axes and rotate it along the orthogonal axis. </p>
+<p>-you can modify the mask by redrawing it using the mouse. it you start from outside the mask and go inside, it will remove the intersection. <br> if you start from inside and go outside it will do the union </p>
+<p>-you can remove completly the current mask by pressing backspace once the mouse is over it. and start a new mask by drawing it just after </p>
 <p> Press Enter to Validate </p>
 
 <h3>Reset Brain Mask</h3>
@@ -118,7 +126,12 @@
 
 <h3>Orientation Combo Box</h3>
 <p>Orientation of the Fetus :4 possible values: unknown (by default), axial, sagittal, coronal.</p>
-<p>Best if done before doing anything else</p>
+<p><b>Best if done before doing anything else</b></p>
+
+<h3>refImage</h3>
+<p>To define which image is gonna be used as reference. When created the SDI, the reference image is used to generate the first base of the high resolution image.
+<br>All other low resolution images will be projected on it.
+<br><b>It must be the best quality image, with the less movement between slices</b></p>
 
 </div>
 
@@ -420,6 +433,12 @@ The mask based on the atlas are made using the module generateTemplateMask : <a 
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">ImageOrientationInterface</a></li>
+<li><a class="reference internal" href="#purpose">Purpose</a></li>
+<li><a class="reference internal" href="#examplevideos">ExampleVideos</a></li><ul>
+ <li><a class="reference internal" href="#usingfrontier">usingFrontier</a></li>
+ <li><a class="reference internal" href="#usingmevislabonly">usingMevislabOnly</a></li>
+</ul>
+
 <li><a class="reference internal" href="#windows">Windows</a><ul>
 <li><a class="reference internal" href="#imageorientationpanel">Interface</a></li>
 <li><a class="reference internal" href="#buttondescription">Button Description</a></li>
