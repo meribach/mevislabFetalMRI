@@ -1005,6 +1005,11 @@ def button1PressedMaskRefine(event):
       
       #we convert them to dicom as well:
       print("convert Mask To Dicom")
+      ctx.field("DicomTagModify.tagValue0").setValue("BrainMask")
+      ctx.field("DicomTagModify.tagValue1").setValue(inImages[currentImage]["StudyDescription"])
+      ctx.field("DicomTagModify.tagValue2").setValue(inImages[currentImage]["PatientName"])
+      ctx.field("DicomTagModify.tagValue3").setValue(inImages[currentImage]["PatientID"])
+      ctx.field("DicomTagModify.apply").touch()
       originalTree = ctx.field("SetDicomTreeOnImage.input0").getDicomTree()
       mutableTree = originalTree.createDerivedTree()
       mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, inImages[currentImage]["Positioning"]["IH"], "FD")
@@ -1037,8 +1042,7 @@ def button1PressedMaskRefine(event):
         DicomToolToUse = ctx.module("DicomTool")
         ctx.field("DicomTool.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
   
-      ctx.field("DicomTagModify.tagValue0").setValue("BrainMask")
-      ctx.field("DicomTagModify.apply").touch()
+
       DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+"brainMask"+currentImage+"$T.dcm")
       DicomToolToUse.field("saveSlices").touch()
       print("DicomTool done")

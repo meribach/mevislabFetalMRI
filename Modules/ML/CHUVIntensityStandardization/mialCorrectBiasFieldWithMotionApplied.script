@@ -1,0 +1,30 @@
+//----------------------------------------------------------------------------------
+//! CHUVIntensityStandardization module definitions.
+/*!
+// \file    mialCorrectBiasFieldWithMotionApplied.script
+// \author  FetalMRI
+// \date    2018-09-24
+*/
+//----------------------------------------------------------------------------------
+
+
+Window {
+  mw = 640
+  Category {
+    Field inputImageFile {
+    }
+    Field maskImageFile {
+    }
+    Field transformInFile {
+    }
+    Field BiasFieldInFile {
+    }
+    Field outputImageFile {
+    }
+    Field BiasFieldOutputFile {
+    }
+    Button startTask {}           //{ dependsOn = !taskRunning }
+    Button startTaskModal {}
+    Field status {}
+  }
+}

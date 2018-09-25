@@ -98,8 +98,10 @@ MyIntensityStandardization {
                  mialsrtkSliceBySliceCorrectBiasFieldWrapper.lib$${d} \
                  mialsrtkSliceBySliceN4BiasFieldCorrectionLib.lib$${d} \
                  mialsrtkSliceBySliceN4BiasFieldCorrectionWrapper.lib$${d} \
-				 mialsrtkN4BiasFieldCorrectionLib.lib \
-				 mialsrtkN4BiasFieldCorrectionWrapper.lib
+		 mialsrtkN4BiasFieldCorrectionLib.lib \
+		 mialsrtkN4BiasFieldCorrectionWrapper.lib \
+                 mialsrtkCorrectBiasFieldWithMotionAppliedLib.lib \
+                 mialsrtkCorrectBiasFieldWithMotionAppliedWrapper.lib
    unix:LIBS +=	 -lmialsrtkCorrectSliceIntensityLib \
                  -lmialsrtkCorrectSliceIntensityWrapper \
                  -lmialsrtkIntensityStandardizationLib \

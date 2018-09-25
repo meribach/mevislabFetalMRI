@@ -3332,7 +3332,7 @@ module DicomTagModify {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "920 340 518 488"
+        geometry = "1037 306 518 488"
         sizeHint = "518 482"
         wasOpen = no
       }
@@ -3345,17 +3345,17 @@ module DicomTagModify {
     removeTag0 = FALSE
     tagVR0 = LO
     stdTagVR0 = TRUE
-    tagName1 = ""
+    tagName1 = StudyDescription
     tagValue1 = ""
     removeTag1 = FALSE
-    tagVR1 = ""
-    stdTagVR1 = FALSE
-    tagName2 = ""
+    tagVR1 = LO
+    stdTagVR1 = TRUE
+    tagName2 = PatientName
     tagValue2 = ""
     removeTag2 = FALSE
-    tagVR2 = LO
+    tagVR2 = PN
     stdTagVR2 = TRUE
-    tagName3 = ""
+    tagName3 = PatientID
     tagValue3 = ""
     removeTag3 = FALSE
     tagVR3 = LO
@@ -3388,7 +3388,7 @@ module DicomTool {
       window _default {
         geometry = "943 418 820 500"
         sizeHint = "604 420"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -3657,7 +3657,7 @@ networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 212
+        uniqueId = 214
         objectName = DisplayLabelsOnTopImage
         parentUniqueId = 0
         color  {
@@ -3679,7 +3679,7 @@ networkModel  {
         }
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 213
+        uniqueId = 215
         objectName = ModifyWorldToMatrix
         parentUniqueId = 0
         color  {
@@ -3749,7 +3749,7 @@ OrthoSwapFlip ferait l'affaire ?</p>
         titleFrame = "1715 1448 268 22"
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 214
+        uniqueId = 216
         objectName = checkAtlasImage
         parentUniqueId = 0
         color  {

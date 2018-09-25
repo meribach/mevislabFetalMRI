@@ -61,4 +61,15 @@ MLModule mialN4BiasField {
   keywords           = ""
   seeAlso            = ""
   externalDefinition = $(LOCAL)/mialN4BiasField.script
-}  
+} 
+
+MLModule mialCorrectBiasFieldWithMotionApplied {
+  DLL                = "CHUVIntensityStandardization"
+
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/mialCorrectBiasFieldWithMotionApplied.script
+} 
