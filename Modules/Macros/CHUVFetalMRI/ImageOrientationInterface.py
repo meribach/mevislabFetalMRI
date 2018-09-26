@@ -1150,22 +1150,23 @@ def runAllFirstSetBackgroundTasks():
       return
 
     #should set all outputSucceed to False (normally it's already done by the clear functions of the different ML module but it can't hurt)
-    #ctx.field("mialOrientImage.outputSucceed").setBoolValue(False)
-    #ctx.field("mialOrientImageNLM.outputSucceed").setBoolValue(False)
-    #ctx.field("mialOrientImageMask.outputSucceed").setBoolValue(False)
-    #ctx.field("mialCorrectSliceIntensity.outputSucceed").setBoolValue(False)
-    #ctx.field("mialCorrectSliceIntensityNLM.outputSucceed").setBoolValue(False)
-    #ctx.field("mialCorrectSliceIntensityNLMPostBiasCorrection.outputSucceed").setBoolValue(False)
-    #ctx.field("mialCorrectSliceIntensityPostBiasCorrection.outputSucceed").setBoolValue(False)
-    #ctx.field("mialSliceBySliceBiasEstimation.outputSucceed").setBoolValue(False)
-    #ctx.field("mialSliceBySliceBiasFieldCorrection.outputSucceed").setBoolValue(False)
-    #ctx.field("mialIntensityStandardization.outputSucceed").setBoolValue(False)
-    #ctx.field("mialIntensityStandardizationNLM.outputSucceed").setBoolValue(False)
-    #ctx.field("mialIntensityStandardizationNLMBis.outputSucceed").setBoolValue(False)
-    #ctx.field("mialIntensityStandardizationBis.outputSucceed").setBoolValue(False)
-    #ctx.field("mialHistogramNormalization.outputSucceed").setBoolValue(False)
-    #ctx.field("mialHistogramNormalizationNLM.outputSucceed").setBoolValue(False)
-    #ctx.field("mialImageReconstruction.outputSucceed").setBoolValue(False)
+    ctx.field("mialOrientImage.outputSucceed").setBoolValue(False)
+    ctx.field("mialOrientImageNLM.outputSucceed").setBoolValue(False)
+    ctx.field("mialOrientImageMask.outputSucceed").setBoolValue(False)
+    ctx.field("mialCorrectSliceIntensity.outputSucceed").setBoolValue(False)
+    ctx.field("mialCorrectSliceIntensityNLM.outputSucceed").setBoolValue(False)
+    ctx.field("mialCorrectSliceIntensityNLMPostBiasCorrection.outputSucceed").setBoolValue(False)
+    ctx.field("mialCorrectSliceIntensityPostBiasCorrection.outputSucceed").setBoolValue(False)
+    ctx.field("mialSliceBySliceBiasEstimation.outputSucceed").setBoolValue(False)
+    ctx.field("mialSliceBySliceBiasFieldCorrection.outputSucceed").setBoolValue(False)
+    ctx.field("mialIntensityStandardization.outputSucceed").setBoolValue(False)
+    ctx.field("mialIntensityStandardizationNLM.outputSucceed").setBoolValue(False)
+    ctx.field("mialIntensityStandardizationNLMBis.outputSucceed").setBoolValue(False)
+    ctx.field("mialIntensityStandardizationBis.outputSucceed").setBoolValue(False)
+    ctx.field("mialHistogramNormalization.outputSucceed").setBoolValue(False)
+    ctx.field("mialHistogramNormalizationNLM.outputSucceed").setBoolValue(False)
+    ctx.field("mialImageReconstruction.outputSucceed").setBoolValue(False)
+    ctx.field("FirstSDIDone").setValue(False)
     
     listImageToSendBackgroundTasks=[]
     for imageIter in inImages:
@@ -1375,6 +1376,8 @@ def insertReOrient(WhatToInsert):
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep1").setObject(inImages)
   
+  print("here")
+  print(WhatToInsert)
   if WhatToInsert=="RawImage": 
     runCorrectSliceIntensity('RawImage')
   
@@ -1742,7 +1745,53 @@ def insertImageReconstruction():
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep1").setObject(inImages)
   
+  ctx.field("FirstSDIDone").setValue(True)
+  ctx.field("outputSucceed").setObject(ctx.field("FirstSDIDone"))
   MLAB.processEvents()
+  
+  ##we convert them to dicom as well:
+  #print("convert Mask To Dicom")
+  #ctx.field("DicomTagModify.tagValue0").setValue("BrainMask")
+  #ctx.field("DicomTagModify.tagValue1").setValue(inImages[currentImage]["StudyDescription"])
+  #ctx.field("DicomTagModify.tagValue2").setValue(inImages[currentImage]["PatientName"])
+  #ctx.field("DicomTagModify.tagValue3").setValue(inImages[currentImage]["PatientID"])
+  #ctx.field("DicomTagModify.apply").touch()
+  #originalTree = ctx.field("SetDicomTreeOnImage.input0").getDicomTree()
+  #mutableTree = originalTree.createDerivedTree()
+  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, inImages[currentImage]["Positioning"]["IH"], "FD")
+  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, inImages[currentImage]["Positioning"]["A"], "FD")
+  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x45, inImages[currentImage]["Positioning"]["P"], "FD")
+  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x46, inImages[currentImage]["Positioning"]["B"], "FD")
+  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x47, inImages[currentImage]["Positioning"]["T"], "FD")
+  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x48, inImages[currentImage]["Positioning"]["IHvox"], "FD")
+  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x49, inImages[currentImage]["Positioning"]["Avox"], "FD")
+  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x4a, inImages[currentImage]["Positioning"]["Pvox"], "FD")
+  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x4b, inImages[currentImage]["Positioning"]["Bvox"], "FD")
+  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x4c, inImages[currentImage]["Positioning"]["Tvox"], "FD")
+  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x4d, inImages[currentImage]['planeOrientation'],"SH")
+      
+  #ctx.field("SetDicomTreeOnImage.inDicomTree").setObject(mutableTree)
+    
+  #if ctx.field("FromFrontier").value:
+    #we use dicom tool from testinstall, dicomSend
+  #  print("via Frontier")
+  #  _frontier = ctx.module("parent:FrontierSyngoInterface").object()
+  #  ctx.field("parent:DicomExport.exportBaseDir").setStringValue(_frontier.getOutgoingDicomDirectory())
+  #  DicomToolToUse = ctx.module("parent:DicomExport") #ctx.module("DicomTool") #
+  #  print(DicomToolToUse.field("exportBaseDir").value)
+  #  mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, inImages[currentImage]["SeriesInstanceUID"], "UI")
+  #  #ctx.connectField("parent:DicomExport.inImage","DicomTagModify.output0")
+  #  ctx.connectField("parent:DicomExport.inImage","SetDicomTreeOnImage.output0")
+  #else:
+  #  #we use dicom tool from TotalVariationInterface, dicomSave
+  #  print("not via Frontier")
+  #  DicomToolToUse = ctx.module("DicomTool")
+  #  ctx.field("DicomTool.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
+  
+
+  #DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+"brainMask"+currentImage+"$T.dcm")
+  #DicomToolToUse.field("saveSlices").touch()
+  #print("DicomTool done")
 
 def insertNLMDenoisingResults():
   

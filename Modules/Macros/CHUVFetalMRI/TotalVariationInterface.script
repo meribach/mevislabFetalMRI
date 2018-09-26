@@ -36,6 +36,9 @@ Interface {
     Field DeltaT {internalName = mialTVSuperResolution.DeltaT}
     Field FromFrontier {type = Bool value = False}
     Field NumberIteration {type = Int value = 1}
+    Field StopProcess {type = Bool value = False}
+    //Field CurrentIteration {type = Int value = 1}
+    Field NbIterationToDo {type = Int value = 4}
   }
 }
 
@@ -71,6 +74,8 @@ Window TotalVariationInterface {
         //expandX = No
     
         Horizontal {
+          
+          Button {title = "Stop SuperResolution" command = stopSuperResolution}
           Button {title = "ReRun Super Resolution" command = RunSuperResolution}
         }
         Horizontal {

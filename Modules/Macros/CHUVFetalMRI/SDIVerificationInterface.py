@@ -149,6 +149,7 @@ def insertTVSuperResolution():
   if inImages is None:
     return
   
+  
   inImages.update({"SRTV_ITER1":os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SRTV_ITER1.nii.gz")})
   
   ctx.field("inImageInfos").setObject(inImages)
@@ -233,6 +234,8 @@ def insertN4BiasFieldCorrectedHRImage():
   
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep2").setObject(inImages)
+  
+  #convert to dicom ?
 
 
 def ReRunImageReconstruction():
@@ -291,11 +294,21 @@ def insertImageReconstruction():
 
 def updateSDI():
   
+  inImageOrientation = ctx.field("ImageOrientationSucceed").object()
   inImages = ctx.field("inImageInfos").object()
   if inImages is not None:
-    if "SDI_ITER1" in inImages.keys():
-      print("enter updateSDI")
-      ctx.field("itkImageFileReader.fileName").setStringValue(inImages["SDI_ITER1"])
+    listSDI_ITER=[]
+    for inImagesIter in inImages.keys():
+      if inImagesIter.startswith("SDI_ITER"):
+        listSDI_ITER.append(inImagesIter)
+        
+    if len(listSDI_ITER)>0:
+      ctx.field("NumberIteration").setValue(listSRTV_ITER)
+      print("iter Number : %i"%ctx.field("NumberIteration").value)
+      lastIter = sort_human(listSDI_ITER)[-1]  
+      ctx.field("itkImageFileReader.fileName").setStringValue(inImages[lastIter])
+      #  convertToDicom(lastIter)  
+  
       
   
 def updateImage():

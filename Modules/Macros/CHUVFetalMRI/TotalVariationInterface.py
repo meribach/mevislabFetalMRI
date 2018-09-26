@@ -117,6 +117,9 @@ def insertTVSuperResolution():
   updateTotalVariationInterface()
   convertToDicom("SRTV_ITER%i"%ctx.field("NumberIteration").value)
   
+  if ctx.field("NumberIteration").value < ctx.field("NbIterationToDo").value:
+    print("continue")
+  
   
 def convertToDicom(WhatToConvert):
 
@@ -156,6 +159,8 @@ def updateTotalVariationInterface():
        listSRTV_ITER.append(inImagesIter)
     
   if len(listSRTV_ITER)>0:
+    ctx.field("NumberIteration").setValue(listSRTV_ITER)
+    print("iter Number : %i"%ctx.field("NumberIteration").value)
     lastIter = sort_human(listSRTV_ITER)[-1]  
     ctx.field("itkImageFileReader.fileName").setStringValue(inImages[lastIter])
     convertToDicom(lastIter)
@@ -173,6 +178,10 @@ def updateImage():
   ctx.field("ReformatCoronal.apply").touch()
   ctx.field("BoundingBoxCoronal.update").touch()
 
+
+def stopSuperResolution():
+  print("stop SuperResolution")
+  ctx.field("StopProcess").setBoolValue(True)
 
 def showHelp():
   print("showHelp")

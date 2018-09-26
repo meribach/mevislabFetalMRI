@@ -22,6 +22,7 @@ Interface {
       hidden       = yes
       internalName = viewer.self
     }
+    Field outputSucceed {type = MLBase}
     
   }
   Parameters {
@@ -49,6 +50,8 @@ Interface {
     Field RegistrationMinStep {internalName = mialImageReconstruction.MinStepLengthRegistration}
     Field RegistrationMaxStep {internalName = mialImageReconstruction.MaxStepLengthRegistration}
     Field RegistrationNbIt {internalName = mialImageReconstruction.nbIterationsRegistration}
+    Field FirstSDIDone {type = Bool value = false}
+    
     
     Field WaitForReconstruction {type = Bool value = False}
     Field FromFrontier {type = Bool value = False}
@@ -123,7 +126,6 @@ Commands {
   FieldListener WaitForReconstruction {command = "py: runImageReconstruction()"}
   FieldListener mialImageReconstruction.outputSucceed {command = "py: insertImageReconstruction()"}
   FieldListener ExpertMode {command = showImageOrientationInterface}
-  
   FieldListener RefImageFiled {command = updateRefImageReconstruction}
   
   //FieldListener View2DExtensions.annoReadPix.worldPosition {command = updateLabelPosition}

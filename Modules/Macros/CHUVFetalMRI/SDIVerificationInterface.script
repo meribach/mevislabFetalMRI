@@ -12,7 +12,10 @@
 
 
 Interface {
-  Inputs {Field inImageInfos { type = MLBase }}
+  Inputs {
+    Field inImageInfos { type = MLBase }
+    Field ImageOrientationSucceed {type = MLBase}
+  }
   Outputs {
     Field outImagesInfosStep2 { type = MLBase }
     Field viewer2DAxial {
@@ -42,6 +45,7 @@ Interface {
     Field DeltaT {internalName = mialTVSuperResolution.DeltaT}
     Field updateView {type = Trigger}
     Field FromFrontier {type = Bool value = False}
+    Field NumberIteration {type = Int value = 1}
   }
 }
 
@@ -49,7 +53,7 @@ Interface {
 Commands {
   source = $(LOCAL)/SDIVerificationInterface.py
   FieldListener itkImageFileReader.fileName {command = updateImage}
-  FieldListener inImageInfos {command = updateSDI}
+  FieldListener ImageOrientationSucceed {command = updateSDI}
   FieldListener mialImageReconstruction.outputSucceed {command = "py: insertImageReconstruction()"}
   FieldListener mialTVSuperResolution.outputSucceed {command = "py: insertTVSuperResolution()"}
   FieldListener updateView {command = updateSDI}
