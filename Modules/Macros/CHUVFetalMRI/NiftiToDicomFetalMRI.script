@@ -1,0 +1,23 @@
+//----------------------------------------------------------------------------------
+//! Macro module NiftiToDicomFetalMRI
+/*!
+// \file    NiftiToDicomFetalMRI.script
+// \author  FetalMRI
+// \date    2018-09-26
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {}
+}
+
+
+Commands {
+  source = $(LOCAL)/NiftiToDicomFetalMRI.py
+}

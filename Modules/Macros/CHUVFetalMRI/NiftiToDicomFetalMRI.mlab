@@ -1,0 +1,182 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module DicomTagModify {
+  internal  {
+    frame = "557 421 120 56"
+    moduleGroupName = NiftiToDicomFetalMRI
+    windows  {
+      window _default {
+        geometry = "1037 306 518 488"
+        sizeHint = "518 482"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomTagModify
+    tagName0 = SeriesDescription
+    tagValue0 = BrainMask
+    removeTag0 = FALSE
+    tagVR0 = LO
+    stdTagVR0 = TRUE
+    tagName1 = StudyDescription
+    tagValue1 = ""
+    removeTag1 = FALSE
+    tagVR1 = LO
+    stdTagVR1 = TRUE
+    tagName2 = PatientName
+    tagValue2 = ""
+    removeTag2 = FALSE
+    tagVR2 = PN
+    stdTagVR2 = TRUE
+    tagName3 = PatientID
+    tagValue3 = ""
+    removeTag3 = FALSE
+    tagVR3 = LO
+    stdTagVR3 = TRUE
+    tagName4 = ""
+    tagValue4 = ""
+    removeTag4 = FALSE
+    tagVR4 = ""
+    stdTagVR4 = FALSE
+    tagName5 = ""
+    tagValue5 = ""
+    removeTag5 = FALSE
+    tagVR5 = ""
+    stdTagVR5 = FALSE
+    discardSource = None
+    useTagsString = FALSE
+    modifyTagsString = ""
+    removeTagsString = ""
+    synchronizeTagsString = ""
+    trimSpaces = TRUE
+    autoApply = TRUE
+    updateMode = AutoUpdate
+  }
+}
+module ImagePropertyConvert {
+  internal  {
+    frame = "541 525 152 72"
+    moduleGroupName = NiftiToDicomFetalMRI
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "804 314 326 631"
+        sizeHint = "326 631"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImagePropertyConvert
+    changeDimensionInfo = FALSE
+    cDimInfo = ""
+    tDimInfo = ""
+    uDimInfo = ""
+    a00 = 1
+    a01 = 0
+    a02 = 0
+    a03 = 0
+    a10 = 0
+    a11 = 1
+    a12 = 0
+    a13 = 0
+    a20 = 0
+    a21 = 0
+    a22 = 1
+    a23 = 0
+    a30 = 0
+    a31 = 0
+    a32 = 0
+    a33 = 1
+    worldMatrix = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    changeDatatype = TRUE
+    datatype = int16
+    changePageSize = FALSE
+    pageSizeX = 32
+    pageSizeY = 32
+    pageSizeZ = 1
+    pageSizeC = 1
+    pageSizeT = 1
+    pageSizeU = 1
+    changeMinGrayValue = FALSE
+    minGrayValue = 0
+    changeMaxGrayValue = FALSE
+    maxGrayValue = 1
+    changeWorldMatrix = FALSE
+    voxelSizeX = 1
+    voxelSizeY = 1
+    voxelSizeZ = 1
+    autoApply = TRUE
+  }
+}
+module SetDicomTreeOnImage {
+  internal  {
+    frame = "609 301 160 56"
+    moduleGroupName = NiftiToDicomFetalMRI
+    windows  {
+      window _default {
+        geometry = "803 617 329 24"
+        sizeHint = "329 24"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SetDicomTreeOnImage
+  }
+}
+module itkImageFileReader {
+  internal  {
+    frame = "549 677 136 56"
+    moduleGroupName = NiftiToDicomFetalMRI
+  }
+  fields  {
+    instanceName = itkImageFileReader
+    fileDataType = int16
+    autoDetermineDataType = FALSE
+    correctSubVoxelShift = TRUE
+    fileDimension = 3
+    info = "Invalid path"
+    numDims = 0
+    fileType = TypeNotApplicable
+    componentType = ""
+    pixelType = UNKNOWNPIXELTYPE
+    loaderType = ""
+    outputMetaDataStr = ""
+    suppressErrorPosting = FALSE
+    unresolvedFileName = ""
+  }
+}
+connections  {
+  DicomTagModify.input0 = ImagePropertyConvert.output0
+  ImagePropertyConvert.input0 = itkImageFileReader.output0
+  SetDicomTreeOnImage.input0 = DicomTagModify.output0
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNetworkModelItemGroup {
+        uniqueId = 13
+        objectName = NiftiToDicomFetalMRI
+        parentUniqueId = 0
+        color  {
+          r = 45
+          g = 226
+          b = 226
+          a = 40
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+//----------------------------------------------------------------------------------
+//! NiftiToDicomFetalMRI module definition
+/*!
+// \file    NiftiToDicomFetalMRI.def
+// \author  FetalMRI
+// \date    2018-09-26
+*/
+//----------------------------------------------------------------------------------
+
+
+MacroModule NiftiToDicomFetalMRI {
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+   
+  externalDefinition = "$(LOCAL)/NiftiToDicomFetalMRI.script"
+}
