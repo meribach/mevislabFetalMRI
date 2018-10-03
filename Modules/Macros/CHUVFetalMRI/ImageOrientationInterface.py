@@ -1006,10 +1006,26 @@ def button1PressedMaskRefine(event):
       #we convert them to dicom as well:
       print("convert Mask To Dicom")
       ctx.field("DicomTagModify.tagValue0").setValue("BrainMask")
-      ctx.field("DicomTagModify.tagValue1").setValue(inImages[currentImage]["StudyDescription"])
-      ctx.field("DicomTagModify.tagValue2").setValue(inImages[currentImage]["PatientName"])
-      ctx.field("DicomTagModify.tagValue3").setValue(inImages[currentImage]["PatientID"])
-      ctx.field("DicomTagModify.apply").touch()
+      
+      if ctx.field("FromFrontier").value:
+        #we use dicom tool from testinstall, dicomSend
+        print("via Frontier")
+        ctx.field("DicomTagModify.tagValue1").setValue(inImages[currentImage]["StudyDescription"])
+        ctx.field("DicomTagModify.tagValue2").setValue(inImages[currentImage]["PatientName"])
+        ctx.field("DicomTagModify.tagValue3").setValue(inImages[currentImage]["PatientID"])
+        ctx.field("DicomTagModify.apply").touch()
+        _frontier = ctx.module("parent:FrontierSyngoInterface").object()
+        ctx.field("parent:DicomExport.exportBaseDir").setStringValue(_frontier.getOutgoingDicomDirectory())
+        DicomToolToUse = ctx.module("parent:DicomExport") #ctx.module("DicomTool") #
+        print(DicomToolToUse.field("exportBaseDir").value)
+        #ctx.connectField("parent:DicomExport.inImage","DicomTagModify.output0")
+      else:
+        #we use dicom tool from TotalVariationInterface, dicomSave
+        print("not via Frontier")
+        ctx.field("DicomTagModify.apply").touch()
+        DicomToolToUse = ctx.module("DicomTool")
+        ctx.field("DicomTool.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
+  
       originalTree = ctx.field("SetDicomTreeOnImage.input0").getDicomTree()
       mutableTree = originalTree.createDerivedTree()
       mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, inImages[currentImage]["Positioning"]["IH"], "FD")
@@ -1024,25 +1040,14 @@ def button1PressedMaskRefine(event):
       mutableTree.setPrivateTag(0x07a1, "pdeman", 0x4c, inImages[currentImage]["Positioning"]["Tvox"], "FD")
       mutableTree.setPrivateTag(0x07a1, "pdeman", 0x4d, inImages[currentImage]['planeOrientation'],"SH")
       
+      if ctx.field("FromFrontier").value:
+        mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, inImages[currentImage]["SeriesInstanceUID"], "UI")
+      
       ctx.field("SetDicomTreeOnImage.inDicomTree").setObject(mutableTree)
       
       if ctx.field("FromFrontier").value:
-        #we use dicom tool from testinstall, dicomSend
-        print("via Frontier")
-        _frontier = ctx.module("parent:FrontierSyngoInterface").object()
-        ctx.field("parent:DicomExport.exportBaseDir").setStringValue(_frontier.getOutgoingDicomDirectory())
-        DicomToolToUse = ctx.module("parent:DicomExport") #ctx.module("DicomTool") #
-        print(DicomToolToUse.field("exportBaseDir").value)
-        mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, inImages[currentImage]["SeriesInstanceUID"], "UI")
-        #ctx.connectField("parent:DicomExport.inImage","DicomTagModify.output0")
         ctx.connectField("parent:DicomExport.inImage","SetDicomTreeOnImage.output0")
-      else:
-        #we use dicom tool from TotalVariationInterface, dicomSave
-        print("not via Frontier")
-        DicomToolToUse = ctx.module("DicomTool")
-        ctx.field("DicomTool.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
-  
-
+      
       DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+"brainMask"+currentImage+"$T.dcm")
       DicomToolToUse.field("saveSlices").touch()
       print("DicomTool done")
@@ -1176,6 +1181,8 @@ def runAllFirstSetBackgroundTasks():
           listImageToSendBackgroundTasks.append(imageIter)
         
     ImagesToDoBackgroundTasks = listImageToSendBackgroundTasks
+    inImages.update({"UsedFromStart":ImagesToDoBackgroundTasks})
+    inImages.update({"UsedForSDI":ImagesToDoBackgroundTasks})
     #if !ctx.field("mevisbtkDenoising.outputSucceed").value:
     #if denoise images as run on native image we have to reorient them
     SomeToDenoise=False
@@ -1215,7 +1222,8 @@ def runAllFirstSetBackgroundTasks():
         
         
     ImageDenoisedToOrient=False
-       
+    ctx.field("inImageInfos").setObject(inImages)
+    ctx.field("outImagesInfosStep1").setObject(inImages)       
     
     #while (not ctx.field("StopBackgroundTask").value):
     #  #Normalement denoise est deja fait
@@ -1716,13 +1724,21 @@ def runImageReconstruction():
   
   numIm = ctx.field("NumberImages").value
   outTransform = ""
+  inputFiles = ""
+  maskFiles = ""
   for imageIter in ImagesToDoBackgroundTasks:
     if outTransform!="":
       outTransform=outTransform+"--"
+      inputFiles=inputFiles+"--"
+      maskFiles=maskFiles+"--"
       
     outTransform = outTransform +inImages[imageIter]["ImReOriented"].replace(".nii.gz","_transform_%iV_1.txt"%numIm) 
-    
+    inputFiles = inputFiles + inImages[imageIter]["NLMBCorr"]
+    maskFiles=maskFiles + inImages[imageIter]["MaskReOriented"]
 
+  
+  ctx.field("mialImageReconstruction.inputFiles").setStringValue(inputFiles)
+  ctx.field("mialImageReconstruction.maskFiles").setStringValue(maskFiles)
   ctx.field("mialImageReconstruction.transformoutFiles").setStringValue(outTransform)
   ctx.field("mialImageReconstruction.outputFile").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SDI_ITER1.nii.gz"))
   ctx.field("mialImageReconstruction.startTask").touch()
@@ -1750,47 +1766,46 @@ def insertImageReconstruction():
   MLAB.processEvents()
   
   ##we convert them to dicom as well:
-  #print("convert Mask To Dicom")
-  #ctx.field("DicomTagModify.tagValue0").setValue("BrainMask")
-  #ctx.field("DicomTagModify.tagValue1").setValue(inImages[currentImage]["StudyDescription"])
-  #ctx.field("DicomTagModify.tagValue2").setValue(inImages[currentImage]["PatientName"])
-  #ctx.field("DicomTagModify.tagValue3").setValue(inImages[currentImage]["PatientID"])
-  #ctx.field("DicomTagModify.apply").touch()
-  #originalTree = ctx.field("SetDicomTreeOnImage.input0").getDicomTree()
-  #mutableTree = originalTree.createDerivedTree()
-  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, inImages[currentImage]["Positioning"]["IH"], "FD")
-  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, inImages[currentImage]["Positioning"]["A"], "FD")
-  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x45, inImages[currentImage]["Positioning"]["P"], "FD")
-  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x46, inImages[currentImage]["Positioning"]["B"], "FD")
-  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x47, inImages[currentImage]["Positioning"]["T"], "FD")
-  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x48, inImages[currentImage]["Positioning"]["IHvox"], "FD")
-  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x49, inImages[currentImage]["Positioning"]["Avox"], "FD")
-  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x4a, inImages[currentImage]["Positioning"]["Pvox"], "FD")
-  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x4b, inImages[currentImage]["Positioning"]["Bvox"], "FD")
-  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x4c, inImages[currentImage]["Positioning"]["Tvox"], "FD")
-  #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x4d, inImages[currentImage]['planeOrientation'],"SH")
-      
-  #ctx.field("SetDicomTreeOnImage.inDicomTree").setObject(mutableTree)
-    
-  #if ctx.field("FromFrontier").value:
+  print("convert Mask To Dicom")
+  ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue0").setValue("SDI_ITER1")
+   
+  if ctx.field("FromFrontier").value:
     #we use dicom tool from testinstall, dicomSend
-  #  print("via Frontier")
-  #  _frontier = ctx.module("parent:FrontierSyngoInterface").object()
-  #  ctx.field("parent:DicomExport.exportBaseDir").setStringValue(_frontier.getOutgoingDicomDirectory())
-  #  DicomToolToUse = ctx.module("parent:DicomExport") #ctx.module("DicomTool") #
-  #  print(DicomToolToUse.field("exportBaseDir").value)
-  #  mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, inImages[currentImage]["SeriesInstanceUID"], "UI")
-  #  #ctx.connectField("parent:DicomExport.inImage","DicomTagModify.output0")
-  #  ctx.connectField("parent:DicomExport.inImage","SetDicomTreeOnImage.output0")
-  #else:
-  #  #we use dicom tool from TotalVariationInterface, dicomSave
-  #  print("not via Frontier")
-  #  DicomToolToUse = ctx.module("DicomTool")
-  #  ctx.field("DicomTool.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
+    print("via Frontier")
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue1").setValue(inImages["Image0"]["StudyDescription"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue2").setValue(inImages["Image0"]["PatientName"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue3").setValue(inImages["Image0"]["PatientID"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
+    originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
+    mutableTree = originalTree.createDerivedTree()
+    _frontier = ctx.module("parent:FrontierSyngoInterface").object()
+    ctx.field("parent:DicomExport.exportBaseDir").setStringValue(_frontier.getOutgoingDicomDirectory())
+    DicomToolToUse = ctx.module("parent:DicomExport") #ctx.module("DicomTool") #
+    print(DicomToolToUse.field("exportBaseDir").value)
+    listUID = [inImages[imageIter]["SeriesInstanceUID"] for imageIter in ImagesToDoBackgroundTasks]
+    mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x43, listUID , "UI")
+    mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x42, 1 , "SS")
+    #ctx.connectField("parent:DicomExport.inImage","DicomTagModify.output0")
+    
+  else:
+    #we use dicom tool from TotalVariationInterface, dicomSave
+    print("not via Frontier")
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
+    originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
+    mutableTree = originalTree.createDerivedTree()
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, ImagesToDoBackgroundTasks , "LO")
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, 1 , "SS")
+    DicomToolToUse = ctx.module("DicomToolSDI1")
+    ctx.field("DicomToolSDI1.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
+    
   
-
-  #DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+"brainMask"+currentImage+"$T.dcm")
-  #DicomToolToUse.field("saveSlices").touch()
+  ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.inDicomTree").setObject(mutableTree)
+  
+  if ctx.field("FromFrontier").value:
+    ctx.connectField("parent:DicomExport.inImage","SetDicomTreeOnImage.output0")
+  
+  DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+"SDI_ITER1"+"$T.dcm")
+  DicomToolToUse.field("saveSlices").touch()
   #print("DicomTool done")
 
 def insertNLMDenoisingResults():

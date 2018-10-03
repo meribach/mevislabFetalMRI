@@ -13,11 +13,19 @@
 
 Interface {
   Inputs {}
-  Outputs {}
-  Parameters {}
+  Outputs {
+    Field outDicomTree {internalName = SetDicomTreeOnImage.output0}
+  }
+  Parameters {
+   Field inputNiftiFile {internalName = itkImageFileReader.fileName}
+   Field Runconvert {type = trigger}
+   Field NamePrivateTage {type = String}
+   Field Tag0x42 {type = String}
+  }
 }
 
 
 Commands {
+  FieldListener Runconvert {command = DoConversion}
   source = $(LOCAL)/NiftiToDicomFetalMRI.py
 }

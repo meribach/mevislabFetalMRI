@@ -18,6 +18,7 @@ Interface {
   }
   Outputs {
     Field outImagesInfosStep2 { type = MLBase }
+    Field outputSucceed {type = MLBase}
     Field viewer2DAxial {
       hidden       = yes
       internalName = OrthoView2DAxial.viewer.self
@@ -46,6 +47,8 @@ Interface {
     Field updateView {type = Trigger}
     Field FromFrontier {type = Bool value = False}
     Field NumberIteration {type = Int value = 1}
+    Field RefImageFiled {type = Int value = 0}
+    Field StatusField {type = String}
   }
 }
 
@@ -58,7 +61,25 @@ Commands {
   FieldListener mialTVSuperResolution.outputSucceed {command = "py: insertTVSuperResolution()"}
   FieldListener updateView {command = updateSDI}
   FieldListener mialRefineMask.outputSucceed {command = insertRefinedMask}
+  FieldListener mialImageReconstruction.inProgress {command = updateBackgroundTaskRunningField}
+  FieldListener mialTVSuperResolution.inProgress {command = updateBackgroundTaskRunningField}
+  FieldListener mialRefineMask.inProgress {command = updateBackgroundTaskRunningField}
+  FieldListener mialsrtkMaskImage.inProgress {command = updateBackgroundTaskRunningField}
+  FieldListener mialN4BiasField.inProgress {command = updateBackgroundTaskRunningField}
+  //FieldListener RefImageFiled {command = updateRefImageReconstruction}
 }
+
+Description {
+  Field NumberIteration {
+  min = 1
+  max = 4
+}
+  Field RefImageFiled {
+  min = 0
+  max = NumberImages-1
+  }
+}
+
 
 Window SDIVerificationInterface {
   Splitter {
@@ -79,7 +100,11 @@ Window SDIVerificationInterface {
         //expandX = No
     
         Box{
-          Horizontal {
+          //Horizontal {
+          //  Label "refImage: should be the one with the less movement" {}
+          //  NumberEdit RefImageFiled {step = 1 expandX = False}
+          //}
+          Horizontal {  
           Label "Registration parameters: " {}
           CheckBox outlierRejection {toggledCommand = OutlierRejectionStatusChanged enabled = False}
           ComboBox RegistrationMetric {tooltip = "Nc = Normalized Correlation, MI = Mutual Information, default = NC"}
@@ -95,7 +120,9 @@ Window SDIVerificationInterface {
             NumberEdit RegistrationRelaxationFactor { step = 0.05}
            dependsOn = ExpertMode}
           Horizontal {
-            Button {title = "ReRun SDI Estimation" command = ReRunImageReconstruction}
+            Label "StartIter :" {}
+            NumberEdit NumberIteration {step = 1 expandX = No }
+            Button {title = "ReRun SDI Estimation" command = ReRunImageReconstruction dependsOn = !BackgroundTaskRunning}
           }
         }
         Box {
@@ -118,10 +145,15 @@ Window SDIVerificationInterface {
             }
           }
         Horizontal {
-          Button {title = "Run Super Resolution" command = RunSuperResolution}
+          Label "StartIter :" {}
+          NumberEdit NumberIteration {step = 1 expandX = No }
+          Button {title = "Run Super Resolution" command = RunSuperResolution dependsOn = !BackgroundTaskRunning}
         }
           
 
+        }
+        Horizontal {
+          Field StatusField {format = STRING title = "BackgroundTaskInfo" edit = no}
         }
         Horizontal {
           Button {title = "Help" command = showHelp}

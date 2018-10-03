@@ -3563,6 +3563,91 @@ module DicomTagViewer {
     trimSpaces = FALSE
   }
 }
+module NiftiToDicomFetalMRI {
+  internal  {
+    frame = "109 269 152 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "419 413 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = NiftiToDicomFetalMRI
+    NamePrivateTage = pdeman
+    Tag0x42 = ""
+  }
+}
+module DicomTool {
+  internal  {
+    frame = "137 85 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = DicomToolSDI1
+    exportDir = ""
+    exportBaseDir = ""
+    exportNameTemplate = $S/export$T.dcm
+    addPatNameDir = FALSE
+    addStudyUIDDIR = FALSE
+    addSeriesUIDDIR = FALSE
+    allSlices = TRUE
+    minSlice = 1
+    maxSlice = 126
+    minUsedSlice = 0
+    maxUsedSlice = 126
+    allTimepoints = TRUE
+    minTime = 1
+    maxTime = 1
+    minUsedTime = 0
+    maxUsedTime = 1
+    displayMode1 = Input
+    displayMode2 = All
+    newStudyUID = FALSE
+    newSeriesUID = TRUE
+    restoreFrameSpecific = FALSE
+    storeTimeInfo = None
+    dicomComment = MeVisLab
+    consoleAutoClear = TRUE
+    dicomOutput = ""
+    echoVerbose = TRUE
+    echoDebug = FALSE
+    storeVerbose = TRUE
+    storeDebug = FALSE
+    currentConfigSet = ""
+    dicomName = ""
+    dicomType = PACS
+    dicomCalledAET = ""
+    dicomCallingAET = ""
+    dicomHostname = ""
+    dicomPort = 104
+    autoLoadConfig = TRUE
+    exportAsDerived = TRUE
+    tagModifierTagName0 = ""
+    tagModifierTagValue0 = ""
+    tagModifierRemoveTag0 = FALSE
+    tagModifierTagName1 = ""
+    tagModifierTagValue1 = ""
+    tagModifierRemoveTag1 = FALSE
+    tagModifierTagName2 = ""
+    tagModifierTagValue2 = ""
+    tagModifierRemoveTag2 = FALSE
+    tagModifierTagName3 = ""
+    tagModifierTagValue3 = ""
+    tagModifierRemoveTag3 = FALSE
+    tagModifierTagName4 = ""
+    tagModifierTagValue4 = ""
+    tagModifierRemoveTag4 = FALSE
+    tagModifierTagName5 = ""
+    tagModifierTagValue5 = ""
+    tagModifierRemoveTag5 = FALSE
+    tagModifierTrimSpaces = TRUE
+    tagModifierAutoApply = TRUE
+  }
+}
 connections  {
   RemoteRendering.sceneGraph = viewer.self
   SoView2DSlider.maximumValue = ImageStatistics.bBoxZ2
@@ -3652,12 +3737,14 @@ connections  {
   ImagePropertyConvert.input0 = adaptTemplateMask.outAdaptMaskImage
   SetDicomTreeOnImage.input0 = DicomTagModify.output0
   DicomTagViewer.input0 = SetDicomTreeOnImage.output0
+  NiftiToDicomFetalMRI.inputNiftiFile = mialImageReconstruction.outputFile
+  DicomToolSDI1.inImage = NiftiToDicomFetalMRI.outDicomTree
 }
 networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 214
+        uniqueId = 215
         objectName = DisplayLabelsOnTopImage
         parentUniqueId = 0
         color  {
@@ -3679,7 +3766,7 @@ networkModel  {
         }
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 215
+        uniqueId = 216
         objectName = ModifyWorldToMatrix
         parentUniqueId = 0
         color  {
@@ -3749,7 +3836,7 @@ OrthoSwapFlip ferait l'affaire ?</p>
         titleFrame = "1715 1448 268 22"
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 216
+        uniqueId = 217
         objectName = checkAtlasImage
         parentUniqueId = 0
         color  {

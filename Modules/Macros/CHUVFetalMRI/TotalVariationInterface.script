@@ -12,9 +12,12 @@
 
 
 Interface {
-  Inputs {Field inImageInfos { type = MLBase }}
+  Inputs {
+    Field inImageInfos { type = MLBase }
+    Field SDIVerificationSucceed {type = MLBase}}
   Outputs {
     Field outImagesInfosStep2 { type = MLBase }
+    Field outputSucceed {type = MLBase}
     Field viewer2DAxial {
       hidden       = yes
       internalName = OrthoView2DAxial.viewer.self
@@ -39,6 +42,7 @@ Interface {
     Field StopProcess {type = Bool value = False}
     //Field CurrentIteration {type = Int value = 1}
     Field NbIterationToDo {type = Int value = 4}
+    Field BackgroundTaskRunning {type = Bool value = False}
   }
 }
 

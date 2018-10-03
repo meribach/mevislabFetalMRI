@@ -14,6 +14,7 @@ import re
 import math
 import os
 
+
 g_SDIGraphicsView = None
 g_HorizontalControl = {}
 
@@ -45,40 +46,122 @@ def updateInterface():
   print(numImage)
   if numImage<=6:
     for i in range(numImage):
-    
       if GetInfoInput:
-        checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
+        if "UsedFromStart" in inImages.keys():
+          print("checked if previous step done")
+          if listImage[i] in inImages["UsedFromStart"]:
+            if "UsedForSDI" in inImages.keys():
+              if listImage[i] in inImages["UsedForSDI"]:
+                checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
+              else:
+                checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = False}"%(i,listImage[i])
+            else:
+              checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
+          else:
+             checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = False enabled = False}"%(i,listImage[i])
+        else:
+          checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
       else:
         checkBoxDefinition = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i,i)
       
-      mdlToSet += """Horizontal { name = \"horizontal%i\"  """%i + checkBoxDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)
+      LabelOrder = """ Label Order:%i {name = Label%s}"""%(i,listImage[i])
+      ButtonUpDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i],listImage[i])
+      ButtonDownDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i],listImage[i])
+      mdlToSet += """Horizontal { name = \"horizontal%i\"  """%i + checkBoxDefinition +LabelOrder+ ButtonUpDefinition + ButtonDownDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)
   else:
     for i in [0,2,4]:
       if GetInfoInput:
-        checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
-        checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = True}"%(i+1,listImage[i+1])
+        if "UsedFromStart" in inImages.keys():
+          print("checked if previous step done")
+          if listImage[i] in inImages["UsedFromStart"]:
+            if "UsedForSDI" in inImages.keys():
+              if listImage[i] in inImages["UsedForSDI"]:
+                 checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
+              else:
+                checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = False}"%(i,listImage[i])
+            else:
+               checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
+          else:
+           checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = False enabled = False}"%(i,listImage[i])
+          if listImage[i+1] in inImages["UsedFromStart"]:
+            if "UsedForSDI" in inImages.keys():
+              if listImage[i+1] in inImages["UsedForSDI"]:       
+                 checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = True}"%(i+1,listImage[i+1])
+              else:
+                 checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = False}"%(i+1,listImage[i+1])
+            else:
+              checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = True}"%(i+1,listImage[i+1])
+          else:
+            checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = False enabled = False}"%(i,listImage[i])
+            
+        else:
+          checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
+          checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = True}"%(i+1,listImage[i+1])
       else:
         checkBoxDefinition = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i,i)
         checkBoxDefinition2 = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i+1,i+1)
         
-      mdlToSet += """Horizontal { name = \"horizontal%i\"  """%i + checkBoxDefinition + checkBoxDefinition2 + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)
+      Button1UpDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i],listImage[i])
+      Button1DownDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i],listImage[i])
+      Button2UpDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i+1],listImage[i+1])
+      Button2DownDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i+1],listImage[i+1])
+      
+      mdlToSet += """Horizontal { name = \"horizontal%i\"  """%i + checkBoxDefinition + Button1UpDefinition + Button1DownDefinition  + checkBoxDefinition2 + Button2UpDefinition + Button2DownDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)
       
     listToFinish= range(6,numImage,2)
     for i in listToFinish:
       if GetInfoInput:
-        checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
+        if "UsedFromStart" in inImages.keys():
+          print("checked if previous step done")
+          if listImage[i] in inImages["UsedFromStart"]:
+            if "UsedForSDI" in inImages.keys():
+              if listImage[i] in inImages["UsedForSDI"]:
+                  checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
+              else:
+                  checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = False}"%(i,listImage[i])
+            else:
+              checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
+          else:
+            checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = False enabled = False}"%(i,listImage[i])
+        else:
+          checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
+          
         if (i+1)<numImage:
           checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = True}"%(i+1,listImage[i+1])
         else:
           checkBoxDefinition2 = ""
       else:
         checkBoxDefinition = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i,i)
-        if (i+1)<numImage:
-          checkBoxDefinition2 = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i+1,i+1)
-        else:
-          checkBoxDefinition2 = ""
+        
+      Button1UpDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i],listImage[i])
+      Button1DownDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i],listImage[i])
       
-      mdlToSet += """Horizontal {name = \"horizontal%i\"  """%i + checkBoxDefinition + checkBoxDefinition2 + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)   
+      if (i+1)<numImage:
+        if GetInfoInput:
+          if "UsedFromStart" in inImages.keys():
+            print("checked if previous step done")
+            if listImage[i+1] in inImages["UsedFromStart"]:
+              if "UsedForSDI" in inImages.keys():
+                if listImage[i+1] in inImages["UsedForSDI"]:
+                   checkBoxDefinition2 = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i+1,i+1)
+                else:
+                   checkBoxDefinition2 = "CheckBox {name = checkImage%i title = \'Image%i\' checked = False}"%(i+1,i+1)
+              else:
+                checkBoxDefinition2 = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i+1,i+1)
+            else:
+              checkBoxDefinition2 = "CheckBox {name = checkImage%i title = \'Image%i\' checked = False enabled = False}"%(i+1,i+1)    
+          else:
+            checkBoxDefinition2 = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i+1,i+1)
+        
+        Button2UpDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i+1],listImage[i+1])
+        Button2DownDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i+1],listImage[i+1])
+
+      else:
+        checkBoxDefinition2 = ""
+        Button2UpDefinition = ""
+        Button2DownDefinition = ""
+      
+      mdlToSet += """Horizontal {name = \"horizontal%i\"  """%i + checkBoxDefinition + Button1UpDefinition + Button1DownDefinition  + checkBoxDefinition2 + Button2UpDefinition + Button2DownDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)   
         
         
   g_sceneSDI.addMDL("Vertical {" + mdlToSet + "}")
@@ -86,6 +169,21 @@ def updateInterface():
   
   updateSDI()
 
+
+def changeOrder(Image,Orientation):
+  print("change order")
+  inImages = ctx.field("inImageInfos").object()
+  previousValue=int(g_HorizontalControl[Image].control("Label%s"%Image).title().split(":")[-1])
+  print(previousValue)
+  if int( g_HorizontalControl[Image].control("Label%s"%Image).title().split(":")[-1])+Orientation < ctx.field("NumberImages").value and int( g_HorizontalControl[Image].control("Label%s"%Image).title().split(":")[-1])+Orientation >=0:
+    g_HorizontalControl[Image].control("Label%s"%Image).setTitle("Order:%i"%(int( g_HorizontalControl[Image].control("Label%s"%Image).title().split(":")[-1])+Orientation))
+  
+  for imageIter in inImages:
+    if "Image" in imageIter:
+      if imageIter != Image:
+        if int(g_HorizontalControl[imageIter].control("Label%s"%imageIter).title().split(":")[-1])==int(g_HorizontalControl[Image].control("Label%s"%Image).title().split(":")[-1]):
+          g_HorizontalControl[imageIter].control("Label%s"%imageIter).setTitle("Order:%i"%(previousValue))
+      
 def OutlierRejectionStatusChanged():
   
   print("et pataplif")
@@ -238,6 +336,10 @@ def insertN4BiasFieldCorrectedHRImage():
   #convert to dicom ?
 
 
+#def updateRefImageReconstruction():
+#
+#  ctx.field("mialImageReconstruction.ImageBaseOfRecon").setIntValue(ctx.field("RefImageFiled").value)
+
 def ReRunImageReconstruction():
   
   global ImagesToDoBackgroundTasks
@@ -251,6 +353,15 @@ def ReRunImageReconstruction():
   outTransform = ""
   inputFiles = ""
   maskFiles = ""
+  
+  #get the order
+  orderList = {};
+  for imageIter in inImages:
+    if "Image" in imageIter:
+      orderList.update({int(g_HorizontalControl[imageIter].control("Label%s"%imageIter).title().split(":")[-1]):imageIter})
+  
+  sorted_orderList = sorted(orderList.items(),  key=lambda kv: kv[0])
+  #test = sort_human(orderList)
   for imageIter in inImages:
     if "Image" in imageIter:
       if g_HorizontalControl[imageIter].control("check%s"%imageIter).isChecked():
@@ -264,6 +375,8 @@ def ReRunImageReconstruction():
         inputFiles = inputFiles + inImages[imageIter]["NLMBCorr"]
         maskFiles = maskFiles + inImages[imageIter]["MaskReOriented"]
     
+  inImages.update({"UsedForSDI":ImagesToDoBackgroundTasks})
+  
   ctx.field("mialImageReconstruction.inputFiles").setStringValue(inputFiles)
   ctx.field("mialImageReconstruction.maskFiles").setStringValue(maskFiles)
   ctx.field("mialImageReconstruction.transformoutFiles").setStringValue(outTransform)
@@ -303,12 +416,22 @@ def updateSDI():
         listSDI_ITER.append(inImagesIter)
         
     if len(listSDI_ITER)>0:
-      ctx.field("NumberIteration").setValue(listSRTV_ITER)
+      ctx.field("NumberIteration").setValue(len(listSDI_ITER))
       print("iter Number : %i"%ctx.field("NumberIteration").value)
       lastIter = sort_human(listSDI_ITER)[-1]  
       ctx.field("itkImageFileReader.fileName").setStringValue(inImages[lastIter])
+      ctx.field("NumberIteration").setMaxValue(len(listSDI_ITER)+1)
       #  convertToDicom(lastIter)  
   
+  #should check which image were taken
+  print("test here")
+  if len(g_HorizontalControl):
+    for iterImage in g_HorizontalControl.keys():
+      if "UsedForSDI" in inImages.keys():
+         if iterImage in inImages["UsedForSDI"]:
+           g_HorizontalControl[iterImage].control("check%s"%iterImage).setChecked(True)
+         else:
+           g_HorizontalControl[iterImage].control("check%s"%iterImage).setChecked(False)
       
   
 def updateImage():
@@ -329,8 +452,8 @@ def showHelp():
   if not ctx.field("FromFrontier").value:
     import webbrowser
     print(webbrowser.browser)
-    print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html")))
-    webbrowser.open_new(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html"))
+    print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html")))
+    webbrowser.open_new(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html"))
 
   else:
     global _frontier
@@ -338,6 +461,10 @@ def showHelp():
     url = ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html")
     _frontier._syngoVia.call("FE.AppHosting.ShowUrl", url)
     
+def updateBackgroundTaskRunningField():
+  print("update backgroundTask")
+  ctx.field("BackgroundTaskRunning").setBoolValue(ctx.field("mialImageReconstruction.inProgress").value | ctx.field("mialTVSuperResolution.inProgress").value | ctx.field("mialRefineMask.inProgress").value | ctx.field("mialsrtkMaskImage.inProgress").value | ctx.field("mialN4BiasField.inProgress").value)
+
 def getHorizontalControl(image,horizon):
   
   #print("get %s control"%horizon)

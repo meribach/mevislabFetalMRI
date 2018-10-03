@@ -8,7 +8,7 @@ module DicomTagModify {
     moduleGroupName = NiftiToDicomFetalMRI
     windows  {
       window _default {
-        geometry = "1037 306 518 488"
+        geometry = "60 199 518 488"
         sizeHint = "518 482"
         wasOpen = no
       }
@@ -17,7 +17,7 @@ module DicomTagModify {
   fields  {
     instanceName = DicomTagModify
     tagName0 = SeriesDescription
-    tagValue0 = BrainMask
+    tagValue0 = SDI_ITER1
     removeTag0 = FALSE
     tagVR0 = LO
     stdTagVR0 = TRUE
@@ -36,16 +36,16 @@ module DicomTagModify {
     removeTag3 = FALSE
     tagVR3 = LO
     stdTagVR3 = TRUE
-    tagName4 = ""
-    tagValue4 = ""
+    tagName4 = RescaleSlope
+    tagValue4 = 100
     removeTag4 = FALSE
-    tagVR4 = ""
-    stdTagVR4 = FALSE
-    tagName5 = ""
-    tagValue5 = ""
+    tagVR4 = DS
+    stdTagVR4 = TRUE
+    tagName5 = RescaleIntercept
+    tagValue5 = 0
     removeTag5 = FALSE
-    tagVR5 = ""
-    stdTagVR5 = FALSE
+    tagVR5 = DS
+    stdTagVR5 = TRUE
     discardSource = None
     useTagsString = FALSE
     modifyTagsString = ""
@@ -138,30 +138,107 @@ module SetDicomTreeOnImage {
 }
 module itkImageFileReader {
   internal  {
-    frame = "549 677 136 56"
+    frame = "541 733 136 56"
     moduleGroupName = NiftiToDicomFetalMRI
+    windows  {
+      window _default {
+        geometry = "803 432 328 395"
+        sizeHint = "328 395"
+        wasOpen = no
+      }
+    }
   }
   fields  {
     instanceName = itkImageFileReader
-    fileDataType = int16
-    autoDetermineDataType = FALSE
+    fileDataType = float
+    autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
-    numDims = 0
+    info = "Loading okay."
+    numDims = 3
     fileType = TypeNotApplicable
-    componentType = ""
-    pixelType = UNKNOWNPIXELTYPE
-    loaderType = ""
-    outputMetaDataStr = ""
+    componentType = float
+    pixelType = SCALAR
+    loaderType = NiftiImageIO
+    outputMetaDataStr = "ITK_FileNotes : 
+aux_file : 
+bitpix : 32
+cal_max : 0
+cal_min : 0
+datatype : 16
+descrip : 
+dim[0] : 3
+dim[1] : 320
+dim[2] : 320
+dim[3] : 126
+dim[4] : 1
+dim[5] : 1
+dim[6] : 1
+dim[7] : 1
+dim_info : 
+intent_code : 0
+intent_name : 
+intent_p1 : 0
+intent_p2 : 0
+intent_p3 : 0
+pixdim[0] : 1
+pixdim[1] : 1.125
+pixdim[2] : 1.125
+pixdim[3] : 1.125
+pixdim[4] : 0
+pixdim[5] : 0
+pixdim[6] : 0
+pixdim[7] : 0
+qform_code : 1
+qoffset_x : 106.783
+qoffset_y : -75.2208
+qoffset_z : -241.101
+quatern_b : -0.141008
+quatern_c : -0.687702
+quatern_d : -0.709169
+scl_inter : 0
+scl_slope : 1
+sform_code : 0
+slice_code : 
+slice_duration : 0
+slice_end : 0
+slice_start : 0
+srow_x : 0 0 0 0
+srow_y : 0 0 0 0
+srow_z : 0 0 0 0
+toffset : 0
+vox_offset : 352
+xyzt_units : 
+"
     suppressErrorPosting = FALSE
     unresolvedFileName = ""
   }
 }
+module Arithmetic1 {
+  internal  {
+    frame = "649 629 128 72"
+    moduleGroupName = NiftiToDicomFetalMRI
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "269 326 285 64"
+        sizeHint = "283 64"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic1
+    function = Multiply
+    constant = 100
+  }
+}
 connections  {
   DicomTagModify.input0 = ImagePropertyConvert.output0
-  ImagePropertyConvert.input0 = itkImageFileReader.output0
+  DicomTagModify.tagValue4 = Arithmetic1.constant
+  ImagePropertyConvert.input0 = Arithmetic1.output0
   SetDicomTreeOnImage.input0 = DicomTagModify.output0
+  Arithmetic1.input0 = itkImageFileReader.output0
 }
 networkModel  {
   parentItems  {
