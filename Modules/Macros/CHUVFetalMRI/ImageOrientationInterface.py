@@ -1732,7 +1732,7 @@ def runImageReconstruction():
       inputFiles=inputFiles+"--"
       maskFiles=maskFiles+"--"
       
-    outTransform = outTransform +inImages[imageIter]["ImReOriented"].replace(".nii.gz","_transform_%iV_1.txt"%numIm) 
+    outTransform = outTransform +inImages[imageIter]["ImReOriented"].split(".nii")[0]+"_transform_%iV_1.txt"%numIm 
     inputFiles = inputFiles + inImages[imageIter]["NLMBCorr"]
     maskFiles=maskFiles + inImages[imageIter]["MaskReOriented"]
 
@@ -1756,7 +1756,7 @@ def insertImageReconstruction():
   
   global ImagesToDoBackgroundTasks
   for imageIter in ImagesToDoBackgroundTasks:   
-    inImages[imageIter].update({"Transform":inImages[imageIter]["ImReOriented"].replace(".nii.gz","_transform_%iV_1.txt"%numIm)})
+    inImages[imageIter].update({"Transform":inImages[imageIter]["ImReOriented"].split(".nii")[0]+"_transform_%iV_1.txt"%numIm})
   
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep1").setObject(inImages)
