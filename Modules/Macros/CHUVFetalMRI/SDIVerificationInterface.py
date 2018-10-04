@@ -302,7 +302,7 @@ def insertRefinedMask():
  
  ctx.field("inImageInfos").setObject(inImages)
  ctx.field("outImagesInfosStep2").setObject(inImages)
- 
+ print("should run BiasField")
  runN4BiasFieldCorrection()
  
 def runN4BiasFieldCorrection():
@@ -315,7 +315,7 @@ def runN4BiasFieldCorrection():
   ctx.field("mialN4BiasField.maskFile").setStringValue(inImages["BrainMaskHR_Iter1"])
   ctx.field("mialN4BiasField.outputFile").setStringValue(inImages["SRTV_ITER1"].replace(".nii.gz","_gbcorr.nii.gz"))
   ctx.field("mialN4BiasField.outputBiasField").setStringValue(inImages["SRTV_ITER1"].replace(".nii.gz","_gbcorrfield.nii.gz"))
-  
+  print("should run BiasField2")
   ctx.field("mialN4BiasField.startTask").touch()
   
   
@@ -339,6 +339,12 @@ def insertN4BiasFieldCorrectedHRImage():
 #def updateRefImageReconstruction():
 #
 #  ctx.field("mialImageReconstruction.ImageBaseOfRecon").setIntValue(ctx.field("RefImageFiled").value)
+
+def runMaskImage():
+  print("run MaskImage")
+
+def insertMaskImage():
+  print("insert MaskImage")
 
 def ReRunImageReconstruction():
   

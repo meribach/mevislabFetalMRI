@@ -116,9 +116,12 @@ def showImageOrientationInterface():
     checkBoxDefinition = """CheckBox {name = checkImage%i tooltip = "%s"}"""%(i,tooltipCheckBox)
     #checkBoxImage = g_sceneImageOrientation.addMDL(checkBoxDefinition,True)
     comboboxDefinition = """ComboBox {expandX = No name = \"comboImage%i\" items {item = unknown item = axial item = sagittal item = coronal} tooltip = "%s" textChangedCommand = "py: registerplaneOrientation(\'Image%i\')"}"""%(i,tooltipComboBox,i)
+    LabelOrder = """ Label Order:%i {name = LabelImage%i}"""%(i,i)
+    ButtonUpDefinition = """Button {name = moveUpImage%i image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'Image%i\',+1)"}"""%(i,i)
+    ButtonDownDefinition = """Button {name = moveUpImage%i image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'Image%i\',-1)"}"""%(i,i)
     
     #mdlToSet +="""Horizontal { name = \"horizontal%i\"  "+ buttonDefinition + buttonPositioningDef + buttonManualPositioningDef + buttonGenerateMaskDef + comboboxDefinition + checkBoxDefinition " Execute = "py: getHorizontalControl(\'horizontal%i\')" } """%(i,i)
-    mdlToSet +="""Horizontal { name = \"horizontal%i\"  """%i + buttonDefinition + buttonPositioningDef + buttonGenerateMaskDef + buttonResetBrainMaskDef+ comboboxDefinition + checkBoxDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)
+    mdlToSet +="""Horizontal { name = \"horizontal%i\"  """%i + buttonDefinition + buttonPositioningDef + buttonGenerateMaskDef + buttonResetBrainMaskDef+ comboboxDefinition + checkBoxDefinition + LabelOrder + ButtonUpDefinition + ButtonDownDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)
     #mdlPanel = g_sceneImageOrientation.addMDL(mdlToSet)
     #g_layoutImageOrientation.addItem(mdlPanel)
     #comboboxImage = g_sceneImageOrientation.addMDL(comboboxDefinition,True)
@@ -166,6 +169,21 @@ def showImageOrientationInterface():
   
   updateComboBox()
   
+def changeOrder(Image,Orientation):
+  print("change order")
+  inImages = ctx.field("inImageInfos").object()
+  previousValue=int(g_HorizontalControl[Image].control("Label%s"%Image).title().split(":")[-1])
+  print(previousValue)
+  if int( g_HorizontalControl[Image].control("Label%s"%Image).title().split(":")[-1])+Orientation < ctx.field("NumberImages").value and int( g_HorizontalControl[Image].control("Label%s"%Image).title().split(":")[-1])+Orientation >=0:
+    g_HorizontalControl[Image].control("Label%s"%Image).setTitle("Order:%i"%(int( g_HorizontalControl[Image].control("Label%s"%Image).title().split(":")[-1])+Orientation))
+  
+  for imageIter in inImages:
+    if "Image" in imageIter:
+      if imageIter != Image:
+        if int(g_HorizontalControl[imageIter].control("Label%s"%imageIter).title().split(":")[-1])==int(g_HorizontalControl[Image].control("Label%s"%Image).title().split(":")[-1]):
+          g_HorizontalControl[imageIter].control("Label%s"%imageIter).setTitle("Order:%i"%(previousValue))
+
+
 def updateComboBox():
     
   global g_HorizontalControl
@@ -1171,6 +1189,7 @@ def runAllFirstSetBackgroundTasks():
     ctx.field("mialHistogramNormalization.outputSucceed").setBoolValue(False)
     ctx.field("mialHistogramNormalizationNLM.outputSucceed").setBoolValue(False)
     ctx.field("mialImageReconstruction.outputSucceed").setBoolValue(False)
+    ctx.field("mialsrtkMaskImage.outputSucceed").setBoolValue(False)
     ctx.field("FirstSDIDone").setValue(False)
     
     listImageToSendBackgroundTasks=[]
@@ -1521,7 +1540,7 @@ def runSliceBySliceBiasEstimation():
       inputsBiasEstimation = inputsBiasEstimation + inImages[imageIter]["FirstNLMUni"]
       masksBiasEstimation = masksBiasEstimation + inImages[imageIter]["MaskReOriented"]
       outputsBiasEstimation = outputsBiasEstimation + inImages[imageIter]["FirstNLMUni"].replace(".nii","_bcorr.nii")
-      fieldBiasEstimation = fieldBiasEstimation + inImages[imageIter]["FirstNLMUni"].replace(".nii","_nlm_n4bias.nii")
+      fieldBiasEstimation = fieldBiasEstimation + inImages[imageIter]["FirstNLMUni"].replace(".nii","_n4bias.nii")
       
   
   ctx.field("mialSliceBySliceBiasEstimation.inputImageFile").setStringValue(inputsBiasEstimation)
@@ -1544,7 +1563,7 @@ def insertSliceBiasEstimation():
   
   for imageIter in ImagesToDoBackgroundTasks:
     inImages[imageIter].update({"NLMBCorr":inImages[imageIter]["FirstNLMUni"].replace(".nii","_bcorr.nii")})
-    inImages[imageIter].update({"BiasField":inImages[imageIter]["FirstNLMUni"].replace(".nii","_nlm_n4bias.nii")})
+    inImages[imageIter].update({"BiasField":inImages[imageIter]["FirstNLMUni"].replace(".nii","_n4bias.nii")})
 
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep1").setObject(inImages)
@@ -1705,9 +1724,13 @@ def updateBackgroundTaskRunningField():
   ctx.field("BackgroundTaskRunning").setBoolValue(ctx.field("mevisbtkDenoising.inProgress").value | ctx.field("mialOrientImage.inProgress").value | ctx.field("mialCorrectSliceIntensity.inProgress").value | ctx.field("mialSliceBySliceBiasEstimation.inProgress").value | ctx.field("mialSliceBySliceBiasFieldCorrection.inProgress").value | ctx.field("mialIntensityStandardization.inProgress").value | ctx.field("mialOrientImageMask.inProgress").value | ctx.field("mialOrientImageNLM.inProgress").value | ctx.field("mialCorrectSliceIntensityNLM.inProgress").value |ctx.field("mialCorrectSliceIntensityNLMPostBiasCorrection.inProgress").value | ctx.field("mialIntensityStandardizationNLM.inProgress").value | ctx.field("mialCorrectSliceIntensityPostBiasCorrection.inProgress").value | ctx.field("mialImageReconstruction.inProgress").value )
   print(ctx.field("BackgroundTaskRunning").value)
  
+def runMaskImage():
+  
+  ctx.field("mialsrtkMaskImage.startTask").touch()
+
 def updateWaitForReconstrucion():
   
-  ctx.field("WaitForReconstruction").setBoolValue(ctx.field("mialIntensityStandardizationNLMBis.outputSucceed").value & ctx.field("mialIntensityStandardizationBis.outputSucceed").value)
+  ctx.field("WaitForReconstruction").setBoolValue(ctx.field("mialsrtkMaskImage.outputSucceed").value & ctx.field("mialIntensityStandardizationBis.outputSucceed").value)
   print("updateWaitForREconstruction")
   print(ctx.field("WaitForReconstruction").value)
   MLAB.processEvents()
@@ -1726,15 +1749,24 @@ def runImageReconstruction():
   outTransform = ""
   inputFiles = ""
   maskFiles = ""
-  for imageIter in ImagesToDoBackgroundTasks:
-    if outTransform!="":
-      outTransform=outTransform+"--"
-      inputFiles=inputFiles+"--"
-      maskFiles=maskFiles+"--"
+  
+  orderList = {};
+  for imageIter in inImages:
+    if "Image" in imageIter:
+      orderList.update({int(g_HorizontalControl[imageIter].control("Label%s"%imageIter).title().split(":")[-1]):imageIter})
+  
+  sorted_orderList = sorted(orderList.items(),  key=lambda kv: kv[0])
+  
+  for iterList in range(len(sorted_orderList)):
+    if sorted_orderList[iterList][1] in ImagesToDoBackgroundTasks:
+      if outTransform!="":
+        outTransform=outTransform+"--"
+        inputFiles=inputFiles+"--"
+        maskFiles=maskFiles+"--"
       
-    outTransform = outTransform +inImages[imageIter]["ImReOriented"].split(".nii")[0]+"_transform_%iV_1.txt"%numIm 
-    inputFiles = inputFiles + inImages[imageIter]["NLMBCorr"]
-    maskFiles=maskFiles + inImages[imageIter]["MaskReOriented"]
+      outTransform = outTransform +inImages[sorted_orderList[iterList][1]]["ImReOriented"].split(".nii")[0]+"_transform_%iV_1.txt"%numIm 
+      inputFiles = inputFiles + inImages[sorted_orderList[iterList][1]]["NLMBCorr"]
+      maskFiles=maskFiles + inImages[sorted_orderList[iterList][1]]["MaskReOriented"]
 
   
   ctx.field("mialImageReconstruction.inputFiles").setStringValue(inputFiles)
@@ -1834,12 +1866,13 @@ def insertNLMDenoisingResults():
   inImages = ctx.field("inImageInfos").object()
   for iterImage in range(len(splitNames)):
     for kk,vv in inImages.items():
-      if insertNLMOriented:
-        if splitInputNames[iterImage]==vv['WorldChanged']:
-           inImages[kk].update({'NLMWorldChanged':splitNames[iterImage]})
-      else:
-        if splitInputNames[iterImage]==vv['file']:
-           inImages[kk].update({'NLM':splitNames[iterImage]})
+      if "Image" in kk:
+        if insertNLMOriented:
+          if splitInputNames[iterImage]==vv['WorldChanged']:
+            inImages[kk].update({'NLMWorldChanged':splitNames[iterImage]})
+        else:
+          if splitInputNames[iterImage]==vv['file']:
+             inImages[kk].update({'NLM':splitNames[iterImage]})
           
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep1").setObject(inImages)

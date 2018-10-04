@@ -16,68 +16,19 @@ module itkImageFileReader {
   }
   fields  {
     instanceName = itkImageFileReader
-    fileDataType = float
+    fileDataType = "unsigned int8"
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Loading okay."
-    numDims = 3
+    info = "File closed"
+    numDims = 0
     fileType = TypeNotApplicable
-    componentType = float
-    pixelType = SCALAR
-    loaderType = NiftiImageIO
-    outputMetaDataStr = "ITK_FileNotes : 
-aux_file : 
-bitpix : 32
-cal_max : 0
-cal_min : 0
-datatype : 16
-descrip : 
-dim[0] : 3
-dim[1] : 320
-dim[2] : 320
-dim[3] : 126
-dim[4] : 1
-dim[5] : 1
-dim[6] : 1
-dim[7] : 1
-dim_info : 
-intent_code : 0
-intent_name : 
-intent_p1 : 0
-intent_p2 : 0
-intent_p3 : 0
-pixdim[0] : 1
-pixdim[1] : 1.125
-pixdim[2] : 1.125
-pixdim[3] : 1.125
-pixdim[4] : 0
-pixdim[5] : 0
-pixdim[6] : 0
-pixdim[7] : 0
-qform_code : 2
-qoffset_x : 100.648
-qoffset_y : 85.2241
-qoffset_z : 232.271
-quatern_b : 0.113903
-quatern_c : 0.683627
-quatern_d : -0.70599
-scl_inter : 0
-scl_slope : 1
-sform_code : 1
-slice_code : 
-slice_duration : 0
-slice_end : 0
-slice_start : 0
-srow_x : -1.04798 0.406808 0.0433385 100.648
-srow_y : -0.0564061 -0.0256396 -1.12329 85.2241
-srow_z : -0.405203 -1.04856 0.044281 232.271
-toffset : 0
-vox_offset : 352
-xyzt_units : 
-"
+    componentType = ""
+    pixelType = UNKNOWNPIXELTYPE
+    loaderType = ""
+    outputMetaDataStr = ""
     suppressErrorPosting = FALSE
-    unresolvedFileName = G:/Resultat24082018/SRTV_data_6V_lambda_0.25_deltat_0.1_loops_10_rad1_it3_gbcorr.nii.gz
+    unresolvedFileName = ""
   }
 }
 module OrthoView2D {
@@ -114,8 +65,8 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 214.359237670898
-    grayCenter = 107.179618835449
+    grayWidth = 1
+    grayCenter = 1
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
@@ -161,8 +112,8 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 214.359237670898
-    grayCenter = 107.179618835449
+    grayWidth = 1
+    grayCenter = 1
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
@@ -208,8 +159,8 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 214.359237670898
-    grayCenter = 107.179618835449
+    grayWidth = 1
+    grayCenter = 1
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
@@ -298,7 +249,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 209
+    startSlice = 0
     numSlices = 7
     numXSlices = 1
     sliceStep = 1
@@ -323,8 +274,8 @@ module View2D {
     sliceOrigin = "0 0"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 107.179618835449
-    lutWidth = 214.359237670898
+    lutCenter = 1
+    lutWidth = 1
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -367,7 +318,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "-0.89851355041975 -1.45173678354296 3.45991155746745"
+    center = "0 0 0"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -433,7 +384,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 43
+    startSlice = 0
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -458,8 +409,8 @@ module View2D {
     sliceOrigin = "46.5332183837891 110.516395568848"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 107.179618835449
-    lutWidth = 214.359237670898
+    lutCenter = 1
+    lutWidth = 1
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -495,7 +446,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "-0.89851355041975 -1.45173678354296 3.45991155746745"
+    center = "0 0 0"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -561,7 +512,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 46
+    startSlice = 0
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -586,8 +537,8 @@ module View2D {
     sliceOrigin = "49.2503433227539 47.9289855957031"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 107.179618835449
-    lutWidth = 214.359237670898
+    lutCenter = 1
+    lutWidth = 1
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -630,7 +581,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "-0.89851355041975 -1.45173678354296 3.45991155746745"
+    center = "0 0 0"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE

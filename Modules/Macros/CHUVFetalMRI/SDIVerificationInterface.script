@@ -49,6 +49,7 @@ Interface {
     Field NumberIteration {type = Int value = 1}
     Field RefImageFiled {type = Int value = 0}
     Field StatusField {type = String}
+    Field BackgroundTaskRunning {type = Bool}
   }
 }
 
@@ -59,8 +60,10 @@ Commands {
   FieldListener ImageOrientationSucceed {command = updateSDI}
   FieldListener mialImageReconstruction.outputSucceed {command = "py: insertImageReconstruction()"}
   FieldListener mialTVSuperResolution.outputSucceed {command = "py: insertTVSuperResolution()"}
+  FieldListener mialRefineMask.outputSucceed {command = "py: insertRefinedMask()"}
+  FieldListener mialsrtkMaskImage.outputSucceed {command = "py: insertMaskImage()"}
+  FieldListener mialN4BiasField.outputSucceed {command = "py: insertN4BiasFieldCorrectedHRImage()"}
   FieldListener updateView {command = updateSDI}
-  FieldListener mialRefineMask.outputSucceed {command = insertRefinedMask}
   FieldListener mialImageReconstruction.inProgress {command = updateBackgroundTaskRunningField}
   FieldListener mialTVSuperResolution.inProgress {command = updateBackgroundTaskRunningField}
   FieldListener mialRefineMask.inProgress {command = updateBackgroundTaskRunningField}

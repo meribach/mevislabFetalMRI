@@ -150,66 +150,17 @@ module itkImageFileReader {
   }
   fields  {
     instanceName = itkImageFileReader
-    fileDataType = float
+    fileDataType = "unsigned int8"
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Loading okay."
-    numDims = 3
+    info = "File closed"
+    numDims = 0
     fileType = TypeNotApplicable
-    componentType = float
-    pixelType = SCALAR
-    loaderType = NiftiImageIO
-    outputMetaDataStr = "ITK_FileNotes : 
-aux_file : 
-bitpix : 32
-cal_max : 0
-cal_min : 0
-datatype : 16
-descrip : 
-dim[0] : 3
-dim[1] : 320
-dim[2] : 320
-dim[3] : 126
-dim[4] : 1
-dim[5] : 1
-dim[6] : 1
-dim[7] : 1
-dim_info : 
-intent_code : 0
-intent_name : 
-intent_p1 : 0
-intent_p2 : 0
-intent_p3 : 0
-pixdim[0] : 1
-pixdim[1] : 1.125
-pixdim[2] : 1.125
-pixdim[3] : 1.125
-pixdim[4] : 0
-pixdim[5] : 0
-pixdim[6] : 0
-pixdim[7] : 0
-qform_code : 1
-qoffset_x : 106.783
-qoffset_y : -75.2208
-qoffset_z : -241.101
-quatern_b : -0.141008
-quatern_c : -0.687702
-quatern_d : -0.709169
-scl_inter : 0
-scl_slope : 1
-sform_code : 0
-slice_code : 
-slice_duration : 0
-slice_end : 0
-slice_start : 0
-srow_x : 0 0 0 0
-srow_y : 0 0 0 0
-srow_z : 0 0 0 0
-toffset : 0
-vox_offset : 352
-xyzt_units : 
-"
+    componentType = ""
+    pixelType = UNKNOWNPIXELTYPE
+    loaderType = ""
+    outputMetaDataStr = ""
     suppressErrorPosting = FALSE
     unresolvedFileName = ""
   }
@@ -244,7 +195,7 @@ networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 13
+        uniqueId = 14
         objectName = NiftiToDicomFetalMRI
         parentUniqueId = 0
         color  {

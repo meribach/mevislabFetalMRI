@@ -12,6 +12,7 @@
 from mevis import *
 import re
 import math
+import os
 
 g_TVGraphicsView = None
 
@@ -124,7 +125,7 @@ def insertTVSuperResolution():
 def convertToDicom(WhatToConvert):
 
   print("nifti to dicom conversion")
-  
+  inImages = ctx.field("inImageInfos").object()
   #(0028,1052) RescaleIntercept:  0
   #(0028,1053) RescaleSlope:  100
   #(0028,1054) RescaleType:  US
@@ -159,7 +160,7 @@ def updateTotalVariationInterface():
        listSRTV_ITER.append(inImagesIter)
     
   if len(listSRTV_ITER)>0:
-    ctx.field("NumberIteration").setValue(listSRTV_ITER)
+    ctx.field("NumberIteration").setValue(len(listSRTV_ITER))
     print("iter Number : %i"%ctx.field("NumberIteration").value)
     lastIter = sort_human(listSRTV_ITER)[-1]  
     ctx.field("itkImageFileReader.fileName").setStringValue(inImages[lastIter])

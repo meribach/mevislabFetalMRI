@@ -119,7 +119,8 @@ Commands {
   FieldListener mialSliceBySliceBiasFieldCorrection.outputSucceed {command = "py: insertSliceBiasCorrection()"}
   FieldListener mialIntensityStandardization.outputSucceed {command = "py: runHistogramNormalization('RawImage')"}
   FieldListener mialIntensityStandardizationNLM.outputSucceed {command = "py: runHistogramNormalization('DenoisedImage')"}
-  FieldListener mialIntensityStandardizationNLMBis.outputSucceed {command = "py: updateWaitForReconstrucion()"}
+  FieldListener mialIntensityStandardizationNLMBis.outputSucceed {command = "py: runMaskImage()"}
+  FieldListener mialsrtkMaskImage.outputSucceed {command = "py: updateWaitForReconstrucion()"}
   FieldListener mialIntensityStandardizationBis.outputSucceed {command = "py: updateWaitForReconstrucion()"}
   FieldListener mialHistogramNormalization.outputSucceed {command = "py:insertHistogramNormalization('RawImages')"}
   FieldListener mialHistogramNormalizationNLM.outputSucceed {command = "py:insertHistogramNormalization('DenoisedImage')"} 

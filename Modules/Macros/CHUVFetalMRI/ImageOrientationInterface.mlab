@@ -223,7 +223,7 @@ module itkImageFileReader {
   }
   fields  {
     instanceName = itkImageFileReader
-    fileDataType = float
+    fileDataType = "unsigned int16"
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
@@ -526,7 +526,7 @@ module SoView2DLabel {
   fields  {
     instanceName = LabelIH
     interactionProviderID = ""
-    drawingOn = TRUE
+    drawingOn = FALSE
     color = "1 0 0"
     text = "IH
 "
@@ -562,7 +562,7 @@ module SoView2DLabel {
   fields  {
     instanceName = LabelT
     interactionProviderID = ""
-    drawingOn = TRUE
+    drawingOn = FALSE
     color = "1 0 0"
     text = T
     viewerId = ""
@@ -597,7 +597,7 @@ module SoView2DLabel {
   fields  {
     instanceName = LabelB
     interactionProviderID = ""
-    drawingOn = TRUE
+    drawingOn = FALSE
     color = "1 0 0"
     text = B
     viewerId = ""
@@ -632,7 +632,7 @@ module SoView2DLabel {
   fields  {
     instanceName = LabelA
     interactionProviderID = ""
-    drawingOn = TRUE
+    drawingOn = FALSE
     color = "1 0 0"
     text = A
     viewerId = ""
@@ -667,7 +667,7 @@ module SoView2DLabel {
   fields  {
     instanceName = LabelP
     interactionProviderID = ""
-    drawingOn = TRUE
+    drawingOn = FALSE
     color = "1 0 0"
     text = P
     viewerId = ""
@@ -1218,9 +1218,9 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
+    lutGrayCenter = 0.5
     lutGrayWidth = 1
-    lutAlphaCenter = 1
+    lutAlphaCenter = 0.5
     lutAlphaWidth = 1
     lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
@@ -1297,21 +1297,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
+    annoInput03 = 0.5
     annoInput04 = 1
-    annoInput05 = 1
+    annoInput05 = 0.5
     annoInput06 = 1
-    annoInput07 = 1
+    annoInput07 = 0.5
     annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 760
-    annoNumInput03 = 1
+    annoNumInput03 = 0.5
     annoNumInput04 = 1
-    annoNumInput05 = 1
+    annoNumInput05 = 0.5
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 0.5
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -1708,9 +1708,9 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
+    lutGrayCenter = 0.5
     lutGrayWidth = 1
-    lutAlphaCenter = 1
+    lutAlphaCenter = 0.5
     lutAlphaWidth = 1
     lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
@@ -1787,21 +1787,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
+    annoInput03 = 0.5
     annoInput04 = 1
-    annoInput05 = 1
+    annoInput05 = 0.5
     annoInput06 = 1
-    annoInput07 = 1
+    annoInput07 = 0.5
     annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 892
-    annoNumInput03 = 1
+    annoNumInput03 = 0.5
     annoNumInput04 = 1
-    annoNumInput05 = 1
+    annoNumInput05 = 0.5
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 0.5
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -2041,11 +2041,11 @@ module OrthoSwapFlip {
     flipVertical = FALSE
     flipDepth = FALSE
     autoPageSizeX = TRUE
-    pageX = 135
+    pageX = 1
     autoPageSizeY = TRUE
-    pageY = 189
+    pageY = 1
     autoPageSizeZ = TRUE
-    pageZ = 56
+    pageZ = 1
   }
 }
 module Resample3D {
@@ -2067,10 +2067,10 @@ module Resample3D {
     isotropic = FALSE
     filterAlways = FALSE
     filterAlwaysTolerance = 0
-    zoom = "1 1 1"
-    imageSize = "135 189 155"
-    voxelSize = "0.799998998641968 0.799998998641968 0.799998998641968"
-    subVoxelShift = "0.419710662167745 0.295972589926507 0.116954575770009"
+    zoom = "0.711110221015083 0.711110221015082 0.24242403005867"
+    imageSize = "96 134 38"
+    voxelSize = "1.125 1.125 3.29999876022339"
+    subVoxelShift = "-0.124641284451272 -0.633178645713826 -1.95712509679731"
     useReferenceImage = TRUE
   }
 }
@@ -2098,7 +2098,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "0 0 0"
+    center = "6.37971949487704 -17.3735463684538 8.54773119975847"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -2177,7 +2177,7 @@ module Switch {
   }
   fields  {
     instanceName = SwitchAlreadyRegistered
-    currentInput = 0
+    currentInput = 1
     numberOfInputs = 2
   }
 }
@@ -2195,19 +2195,68 @@ module itkImageFileReader {
   }
   fields  {
     instanceName = itkImageFileReader1
-    fileDataType = "unsigned int8"
+    fileDataType = "unsigned int16"
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
-    numDims = 0
+    info = "Loading okay."
+    numDims = 3
     fileType = TypeNotApplicable
-    componentType = ""
-    pixelType = UNKNOWNPIXELTYPE
-    loaderType = ""
-    outputMetaDataStr = ""
+    componentType = "unsigned int16"
+    pixelType = SCALAR
+    loaderType = NiftiImageIO
+    outputMetaDataStr = "ITK_FileNotes : 
+aux_file : 
+bitpix : 16
+cal_max : 0
+cal_min : 0
+datatype : 512
+descrip : 
+dim[0] : 3
+dim[1] : 320
+dim[2] : 320
+dim[3] : 24
+dim[4] : 1
+dim[5] : 1
+dim[6] : 1
+dim[7] : 1
+dim_info : 
+intent_code : 0
+intent_name : 
+intent_p1 : 0
+intent_p2 : 0
+intent_p3 : 0
+pixdim[0] : 1
+pixdim[1] : 1.125
+pixdim[2] : 1.125
+pixdim[3] : 3.3
+pixdim[4] : 0
+pixdim[5] : 0
+pixdim[6] : 0
+pixdim[7] : 0
+qform_code : 2
+qoffset_x : -211.559
+qoffset_y : -129.258
+qoffset_z : 55.8397
+quatern_b : -0.764174
+quatern_c : -0.644613
+quatern_d : 0.0173152
+scl_inter : 0
+scl_slope : 1
+sform_code : 1
+slice_code : 
+slice_duration : 0
+slice_end : 0
+slice_start : 0
+srow_x : 0.189393 1.10777 -0.149471 -211.559
+srow_y : 1.10891 -0.189588 -4.8805e-10 -129.258
+srow_z : -0.00858724 -0.0502272 -3.29661 55.8397
+toffset : 0
+vox_offset : 352
+xyzt_units : 
+"
     suppressErrorPosting = FALSE
-    unresolvedFileName = ""
+    unresolvedFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr.nii
   }
 }
 module SoInteractionMapping {
@@ -2254,7 +2303,7 @@ module SoView2DLabel {
     interactionProviderID = ""
     drawingOn = TRUE
     color = "0.882352948188782 0.968627452850342 0.0352941192686558"
-    text = "Viewer Mode Image0"
+    text = "Viewer Mode Image3"
     viewerId = ""
     textPositioning = RELATIVE_TO_VIEWER
     worldPosition = "0 0 0"
@@ -2602,11 +2651,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1742
-    lutGrayWidth = 3484
-    lutAlphaCenter = 1742
-    lutAlphaWidth = 3484
-    lutIsRelative = FALSE
+    lutGrayCenter = 1
+    lutGrayWidth = 1
+    lutAlphaCenter = 1
+    lutAlphaWidth = 1
+    lutIsRelative = TRUE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -2681,21 +2730,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1742
-    annoInput04 = 3484
+    annoInput03 = 1
+    annoInput04 = 1
     annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 1742
-    annoInput08 = 3484
+    annoInput07 = 1
+    annoInput08 = 1
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 0
-    annoNumInput03 = 1742
-    annoNumInput04 = 3484
+    annoNumInput03 = 1
+    annoNumInput04 = 1
     annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 1742
+    annoNumInput07 = 1
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -2769,7 +2818,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 154
+    maxSlice = 0
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -2862,19 +2911,19 @@ module mialHistogramNormalization {
   }
   fields  {
     instanceName = mialHistogramNormalization
-    inputFiles = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
-    outputFiles = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
-    maskFiles = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
+    inputFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni_bcorr.nii
+    outputFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni_bcorr.nii
+    maskFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
     outputSucceed = TRUE
   }
 }
 module mialIntensityStandardization {
   internal  {
-    frame = "-607 129 224 64"
+    frame = "-623 65 224 64"
     moduleGroupName = BackgroundTasks
     windows  {
       window _default {
-        geometry = "833 580 480 180"
+        geometry = "33 417 480 180"
         sizeHint = "480 180"
         wasOpen = no
       }
@@ -2882,8 +2931,8 @@ module mialIntensityStandardization {
   }
   fields  {
     instanceName = mialIntensityStandardizationNLMBis
-    inputFileNames = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
-    outputFileNames = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
+    inputFileNames = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii
+    outputFileNames = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii
     maxIntensity = 255
     inProgress = FALSE
     outputSucceed = TRUE
@@ -2903,8 +2952,8 @@ module mialIntensityStandardization {
   }
   fields  {
     instanceName = mialIntensityStandardizationBis
-    inputFileNames = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
-    outputFileNames = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
+    inputFileNames = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni_bcorr.nii
+    outputFileNames = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni_bcorr.nii
     maxIntensity = 255
     inProgress = FALSE
     outputSucceed = TRUE
@@ -2912,23 +2961,23 @@ module mialIntensityStandardization {
 }
 module mialImageReconstruction {
   internal  {
-    frame = "-171 213 168 56"
+    frame = "-91 205 168 56"
     moduleGroupName = BackgroundTasks
     windows  {
       window _default {
-        geometry = "1031 315 640 717"
-        sizeHint = "640 717"
+        geometry = "1165 483 640 747"
+        sizeHint = "640 747"
         wasOpen = no
       }
     }
   }
   fields  {
     instanceName = mialImageReconstruction
-    inputFiles = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
-    maskFiles = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
-    outputFile = "D:/Pierre/FoetusTest\\SDI_ITER1.nii.gz"
+    inputFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii
+    maskFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
+    outputFile = ""
     refFile = ""
-    transformoutFiles = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_transform_6V_1.txt--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_transform_6V_1.txt--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_transform_6V_1.txt--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_transform_6V_1.txt--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_transform_6V_1.txt--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_transform_6V_1.txt
+    transformoutFiles = D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt
     resampledFiles = ""
     combinedMasks = ""
     itMax = 10
@@ -2969,8 +3018,8 @@ module mialIntensityStandardization {
   }
   fields  {
     instanceName = mialIntensityStandardizationNLM
-    inputFileNames = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
-    outputFileNames = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
+    inputFileNames = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii
+    outputFileNames = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii
     maxIntensity = 255
     inProgress = FALSE
     outputSucceed = TRUE
@@ -2995,9 +3044,9 @@ module mialCorrectSliceIntensity {
   }
   fields  {
     instanceName = mialCorrectSliceIntensityNLMPostBiasCorrection
-    inputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
-    outputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
-    maskFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
+    inputFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii
+    outputFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii
+    maskFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
     inProgress = FALSE
     outputSucceed = TRUE
   }
@@ -3021,9 +3070,9 @@ module mialCorrectSliceIntensity {
   }
   fields  {
     instanceName = mialCorrectSliceIntensityPostBiasCorrection
-    inputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
-    outputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
-    maskFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
+    inputFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni_bcorr.nii
+    outputFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni_bcorr.nii
+    maskFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
     inProgress = FALSE
     outputSucceed = TRUE
   }
@@ -3047,9 +3096,9 @@ module mialCorrectSliceIntensity {
   }
   fields  {
     instanceName = mialCorrectSliceIntensityNLM
-    inputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented.nii.gz
-    outputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz
-    maskFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
+    inputFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented.nii
+    outputFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni.nii
+    maskFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
     inProgress = FALSE
     outputSucceed = TRUE
   }
@@ -3073,9 +3122,9 @@ module mialOrientImage {
   }
   fields  {
     instanceName = mialOrientImageMask
-    inputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_brain_mask.nii.gz
-    outputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
-    orientation = coronal--coronal--axial--axial--sagittal--sagittal
+    inputFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask.nii
+    outputFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
+    orientation = axial--coronal--sagittal--axial
     inProgress = FALSE
     outputSucceed = TRUE
   }
@@ -3099,9 +3148,9 @@ module mialOrientImage {
   }
   fields  {
     instanceName = mialOrientImageNLM
-    inputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM.nii.gz
-    outputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented.nii.gz
-    orientation = coronal--coronal--axial--axial--sagittal--sagittal
+    inputFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM.nii
+    outputFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented.nii
+    orientation = axial--coronal--sagittal--axial
     inProgress = FALSE
     outputSucceed = TRUE
   }
@@ -3125,8 +3174,8 @@ module mialIntensityStandardization {
   }
   fields  {
     instanceName = mialIntensityStandardization
-    inputFileNames = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
-    outputFileNames = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
+    inputFileNames = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni_bcorr.nii
+    outputFileNames = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni_bcorr.nii
     maxIntensity = 255
     inProgress = FALSE
     outputSucceed = TRUE
@@ -3151,10 +3200,10 @@ module mialSliceBySliceBiasFieldCorrection {
   }
   fields  {
     instanceName = mialSliceBySliceBiasFieldCorrection
-    inputImageFile = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_uni.nii.gz
-    inputMaskFile = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
-    inputBiasFieldFile = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz
-    outputImageFile = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_uni_bcorr.nii.gz
+    inputImageFile = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni.nii
+    inputMaskFile = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
+    inputBiasFieldFile = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni_n4bias.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni_n4bias.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni_n4bias.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni_n4bias.nii
+    outputImageFile = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni_bcorr.nii
     inProgress = FALSE
     outputSucceed = TRUE
   }
@@ -3178,10 +3227,10 @@ module mialSliceBySliceBiasEstimation {
   }
   fields  {
     instanceName = mialSliceBySliceBiasEstimation
-    inputImageFile = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented_uni.nii.gz
-    inputMaskFile = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
-    outputImageFile = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
-    outputBiasFieldFile = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented_uni_nlm_n4bias.nii.gz
+    inputImageFile = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni.nii
+    inputMaskFile = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
+    outputImageFile = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii
+    outputBiasFieldFile = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni_n4bias.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni_n4bias.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni_n4bias.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni_n4bias.nii
     inProgress = FALSE
     outputSucceed = TRUE
   }
@@ -3205,9 +3254,9 @@ module mialCorrectSliceIntensity {
   }
   fields  {
     instanceName = mialCorrectSliceIntensity
-    inputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented.nii.gz
-    outputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented_uni.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented_uni.nii.gz
-    maskFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
+    inputFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented.nii
+    outputFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni.nii
+    maskFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
     inProgress = FALSE
     outputSucceed = TRUE
   }
@@ -3264,9 +3313,9 @@ module mialOrientImage {
   }
   fields  {
     instanceName = mialOrientImage
-    inputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr.nii.gz
-    outputFileName = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_reoriented.nii.gz
-    orientation = coronal--coronal--axial--axial--sagittal--sagittal
+    inputFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr.nii
+    outputFileName = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented.nii
+    orientation = axial--coronal--sagittal--axial
     inProgress = FALSE
     outputSucceed = TRUE
   }
@@ -3286,9 +3335,9 @@ module mialHistogramNormalization {
   }
   fields  {
     instanceName = mialHistogramNormalizationNLM
-    inputFiles = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
-    outputFiles = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii.gz
-    maskFiles = D:/Pierre/FoetusTest/coronal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/coronal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/Axial1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal2_worldmatrixModified_lr_brain_mask_reoriented.nii.gz--D:/Pierre/FoetusTest/sagittal1_worldmatrixModified_lr_brain_mask_reoriented.nii.gz
+    inputFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii
+    outputFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii
+    maskFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
     outputSucceed = TRUE
   }
 }
@@ -3565,7 +3614,7 @@ module DicomTagViewer {
 }
 module NiftiToDicomFetalMRI {
   internal  {
-    frame = "109 269 152 56"
+    frame = "101 269 152 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -3588,22 +3637,22 @@ module DicomTool {
   }
   fields  {
     instanceName = DicomToolSDI1
-    exportDir = ""
-    exportBaseDir = ""
-    exportNameTemplate = $S/export$T.dcm
+    exportDir = "D:/Pierre/TestFullMevislab\\Results"
+    exportBaseDir = "D:/Pierre/TestFullMevislab\\Results"
+    exportNameTemplate = $S/SDI_ITER1$T.dcm
     addPatNameDir = FALSE
     addStudyUIDDIR = FALSE
     addSeriesUIDDIR = FALSE
     allSlices = TRUE
-    minSlice = 1
-    maxSlice = 126
+    minSlice = 0
+    maxSlice = 1
     minUsedSlice = 0
-    maxUsedSlice = 126
+    maxUsedSlice = 0
     allTimepoints = TRUE
-    minTime = 1
+    minTime = 0
     maxTime = 1
     minUsedTime = 0
-    maxUsedTime = 1
+    maxUsedTime = 0
     displayMode1 = Input
     displayMode2 = All
     newStudyUID = FALSE
@@ -3646,6 +3695,28 @@ module DicomTool {
     tagModifierRemoveTag5 = FALSE
     tagModifierTrimSpaces = TRUE
     tagModifierAutoApply = TRUE
+  }
+}
+module mialsrtkMaskImage {
+  internal  {
+    frame = "-315 173 136 56"
+    moduleGroupName = BackgroundTasks
+    windows  {
+      window _default {
+        geometry = "647 537 640 184"
+        sizeHint = "640 184"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialsrtkMaskImage
+    inputFile = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii
+    maskFile = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
+    outputFile = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_NLM_reoriented_uni_bcorr.nii
+    status = ""
+    inProgress = FALSE
+    outputSucceed = FALSE
   }
 }
 connections  {
@@ -3708,7 +3779,7 @@ connections  {
   mialIntensityStandardizationNLMBis.outputFileNames = mialHistogramNormalizationNLM.outputFiles
   mialIntensityStandardizationBis.inputFileNames = mialHistogramNormalization.outputFiles
   mialIntensityStandardizationBis.outputFileNames = mialHistogramNormalization.outputFiles
-  mialImageReconstruction.inputFiles = mialIntensityStandardizationNLMBis.outputFileNames
+  mialImageReconstruction.inputFiles = mialsrtkMaskImage.outputFile
   mialImageReconstruction.maskFiles = mialOrientImageMask.outputFileName
   mialIntensityStandardizationNLM.inputFileNames = mialCorrectSliceIntensityNLMPostBiasCorrection.outputFileName
   mialIntensityStandardizationNLM.outputFileNames = mialCorrectSliceIntensityNLMPostBiasCorrection.outputFileName
@@ -3739,12 +3810,15 @@ connections  {
   DicomTagViewer.input0 = SetDicomTreeOnImage.output0
   NiftiToDicomFetalMRI.inputNiftiFile = mialImageReconstruction.outputFile
   DicomToolSDI1.inImage = NiftiToDicomFetalMRI.outDicomTree
+  mialsrtkMaskImage.inputFile = mialIntensityStandardizationNLMBis.outputFileNames
+  mialsrtkMaskImage.maskFile = mialOrientImageMask.outputFileName
+  mialsrtkMaskImage.outputFile = mialIntensityStandardizationNLMBis.outputFileNames
 }
 networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 215
+        uniqueId = 222
         objectName = DisplayLabelsOnTopImage
         parentUniqueId = 0
         color  {
@@ -3766,7 +3840,7 @@ networkModel  {
         }
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 216
+        uniqueId = 223
         objectName = ModifyWorldToMatrix
         parentUniqueId = 0
         color  {
@@ -3836,7 +3910,7 @@ OrthoSwapFlip ferait l'affaire ?</p>
         titleFrame = "1715 1448 268 22"
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 217
+        uniqueId = 224
         objectName = checkAtlasImage
         parentUniqueId = 0
         color  {
