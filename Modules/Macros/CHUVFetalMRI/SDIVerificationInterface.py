@@ -22,6 +22,8 @@ def initSDIVerificationGraphicsView(view):
   global g_SDIGraphicsView
   g_SDIGraphicsView = view
   print("##### initSDIVerificationGraphicsView")
+  ctx.field("Lambda").setValue(0.1)
+  ctx.field("DeltaT").setValue(0.1)
   updateInterface()
   
 def updateInterface():
@@ -33,6 +35,8 @@ def updateInterface():
   
   try:
    inImages = ctx.field("inImageInfos").object()
+   if inImages == None:
+    return
    listLRImage = [keyImage for keyImage in list(inImages.keys()) if "Image" in keyImage]
    listImage=sort_human(listLRImage)
    numImage = len(listLRImage)
@@ -46,6 +50,7 @@ def updateInterface():
   print(numImage)
   if numImage<=6:
     for i in range(numImage):
+      LabelOrder = """ Label Order:%i {name = Label%s}"""%(i,listImage[i])
       if GetInfoInput:
         if "UsedFromStart" in inImages.keys():
           print("checked if previous step done")
@@ -53,6 +58,8 @@ def updateInterface():
             if "UsedForSDI" in inImages.keys():
               if listImage[i] in inImages["UsedForSDI"]:
                 checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
+                value = [x for x in inImages["UsedForSDI"] if x=="Image%i"%(i)]
+                LabelOrder = """ Label Order:%i {name = Label%s}"""%(int(value[0].split("Image")[1]),listImage[i])
               else:
                 checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = False}"%(i,listImage[i])
             else:
@@ -64,7 +71,7 @@ def updateInterface():
       else:
         checkBoxDefinition = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i,i)
       
-      LabelOrder = """ Label Order:%i {name = Label%s}"""%(i,listImage[i])
+      
       ButtonUpDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i],listImage[i])
       ButtonDownDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i],listImage[i])
       mdlToSet += """Horizontal { name = \"horizontal%i\"  """%i + checkBoxDefinition +LabelOrder+ ButtonUpDefinition + ButtonDownDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)
@@ -364,22 +371,22 @@ def ReRunImageReconstruction():
   orderList = {};
   for imageIter in inImages:
     if "Image" in imageIter:
-      orderList.update({int(g_HorizontalControl[imageIter].control("Label%s"%imageIter).title().split(":")[-1]):imageIter})
+      if g_HorizontalControl[imageIter].control("check%s"%imageIter).isChecked():
+         orderList.update({int(g_HorizontalControl[imageIter].control("Label%s"%imageIter).title().split(":")[-1]):imageIter})
+         ImagesToDoBackgroundTasks.append(imageIter)
   
   sorted_orderList = sorted(orderList.items(),  key=lambda kv: kv[0])
-  #test = sort_human(orderList)
-  for imageIter in inImages:
-    if "Image" in imageIter:
-      if g_HorizontalControl[imageIter].control("check%s"%imageIter).isChecked():
-        ImagesToDoBackgroundTasks.append(imageIter)
-        if outTransform!="":
-          outTransform=outTransform+"--"
-          inputFiles=inputFiles+"--"
-          maskFiles=maskFiles+"--"
+  
+  for iterList in range(len(sorted_orderList)):
+    if outTransform!="":
+      outTransform=outTransform+"--"
+      inputFiles=inputFiles+"--"
+      maskFiles=maskFiles+"--"
       
-        outTransform = outTransform +inImages[imageIter]["ImReOriented"].replace(".nii.gz","_transform_%iV_1.txt"%numIm)
-        inputFiles = inputFiles + inImages[imageIter]["NLMBCorr"]
-        maskFiles = maskFiles + inImages[imageIter]["MaskReOriented"]
+    outTransform = outTransform +inImages[sorted_orderList[iterList][1]]["ImReOriented"].split(".nii")[0]+"_transform_%iV_1.txt"%numIm 
+    inputFiles = inputFiles + inImages[sorted_orderList[iterList][1]]["NLMBCorr"]
+    maskFiles=maskFiles + inImages[sorted_orderList[iterList][1]]["MaskReOriented"]
+
     
   inImages.update({"UsedForSDI":ImagesToDoBackgroundTasks})
   

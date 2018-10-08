@@ -42,7 +42,7 @@ Interface {
     Field RegistrationMinStep {internalName = mialImageReconstruction.MinStepLengthRegistration}
     Field RegistrationMaxStep {internalName = mialImageReconstruction.MaxStepLengthRegistration}
     Field RegistrationNbIt {internalName = mialImageReconstruction.nbIterationsRegistration}
-    Field Gamma {internalName = mialTVSuperResolution.Lambda}
+    Field Lambda {internalName = mialTVSuperResolution.Lambda}
     Field DeltaT {internalName = mialTVSuperResolution.DeltaT}
     Field updateView {type = Trigger}
     Field FromFrontier {type = Bool value = False}
@@ -130,16 +130,16 @@ Window SDIVerificationInterface {
         }
         Box {
           Horizontal {
-            Label "Gamma (default = 0.1): " {}
-            Slider Gamma {pageStep = 0.1}
-            NumberEdit Gamma {
+            Label "Lambda (default = 0.1): " {}
+            Slider Lambda {pageStep = 0.1}
+            NumberEdit Lambda {
               step     = 0.1
               stepstep = 1
               format   = "%.1f"
             }
           }
           Horizontal {
-            Label "DeltaT (default = 1): " {}
+            Label "DeltaT (default = 0.1): " {}
             Slider DeltaT {pageStep = 0.1 }
             NumberEdit DeltaT {
               step     = 0.1

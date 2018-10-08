@@ -107,7 +107,7 @@ mialOrientImage::~mialOrientImage()
 		delete m_pOrientImageWorkerThread;
 		m_pOrientImageWorkerThread;
 	}
-
+	std::cout << "Destructor Called" << std::endl;
 }
 
 void mialOrientImage::clear()
@@ -258,9 +258,9 @@ void mialOrientImage::reOrientAllInput()
     #pragma omp parallel for private(iterIm)
 	for (int iterIm = 0; iterIm < splitInputs.size(); iterIm++)
 	{
-		//std::cout << splitInputs[iterIm] << std::endl;
-		//std::cout << splitOrientation[iterIm] << std::endl;
-		//std::cout << splitOutputs[iterIm] << std::endl;
+		std::cout << splitInputs[iterIm] << std::endl;
+		std::cout << splitOrientation[iterIm] << std::endl;
+		std::cout << splitOutputs[iterIm] << std::endl;
 		//std::cout << "should reorient" << std::endl;
 		reOrientWrapper* useReorientWrapper = new reOrientWrapper(splitInputs[iterIm].c_str(), splitOutputs[iterIm].c_str(), splitOrientation[iterIm].c_str());
 		useReorientWrapper->reOrient();

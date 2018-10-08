@@ -140,7 +140,7 @@ def showImageOrientationInterface():
   
   buttonResetIm = """Button {expandX = No title = "Reset Images" name = buttonResetImage command = "py: resetImages()"}"""
   
-  buttonAllBackgroundTasks = """Button {expandX = No title = "AllBackgroundTasks" name = AllBackgroundTasks command = "py: runAllFirstSetBackgroundTasks()" dependsOn = !BackgroundTaskRunning}"""
+  buttonAllBackgroundTasks = """Button {expandX = No title = "NextStep (1st SDI)" name = AllBackgroundTasks command = "py: runAllFirstSetBackgroundTasks()" dependsOn = !BackgroundTaskRunning}"""
   
   if ctx.field("ExpertMode").value:
      buttonRunDenoising = """Button {expandX = No title = "Denoise Images" name = buttonDenoiseImage command = "py: denoiseImages()" dependsOn = !BackgroundTaskRunning}"""
@@ -153,7 +153,7 @@ def showImageOrientationInterface():
      FieldRelaxFactor = """Field RegistrationRelaxationFactor {title = "Relaxation Factor"}"""
      buttonLoadPreviousData = """Button {expandX = No title = "Load Raw Data" name = buttonLoadPreProcessed command = "py: loadPreProcessedAlready()"}"""
      
-  FieldStatus = """Field StatusField {format = STRING title = "BackgroundTaskInfo" edit = no}"""
+  FieldStatus = """Label {title = "BackgroundTaskInfo" name = StatusField}"""
   
   mdlToSet += """Horizontal { name = horizontalRef """ + FieldRefImage + """ Execute = "py: getHorizontalControl(\'refButtons\',\'horizontalRef\')" } """
   mdlToSet += """Horizontal { name = horizontalFinal """ + buttonResetIm + buttonAllBackgroundTasks + FieldStatus + """ Execute = "py: getHorizontalControl(\'LastButtons\',\'horizontalFinal\')" } """
@@ -193,7 +193,8 @@ def updateComboBox():
       print("set orientation plane")
       dictItem = {"unknown":0,"axial":1,"sagittal":2,"coronal":3}  
       
-      for imiter in inImages.keys():        
+      for imiter in inImages.keys():
+       if "Image" in imiter:
         if 'file' in inImages[imiter].keys():
           if ctx.hasControl("button%s"%imiter):
             try:
@@ -247,7 +248,10 @@ def updateComboBox():
             except Exception as err:
               print("don't know")
                 
-            
+    #Set the FieldStatus in Red
+    g_HorizontalControl["LastButtons"].control("StatusField").setStyleSheetFromString('QLabel { color: "red"; }')
+    
+    
   except Exception as err:
     pass
  
@@ -1201,7 +1205,7 @@ def runAllFirstSetBackgroundTasks():
         
     ImagesToDoBackgroundTasks = listImageToSendBackgroundTasks
     inImages.update({"UsedFromStart":ImagesToDoBackgroundTasks})
-    inImages.update({"UsedForSDI":ImagesToDoBackgroundTasks})
+    
     #if !ctx.field("mevisbtkDenoising.outputSucceed").value:
     #if denoise images as run on native image we have to reorient them
     SomeToDenoise=False
@@ -1714,7 +1718,7 @@ def updateBackgroundTaskStatus(Task):
   listOfPossibleTask = {"Denoising":ctx.field("mevisbtkDenoising.status"),"mialOrientImage":ctx.field("mialOrientImage.status"),"mialCorrectSliceIntensity":ctx.field("mialCorrectSliceIntensity.status"),"mialBiasEstimation":ctx.field("mialSliceBySliceBiasEstimation.status"),"mialBiasCorrection":ctx.field("mialSliceBySliceBiasFieldCorrection.status"),"mialIntensityStandardization":ctx.field("mialIntensityStandardization.status"),"mialImageReconstruction":ctx.field("mialImageReconstruction.status")}
   
   newMessage =listOfPossibleTask[Task].stringValue()
-  ctx.field("StatusField").setStringValue(newMessage)
+  g_HorizontalControl["LastButtons"].control("StatusField").setTitle(newMessage)
   
   
 def updateBackgroundTaskRunningField():
@@ -1725,6 +1729,9 @@ def updateBackgroundTaskRunningField():
   print(ctx.field("BackgroundTaskRunning").value)
  
 def runMaskImage():
+  
+  if not ctx.field("mialIntensityStandardizationNLMBis.outputSucceed").value:
+    return
   
   ctx.field("mialsrtkMaskImage.startTask").touch()
 
@@ -1756,7 +1763,8 @@ def runImageReconstruction():
       orderList.update({int(g_HorizontalControl[imageIter].control("Label%s"%imageIter).title().split(":")[-1]):imageIter})
   
   sorted_orderList = sorted(orderList.items(),  key=lambda kv: kv[0])
-  
+  sorted_orderListValues = [vv for (kk,vv) in sorted_orderList]
+  inImages.update({"UsedForSDI":sorted_orderListValues})
   for iterList in range(len(sorted_orderList)):
     if sorted_orderList[iterList][1] in ImagesToDoBackgroundTasks:
       if outTransform!="":
@@ -1798,7 +1806,8 @@ def insertImageReconstruction():
   MLAB.processEvents()
   
   ##we convert them to dicom as well:
-  print("convert Mask To Dicom")
+  print("convert SDI To Dicom")
+  ctx.field("NiftiToDicomFetalMRI.itkImageFileReader.fileName").setStringValue(inImages["SDI_ITER1"])
   ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue0").setValue("SDI_ITER1")
    
   if ctx.field("FromFrontier").value:
@@ -1827,6 +1836,8 @@ def insertImageReconstruction():
     mutableTree = originalTree.createDerivedTree()
     mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, ImagesToDoBackgroundTasks , "LO")
     mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, 1 , "SS")
+    transfoInfo = [open(inImages[imageIter]["Transform"],"r").read() for imageIter in ImagesToDoBackgroundTasks]
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, transfoInfo, "UT")
     DicomToolToUse = ctx.module("DicomToolSDI1")
     ctx.field("DicomToolSDI1.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
     

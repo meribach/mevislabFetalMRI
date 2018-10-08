@@ -792,7 +792,7 @@ module DicomTool {
   }
   fields  {
     instanceName = DicomTool
-    exportDir = D:/Pierre/testDicomOutput/STRV1
+    exportDir = D:/Pierre/testDicomOutput/
     exportBaseDir = D:/Pierre/testDicomOutput
     exportNameTemplate = $S/export$T.dcm
     addPatNameDir = TRUE
@@ -875,7 +875,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "File closed"
+    info = "Invalid path"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -1018,6 +1018,17 @@ module ImagePropertyConvert {
     autoApply = TRUE
   }
 }
+module NiftiToDicomFetalMRI {
+  internal  {
+    frame = "1509 469 152 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = NiftiToDicomFetalMRI
+    NamePrivateTage = ""
+    Tag0x42 = ""
+  }
+}
 connections  {
   OrthoView2DAxial.image = BoundingBoxAxial.output0
   OrthoView2DAxial.worldPosition = SyncVector2.vector2
@@ -1043,7 +1054,7 @@ connections  {
   BoundingBoxAxial.input0 = ReformatAxial.output0
   BoundingBoxSagittal.input0 = ReformatSagittal.output0
   BoundingBoxCoronal.input0 = ReformatCoronal.output0
-  DicomTool.inImage = DicomTagModify.output0
+  DicomTool.inImage = NiftiToDicomFetalMRI.outDicomTree
   itkImageFileReader1.unresolvedFileName = mialTVSuperResolution.outputFile
   Arithmetic1.input0 = itkImageFileReader1.output0
   DicomTagModify.input0 = ImagePropertyConvert.output0
@@ -1054,7 +1065,7 @@ networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 56
+        uniqueId = 65
         objectName = Visu
         parentUniqueId = 0
         color  {
