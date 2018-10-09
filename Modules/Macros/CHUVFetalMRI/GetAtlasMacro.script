@@ -52,7 +52,7 @@ NetworkPanel {
 Description {
   Field currentWeek {
     min = 21
-    max = 37
+    max = 38
   }
   
 }

@@ -116,40 +116,42 @@ def insertTVSuperResolution():
   
   ctx.field("inImageInfos").setObject(inImages)
   updateTotalVariationInterface()
-  convertToDicom("SRTV_ITER%i"%ctx.field("NumberIteration").value)
+  #convertToDicom("SRTV_ITER%i"%ctx.field("NumberIteration").value)
+  
+  #convert to dicom
   
   if ctx.field("NumberIteration").value < ctx.field("NbIterationToDo").value:
     print("continue")
   
   
-def convertToDicom(WhatToConvert):
-
-  print("nifti to dicom conversion")
-  inImages = ctx.field("inImageInfos").object()
-  #(0028,1052) RescaleIntercept:  0
-  #(0028,1053) RescaleSlope:  100
-  #(0028,1054) RescaleType:  US
-  # out-folder
-  
-  ctx.field("itkImageFileReader1.fileName").setStringValue(WhatToConvert)
-  
-  if ctx.field("FromFrontier").value:
-    #we use dicom tool from testinstall, dicomSend
-    print("via Frontier")
-    _frontier = ctx.module("parent:FrontierSyngoInterface").object()
-    ctx.field("parent:DicomExport.exportBaseDir").setStringValue(_frontier.getOutgoingDicomDirectory())
-    DicomToolToUse = ctx.module("parent:DicomExport")
-    print(ctx.field("parent:DicomExport.exportBaseDir").value)
-  else:
-    #we use dicom tool from TotalVariationInterface, dicomSave
-    print("not via Frontier")
-    DicomToolToUse = ctx.module("DicomTool")
-    ctx.field("DicomTool.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
-  
-  ctx.field("DicomTagModify.tagValue3").setValue(WhatToConvert)
-  ctx.field("DicomTagModify.apply").touch()
-  DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+WhatToConvert+"$T.dcm")
-  DicomToolToUse.field("saveSlices").touch()
+#def convertToDicom(WhatToConvert):
+#
+#  print("nifti to dicom conversion")
+#  inImages = ctx.field("inImageInfos").object()
+#  #(0028,1052) RescaleIntercept:  0
+#  #(0028,1053) RescaleSlope:  100
+#  #(0028,1054) RescaleType:  US
+#  # out-folder
+#  
+#  ctx.field("itkImageFileReader1.fileName").setStringValue(WhatToConvert)
+#  
+#  if ctx.field("FromFrontier").value:
+#    #we use dicom tool from testinstall, dicomSend
+#    print("via Frontier")
+#    _frontier = ctx.module("parent:FrontierSyngoInterface").object()
+#    ctx.field("parent:DicomExport.exportBaseDir").setStringValue(_frontier.getOutgoingDicomDirectory())
+#    DicomToolToUse = ctx.module("parent:DicomExport")
+#    print(ctx.field("parent:DicomExport.exportBaseDir").value)
+#  else:
+#    #we use dicom tool from TotalVariationInterface, dicomSave
+#    print("not via Frontier")
+#    DicomToolToUse = ctx.module("DicomTool")
+#    ctx.field("DicomTool.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
+#  
+#  ctx.field("DicomTagModify.tagValue3").setValue(WhatToConvert)
+#  ctx.field("DicomTagModify.apply").touch()
+#  DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+WhatToConvert+"$T.dcm")
+#  DicomToolToUse.field("saveSlices").touch()
 
 def updateTotalVariationInterface():
   inImages = ctx.field("inImageInfos").object()

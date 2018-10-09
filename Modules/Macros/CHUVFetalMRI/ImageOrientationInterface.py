@@ -1823,7 +1823,9 @@ def insertImageReconstruction():
     ctx.field("parent:DicomExport.exportBaseDir").setStringValue(_frontier.getOutgoingDicomDirectory())
     DicomToolToUse = ctx.module("parent:DicomExport") #ctx.module("DicomTool") #
     print(DicomToolToUse.field("exportBaseDir").value)
-    listUID = [inImages[imageIter]["SeriesInstanceUID"] for imageIter in ImagesToDoBackgroundTasks]
+    listUID = [inImages[imageIter]["SeriesInstanceUID"] for imageIter in inImages["UsedForSDI"]]
+    transfoInfo = [open(inImages[imageIter]["Transform"],"r").read() for imageIter in inImages["UsedForSDI"]]
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, transfoInfo, "UT")
     mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x43, listUID , "UI")
     mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x42, 1 , "SS")
     #ctx.connectField("parent:DicomExport.inImage","DicomTagModify.output0")
@@ -1834,9 +1836,9 @@ def insertImageReconstruction():
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
     originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
     mutableTree = originalTree.createDerivedTree()
-    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, ImagesToDoBackgroundTasks , "LO")
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, inImages["UsedForSDI"] , "LO")
     mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, 1 , "SS")
-    transfoInfo = [open(inImages[imageIter]["Transform"],"r").read() for imageIter in ImagesToDoBackgroundTasks]
+    transfoInfo = [open(inImages[imageIter]["Transform"],"r").read() for imageIter in inImages["UsedForSDI"]]
     mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, transfoInfo, "UT")
     DicomToolToUse = ctx.module("DicomToolSDI1")
     ctx.field("DicomToolSDI1.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))

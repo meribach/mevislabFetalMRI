@@ -76,7 +76,7 @@ mialTVSuperResolution::mialTVSuperResolution() : Module(0, 0), m_pBGSuperResolut
   _transformFilesInputFld = addString("transformFilesInput", "");
   _nbIterFld = addInt("nbIter", 50);
   _LambdaFld = addFloat("Lambda", 0.1);
-  _DeltaTFld = addFloat("DeltaT", 1.0);
+  _DeltaTFld = addFloat("DeltaT", 0.1);
   _GammaFld = addFloat("Gamma", 1.0);
   _stepScaleFld = addFloat("stepScale", 1.0);
   _innerConvThresholdFld = addDouble("innerConvThreshold", 0.0001);

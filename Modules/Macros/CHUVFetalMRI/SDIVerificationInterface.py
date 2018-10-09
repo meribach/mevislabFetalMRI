@@ -133,10 +133,6 @@ def updateInterface():
         else:
           checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
           
-        if (i+1)<numImage:
-          checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = True}"%(i+1,listImage[i+1])
-        else:
-          checkBoxDefinition2 = ""
       else:
         checkBoxDefinition = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i,i)
         
@@ -150,15 +146,17 @@ def updateInterface():
             if listImage[i+1] in inImages["UsedFromStart"]:
               if "UsedForSDI" in inImages.keys():
                 if listImage[i+1] in inImages["UsedForSDI"]:
-                   checkBoxDefinition2 = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i+1,i+1)
+                   checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = True}"%(i+1,listImage[i+1])
                 else:
-                   checkBoxDefinition2 = "CheckBox {name = checkImage%i title = \'Image%i\' checked = False}"%(i+1,i+1)
+                   checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = False}"%(i+1,listImage[i+1])
               else:
-                checkBoxDefinition2 = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i+1,i+1)
+                checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = True}"%(i+1,listImage[i+1])
             else:
-              checkBoxDefinition2 = "CheckBox {name = checkImage%i title = \'Image%i\' checked = False enabled = False}"%(i+1,i+1)    
+              checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = False enabled = False}"%(i+1,listImage[i+1])    
           else:
-            checkBoxDefinition2 = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i+1,i+1)
+            checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = True}"%(i+1,listImage[i+1])
+        else:
+          checkBoxDefinition2 = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i+1,i+1)
         
         Button2UpDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i+1],listImage[i+1])
         Button2DownDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i+1],listImage[i+1])
@@ -235,7 +233,8 @@ def RunSuperResolution():
         inputFiles=inputFiles+inImages[imageIter]["BCorr"]
         maskFiles=maskFiles+inImages[imageIter]["MaskReOriented"]
         
-  ctx.field("mialTVSuperResolution.outputFile").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SRTV_ITER1.nii.gz"))
+  iterNumber = ctx.field("NumberIteration").value
+  ctx.field("mialTVSuperResolution.outputFile").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SRTV_ITER%i.nii.gz"%iterNumber))
   ctx.field("mialTVSuperResolution.refFile").setStringValue(inImages["SDI_ITER1"])
   ctx.field("mialTVSuperResolution.maskFiles").setStringValue(maskFiles)
   ctx.field("mialTVSuperResolution.inputFiles").setStringValue(inputFiles)
@@ -254,11 +253,13 @@ def insertTVSuperResolution():
   if inImages is None:
     return
   
-  
-  inImages.update({"SRTV_ITER1":os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SRTV_ITER1.nii.gz")})
+  iterNumber = ctx.field("NumberIteration").value
+  inImages.update({"SRTV_ITER%i"%iterNumber:os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SRTV_ITER%i.nii.gz"%iterNumber)})
   
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep2").setObject(inImages)
+  
+  #convert to dicom
   
   runRefineMask()
 
@@ -267,6 +268,7 @@ def runRefineMask():
   global ImagesToDoBackgroundTasks
   
   inImages = ctx.field("inImageInfos").object()
+  iterNumber = ctx.field("NumberIteration").value
   
   inTransforms = ""
   inputFiles = ""
@@ -283,14 +285,14 @@ def runRefineMask():
     inTransforms=inTransforms+inImages[imageIter]["Transform"]
     inputFiles=inputFiles+inImages[imageIter]["BCorr"]
     maskFiles=maskFiles+inImages[imageIter]["MaskReOriented"]
-    outputLRFiles =outputLRFiles+inImages[imageIter]["MaskReOriented"].replace(".nii.gz","LR_ITER_1.nii.gz")
+    outputLRFiles =outputLRFiles+inImages[imageIter]["MaskReOriented"].replace(".nii","LR_ITER_%i.nii"%iterNumber)
     
   ctx.field("mialRefineMask.inputFiles").setStringValue(inputFiles)
   ctx.field("mialRefineMask.transformIn").setStringValue(inTransforms)
   ctx.field("mialRefineMask.maskFiles").setStringValue(maskFiles)
-  ctx.field("mialRefineMask.outputHRFile").setStringValue(os.path.join(os.path.dirname(inImages["SDI_ITER1"]),"brainmaskHR_ITER_1.nii.gz"))
+  ctx.field("mialRefineMask.outputHRFile").setStringValue(os.path.join(os.path.dirname(inImages["SDI_ITER%i"%iterNumber]),"brainmaskHR_ITER_%i.nii.gz"%iterNumber))
   ctx.field("mialRefineMask.outputLRFiles").setStringValue(outputLRFiles)
-  ctx.field("mialRefineMask.referenceFile").setStringValue(inImages["SDI_ITER1"])
+  ctx.field("mialRefineMask.referenceFile").setStringValue(inImages["SDI_ITER%i"%iterNumber])
   
   ctx.field("mialRefineMask.startTask").touch()
     
@@ -301,11 +303,12 @@ def insertRefinedMask():
    return
   
  inImages = ctx.field("inImageInfos").object()
+ iterNumber = ctx.field("NumberIteration").value
  
  for imageIter in ImagesToDoBackgroundTasks:
-   inImages[imageIter].update({["BrainMaskLR_Iter1"]:inImages[imageIter]["MaskReOriented"].replace(".nii.gz","LR_ITER_1.nii.gz")})  
+   inImages[imageIter].update({["BrainMaskLR_Iter%i"%iterNumber]:inImages[imageIter]["MaskReOriented"].replace(".nii","LR_ITER_%i.nii"%iterNumber)})  
    
- inImages.update({["BrainMaskHR_Iter1"]:os.path.join(os.path.dirname(inImages["SDI_ITER1"]),"brainmaskHR_ITER_1.nii.gz")})
+ inImages.update({["BrainMaskHR_Iter%i"%iterNumber]:os.path.join(os.path.dirname(inImages["SDI_ITER%i"%iterNumber]),"brainmaskHR_ITER_%i.nii.gz"%iterNumber)})
  
  ctx.field("inImageInfos").setObject(inImages)
  ctx.field("outImagesInfosStep2").setObject(inImages)
@@ -317,11 +320,12 @@ def runN4BiasFieldCorrection():
   global ImagesToDoBackgroundTasks
   
   inImages = ctx.field("inImageInfos").object()
+  iterNumber = ctx.field("NumberIteration").value
   
-  ctx.field("mialN4BiasField.inputFile").setStringValue(inImages["SRTV_ITER1"])
-  ctx.field("mialN4BiasField.maskFile").setStringValue(inImages["BrainMaskHR_Iter1"])
-  ctx.field("mialN4BiasField.outputFile").setStringValue(inImages["SRTV_ITER1"].replace(".nii.gz","_gbcorr.nii.gz"))
-  ctx.field("mialN4BiasField.outputBiasField").setStringValue(inImages["SRTV_ITER1"].replace(".nii.gz","_gbcorrfield.nii.gz"))
+  ctx.field("mialN4BiasField.inputFile").setStringValue(inImages["SRTV_ITER%i"%iterNumber])
+  ctx.field("mialN4BiasField.maskFile").setStringValue(inImages["BrainMaskHR_Iter%i"%iterNumber])
+  ctx.field("mialN4BiasField.outputFile").setStringValue(inImages["SRTV_ITER%i"%iterNumber].replace(".nii","_gbcorr.nii"))
+  ctx.field("mialN4BiasField.outputBiasField").setStringValue(inImages["SRTV_ITER%i"%iterNumber].replace(".nii","_gbcorrfield.nii"))
   print("should run BiasField2")
   ctx.field("mialN4BiasField.startTask").touch()
   
@@ -332,15 +336,59 @@ def insertN4BiasFieldCorrectedHRImage():
     return
   
   inImages = ctx.field("inImageInfos").object()
+  iterNumber = ctx.field("NumberIteration").value
   
-  
-  inImages.update({"SRTV_ITER1_BCorr":inImages["SRTV_ITER1"].replace(".nii.gz","_gbcorr.nii.gz")})
-  inImages.update({"SRTV_ITER1_BCorrField":inImages["SRTV_ITER1"].replace(".nii.gz","_gbcorrfield.nii.gz")})
+  inImages.update({"SRTV_ITER%i_BCorr"%iterNumber:inImages["SRTV_ITER%i"%iterNumber].replace(".nii","_gbcorr.nii")})
+  inImages.update({"SRTV_ITER%i_BCorrField"%iterNumber:inImages["SRTV_ITER%i"%iterNumber].replace(".nii","_gbcorrfield.nii")})
   
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep2").setObject(inImages)
   
   #convert to dicom ?
+  ##we convert them to dicom as well:
+  print("convert SDI To Dicom") 
+  ctx.field("NiftiToDicomFetalMRI.itkImageFileReader.fileName").setStringValue(inImages["SRTV_ITER%i_BCorr"%iterNumber])
+  ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue0").setValue("SRTV_ITER%i"%iterNumber)
+   
+  if ctx.field("FromFrontier").value:
+    #we use dicom tool from testinstall, dicomSend
+    print("via Frontier")
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue1").setValue(inImages["Image0"]["StudyDescription"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue2").setValue(inImages["Image0"]["PatientName"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue3").setValue(inImages["Image0"]["PatientID"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
+    originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
+    mutableTree = originalTree.createDerivedTree()
+    _frontier = ctx.module("parent:FrontierSyngoInterface").object()
+    ctx.field("parent:DicomExport.exportBaseDir").setStringValue(_frontier.getOutgoingDicomDirectory())
+    DicomToolToUse = ctx.module("parent:DicomExport") #ctx.module("DicomTool") #
+    print(DicomToolToUse.field("exportBaseDir").value)
+    listUID = [inImages[imageIter]["SeriesInstanceUID"] for imageIter in ImagesToDoBackgroundTasks]
+    mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x43, listUID , "UI")
+    mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x42, 1 , "SS")
+    #ctx.connectField("parent:DicomExport.inImage","DicomTagModify.output0")
+    
+  else:
+    #we use dicom tool from TotalVariationInterface, dicomSave
+    print("not via Frontier")
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
+    originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
+    mutableTree = originalTree.createDerivedTree()
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, ImagesToDoBackgroundTasks , "LO")
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, 1 , "SS")
+    transfoInfo = [open(inImages[imageIter]["Transform"],"r").read() for imageIter in ImagesToDoBackgroundTasks]
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, transfoInfo, "UT")
+    DicomToolToUse = ctx.module("DicomToolSDI1")
+    ctx.field("DicomToolSDI1.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
+    
+  
+  ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.inDicomTree").setObject(mutableTree)
+  
+  if ctx.field("FromFrontier").value:
+    ctx.connectField("parent:DicomExport.inImage","SetDicomTreeOnImage.output0")
+  
+  DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+"SRTV_ITER%i_BCorr"%iterNumber+"$T.dcm")
+  DicomToolToUse.field("saveSlices").touch()
 
 
 #def updateRefImageReconstruction():
@@ -376,6 +424,7 @@ def ReRunImageReconstruction():
          ImagesToDoBackgroundTasks.append(imageIter)
   
   sorted_orderList = sorted(orderList.items(),  key=lambda kv: kv[0])
+  sorted_orderListValues = [vv for (kk,vv) in sorted_orderList]
   
   for iterList in range(len(sorted_orderList)):
     if outTransform!="":
@@ -388,12 +437,13 @@ def ReRunImageReconstruction():
     maskFiles=maskFiles + inImages[sorted_orderList[iterList][1]]["MaskReOriented"]
 
     
-  inImages.update({"UsedForSDI":ImagesToDoBackgroundTasks})
+  inImages.update({"UsedForSDI":sorted_orderListValues})
   
   ctx.field("mialImageReconstruction.inputFiles").setStringValue(inputFiles)
   ctx.field("mialImageReconstruction.maskFiles").setStringValue(maskFiles)
   ctx.field("mialImageReconstruction.transformoutFiles").setStringValue(outTransform)
-  ctx.field("mialImageReconstruction.outputFile").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SDI_ITER1.nii.gz"))
+  iterNumber = ctx.field("NumberIteration").value
+  ctx.field("mialImageReconstruction.outputFile").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SDI_ITER%i.nii.gz"%iterNumber))
   ctx.field("mialImageReconstruction.startTask").touch()
  
 
@@ -405,17 +455,67 @@ def insertImageReconstruction():
   inImages = ctx.field("inImageInfos").object()
   numIm = ctx.field("NumberImages").value
   print("insertImageReconstruction")
-  inImages.update({"SDI_ITER1":os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SDI_ITER1.nii.gz")})
+  iterNumber = ctx.field("NumberIteration").value
+  inImages.update({"SDI_ITER%i"%iterNumber:os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SDI_ITER%i.nii.gz"%iterNumber)})
   
   global ImagesToDoBackgroundTasks
   
   for imageIter in ImagesToDoBackgroundTasks:   
-    inImages[imageIter].update({"Transform":inImages[imageIter]["ImReOriented"].replace(".nii.gz","_transform_%iV_1.txt"%numIm)})
+    inImages[imageIter].update({"Transform":inImages[imageIter]["ImReOriented"].split(".nii")[0]+"_transform_%iV_1.txt"%numIm})
   
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep2").setObject(inImages)
   
   updateSDI()
+  
+  #convert to dicom
+  ##we convert them to dicom as well:
+  print("convert SDI To Dicom")
+  ctx.field("NiftiToDicomFetalMRI.itkImageFileReader.fileName").setStringValue(inImages["SDI_ITER%i"%iterNumber])
+  ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue0").setValue("SDI_ITER%i"%iterNumber)
+   
+  if ctx.field("FromFrontier").value:
+    #we use dicom tool from testinstall, dicomSend
+    print("via Frontier")
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue1").setValue(inImages["Image0"]["StudyDescription"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue2").setValue(inImages["Image0"]["PatientName"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue3").setValue(inImages["Image0"]["PatientID"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
+    originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
+    mutableTree = originalTree.createDerivedTree()
+    _frontier = ctx.module("parent:FrontierSyngoInterface").object()
+    ctx.field("parent:DicomExport.exportBaseDir").setStringValue(_frontier.getOutgoingDicomDirectory())
+    DicomToolToUse = ctx.module("parent:DicomExport") #ctx.module("DicomTool") #
+    print(DicomToolToUse.field("exportBaseDir").value)
+    listUID = [inImages[imageIter]["SeriesInstanceUID"] for imageIter in inImages["UsedForSDI"]]
+    transfoInfo = [open(inImages[imageIter]["Transform"],"r").read() for imageIter in inImages["UsedForSDI"]]
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, transfoInfo, "UT")
+    mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x43, listUID , "UI")
+    mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x42, 1 , "SS")
+    #ctx.connectField("parent:DicomExport.inImage","DicomTagModify.output0")
+    
+  else:
+    #we use dicom tool from TotalVariationInterface, dicomSave
+    print("not via Frontier")
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
+    originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
+    mutableTree = originalTree.createDerivedTree()
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, inImages["UsedForSDI"] , "LO")
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, 1 , "SS")
+    transfoInfo = [open(inImages[imageIter]["Transform"],"r").read() for imageIter in inImages["UsedForSDI"]]
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, transfoInfo, "UT")
+    DicomToolToUse = ctx.module("DicomToolSDI1")
+    ctx.field("DicomToolSDI1.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
+    
+  
+  ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.inDicomTree").setObject(mutableTree)
+  
+  if ctx.field("FromFrontier").value:
+    ctx.connectField("parent:DicomExport.inImage","SetDicomTreeOnImage.output0")
+  
+  DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+"SDI_ITER%i"%iterNumber+"$T.dcm")
+  DicomToolToUse.field("saveSlices").touch()
+  
   MLAB.processEvents()
 
 def updateSDI():

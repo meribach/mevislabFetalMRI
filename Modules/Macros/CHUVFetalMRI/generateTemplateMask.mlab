@@ -10,7 +10,7 @@ module GetAtlasMacro {
       window _default {
         geometry = "625 208 716 106"
         sizeHint = "716 106"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -18,7 +18,7 @@ module GetAtlasMacro {
     instanceName = GetAtlasMacro
     name = $(MLAB_mevisFetalMRI_MRUser)/Projects/TestInterface2/Data/CRL_Fetal_Brain_Atlas_2017
     AtlasPath = D:/Pierre/PackageFetalMRI/CHUV/FetalMRIBis/mevisFetalMRI/MRUser/Projects/TestInterface2/Data/CRL_Fetal_Brain_Atlas_2017
-    currentWeek = 22
+    currentWeek = 37
   }
 }
 module Threshold {
@@ -36,7 +36,7 @@ module Threshold {
   }
   fields  {
     instanceName = Threshold
-    threshold = 0
+    threshold = 150
     relativeThreshold = FALSE
     comparisonOperator = Greater
     conditionTrueWriteValue = UserDef
@@ -62,7 +62,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 77
+    startSlice = 0
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -115,7 +115,7 @@ module itkBinaryMorphologicalClosingImageFilter {
       window _default {
         geometry = "114 684 517 414"
         sizeHint = "430 414"
-        wasOpen = no
+        wasOpen = yes
       }
     }
   }
@@ -157,7 +157,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 77
+    startSlice = 0
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -219,7 +219,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 77
+    startSlice = 0
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -244,8 +244,8 @@ module View2D {
     sliceOrigin = "0 0"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 124
-    lutWidth = 124
+    lutCenter = 0.5
+    lutWidth = 1
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -282,7 +282,7 @@ module itkImageFileWriter {
     correctSubVoxelShift = TRUE
     forceDirectionCosineWrite = FALSE
     outputVoxelType = Automatic
-    info = ""
+    info = "File saved successfully"
     unresolvedFileName = ""
   }
 }
@@ -362,11 +362,11 @@ module KernelEditor {
 }
 module View2D {
   internal  {
-    frame = "125 485 120 56"
+    frame = "-3 133 120 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "660 690 400 400"
+        geometry = "914 535 400 400"
         sizeHint = "400 400"
         wasOpen = no
       }
@@ -377,7 +377,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 77
+    startSlice = 0
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -471,7 +471,7 @@ module SoOrthoView2D {
     boundingBoxCaching = AUTO
     renderCulling = AUTO
     pickCulling = AUTO
-    worldPosition = "14.3999814987183 -37.5999526977539 4.79999446868896"
+    worldPosition = "-28.7999649047852 -35.1999549865723 24.7999687194824"
     viewerId1 = viewer1
     viewerId2 = viewer2
     viewerId3 = viewer3
@@ -493,9 +493,9 @@ module SoOrthoView2D {
     synchronizePanning = FALSE
     keepSlicesInView = FALSE
     viewingCenter = "-1 -1 -1"
-    viewingCenter1 = "14.3999824523926 0 0"
-    viewingCenter2 = "0 -37.5999526977539 0"
-    viewingCenter3 = "0 0 4.79999923706055"
+    viewingCenter1 = "-28.7999649047852 0 0"
+    viewingCenter2 = "0 -35.1999588012695 0"
+    viewingCenter3 = "0 0 24.7999687194824"
     invertKeyPanningDirections = FALSE
     extraViewSize = "0.666000008583069 0.666000008583069"
     margin = "2 2"
@@ -532,7 +532,7 @@ module SoRenderArea {
     moduleGroupName = ""
     windows  {
       window _viewer {
-        geometry = "714 258 400 400"
+        geometry = "610 521 400 400"
         sizeHint = "400 400"
         wasOpen = no
       }
@@ -601,6 +601,192 @@ module SoView2DSlicer {
     permitInteractionOutsideImage = FALSE
   }
 }
+module View2D {
+  internal  {
+    frame = "701 469 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "847 488 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D4
+    inventorInputOn = TRUE
+    inventorOutputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_ZT
+    cineDirection = CINE_FORWARD
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    cineAlwaysReset = TRUE
+    snapToCenter = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    useShaders = TRUE
+    useManagedInteraction = FALSE
+    lutCenter = 0.5
+    lutWidth = 1
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = FALSE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    valueHighPrecision = TRUE
+    showColorChannelValues = FALSE
+    colorChannelSeparator = " / "
+    maxPrecision = 4
+    enableSlicing = TRUE
+    useRelativeLUTIfNoInputImage = TRUE
+    hiResRendering = TRUE
+  }
+}
+module View2D {
+  internal  {
+    frame = "613 293 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "275 450 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D5
+    inventorInputOn = TRUE
+    inventorOutputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_ZT
+    cineDirection = CINE_FORWARD
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    cineAlwaysReset = TRUE
+    snapToCenter = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    useShaders = TRUE
+    useManagedInteraction = FALSE
+    lutCenter = 0.5
+    lutWidth = 1
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = FALSE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    valueHighPrecision = TRUE
+    showColorChannelValues = FALSE
+    colorChannelSeparator = " / "
+    maxPrecision = 4
+    enableSlicing = TRUE
+    useRelativeLUTIfNoInputImage = TRUE
+    hiResRendering = TRUE
+  }
+}
+module View2D {
+  internal  {
+    frame = "1013 509 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "767 429 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D6
+    inventorInputOn = TRUE
+    inventorOutputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_ZT
+    cineDirection = CINE_FORWARD
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    cineAlwaysReset = TRUE
+    snapToCenter = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    useShaders = TRUE
+    useManagedInteraction = FALSE
+    lutCenter = 0.500124573707581
+    lutWidth = 1
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = FALSE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    valueHighPrecision = TRUE
+    showColorChannelValues = FALSE
+    colorChannelSeparator = " / "
+    maxPrecision = 4
+    enableSlicing = TRUE
+    useRelativeLUTIfNoInputImage = TRUE
+    hiResRendering = TRUE
+  }
+}
 connections  {
   Threshold.input0 = GetAtlasMacro.outImage
   View2D.inImage = Threshold.output0
@@ -610,9 +796,12 @@ connections  {
   itkImageFileWriter.input0 = itkBinaryMorphologicalClosingImageFilter.output0
   itkDilateObjectMorphologyImageFilter.input0 = Threshold.output0
   itkDilateObjectMorphologyImageFilter.kernel = KernelEditor.kernel
-  View2D3.inImage = itkDilateObjectMorphologyImageFilter.output0
+  View2D3.inImage = itkBinaryMorphologicalClosingImageFilter.output0
   OrthoViewOverlay.inImage = itkBinaryMorphologicalClosingImageFilter.output0
   SoOrthoView2D.inputImage = GetAtlasMacro.outImage
   SoRenderArea.children = "SoView2DSlicer.self OrthoViewOverlay.overlay SoOrthoView2D.self"
+  View2D4.inImage = Threshold.output0
+  View2D5.inImage = itkDilateObjectMorphologyImageFilter.output0
+  View2D6.inImage = GetAtlasMacro.outImage
 }
 networkModel = ""
