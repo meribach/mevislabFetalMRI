@@ -142,6 +142,7 @@ div.sphinxsidebar {
 */
 html, div.document, div.documentwrapper, div.bodywrapper, div.sphinxsidebar {
   height: 100%;
+  display: block;
 }
 div.sphinxsidebarwrapper {
   height: 99%;
