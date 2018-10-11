@@ -3,6 +3,7 @@
 body {
   background-color: white;
   font-family: Arial,Geneva,Helvetica,sans-serif;
+  position: absolute;
 }
 
 a:visited {
@@ -83,7 +84,8 @@ div.body dl {
 
 div.document {
   background-color: white;
-  position: relative;
+  position: absolute;
+  left:0;
 }
 
 div.footer {
@@ -143,7 +145,7 @@ div.sphinxsidebar {
 */
 html, div.document, div.documentwrapper, div.bodywrapper, div.sphinxsidebar {
   height: 100%;
-  display: block;
+  display: inline-block;
 }
 div.sphinxsidebarwrapper {
   height: 99%;
