@@ -83,8 +83,7 @@ div.body dl {
 
 div.document {
   background-color: white;
-  position: fixed;
-  left: 280px;
+  position: relative;
 }
 
 div.footer {
