@@ -150,7 +150,7 @@ NetworkPanel {
 Window ImageOrientationPanel {
   
   Splitter {
-    direction = horizontal
+    direction = vertical
     //expandX = No
     Vertical
     {

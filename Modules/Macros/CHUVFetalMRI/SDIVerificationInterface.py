@@ -306,9 +306,9 @@ def insertRefinedMask():
  iterNumber = ctx.field("NumberIteration").value
  
  for imageIter in ImagesToDoBackgroundTasks:
-   inImages[imageIter].update({["BrainMaskLR_Iter%i"%iterNumber]:inImages[imageIter]["MaskReOriented"].replace(".nii","LR_ITER_%i.nii"%iterNumber)})  
+   inImages[imageIter].update({"BrainMaskLR_Iter%i"%iterNumber:inImages[imageIter]["MaskReOriented"].replace(".nii","LR_ITER_%i.nii"%iterNumber)})  
    
- inImages.update({["BrainMaskHR_Iter%i"%iterNumber]:os.path.join(os.path.dirname(inImages["SDI_ITER%i"%iterNumber]),"brainmaskHR_ITER_%i.nii.gz"%iterNumber)})
+ inImages.update({"BrainMaskHR_Iter%i"%iterNumber:os.path.join(os.path.dirname(inImages["SDI_ITER%i"%iterNumber]),"brainmaskHR_ITER_%i.nii.gz"%iterNumber)})
  
  ctx.field("inImageInfos").setObject(inImages)
  ctx.field("outImagesInfosStep2").setObject(inImages)
