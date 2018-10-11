@@ -77,6 +77,8 @@ def updateInterface():
       mdlToSet += """Horizontal { name = \"horizontal%i\"  """%i + checkBoxDefinition +LabelOrder+ ButtonUpDefinition + ButtonDownDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)
   else:
     for i in [0,2,4]:
+      LabelOrder1 = """ Label Order:%i {name = Label%s}"""%(i,listImage[i])
+      LabelOrder2 = """ Label Order:%i {name = Label%s}"""%(i+1,listImage[i+1])
       if GetInfoInput:
         if "UsedFromStart" in inImages.keys():
           print("checked if previous step done")
@@ -84,6 +86,8 @@ def updateInterface():
             if "UsedForSDI" in inImages.keys():
               if listImage[i] in inImages["UsedForSDI"]:
                  checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
+                 value = [x for x in inImages["UsedForSDI"] if x=="Image%i"%(i)]
+                 LabelOrder1 = """ Label Order:%i {name = Label%s}"""%(int(value[0].split("Image")[1]),listImage[i])
               else:
                 checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = False}"%(i,listImage[i])
             else:
@@ -94,6 +98,8 @@ def updateInterface():
             if "UsedForSDI" in inImages.keys():
               if listImage[i+1] in inImages["UsedForSDI"]:       
                  checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = True}"%(i+1,listImage[i+1])
+                 value = [x for x in inImages["UsedForSDI"] if x=="Image%i"%(i+1)]
+                 LabelOrder2 = """ Label Order:%i {name = Label%s}"""%(int(value[0].split("Image")[1]),listImage[i+1])
               else:
                  checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = False}"%(i+1,listImage[i+1])
             else:
@@ -113,10 +119,12 @@ def updateInterface():
       Button2UpDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i+1],listImage[i+1])
       Button2DownDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i+1],listImage[i+1])
       
-      mdlToSet += """Horizontal { name = \"horizontal%i\"  """%i + checkBoxDefinition + Button1UpDefinition + Button1DownDefinition  + checkBoxDefinition2 + Button2UpDefinition + Button2DownDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)
+      mdlToSet += """Horizontal { name = \"horizontal%i\"  """%i + checkBoxDefinition + LabelOrder1 + Button1UpDefinition + Button1DownDefinition  + checkBoxDefinition2 + LabelOrder2 + Button2UpDefinition + Button2DownDefinition + """ Execute = "py: getHorizontalControl([\'Image%i\',\'Image%i\'],\'horizontal%i\')" } """%(i,i+1,i)
       
     listToFinish= range(6,numImage,2)
     for i in listToFinish:
+      LabelOrder1 = """ Label Order:%i {name = Label%s}"""%(i,listImage[i])
+
       if GetInfoInput:
         if "UsedFromStart" in inImages.keys():
           print("checked if previous step done")
@@ -124,6 +132,8 @@ def updateInterface():
             if "UsedForSDI" in inImages.keys():
               if listImage[i] in inImages["UsedForSDI"]:
                   checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
+                  value = [x for x in inImages["UsedForSDI"] if x=="Image%i"%(i)]
+                  LabelOrder1 = """ Label Order:%i {name = Label%s}"""%(int(value[0].split("Image")[1]),listImage[i])
               else:
                   checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = False}"%(i,listImage[i])
             else:
@@ -140,6 +150,7 @@ def updateInterface():
       Button1DownDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i],listImage[i])
       
       if (i+1)<numImage:
+        LabelOrder2 = """ Label Order:%i {name = Label%s}"""%(i+1,listImage[i+1])
         if GetInfoInput:
           if "UsedFromStart" in inImages.keys():
             print("checked if previous step done")
@@ -147,6 +158,8 @@ def updateInterface():
               if "UsedForSDI" in inImages.keys():
                 if listImage[i+1] in inImages["UsedForSDI"]:
                    checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = True}"%(i+1,listImage[i+1])
+                   value = [x for x in inImages["UsedForSDI"] if x=="Image%i"%(i+1)]
+                   LabelOrder2 = """ Label Order:%i {name = Label%s}"""%(int(value[0].split("Image")[1]),listImage[i+1])
                 else:
                    checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = False}"%(i+1,listImage[i+1])
               else:
@@ -160,13 +173,9 @@ def updateInterface():
         
         Button2UpDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i+1],listImage[i+1])
         Button2DownDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i+1],listImage[i+1])
-
+        mdlToSet += """Horizontal {name = \"horizontal%i\"  """%i + checkBoxDefinition + LabelOrder1 + Button1UpDefinition + Button1DownDefinition  + checkBoxDefinition2 + LabelOrder2 + Button2UpDefinition + Button2DownDefinition + """ Execute = "py: getHorizontalControl([\'Image%i\',\'Image%i\'],\'horizontal%i\')" } """%(i,i+1,i) 
       else:
-        checkBoxDefinition2 = ""
-        Button2UpDefinition = ""
-        Button2DownDefinition = ""
-      
-      mdlToSet += """Horizontal {name = \"horizontal%i\"  """%i + checkBoxDefinition + Button1UpDefinition + Button1DownDefinition  + checkBoxDefinition2 + Button2UpDefinition + Button2DownDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)   
+        mdlToSet += """Horizontal {name = \"horizontal%i\"  """%i + checkBoxDefinition + LabelOrder1 + Button1UpDefinition + Button1DownDefinition  + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)   
         
         
   g_sceneSDI.addMDL("Vertical {" + mdlToSet + "}")
@@ -582,7 +591,11 @@ def getHorizontalControl(image,horizon):
   
   #print("get %s control"%horizon)
   global g_HorizontalControl
-  g_HorizontalControl.update({image:ctx.control(horizon)})
+  if isinstance(image,list):
+    for imageIter in image:
+      g_HorizontalControl.update({imageIter:ctx.control(horizon)})
+  else:
+    g_HorizontalControl.update({image:ctx.control(horizon)})
 
 def sort_human(l):
   convert = lambda text: float(text) if text.isdigit() else text
