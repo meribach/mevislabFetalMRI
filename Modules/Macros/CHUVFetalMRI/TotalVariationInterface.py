@@ -124,9 +124,9 @@ def insertTVSuperResolution():
     print("continue")
   
   
-#def convertToDicom(WhatToConvert):
+def convertToDicom(WhatToConvert):
 #
-#  print("nifti to dicom conversion")
+  print("nifti to dicom conversion")
 #  inImages = ctx.field("inImageInfos").object()
 #  #(0028,1052) RescaleIntercept:  0
 #  #(0028,1053) RescaleSlope:  100

@@ -1084,13 +1084,14 @@ bool mialsrtkRefineHRMaskByIntersection::runRefineMask()
 
         // Write image
         //TODO Mask type!!!!!
+		if (std::strncmp(outputHRFile, "", 4) != 0)
+		{
         MaskWriterType::Pointer maskWriter =  MaskWriterType::New();
         maskWriter -> SetFileName(outputHRFile);
         //writer -> SetInput( resampler -> GetOutput() );
         maskWriter -> SetInput( dilateFilterHRmask -> GetOutput() );
 
-        if (std::strncmp(outputHRFile, "", 4) == 0)
-        {
+
             try
 			{
 			maskWriter->Update();

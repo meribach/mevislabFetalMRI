@@ -270,6 +270,7 @@ def insertTVSuperResolution():
   
   #convert to dicom
   
+  
   runRefineMask()
 
 def runRefineMask():
@@ -398,6 +399,8 @@ def insertN4BiasFieldCorrectedHRImage():
   
   DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+"SRTV_ITER%i_BCorr"%iterNumber+"$T.dcm")
   DicomToolToUse.field("saveSlices").touch()
+  
+  print("SRTV DICOM Saved")
 
 
 #def updateRefImageReconstruction():
