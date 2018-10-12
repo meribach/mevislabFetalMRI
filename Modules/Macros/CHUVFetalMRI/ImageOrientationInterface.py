@@ -1812,7 +1812,6 @@ def insertImageReconstruction():
   
   ctx.field("FirstSDIDone").setValue(True)
   ctx.field("outputSucceed").setObject(ctx.field("FirstSDIDone"))
-  MLAB.processEvents()
   
   ##we convert them to dicom as well:
   print("convert SDI To Dicom")
@@ -1860,6 +1859,8 @@ def insertImageReconstruction():
   
   DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+"SDI_ITER1"+"$T.dcm")
   DicomToolToUse.field("saveSlices").touch()
+  
+  MLAB.processEvents()
   #print("DicomTool done")
 
 def insertNLMDenoisingResults():

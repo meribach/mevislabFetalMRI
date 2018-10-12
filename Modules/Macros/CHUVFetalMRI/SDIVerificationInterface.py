@@ -105,7 +105,7 @@ def updateInterface():
             else:
               checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = True}"%(i+1,listImage[i+1])
           else:
-            checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = False enabled = False}"%(i,listImage[i])
+            checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = False enabled = False}"%(i+1,listImage[i])
             
         else:
           checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
