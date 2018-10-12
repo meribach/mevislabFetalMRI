@@ -118,7 +118,7 @@ def showImageOrientationInterface():
     comboboxDefinition = """ComboBox {expandX = No name = \"comboImage%i\" items {item = unknown item = axial item = sagittal item = coronal} tooltip = "%s" textChangedCommand = "py: registerplaneOrientation(\'Image%i\')"}"""%(i,tooltipComboBox,i)
     LabelOrder = """ Label Order:%i {name = LabelImage%i}"""%(i,i)
     ButtonUpDefinition = """Button {name = moveUpImage%i image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'Image%i\',+1)"}"""%(i,i)
-    ButtonDownDefinition = """Button {name = moveUpImage%i image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'Image%i\',-1)"}"""%(i,i)
+    ButtonDownDefinition = """Button {name = moveDownImage%i image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'Image%i\',-1)"}"""%(i,i)
     
     #mdlToSet +="""Horizontal { name = \"horizontal%i\"  "+ buttonDefinition + buttonPositioningDef + buttonManualPositioningDef + buttonGenerateMaskDef + comboboxDefinition + checkBoxDefinition " Execute = "py: getHorizontalControl(\'horizontal%i\')" } """%(i,i)
     mdlToSet +="""Horizontal { name = \"horizontal%i\"  """%i + buttonDefinition + buttonPositioningDef + buttonGenerateMaskDef + buttonResetBrainMaskDef+ comboboxDefinition + checkBoxDefinition + LabelOrder + ButtonUpDefinition + ButtonDownDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)
@@ -1720,14 +1720,24 @@ def updateBackgroundTaskStatus(Task):
   newMessage =listOfPossibleTask[Task].stringValue()
   g_HorizontalControl["LastButtons"].control("StatusField").setTitle(newMessage)
   
+  if Task=="mialCorrectSliceIntensity":
+    checkBackgroundTask()
   
 def updateBackgroundTaskRunningField():
-  
-  print("background task running ?")
   
   ctx.field("BackgroundTaskRunning").setBoolValue(ctx.field("mevisbtkDenoising.inProgress").value | ctx.field("mialOrientImage.inProgress").value | ctx.field("mialCorrectSliceIntensity.inProgress").value | ctx.field("mialSliceBySliceBiasEstimation.inProgress").value | ctx.field("mialSliceBySliceBiasFieldCorrection.inProgress").value | ctx.field("mialIntensityStandardization.inProgress").value | ctx.field("mialOrientImageMask.inProgress").value | ctx.field("mialOrientImageNLM.inProgress").value | ctx.field("mialCorrectSliceIntensityNLM.inProgress").value |ctx.field("mialCorrectSliceIntensityNLMPostBiasCorrection.inProgress").value | ctx.field("mialIntensityStandardizationNLM.inProgress").value | ctx.field("mialCorrectSliceIntensityPostBiasCorrection.inProgress").value | ctx.field("mialImageReconstruction.inProgress").value )
   print(ctx.field("BackgroundTaskRunning").value)
  
+def checkBackgroundTask():
+  
+  listOfPossibleTaskProgress = {"Denoising":ctx.field("mevisbtkDenoising.inProgress").value,"mialOrientImage":ctx.field("mialOrientImage.inProgress").value,"mialCorrectSliceIntensity":ctx.field("mialCorrectSliceIntensity.inProgress").value,"mialBiasEstimation":ctx.field("mialSliceBySliceBiasEstimation.inProgress").value,"mialBiasCorrection":ctx.field("mialSliceBySliceBiasFieldCorrection.inProgress").value,"mialIntensityStandardization":ctx.field("mialIntensityStandardization.inProgress").value,"mialImageReconstruction":ctx.field("mialImageReconstruction.inProgress").value}
+  listOfPossibleTaskStatus = {"Denoising":ctx.field("mevisbtkDenoising.status"),"mialOrientImage":ctx.field("mialOrientImage.status"),"mialCorrectSliceIntensity":ctx.field("mialCorrectSliceIntensity.status"),"mialBiasEstimation":ctx.field("mialSliceBySliceBiasEstimation.status"),"mialBiasCorrection":ctx.field("mialSliceBySliceBiasFieldCorrection.status"),"mialIntensityStandardization":ctx.field("mialIntensityStandardization.status"),"mialImageReconstruction":ctx.field("mialImageReconstruction.status")}
+  
+  for iterTask in listOfPossibleTaskProgress.keys():
+    if listOfPossibleTaskProgress[iterTask]:
+      newMessage =listOfPossibleTaskStatus[iterTask].stringValue()
+      g_HorizontalControl["LastButtons"].control("StatusField").setTitle(newMessage)
+
 def runMaskImage():
   
   if not ctx.field("mialIntensityStandardizationNLMBis.outputSucceed").value:
@@ -1758,9 +1768,8 @@ def runImageReconstruction():
   maskFiles = ""
   
   orderList = {};
-  for imageIter in inImages:
-    if "Image" in imageIter:
-      orderList.update({int(g_HorizontalControl[imageIter].control("Label%s"%imageIter).title().split(":")[-1]):imageIter})
+  for imageIter in ImagesToDoBackgroundTasks:
+    orderList.update({int(g_HorizontalControl[imageIter].control("Label%s"%imageIter).title().split(":")[-1]):imageIter})
   
   sorted_orderList = sorted(orderList.items(),  key=lambda kv: kv[0])
   sorted_orderListValues = [vv for (kk,vv) in sorted_orderList]
