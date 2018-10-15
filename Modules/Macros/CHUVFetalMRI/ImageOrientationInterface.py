@@ -141,7 +141,7 @@ def showImageOrientationInterface():
     #g_layoutImageOrientation.addItem(buttonGenerateMask,i,4)
     #g_layoutImageOrientation.addItem(checkBoxImage,i,5)
   
-  FieldRefImage = """Field RefImageFiled {step = 1 title = "refImage: should be the one with the less movement"}"""
+  #FieldRefImage = """Field RefImageFiled {step = 1 title = "refImage: should be the one with the less movement"}"""
   
   buttonResetIm = """Button {expandX = No title = "Reset Images" name = buttonResetImage command = "py: resetImages()"}"""
   
@@ -160,7 +160,7 @@ def showImageOrientationInterface():
      
   FieldStatus = """Label {title = "BackgroundTaskInfo" name = StatusField}"""
   
-  mdlToSet += """Horizontal { name = horizontalRef """ + FieldRefImage + """ Execute = "py: getHorizontalControl(\'refButtons\',\'horizontalRef\')" } """
+  #mdlToSet += """Horizontal { name = horizontalRef """ + FieldRefImage + """ Execute = "py: getHorizontalControl(\'refButtons\',\'horizontalRef\')" } """
   mdlToSet += """Horizontal { name = horizontalFinal """ + buttonResetIm + buttonAllBackgroundTasks + FieldStatus + """ Execute = "py: getHorizontalControl(\'LastButtons\',\'horizontalFinal\')" } """
   
   if ctx.field("ExpertMode").value:
