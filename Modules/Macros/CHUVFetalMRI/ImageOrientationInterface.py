@@ -67,6 +67,11 @@ def initImageOrientationGraphicsView(view):
   ctx.field("AlreadyModifiedMask.currentInput").setValue(0)
   ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
   ctx.field("mialImageReconstruction.ImageBaseOfRecon").setIntValue(ctx.field("RefImageFiled").value)
+  ctx.field("WaitForReconstruction").setBoolValue(False)
+  ctx.field("WaitForSliceIntensity").setBoolValue(False)
+  ctx.field("insertOrientDone").setValue(False)
+  ctx.field("insertOrientNLMDone").setValue(False)
+  ctx.field("insertOrientMaskDone").setValue(False)
   if MLABFileManager.exists(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")):
     ctx.field("GetAtlasMacro.name").setStringValue("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
     ctx.field("GetAtlasMacro.AtlasPath").setStringValue("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
@@ -1194,6 +1199,9 @@ def runAllFirstSetBackgroundTasks():
     ctx.field("mialHistogramNormalizationNLM.outputSucceed").setBoolValue(False)
     ctx.field("mialImageReconstruction.outputSucceed").setBoolValue(False)
     ctx.field("mialsrtkMaskImage.outputSucceed").setBoolValue(False)
+    ctx.field("insertOrientDone").setValue(False)
+    ctx.field("insertOrientNLMDone").setValue(False)
+    ctx.field("insertOrientMaskDone").setValue(False)
     ctx.field("FirstSDIDone").setValue(False)
     
     listImageToSendBackgroundTasks=[]
@@ -1407,30 +1415,49 @@ def insertReOrient(WhatToInsert):
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep1").setObject(inImages)
   
-  print("here")
-  print(WhatToInsert)
+  #if WhatToInsert=="RawImage": 
+  #  runCorrectSliceIntensity('RawImage')
+  #
+  #if WhatToInsert=="NLMImage": 
+  #  runCorrectSliceIntensity('NLMImage')
   if WhatToInsert=="RawImage": 
-    runCorrectSliceIntensity('RawImage')
+    ctx.field("insertOrientDone").setValue(True)
+  elif WhatToInsert=="NLMImage":  
+    ctx.field("insertOrientNLMDone").setValue(True)
+  elif WhatToInsert=="MaskImage":
+    ctx.field("insertOrientMaskDone").setValue(True)
+
+  WaitForCorrectSliceIntensity()
   
-  if WhatToInsert=="NLMImage": 
+def WaitForCorrectSliceIntensity():
+  
+  ctx.field("WaitForSliceIntensity").setBoolValue(ctx.field("insertOrientDone").value & ctx.field("insertOrientNLMDone").value & ctx.field("insertOrientMaskDone").value)
+  print(ctx.field("insertOrientDone").value)
+  print(ctx.field("insertOrientNLMDone").value)
+  print(ctx.field("insertOrientMaskDone").value)
+  print("bool value")
+  print(ctx.field("WaitForSliceIntensity").value)
+  print("end bool value")
+  if not ctx.field("WaitForSliceIntensity").value:
+    MLAB.processEvents()
+    return
+  else:
+    print("run SliceIntensity")
+    print(ctx.field("mialOrientImageMask.outputSucceed").value)
+    print(ctx.field("mialOrientImage.outputSucceed").value)
+    print(ctx.field("mialOrientImageNLM.outputSucceed").value)
+    runCorrectSliceIntensity('RawImage')
     runCorrectSliceIntensity('NLMImage')
 
-  MLAB.processEvents()
-  
 def runCorrectSliceIntensity(WhatToCorrect):
   
+  print("HEEEEERRRRRRREEEEE")
   global ImagesToDoBackgroundTasks
   
   inImages = ctx.field("inImageInfos").object()
   if inImages == None:
     print("no images to denoise")
     return
-  
-  if WhatToCorrect=="RawImage" or WhatToCorrect=="NLMImage":
-    index=1
-    while (not ctx.field("mialOrientImageMask.outputSucceed").value and index<5000):
-      print(index)
-      index=index+1
   
   inputsCorrectSliceintensity=""
   masksCorrectSliceintensity=""

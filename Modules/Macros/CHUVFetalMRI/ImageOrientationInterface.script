@@ -51,9 +51,12 @@ Interface {
     Field RegistrationMaxStep {internalName = mialImageReconstruction.MaxStepLengthRegistration}
     Field RegistrationNbIt {internalName = mialImageReconstruction.nbIterationsRegistration}
     Field FirstSDIDone {type = Bool value = false}
-    
+    Field insertOrientDone {type = Bool value = True}
+    Field insertOrientNLMDone {type = Bool value = True}
+    Field insertOrientMaskDone {type = Bool value = True}
     
     Field WaitForReconstruction {type = Bool value = False}
+    Field WaitForSliceIntensity {type = Bool value = False}
     Field FromFrontier {type = Bool value = False}
     //Field temporaryMasksSwitch {type = MLBase }
   }

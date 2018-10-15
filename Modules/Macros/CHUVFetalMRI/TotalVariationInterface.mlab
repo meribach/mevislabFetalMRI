@@ -4,7 +4,7 @@ network  {
 }
 module itkImageFileReader {
   internal  {
-    frame = "413 717 136 56"
+    frame = "325 725 136 56"
     moduleGroupName = Visu
     windows  {
       window _default {
@@ -33,7 +33,7 @@ module itkImageFileReader {
 }
 module OrthoView2D {
   internal  {
-    frame = "133 361 136 64"
+    frame = "45 369 136 64"
     moduleGroupName = Visu
     windows  {
       window _default {
@@ -73,14 +73,14 @@ module OrthoView2D {
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "-28.259313583374 -29.4918212890625 1.06260859966278"
+    worldPosition = "6.68296813964844 -25.004997253418 -3.41251373291016"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
 }
 module OrthoView2D {
   internal  {
-    frame = "425 481 144 64"
+    frame = "337 489 144 64"
     moduleGroupName = Visu
     windows  {
       window _default {
@@ -120,14 +120,14 @@ module OrthoView2D {
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "-28.259313583374 -29.4918212890625 1.06260859966278"
+    worldPosition = "6.68296813964844 -25.004997253418 -3.41251373291016"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
 }
 module OrthoView2D {
   internal  {
-    frame = "741 337 152 64"
+    frame = "653 345 152 64"
     moduleGroupName = Visu
     windows  {
       window _default {
@@ -167,14 +167,14 @@ module OrthoView2D {
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "-28.259313583374 -29.4918212890625 1.06260859966278"
+    worldPosition = "6.68296813964844 -25.004997253418 -3.41251373291016"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
 }
 module mialImageReconstruction {
   internal  {
-    frame = "693 533 168 56"
+    frame = "605 541 168 56"
     moduleGroupName = Visu
     windows  {
       window _default {
@@ -214,7 +214,7 @@ module mialImageReconstruction {
 }
 module CreateBoundingVolume {
   internal  {
-    frame = "53 561 184 64"
+    frame = "-35 569 184 64"
     moduleGroupName = Visu
     windows  {
       window _default {
@@ -236,7 +236,7 @@ module CreateBoundingVolume {
 }
 module View2D {
   internal  {
-    frame = "-195 217 120 64"
+    frame = "-283 225 120 64"
     moduleGroupName = Visu
     windows  {
       window _default {
@@ -303,7 +303,7 @@ module View2D {
 }
 module Reformat {
   internal  {
-    frame = "-119 481 144 64"
+    frame = "-207 489 144 64"
     moduleGroupName = Visu
     showNetworkPanel = true
   }
@@ -342,7 +342,7 @@ module Reformat {
 }
 module CreateBoundingVolume {
   internal  {
-    frame = "13 825 200 64"
+    frame = "-75 833 200 64"
     moduleGroupName = Visu
     windows  {
       window _default {
@@ -364,7 +364,7 @@ module CreateBoundingVolume {
 }
 module View2D {
   internal  {
-    frame = "-171 617 120 64"
+    frame = "-259 625 120 64"
     moduleGroupName = Visu
     windows  {
       window _default {
@@ -431,7 +431,7 @@ module View2D {
 }
 module Reformat {
   internal  {
-    frame = "-159 745 160 64"
+    frame = "-247 753 160 64"
     moduleGroupName = Visu
     showNetworkPanel = true
   }
@@ -470,7 +470,7 @@ module Reformat {
 }
 module CreateBoundingVolume {
   internal  {
-    frame = "1101 633 200 64"
+    frame = "1013 641 200 64"
     moduleGroupName = Visu
     windows  {
       window _default {
@@ -492,7 +492,7 @@ module CreateBoundingVolume {
 }
 module View2D {
   internal  {
-    frame = "997 441 120 64"
+    frame = "909 449 120 64"
     moduleGroupName = Visu
     windows  {
       window _default {
@@ -559,7 +559,7 @@ module View2D {
 }
 module Reformat {
   internal  {
-    frame = "929 553 160 64"
+    frame = "841 561 160 64"
     moduleGroupName = Visu
     showNetworkPanel = true
     windows  {
@@ -605,7 +605,7 @@ module Reformat {
 }
 module SyncVector {
   internal  {
-    frame = "305 285 96 56"
+    frame = "217 293 96 56"
     moduleGroupName = Visu
     windows  {
       window _default {
@@ -617,8 +617,8 @@ module SyncVector {
   }
   fields  {
     instanceName = SyncVector
-    vector1 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
-    vector2 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
+    vector1 = "6.68296813964844 -25.004997253418 -3.41251373291016 0"
+    vector2 = "6.68296813964844 -25.004997253418 -3.41251373291016 0"
     epsilon = 9.9999997e-05
     epsilonVec = "0.001 0.001 0.001 0.001"
     mode = EpsilonScalar
@@ -626,7 +626,7 @@ module SyncVector {
 }
 module SyncVector {
   internal  {
-    frame = "565 373 104 56"
+    frame = "477 381 104 56"
     moduleGroupName = Visu
     windows  {
       window _automatic {
@@ -643,8 +643,8 @@ module SyncVector {
   }
   fields  {
     instanceName = SyncVector1
-    vector1 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
-    vector2 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
+    vector1 = "6.68296813964844 -25.004997253418 -3.41251373291016 0"
+    vector2 = "6.68296813964844 -25.004997253418 -3.41251373291016 0"
     epsilon = 9.9999997e-05
     epsilonVec = "0.001 0.001 0.001 0.001"
     mode = EpsilonScalar
@@ -652,7 +652,7 @@ module SyncVector {
 }
 module SyncVector {
   internal  {
-    frame = "925 261 104 56"
+    frame = "837 269 104 56"
     moduleGroupName = Visu
     windows  {
       window _automatic {
@@ -664,8 +664,8 @@ module SyncVector {
   }
   fields  {
     instanceName = SyncVector2
-    vector1 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
-    vector2 = "-28.259313583374 -29.4918212890625 1.06260859966278 0"
+    vector1 = "6.68296813964844 -25.004997253418 -3.41251373291016 0"
+    vector2 = "6.68296813964844 -25.004997253418 -3.41251373291016 0"
     epsilon = 9.9999997e-05
     epsilonVec = "0.001 0.001 0.001 0.001"
     mode = EpsilonScalar
@@ -673,7 +673,7 @@ module SyncVector {
 }
 module BoundingBox {
   internal  {
-    frame = "-51 225 168 80"
+    frame = "-139 233 168 80"
     moduleGroupName = Visu
     showNetworkPanel = true
     windows  {
@@ -693,7 +693,7 @@ module BoundingBox {
 }
 module BoundingBox {
   internal  {
-    frame = "625 745 176 80"
+    frame = "537 753 176 80"
     moduleGroupName = Visu
     showNetworkPanel = true
     windows  {
@@ -713,7 +713,7 @@ module BoundingBox {
 }
 module BoundingBox {
   internal  {
-    frame = "1029 793 184 80"
+    frame = "941 801 184 80"
     moduleGroupName = Visu
     showNetworkPanel = true
     windows  {
@@ -733,7 +733,7 @@ module BoundingBox {
 }
 module mialTVSuperResolution {
   internal  {
-    frame = "1417 317 160 56"
+    frame = "1385 133 160 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -854,7 +854,7 @@ module DicomTool {
 }
 module itkImageFileReader {
   internal  {
-    frame = "1585 862 144 56"
+    frame = "1462 1000 144 56"
     moduleGroupName = PrepareDicomConversion
     windows  {
       window _default {
@@ -888,7 +888,7 @@ module itkImageFileReader {
 }
 module Arithmetic1 {
   internal  {
-    frame = "1705 774 128 72"
+    frame = "1582 912 128 72"
     moduleGroupName = PrepareDicomConversion
     showNetworkPanel = true
     windows  {
@@ -907,7 +907,7 @@ module Arithmetic1 {
 }
 module DicomTagModify {
   internal  {
-    frame = "1701 606 120 56"
+    frame = "1578 744 120 56"
     moduleGroupName = PrepareDicomConversion
     windows  {
       window _default {
@@ -961,7 +961,7 @@ module DicomTagModify {
 }
 module ImagePropertyConvert {
   internal  {
-    frame = "1701 686 152 72"
+    frame = "1578 824 152 72"
     moduleGroupName = PrepareDicomConversion
     showNetworkPanel = true
     windows  {
@@ -1029,12 +1029,132 @@ module NiftiToDicomFetalMRI {
     Tag0x42 = ""
   }
 }
+module SoView2DLabel {
+  internal  {
+    frame = "793 865 128 64"
+    moduleGroupName = Visu
+    windows  {
+      window _default {
+        geometry = "903 224 400 717"
+        sizeHint = "400 717"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LabelViewerMode
+    interactionProviderID = ""
+    drawingOn = TRUE
+    color = "0.882352948188782 0.968627452850342 0.0352941192686558"
+    text = STRV_ITER_BCorr
+    viewerId = ""
+    textPositioning = RELATIVE_TO_VIEWER
+    worldPosition = "0 0 0"
+    relativeViewerPosition = "0 0"
+    useDepthVisibility = FALSE
+    depthVisibility = 1
+    depthVisibilityMode = DEPTH_IN_SLICES
+    depthMinimumAlpha = 0
+    verticalOffset = 0
+    verticalPosition = POS_VCENTER
+    horizontalOffset = 0
+    horizontalPosition = POS_RIGHT
+    fontSize = 14
+    alpha = 1
+    textShadow = FALSE
+  }
+}
+module mialRefineMask {
+  internal  {
+    frame = "1629 69 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1132 244 640 332"
+        sizeHint = "640 332"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialRefineMask
+    inputFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni_bcorr.nii
+    transformIn = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_transform_4V_1.txt
+    maskFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
+    outputHRFile = "D:/Pierre/TestFullMevislab\\brainmaskHR_ITER_1.nii.gz"
+    outputLRFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii
+    referenceFile = "D:/Pierre/TestFullMevislab\\SDI_ITER1.nii.gz"
+    radiusDilation = 1
+    useStaple = TRUE
+    status = "Refine Mask Done"
+    inProgress = FALSE
+    outputSucceed = TRUE
+  }
+}
+module mialsrtkMaskImage {
+  internal  {
+    frame = "1629 157 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1139 651 640 184"
+        sizeHint = "640 184"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialsrtkMaskImage
+    inputFile = ""
+    maskFile = ""
+    outputFile = ""
+    status = ""
+    inProgress = FALSE
+    outputSucceed = FALSE
+  }
+}
+module mialN4BiasField {
+  internal  {
+    frame = "1645 269 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1142 926 640 214"
+        sizeHint = "640 214"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mialN4BiasField
+    inputFile = "D:/Pierre/TestFullMevislab\\SRTV_ITER1.nii.gz"
+    maskFile = "D:/Pierre/TestFullMevislab\\brainmaskHR_ITER_1.nii.gz"
+    outputFile = "D:/Pierre/TestFullMevislab\\SRTV_ITER1_gbcorr.nii.gz"
+    outputBiasField = "D:/Pierre/TestFullMevislab\\SRTV_ITER1_gbcorrfield.nii.gz"
+    status = "N4BiasField Correction Done"
+    inProgress = FALSE
+    outputSucceed = TRUE
+  }
+}
 connections  {
   OrthoView2DAxial.image = BoundingBoxAxial.output0
+  OrthoView2DAxial.inInvPreLUT = LabelViewerMode.self
   OrthoView2DAxial.worldPosition = SyncVector2.vector2
   OrthoView2DSagittal.image = BoundingBoxSagittal.output0
+  OrthoView2DSagittal.inInvPreLUT = LabelViewerMode.self
   OrthoView2DSagittal.worldPosition = SyncVector.vector2
   OrthoView2DCoronal.image = BoundingBoxCoronal.output0
+  OrthoView2DCoronal.inInvPreLUT = LabelViewerMode.self
   OrthoView2DCoronal.worldPosition = SyncVector1.vector2
   CreateBoundingVolumeAxial.input0 = itkImageFileReader.output0
   View2DAxial.inImage = BoundingBoxAxial.output0
@@ -1065,7 +1185,7 @@ networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 65
+        uniqueId = 73
         objectName = Visu
         parentUniqueId = 0
         color  {

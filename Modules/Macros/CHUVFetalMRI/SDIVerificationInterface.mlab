@@ -20,13 +20,62 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
-    numDims = 0
+    info = "Loading okay."
+    numDims = 3
     fileType = TypeNotApplicable
-    componentType = ""
-    pixelType = UNKNOWNPIXELTYPE
-    loaderType = ""
-    outputMetaDataStr = ""
+    componentType = float
+    pixelType = SCALAR
+    loaderType = NiftiImageIO
+    outputMetaDataStr = "ITK_FileNotes : 
+aux_file : 
+bitpix : 32
+cal_max : 0
+cal_min : 0
+datatype : 16
+descrip : 
+dim[0] : 3
+dim[1] : 320
+dim[2] : 320
+dim[3] : 138
+dim[4] : 1
+dim[5] : 1
+dim[6] : 1
+dim[7] : 1
+dim_info : 
+intent_code : 0
+intent_name : 
+intent_p1 : 0
+intent_p2 : 0
+intent_p3 : 0
+pixdim[0] : 1
+pixdim[1] : 1.125
+pixdim[2] : 1.125
+pixdim[3] : 1.125
+pixdim[4] : 0
+pixdim[5] : 0
+pixdim[6] : 0
+pixdim[7] : 0
+qform_code : 1
+qoffset_x : 212.782
+qoffset_y : 151.821
+qoffset_z : -63.9944
+quatern_b : -0.0119101
+quatern_c : -0.00132138
+quatern_d : 0.993816
+scl_inter : 0
+scl_slope : 1
+sform_code : 0
+slice_code : 
+slice_duration : 0
+slice_end : 0
+slice_start : 0
+srow_x : 0 0 0 0
+srow_y : 0 0 0 0
+srow_z : 0 0 0 0
+toffset : 0
+vox_offset : 352
+xyzt_units : 
+"
     suppressErrorPosting = FALSE
     unresolvedFileName = ""
   }
@@ -65,15 +114,15 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 1
-    grayCenter = 1
+    grayWidth = 197.32356262207
+    grayCenter = 98.6617813110352
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "0 0 0"
+    worldPosition = "-6.60958862304688 -6.03240203857422 -0.0375137329101562"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
@@ -112,15 +161,15 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 1
-    grayCenter = 1
+    grayWidth = 197.32356262207
+    grayCenter = 98.6617813110352
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "0 0 0"
+    worldPosition = "-6.60958862304688 -6.03240203857422 -0.0375137329101562"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
@@ -159,15 +208,15 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 1
-    grayCenter = 1
+    grayWidth = 197.32356262207
+    grayCenter = 98.6617813110352
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "0 0 0"
+    worldPosition = "-6.60958862304688 -6.03240203857422 -0.0375137329101562"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
@@ -256,7 +305,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 0
+    startSlice = 49
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -281,8 +330,8 @@ module View2D {
     sliceOrigin = "0 0"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 1
-    lutWidth = 1
+    lutCenter = 98.6617813110352
+    lutWidth = 197.32356262207
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -318,7 +367,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "0 0 0"
+    center = "3.65771887011607 -15.8083657221779 8.39998668106119"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -384,7 +433,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 0
+    startSlice = 44
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -409,8 +458,8 @@ module View2D {
     sliceOrigin = "46.5332183837891 110.516395568848"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 1
-    lutWidth = 1
+    lutCenter = 98.6617813110352
+    lutWidth = 197.32356262207
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -446,7 +495,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "0 0 0"
+    center = "3.65771887011607 -15.8083657221779 8.39998668106119"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -512,7 +561,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 0
+    startSlice = 54
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -537,8 +586,8 @@ module View2D {
     sliceOrigin = "49.2503433227539 47.9289855957031"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 1
-    lutWidth = 1
+    lutCenter = 98.6617813110352
+    lutWidth = 197.32356262207
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -581,7 +630,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "0 0 0"
+    center = "3.65771887011607 -15.8083657221779 8.39998668106119"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -617,8 +666,8 @@ module SyncVector {
   }
   fields  {
     instanceName = SyncVector
-    vector1 = "0 0 0 0"
-    vector2 = "0 0 0 0"
+    vector1 = "-6.60958862304688 -6.03240203857422 -0.0375137329101562 0"
+    vector2 = "-6.60958862304688 -6.03240203857422 -0.0375137329101562 0"
     epsilon = 9.9999997e-05
     epsilonVec = "0.001 0.001 0.001 0.001"
     mode = EpsilonScalar
@@ -643,8 +692,8 @@ module SyncVector {
   }
   fields  {
     instanceName = SyncVector1
-    vector1 = "0 0 0 0"
-    vector2 = "0 0 0 0"
+    vector1 = "-6.60958862304688 -6.03240203857422 -0.0375137329101562 0"
+    vector2 = "-6.60958862304688 -6.03240203857422 -0.0375137329101562 0"
     epsilon = 9.9999997e-05
     epsilonVec = "0.001 0.001 0.001 0.001"
     mode = EpsilonScalar
@@ -664,8 +713,8 @@ module SyncVector {
   }
   fields  {
     instanceName = SyncVector2
-    vector1 = "0 0 0 0"
-    vector2 = "0 0 0 0"
+    vector1 = "-6.60958862304688 -6.03240203857422 -0.0375137329101562 0"
+    vector2 = "-6.60958862304688 -6.03240203857422 -0.0375137329101562 0"
     epsilon = 9.9999997e-05
     epsilonVec = "0.001 0.001 0.001 0.001"
     mode = EpsilonScalar
@@ -750,17 +799,17 @@ module mialRefineMask {
   }
   fields  {
     instanceName = mialRefineMask
-    inputFiles = ""
-    transformIn = ""
-    maskFiles = ""
-    outputHRFile = ""
-    outputLRFiles = ""
-    referenceFile = ""
+    inputFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni_bcorr.nii
+    transformIn = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_transform_4V_1.txt
+    maskFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
+    outputHRFile = "D:/Pierre/TestFullMevislab\\brainmaskHR_ITER_1.nii.gz"
+    outputLRFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii
+    referenceFile = "D:/Pierre/TestFullMevislab\\SDI_ITER1.nii.gz"
     radiusDilation = 1
     useStaple = TRUE
-    status = ""
+    status = "Refine Mask Done"
     inProgress = FALSE
-    outputSucceed = FALSE
+    outputSucceed = TRUE
   }
 }
 module mialsrtkMaskImage {
@@ -804,13 +853,13 @@ module mialN4BiasField {
   }
   fields  {
     instanceName = mialN4BiasField
-    inputFile = ""
-    maskFile = ""
-    outputFile = ""
-    outputBiasField = ""
-    status = ""
+    inputFile = "D:/Pierre/TestFullMevislab\\SRTV_ITER1.nii.gz"
+    maskFile = "D:/Pierre/TestFullMevislab\\brainmaskHR_ITER_1.nii.gz"
+    outputFile = "D:/Pierre/TestFullMevislab\\SRTV_ITER1_gbcorr.nii.gz"
+    outputBiasField = "D:/Pierre/TestFullMevislab\\SRTV_ITER1_gbcorrfield.nii.gz"
+    status = "N4BiasField Correction Done"
     inProgress = FALSE
-    outputSucceed = FALSE
+    outputSucceed = TRUE
   }
 }
 module NiftiToDicomFetalMRI {
@@ -831,8 +880,8 @@ module DicomTool {
   }
   fields  {
     instanceName = DicomTool
-    exportDir = ""
-    exportBaseDir = ""
+    exportDir = "D:/Pierre/TestFullMevislab\\Results"
+    exportBaseDir = "D:/Pierre/TestFullMevislab\\Results"
     exportNameTemplate = $S/export$T.dcm
     addPatNameDir = FALSE
     addStudyUIDDIR = FALSE
@@ -905,11 +954,11 @@ module mialTVSuperResolution {
   }
   fields  {
     instanceName = mialTVSuperResolution
-    outputFile = ""
-    maskFiles = ""
-    refFile = ""
-    inputFiles = ""
-    transformFilesInput = ""
+    outputFile = "D:/Pierre/TestFullMevislab\\SRTV_ITER1.nii.gz"
+    maskFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
+    refFile = "D:/Pierre/TestFullMevislab\\SDI_ITER1.nii.gz"
+    inputFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni_bcorr.nii
+    transformFilesInput = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_transform_4V_1.txt
     nbIter = 50
     Lambda = 0.1
     DeltaT = 0.1
@@ -933,17 +982,55 @@ module mialTVSuperResolution {
     MinStepLengthRegistration = 0.0001
     RelaxationFactorRegistration = 0.5
     MaxStepLengthRegistration = 0.2
-    status = ""
+    status = "TV SuperResolution Done"
     inProgress = FALSE
-    outputSucceed = FALSE
+    outputSucceed = TRUE
+  }
+}
+module SoView2DLabel {
+  internal  {
+    frame = "369 809 128 64"
+    moduleGroupName = Visu
+    windows  {
+      window _default {
+        geometry = "1087 419 388 696"
+        sizeHint = "388 696"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = LabelViewerMode
+    interactionProviderID = ""
+    drawingOn = TRUE
+    color = "0.882352948188782 0.968627452850342 0.0352941192686558"
+    text = SDI_ITER1.nii.gzImage0--Image1--Image2--Image3
+    viewerId = ""
+    textPositioning = RELATIVE_TO_VIEWER
+    worldPosition = "0 0 0"
+    relativeViewerPosition = "0 0"
+    useDepthVisibility = FALSE
+    depthVisibility = 1
+    depthVisibilityMode = DEPTH_IN_SLICES
+    depthMinimumAlpha = 0
+    verticalOffset = 0
+    verticalPosition = POS_VCENTER
+    horizontalOffset = 0
+    horizontalPosition = POS_RIGHT
+    fontSize = 14
+    alpha = 1
+    textShadow = FALSE
   }
 }
 connections  {
   OrthoView2DAxial.image = BoundingBoxAxial.output0
+  OrthoView2DAxial.inInvPreLUT = LabelViewerMode.self
   OrthoView2DAxial.worldPosition = SyncVector2.vector2
   OrthoView2DSagittal.image = BoundingBoxSagittal.output0
+  OrthoView2DSagittal.inInvPreLUT = LabelViewerMode.self
   OrthoView2DSagittal.worldPosition = SyncVector.vector2
   OrthoView2DCoronal.image = BoundingBoxCoronal.output0
+  OrthoView2DCoronal.inInvPreLUT = LabelViewerMode.self
   OrthoView2DCoronal.worldPosition = SyncVector1.vector2
   CreateBoundingVolumeAxial.input0 = itkImageFileReader.output0
   View2DAxial.inImage = BoundingBoxAxial.output0
@@ -969,7 +1056,7 @@ networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 60
+        uniqueId = 64
         objectName = Visu
         parentUniqueId = 0
         color  {

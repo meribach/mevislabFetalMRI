@@ -16,7 +16,7 @@ Interface {
     Field inImageInfos { type = MLBase }
     Field SDIVerificationSucceed {type = MLBase}}
   Outputs {
-    Field outImagesInfosStep2 { type = MLBase }
+    Field outImagesInfosStep3 { type = MLBase }
     Field outputSucceed {type = MLBase}
     Field viewer2DAxial {
       hidden       = yes
@@ -35,7 +35,7 @@ Interface {
     Field NumberImages {type = Int}
     Field outlierRejection { type = bool value = false}
     Field ExpertMode {type = Bool value = True}
-    Field Gamma {internalName = mialTVSuperResolution.Lambda}
+    Field Lambda {internalName = mialTVSuperResolution.Lambda}
     Field DeltaT {internalName = mialTVSuperResolution.DeltaT}
     Field FromFrontier {type = Bool value = False}
     Field NumberIteration {type = Int value = 1}
@@ -47,7 +47,7 @@ Interface {
 }
 
 Description {
-  Field Gamma {min = 0 max = 5}
+  Field Lambda {min = 0 max = 5}
   Field DeltaT {min = 0 max = 5}
 }
 
@@ -55,8 +55,16 @@ Description {
 Commands {
   source = $(LOCAL)/TotalVariationInterface.py
   FieldListener itkImageFileReader.fileName {command = updateImage}
-  FieldListener inImageInfos {command = updateTotalVariationInterface}
+  //FieldListener inImageInfos {command = updateTotalVariationInterface}
   FieldListener mialTVSuperResolution.outputSucceed {command = insertTVSuperResolution}
+  FieldListener mialRefineMask.outputSucceed {command = "py: insertRefinedMask()"}
+  FieldListener mialsrtkMaskImage.outputSucceed {command = "py: insertMaskImage()"}
+  FieldListener mialN4BiasField.outputSucceed {command = "py: insertN4BiasFieldCorrectedHRImage()"}
+  FieldListener mialTVSuperResolution.inProgress {command = updateBackgroundTaskRunningField}
+  FieldListener mialRefineMask.inProgress {command = updateBackgroundTaskRunningField}
+  FieldListener mialsrtkMaskImage.inProgress {command = updateBackgroundTaskRunningField}
+  FieldListener mialN4BiasField.inProgress {command = updateBackgroundTaskRunningField}
+  
 }
 
 Window TotalVariationInterface {
@@ -80,12 +88,12 @@ Window TotalVariationInterface {
         Horizontal {
           
           Button {title = "Stop SuperResolution" command = stopSuperResolution}
-          Button {title = "ReRun Super Resolution" command = RunSuperResolution}
+          Button {title = "Run Super Resolution" command = RunSuperResolution dependsOn = !BackgroundTaskRunning}
         }
         Horizontal {
-          Label "Gamma (default = 0.1): " {}
-          Slider Gamma {pageStep = 0.1}
-          NumberEdit Gamma {
+          Label "Lambda (default = 0.1): " {}
+          Slider Lambda {pageStep = 0.1}
+          NumberEdit Lambda {
             step      = 0.1
             stepstep  = 1
             format    = "%.1f"
@@ -99,6 +107,10 @@ Window TotalVariationInterface {
             stepstep = 1
             format   = "%.1f"
           }
+        }
+        Horizontal {
+          Label "StartIter :" {}
+          NumberEdit NumberIteration {step = 1 expandX = No }
         }
         Horizontal {
           Button {title = "Help" command = showHelp}

@@ -375,7 +375,11 @@ def insertN4BiasFieldCorrectedHRImage():
     print(DicomToolToUse.field("exportBaseDir").value)
     listUID = [inImages[imageIter]["SeriesInstanceUID"] for imageIter in ImagesToDoBackgroundTasks]
     mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x43, listUID , "UI")
-    mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x42, 1 , "SS")
+    mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x42, iterNumber , "SS")
+    #transfoInfo = [open(inImages[imageIter]["Transform"],"r").read() for imageIter in ImagesToDoBackgroundTasks]
+    #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, transfoInfo, "UT")
+    mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x44, ctx.field("mialTVSuperResolution.Lambda").value, "FD")
+    mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x45, ctx.field("mialTVSuperResolution.DeltaT").value , "FD")
     #ctx.connectField("parent:DicomExport.inImage","DicomTagModify.output0")
     
   else:
@@ -385,11 +389,15 @@ def insertN4BiasFieldCorrectedHRImage():
     originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
     mutableTree = originalTree.createDerivedTree()
     mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, ImagesToDoBackgroundTasks , "LO")
-    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, 1 , "SS")
-    transfoInfo = [open(inImages[imageIter]["Transform"],"r").read() for imageIter in ImagesToDoBackgroundTasks]
-    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, transfoInfo, "UT")
-    DicomToolToUse = ctx.module("DicomToolSDI1")
-    ctx.field("DicomToolSDI1.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, iterNumber , "SS")
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, ctx.field("mialTVSuperResolution.Lambda").value, "FD")
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x45, ctx.field("mialTVSuperResolution.DeltaT").value , "FD")
+    #transfoInfo = [open(inImages[imageIter]["Transform"],"r").read() for imageIter in ImagesToDoBackgroundTasks]
+    #mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, transfoInfo, "UT")
+    
+    
+    DicomToolToUse = ctx.module("DicomTool")
+    ctx.field("DicomTool.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
     
   
   ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.inDicomTree").setObject(mutableTree)
@@ -503,7 +511,7 @@ def insertImageReconstruction():
     transfoInfo = [open(inImages[imageIter]["Transform"],"r").read() for imageIter in inImages["UsedForSDI"]]
     mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, transfoInfo, "UT")
     mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x43, listUID , "UI")
-    mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x42, 1 , "SS")
+    mutableTree.setPrivateTag(0x07a1, ctx.field("NiftiToDicomFetalMRI.NamePrivateTage").value, 0x42, iterNumber , "SS")
     #ctx.connectField("parent:DicomExport.inImage","DicomTagModify.output0")
     
   else:
@@ -513,11 +521,11 @@ def insertImageReconstruction():
     originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
     mutableTree = originalTree.createDerivedTree()
     mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, inImages["UsedForSDI"] , "LO")
-    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, 1 , "SS")
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, iterNumber , "SS")
     transfoInfo = [open(inImages[imageIter]["Transform"],"r").read() for imageIter in inImages["UsedForSDI"]]
     mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, transfoInfo, "UT")
-    DicomToolToUse = ctx.module("DicomToolSDI1")
-    ctx.field("DicomToolSDI1.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
+    DicomToolToUse = ctx.module("DicomTool")
+    ctx.field("DicomTool.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
     
   
   ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.inDicomTree").setObject(mutableTree)
@@ -546,6 +554,7 @@ def updateSDI():
       lastIter = sort_human(listSDI_ITER)[-1]  
       ctx.field("itkImageFileReader.fileName").setStringValue(inImages[lastIter])
       ctx.field("NumberIteration").setMaxValue(len(listSDI_ITER)+1)
+      ctx.field("LabelViewerMode.text").setStringValue(os.path.basename(inImages[lastIter]) + "--".join(inImages["UsedForSDI"]))
       #  convertToDicom(lastIter)  
   
   #should check which image were taken
