@@ -14,7 +14,18 @@ from mevis import *
 
 def main():
   print("main")
-  citx.field("DirectDicomImport.dplImport").touch()
+  ctx.field("DirectDicomImport.dplImport").touch()
+  
+  for iterImage in range(ctx.field("DirectDicomImport.numVolumes").value):
+    
+    ctx.field("MultiFileVolumeListImageOutput.outVolIdx").setIntValue(iterImage)
+    print(ctx.field("DicomTagViewer.tagValue0").value)
+    
+    print(ctx.field("DicomTagViewer.tagValue1").value)
+    PatientName=ctx.field("DicomTagViewer.tagValue0").value
+    if PatientName.startswith("MARTI"):
+      ctx.field("DicomTool.saveSlices").touch()
+  
   
 def fileDialog(InOut):
   #exp = ctx.expandFilename(ctx.field("AtlasPath").stringValue())
