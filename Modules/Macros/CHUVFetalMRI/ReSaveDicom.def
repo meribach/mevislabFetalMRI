@@ -1,0 +1,19 @@
+//----------------------------------------------------------------------------------
+//! ReSaveDicom module definition
+/*!
+// \file    ReSaveDicom.def
+// \author     neuropsynov
+// \date    2018-10-16
+*/
+//----------------------------------------------------------------------------------
+
+
+MacroModule ReSaveDicom {
+  genre              = ""
+  author             = "   neuropsynov"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+   
+  externalDefinition = "$(LOCAL)/ReSaveDicom.script"
+}

@@ -1212,9 +1212,8 @@ def runAllFirstSetBackgroundTasks():
           listImageToSendBackgroundTasks.append(imageIter)
         
     ImagesToDoBackgroundTasks = listImageToSendBackgroundTasks
-    inImages.update({"UsedFromStart":ImagesToDoBackgroundTasks})
-    
-    #if !ctx.field("mevisbtkDenoising.outputSucceed").value:
+    inImages.update({"UsedFromStart":list(set().union(ImagesToDoBackgroundTasks,inImages["UsedFromStart"]))})
+    #if !ctx.field("mevisbtkDenoising.outputSucceed").value
     #if denoise images as run on native image we have to reorient them
     SomeToDenoise=False
     for imageIter in listImageToSendBackgroundTasks:

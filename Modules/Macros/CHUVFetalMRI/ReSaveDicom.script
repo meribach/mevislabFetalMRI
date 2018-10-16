@@ -1,0 +1,46 @@
+//----------------------------------------------------------------------------------
+//! Macro module ReSaveDicom
+/*!
+// \file    ReSaveDicom.script
+// \author     neuropsynov
+// \date    2018-10-16
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {
+    Field InputDirectory {internalName = DirectDicomImport.source}
+    Field OutputDirectory {internalName = DicomTool.exportBaseDir}
+    Field inputLabel {type = String}
+    Field outputLabel {type = String}
+  }
+}
+
+
+Commands {
+  source = $(LOCAL)/ReSaveDicom.py
+}
+
+Window {
+  mw = 480
+  Vertical {
+    Box {
+      Horizontal {
+        Field inputLabel {title = "InputPath:"}
+        Button { title = "Browse" command = "py: fileDialog(\'InputDirectory\')"  }
+      }
+      Horizontal {
+        Field outputLabel {title = "OutputPath:"}
+        Button { title = "Browse2" command =  "py: fileDialog(\'OutputDirectory\')"   }
+      }
+    }
+    Button { title = "Excecute" command = main}  
+  }
+
+}
