@@ -22,6 +22,9 @@ def initTotalVariationInterface(view):
   print("##### initTVGraphicsView")
   ctx.field("Lambda").setValue(0.1)
   ctx.field("DeltaT").setValue(0.1)
+  ctx.field("mialN4BiasField.outputSucceed").setBoolValue(False)
+  ctx.field("mialTVSuperResolution.outputSucceed").setBoolValue(False)
+  ctx.field("mialRefineMask.outputSucceed").setBoolValue(False)
   updateInterface()
   
   
@@ -102,7 +105,9 @@ def buttonPressedSagittal():
 def RunSuperResolution():
   print("run SuperResolution")
   inImages = ctx.field("inImageInfos").object()
-  
+  ctx.field("mialN4BiasField.outputSucceed").setBoolValue(False)
+  ctx.field("mialTVSuperResolution.outputSucceed").setBoolValue(False)
+  ctx.field("mialRefineMask.outputSucceed").setBoolValue(False)
   inTransforms = ""
   inputFiles = ""
   maskFiles = ""

@@ -24,6 +24,9 @@ def initSDIVerificationGraphicsView(view):
   print("##### initSDIVerificationGraphicsView")
   ctx.field("Lambda").setValue(0.1)
   ctx.field("DeltaT").setValue(0.1)
+  ctx.field("mialN4BiasField.outputSucceed").setBoolValue(False)
+  ctx.field("mialTVSuperResolution.outputSucceed").setBoolValue(False)
+  ctx.field("mialRefineMask.outputSucceed").setBoolValue(False)
   updateInterface()
   
 def updateInterface():
@@ -226,7 +229,9 @@ def RunSuperResolution():
   
   print("run SuperVariation")
   inImages = ctx.field("inImageInfos").object()
-  
+  ctx.field("mialN4BiasField.outputSucceed").setBoolValue(False)
+  ctx.field("mialTVSuperResolution.outputSucceed").setBoolValue(False)
+  ctx.field("mialRefineMask.outputSucceed").setBoolValue(False)
   numIm = ctx.field("NumberImages").value
   inTransforms = ""
   inputFiles = ""
