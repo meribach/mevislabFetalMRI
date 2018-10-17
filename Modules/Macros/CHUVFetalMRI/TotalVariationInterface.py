@@ -283,7 +283,7 @@ def insertN4BiasFieldCorrectedHRImage():
   ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.inDicomTree").setObject(mutableTree)
   
   if ctx.field("FromFrontier").value:
-    ctx.connectField("parent:DicomExport.inImage","SetDicomTreeOnImage.output0")
+    ctx.connectField("parent:DicomExport.inImage","NiftiToDicomFetalMRI.SetDicomTreeOnImage.output0")
   
   DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+"SRTV_ITER%i_BCorr"%iterNumber+"$T.dcm")
   DicomToolToUse.field("saveSlices").touch()

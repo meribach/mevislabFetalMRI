@@ -72,6 +72,9 @@ def initImageOrientationGraphicsView(view):
   ctx.field("insertOrientDone").setValue(False)
   ctx.field("insertOrientNLMDone").setValue(False)
   ctx.field("insertOrientMaskDone").setValue(False)
+  ctx.field("FirstSDIDone").setValue(False)
+  ctx.field("outputSucceed").setObject(ctx.field("FirstSDIDone"))
+  
   if MLABFileManager.exists(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")):
     ctx.field("GetAtlasMacro.name").setStringValue("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
     ctx.field("GetAtlasMacro.AtlasPath").setStringValue("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
@@ -1212,7 +1215,10 @@ def runAllFirstSetBackgroundTasks():
           listImageToSendBackgroundTasks.append(imageIter)
         
     ImagesToDoBackgroundTasks = listImageToSendBackgroundTasks
-    inImages.update({"UsedFromStart":list(set().union(ImagesToDoBackgroundTasks,inImages["UsedFromStart"]))})
+    if "UsedFromStart" in inImages.keys():
+      inImages.update({"UsedFromStart":list(set().union(ImagesToDoBackgroundTasks,inImages["UsedFromStart"]))})
+    else:
+      inImages.update({"UsedFromStart":ImagesToDoBackgroundTasks})
     #if !ctx.field("mevisbtkDenoising.outputSucceed").value
     #if denoise images as run on native image we have to reorient them
     SomeToDenoise=False

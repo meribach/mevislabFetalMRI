@@ -47,7 +47,7 @@ Interface {
 }
 
 Description {
-  Field Lambda {min = 0 max = 5}
+  Field Lambda {min = 0 max = 0.99}
   Field DeltaT {min = 0 max = 5}
 }
 
@@ -94,18 +94,18 @@ Window TotalVariationInterface {
           Label "Lambda (default = 0.1): " {}
           Slider Lambda {pageStep = 0.1}
           NumberEdit Lambda {
-            step      = 0.1
-            stepstep  = 1
-            format    = "%.1f"
+            step      = 0.01
+            stepstep  = 0.1
+            format    = "%.2f"
           }
         }
         Horizontal {
           Label "DeltaT (default = 1): " {}
           Slider DeltaT {pageStep = 0.1 }
           NumberEdit DeltaT {
-            step     = 0.1
-            stepstep = 1
-            format   = "%.1f"
+            step     = 0.01
+            stepstep = 0.1
+            format   = "%.2f"
           }
         }
         Horizontal {

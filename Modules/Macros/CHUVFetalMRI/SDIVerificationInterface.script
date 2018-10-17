@@ -57,7 +57,7 @@ Interface {
 Commands {
   source = $(LOCAL)/SDIVerificationInterface.py
   FieldListener itkImageFileReader.fileName {command = updateImage}
-  FieldListener ImageOrientationSucceed {command = updateSDI}
+  FieldListener ImageOrientationSucceed {command = updateInterface}
   FieldListener mialImageReconstruction.outputSucceed {command = "py: insertImageReconstruction()"}
   FieldListener mialTVSuperResolution.outputSucceed {command = "py: insertTVSuperResolution()"}
   FieldListener mialRefineMask.outputSucceed {command = "py: insertRefinedMask()"}

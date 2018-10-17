@@ -28,6 +28,13 @@ def initSDIVerificationGraphicsView(view):
   
 def updateInterface():
   
+  if ctx.field("ImageOrientationSucceed").isNull():
+    return
+  else:
+    if not ctx.field("ImageOrientationSucceed").object().value:
+      return
+  
+  
   g_sceneSDI = g_SDIGraphicsView.scene()
   g_sceneSDI.clear()
   
@@ -105,7 +112,7 @@ def updateInterface():
             else:
               checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = True}"%(i+1,listImage[i+1])
           else:
-            checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = False enabled = False}"%(i+1,listImage[i])
+            checkBoxDefinition2 = "CheckBox {name = checkImage%i title = %s checked = False enabled = False}"%(i+1,listImage[i+1])
             
         else:
           checkBoxDefinition = "CheckBox {name = checkImage%i title = %s checked = True}"%(i,listImage[i])
@@ -403,7 +410,7 @@ def insertN4BiasFieldCorrectedHRImage():
   ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.inDicomTree").setObject(mutableTree)
   
   if ctx.field("FromFrontier").value:
-    ctx.connectField("parent:DicomExport.inImage","SetDicomTreeOnImage.output0")
+    ctx.connectField("parent:DicomExport.inImage","NiftiToDicomFetalMRI.SetDicomTreeOnImage.output0")
   
   DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+"SRTV_ITER%i_BCorr"%iterNumber+"$T.dcm")
   DicomToolToUse.field("saveSlices").touch()
@@ -531,7 +538,7 @@ def insertImageReconstruction():
   ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.inDicomTree").setObject(mutableTree)
   
   if ctx.field("FromFrontier").value:
-    ctx.connectField("parent:DicomExport.inImage","SetDicomTreeOnImage.output0")
+    ctx.connectField("parent:DicomExport.inImage","NiftiToDicomFetalMRI.SetDicomTreeOnImage.output0")
   
   DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+"SDI_ITER%i"%iterNumber+"$T.dcm")
   DicomToolToUse.field("saveSlices").touch()

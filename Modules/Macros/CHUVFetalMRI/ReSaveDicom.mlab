@@ -9,9 +9,9 @@ module DirectDicomImport {
     showNetworkPanel = true
     windows  {
       window _default {
-        geometry = "361 634 800 352"
-        sizeHint = "800 352"
-        wasOpen = no
+        geometry = "535 680 800 341"
+        sizeHint = "800 385"
+        wasOpen = yes
       }
       window _automatic {
         geometry = "709 269 500 600"
@@ -355,7 +355,7 @@ validImage hasIssues fileType voxelType imgExt numVoxels numSlices numTimePoints
     dplWorkaroundValueForImageOrientationPatientTag = ""
     composeOtherFilesMode = Single
     silentTrialFileTypes = ".dat .raw .txt"
-    source = "/media/neuropsynov/My Passport/FrontierDataBase/in/VD2"
+    source = D:/Pierre/FrontierDataBase/in
     guiCachePath = ""
   }
 }
@@ -365,8 +365,8 @@ module DicomTool {
     moduleGroupName = resaveDicom
     windows  {
       window _default {
-        geometry = "920 327 621 420"
-        sizeHint = "621 420"
+        geometry = "570 587 604 420"
+        sizeHint = "604 420"
         wasOpen = no
       }
       window _automatic {
@@ -378,17 +378,17 @@ module DicomTool {
   }
   fields  {
     instanceName = DicomTool
-    exportDir = "/media/neuropsynov/My Passport/newVD2/1.3.6.1.4.1.34261.158527718980403.7740.1539691958.7"
-    exportBaseDir = "/media/neuropsynov/My Passport/newVD2"
+    exportDir = D:/Pierre/newVD2/in/1.3.6.1.4.1.34261.84055616336174.6708.1539699710.45
+    exportBaseDir = D:/Pierre/newVD2/in
     exportNameTemplate = $S/export$T.dcm
     addPatNameDir = FALSE
     addStudyUIDDIR = FALSE
     addSeriesUIDDIR = TRUE
     allSlices = TRUE
     minSlice = 1
-    maxSlice = 6
+    maxSlice = 24
     minUsedSlice = 0
-    maxUsedSlice = 6
+    maxUsedSlice = 24
     allTimepoints = TRUE
     minTime = 1
     maxTime = 1
@@ -446,7 +446,7 @@ module MultiFileVolumeListImageOutput {
       window _default {
         geometry = "540 549 538 444"
         sizeHint = "538 444"
-        wasOpen = no
+        wasOpen = yes
       }
     }
   }
@@ -455,23 +455,23 @@ module MultiFileVolumeListImageOutput {
     useBaseInput = TRUE
     autoLoadResultCache = FALSE
     cacheFilePath = ""
-    outVolIdx = 26
+    outVolIdx = 18
     numVolumes = 37
     tagDumpSize = 10000
     dumpPrivateTagValues = FALSE
     numShownBinaryEntries = 8
     annotate = FALSE
     regExLineFilter = ""
-    extX = 416
-    extY = 512
-    extZ = 6
+    extX = 320
+    extY = 320
+    extZ = 24
     extC = 1
     extT = 1
     extU = 1
-    numVolVoxels = 1277952
-    dataType = "unsigned int16"
+    numVolVoxels = 2457600
+    dataType = int16
     minVoxVal = 0
-    maxVoxVal = 1118
+    maxVoxVal = 1
   }
 }
 module DicomTagModify {
@@ -489,7 +489,7 @@ module DicomTagModify {
   fields  {
     instanceName = DicomTagModify
     tagName0 = PatientName
-    tagValue0 = ""
+    tagValue0 = MARTIGNIER^MERYL
     removeTag0 = FALSE
     tagVR0 = PN
     stdTagVR0 = TRUE
@@ -536,7 +536,7 @@ module DicomTagViewer {
       window _default {
         geometry = "1194 291 447 382"
         sizeHint = "447 382"
-        wasOpen = no
+        wasOpen = yes
       }
     }
   }
@@ -544,8 +544,8 @@ module DicomTagViewer {
     instanceName = DicomTagViewer
     tagName0 = PatientName
     tagName1 = (07a1,0010)
-    tagName2 = ""
-    tagName3 = ""
+    tagName2 = SeriesDescription
+    tagName3 = SeriesInstanceUID
     tagName4 = ""
     tagName5 = ""
     tagName6 = ""
