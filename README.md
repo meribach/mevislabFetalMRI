@@ -13,3 +13,7 @@ There is a version of the software using syngovia.frontier https://www.healthcar
 # How to Install
 
 see wiki https://github.com/pdeman/mevislabFetalMRI/wiki#how-to-install
+
+# How to Use it
+
+see https://htmlpreview.github.io/?https://raw.githubusercontent.com/pdeman/mevislabFetalMRI/master/Documentation/Publish/ModuleReference/index.html
