@@ -1813,7 +1813,7 @@ def runImageReconstruction():
         inputFiles=inputFiles+"--"
         maskFiles=maskFiles+"--"
       
-      outTransform = outTransform +inImages[sorted_orderList[iterList][1]]["ImReOriented"].split(".nii")[0]+"_transform_%iV_1.txt"%numIm 
+      outTransform = outTransform +inImages[sorted_orderList[iterList][1]]["ImReOriented"].split(".nii")[0]+"_transform_%iV_1.txt"%%len(inImages["UsedForSDI"])
       inputFiles = inputFiles + inImages[sorted_orderList[iterList][1]]["NLMBCorr"]
       maskFiles=maskFiles + inImages[sorted_orderList[iterList][1]]["MaskReOriented"]
 

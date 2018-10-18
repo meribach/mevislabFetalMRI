@@ -457,6 +457,7 @@ def ReRunImageReconstruction():
   
   sorted_orderList = sorted(orderList.items(),  key=lambda kv: kv[0])
   sorted_orderListValues = [vv for (kk,vv) in sorted_orderList]
+  inImages.update({"UsedForSDI":sorted_orderListValues})
   
   for iterList in range(len(sorted_orderList)):
     if outTransform!="":
@@ -464,12 +465,12 @@ def ReRunImageReconstruction():
       inputFiles=inputFiles+"--"
       maskFiles=maskFiles+"--"
       
-    outTransform = outTransform +inImages[sorted_orderList[iterList][1]]["ImReOriented"].split(".nii")[0]+"_transform_%iV_1.txt"%numIm 
+    outTransform = outTransform +inImages[sorted_orderList[iterList][1]]["ImReOriented"].split(".nii")[0]+"_transform_%iV_1.txt"%len(inImages["UsedForSDI"]) 
     inputFiles = inputFiles + inImages[sorted_orderList[iterList][1]]["NLMBCorr"]
     maskFiles=maskFiles + inImages[sorted_orderList[iterList][1]]["MaskReOriented"]
 
     
-  inImages.update({"UsedForSDI":sorted_orderListValues})
+  
   
   ctx.field("mialImageReconstruction.inputFiles").setStringValue(inputFiles)
   ctx.field("mialImageReconstruction.maskFiles").setStringValue(maskFiles)
@@ -493,7 +494,7 @@ def insertImageReconstruction():
   global ImagesToDoBackgroundTasks
   
   for imageIter in ImagesToDoBackgroundTasks:   
-    inImages[imageIter].update({"Transform":inImages[imageIter]["ImReOriented"].split(".nii")[0]+"_transform_%iV_1.txt"%numIm})
+    inImages[imageIter].update({"Transform":inImages[imageIter]["ImReOriented"].split(".nii")[0]+"_transform_%iV_1.txt"%len(inImages["UsedForSDI"])})
   
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep2").setObject(inImages)
