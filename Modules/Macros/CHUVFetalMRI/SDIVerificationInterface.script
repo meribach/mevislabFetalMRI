@@ -42,6 +42,7 @@ Interface {
     Field RegistrationMinStep {internalName = mialImageReconstruction.MinStepLengthRegistration}
     Field RegistrationMaxStep {internalName = mialImageReconstruction.MaxStepLengthRegistration}
     Field RegistrationNbIt {internalName = mialImageReconstruction.nbIterationsRegistration}
+    Field kernelRadiusMultiplicator {internalName = mialImageReconstruction.resampleKernelMultiplicator}
     Field Lambda {internalName = mialTVSuperResolution.Lambda}
     Field DeltaT {internalName = mialTVSuperResolution.DeltaT}
     Field updateView {type = Trigger}
@@ -121,6 +122,8 @@ Window SDIVerificationInterface {
             NumberEdit RegistrationNbIt {step = 100}
             Label "Relaxation Factor" {}
             NumberEdit RegistrationRelaxationFactor { step = 0.05}
+            Label "Radius Multiplicator" {}
+            NumberEdit kernelRadiusMultiplicator {step = 0.1}
            dependsOn = ExpertMode}
           Horizontal {
             Label "StartIter :" {}
@@ -133,18 +136,18 @@ Window SDIVerificationInterface {
             Label "Lambda (default = 0.1): " {}
             Slider Lambda {pageStep = 0.1}
             NumberEdit Lambda {
-              step     = 0.1
-              stepstep = 1
-              format   = "%.1f"
+              step     = 0.01
+              stepstep = 0.1
+              format   = "%.2f"
             }
           }
           Horizontal {
             Label "DeltaT (default = 0.1): " {}
             Slider DeltaT {pageStep = 0.1 }
             NumberEdit DeltaT {
-              step     = 0.1
-              stepstep = 1
-              format   = "%.1f"
+              step     = 0.01
+              stepstep = 0.1
+              format   = "%.2f"
             }
           }
         Horizontal {

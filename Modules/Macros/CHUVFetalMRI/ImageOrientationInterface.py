@@ -1837,7 +1837,7 @@ def insertImageReconstruction():
   
   global ImagesToDoBackgroundTasks
   for imageIter in ImagesToDoBackgroundTasks:   
-    inImages[imageIter].update({"Transform":inImages[imageIter]["ImReOriented"].split(".nii")[0]+"_transform_%iV_1.txt"%numIm})
+    inImages[imageIter].update({"Transform":inImages[imageIter]["ImReOriented"].split(".nii")[0]+"_transform_%iV_1.txt"%len(inImages["UsedForSDI"])})
   
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep1").setObject(inImages)
