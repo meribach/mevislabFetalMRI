@@ -3,7 +3,7 @@
 body {
   background-color: white;
   font-family: Arial,Geneva,Helvetica,sans-serif;
-  position: absolute;
+  position: auto;
 }
 
 a:visited {
