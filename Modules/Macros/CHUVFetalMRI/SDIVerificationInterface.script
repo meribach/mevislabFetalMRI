@@ -124,7 +124,7 @@ Window SDIVerificationInterface {
             NumberEdit RegistrationRelaxationFactor { step = 0.05}
             Label "Radius Multiplicator" {}
             NumberEdit kernelRadiusMultiplicator {step = 0.1}
-           dependsOn = ExpertMode}
+            dependsOn = ExpertMode}
           Horizontal { alignX = Left
             Label "StartIter :" {expandX = No}
             NumberEdit NumberIteration {step = 1 expandX = No }

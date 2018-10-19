@@ -151,3 +151,97 @@ Window MultiFetalRadioViewer {
   }
 }
 
+
+Window Screen1 {
+  Splitter {
+    direction = vertical
+      
+    Box {
+      GraphicsView
+      {
+        name        = GraphicsView
+        initCommand = initMultiFetalRadioGraphicsView
+        
+        //expandX = No
+      }
+
+      expandY = yes
+      //expandX = No
+    
+      Horizontal {
+        Horizontal {
+          FieldLabel names { title = "Path:" labelAlignGroup = group1 }
+          ComboBox names { name = pathChoices }
+          Button { title = "Browse" command = fileDialog }
+        }   
+        Field ImagesPath { trim = left labelAlignGroup = group1 }
+        Field CurrentImageNumber {step = 1}
+
+      }
+    }
+      
+    Box ViewerBoxAxial {
+      title = ""
+      
+      Viewer viewer2DAxial {
+        name            = viewerAxial
+        clone           = NO
+        preferredWidth  = 900
+        preferredHeight = 500
+      }
+      
+      EventFilter {
+        filter  = "MouseButtonPress,KeyPress"
+        control = viewerAxial 
+        command = buttonPressedAxial
+      }
+      expandY = yes
+    } 
+      
+  }
+}
+
+Window Screen2 {
+  Splitter {
+      
+    direction = vertical
+      
+    Box ViewerBoxCoronal {
+      title = ""
+      
+      Viewer viewer2DCoronal {
+        name            = viewerCoronal
+        clone           = NO
+        preferredWidth  = 900
+        preferredHeight = 500
+      }
+      
+      EventFilter {
+        filter  = "MouseButtonPress,KeyPress"
+        control = viewerCoronal 
+        command = buttonPressedCoronal
+      }
+      expandY = yes
+    } 
+      
+    Box ViewerBoxSagittal {
+      title = ""
+      
+      Viewer viewer2DSagittal {
+        name            = viewerSagittal
+        clone           = NO
+        preferredWidth  = 900
+        preferredHeight = 500
+      }
+      
+      EventFilter {
+        filter  = "MouseButtonPress,KeyPress"
+        control = viewerSagittal 
+        command = buttonPressedSagittal
+      }
+      expandY = yes
+    }
+  }
+}
+
+
