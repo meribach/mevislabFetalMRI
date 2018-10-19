@@ -125,15 +125,15 @@ Window SDIVerificationInterface {
             Label "Radius Multiplicator" {}
             NumberEdit kernelRadiusMultiplicator {step = 0.1}
            dependsOn = ExpertMode}
-          Horizontal {
-            Label "StartIter :" {}
+          Horizontal { alignX = Left
+            Label "StartIter :" {expandX = No}
             NumberEdit NumberIteration {step = 1 expandX = No }
             Button {title = "ReRun SDI Estimation" command = ReRunImageReconstruction dependsOn = !BackgroundTaskRunning}
           }
         }
         Box {
           Horizontal {
-            Label "Lambda (default = 0.1): " {}
+            Label "Lambda (default = 0.1): " {expandX = No}
             Slider Lambda {pageStep = 0.1}
             NumberEdit Lambda {
               step     = 0.01
@@ -150,8 +150,8 @@ Window SDIVerificationInterface {
               format   = "%.2f"
             }
           }
-        Horizontal {
-          Label "StartIter :" {}
+        Horizontal { alignX = Left
+          Label "StartIter :" {expandX = No}
           NumberEdit NumberIteration {step = 1 expandX = No }
           Button {title = "Run Super Resolution" command = RunSuperResolution dependsOn = !BackgroundTaskRunning}
         }

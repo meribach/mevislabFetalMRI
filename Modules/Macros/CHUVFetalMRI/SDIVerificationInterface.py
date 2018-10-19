@@ -596,17 +596,17 @@ def updateImage():
 
 def showHelp():
   print("showHelp")
-  if not ctx.field("FromFrontier").value:
-    import webbrowser
-    print(webbrowser.browser)
-    print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html")))
-    webbrowser.open_new(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html"))
+  #if not ctx.field("FromFrontier").value:
+  import webbrowser
+  print(webbrowser.browser)
+  print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html")))
+  webbrowser.open_new(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html"))
 
-  else:
-    global _frontier
-    _frontier = ctx.module("parent:FrontierSyngoInterface").object()
-    url = ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html")
-    _frontier._syngoVia.call("FE.AppHosting.ShowUrl", url)
+  #else:
+  #  global _frontier
+  #  _frontier = ctx.module("parent:FrontierSyngoInterface").object()
+  #  url = ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html")
+  #  _frontier._syngoVia.call("FE.AppHosting.ShowUrl", url)
     
 def updateBackgroundTaskRunningField():
   print("update backgroundTask")
