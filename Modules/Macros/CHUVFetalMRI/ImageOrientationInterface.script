@@ -211,34 +211,36 @@ Window ImageOrientationPanel {
   
 }
 
-Window ButtonOnly {
+Window LeftSide {
     
     //style = FrontierStyle
-    Vertical
+  Vertical
+  {
+    GraphicsView
     {
-      GraphicsView
-      {
-        name        = GraphicsView
-        initCommand = initImageOrientationGraphicsView
+      name        = GraphicsView
+      initCommand = initImageOrientationGraphicsView
         
-        //expandX = No
-      }
-
-      expandY = yes
-    
-      Horizontal {
-        Field GestationalAge {step = 1}
-        Button { title = "Choose manually the atlas" command = getAtlasManually }
-        CheckBox { title = "+/1 week from Gestational Age" }
-      }
+      //expandX = No
     }
-    expandX = yes
+
+    expandY = yes
+    //expandX = No
+    
+    Horizontal {
+      Field GestationalAge {step = 1 tooltip = "Doesn't have to be the real gestational Age, it is used for the predefined mask of the brain, the mask has to include all brain, but can include a little more than the brain"}
+      Button { title = "Choose manually the atlas" command = getAtlasManually tooltip = "if you want other mask than the predefined ones based on Gholipour A et. al (DOI: 10.1038/s41598-017-00525-w)"}
+      CheckBox { title = "+/1 week from Gestational Age" enabled = False}
+    }
+    Horizontal {
+      Button { title = "Help" command = showHelp}
+    }
+  }
   
 }
 
-Window ViewerOnly {
+Window RightSide {
   
-  //style = FrontierStyle
   Box ViewerBox {
     title = ""
       
@@ -250,11 +252,22 @@ Window ViewerOnly {
     }
       
     EventFilter {
+      //dependsOn = "eventChoice == 1"
       filter  = "MouseButtonPress,KeyPress"
       control = viewer 
       command = button1PressedImOrient
     }
+      
+    /*EventFilter {
+    dependsOn = "eventChoice == 2"
+    filter  = "MouseButtonPress,KeyPress"
+    control = viewer 
+    command = button1PressedMaskRefine         
+    }*/
     expandY = yes
-  } 
-  
+  }
+    
+    
 }
+  
+
