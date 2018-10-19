@@ -1956,19 +1956,19 @@ def updateParameterRegistration():
 
 def showHelp():
   print("showHelp")
-  if not ctx.field("FromFrontier").value:
-    import webbrowser
-    print(webbrowser.browser)
-    print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html")))
-    webbrowser.open_new(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html"))
+  #if not ctx.field("FromFrontier").value:
+  import webbrowser
+  print(webbrowser.browser)
+  print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html")))
+  webbrowser.open_new(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html"))
 
-  else:
-    global _frontier
-    _frontier = ctx.module("parent:FrontierSyngoInterface").object()
-    url = "/".join(["frontier_server", "user_manuals", ctx.field("parent:FrontierSyngoInterface.applicationName").value])
-    print(url)
-    #url = ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html")
-    _frontier._syngoVia.call("FE.AppHosting.ShowUrl", url)
+  #else:
+  #  global _frontier
+  #  _frontier = ctx.module("parent:FrontierSyngoInterface").object()
+  #  url = "/".join(["frontier_server", "user_manuals", ctx.field("parent:FrontierSyngoInterface.applicationName").value])
+  #  print(url)
+  #  #url = ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html")
+  #  _frontier._syngoVia.call("FE.AppHosting.ShowUrl", url)
 
 def loadPreProcessedAlready():
   global ToggleLoadPreviousData
