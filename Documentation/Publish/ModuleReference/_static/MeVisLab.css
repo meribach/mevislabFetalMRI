@@ -1,8 +1,10 @@
-@import url("classic.css");
+/*@import url("classic.css");*/
 
 body {
   background-color: white;
   font-family: Arial,Geneva,Helvetica,sans-serif;
+  display: block;
+  margin-left: 250px;
 }
 
 a:visited {
