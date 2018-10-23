@@ -4,12 +4,17 @@ network  {
 }
 module DicomTagModify {
   internal  {
-    frame = "557 421 120 56"
+    frame = "637 493 120 56"
     moduleGroupName = NiftiToDicomFetalMRI
     windows  {
       window _default {
-        geometry = "60 199 518 488"
+        geometry = "60 199 518 752"
         sizeHint = "518 482"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "260 223"
         wasOpen = no
       }
     }
@@ -58,7 +63,7 @@ module DicomTagModify {
 }
 module ImagePropertyConvert {
   internal  {
-    frame = "541 525 152 72"
+    frame = "517 621 152 72"
     moduleGroupName = NiftiToDicomFetalMRI
     showNetworkPanel = true
     windows  {
@@ -138,7 +143,7 @@ module SetDicomTreeOnImage {
 }
 module itkImageFileReader {
   internal  {
-    frame = "541 733 136 56"
+    frame = "517 869 136 56"
     moduleGroupName = NiftiToDicomFetalMRI
     windows  {
       window _default {
@@ -154,7 +159,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "File closed"
+    info = "Invalid path"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -167,7 +172,7 @@ module itkImageFileReader {
 }
 module Arithmetic1 {
   internal  {
-    frame = "649 629 128 72"
+    frame = "641 677 128 72"
     moduleGroupName = NiftiToDicomFetalMRI
     showNetworkPanel = true
     windows  {
@@ -184,12 +189,67 @@ module Arithmetic1 {
     constant = 100
   }
 }
+module DicomTagModify {
+  internal  {
+    frame = "660 396 128 56"
+    moduleGroupName = NiftiToDicomFetalMRI
+    windows  {
+      window _default {
+        geometry = "708 388 518 482"
+        sizeHint = "518 482"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomTagModify1
+    tagName0 = AcquisitionDate
+    tagValue0 = ""
+    removeTag0 = FALSE
+    tagVR0 = DA
+    stdTagVR0 = TRUE
+    tagName1 = AcquisitionTime
+    tagValue1 = ""
+    removeTag1 = FALSE
+    tagVR1 = TM
+    stdTagVR1 = TRUE
+    tagName2 = ""
+    tagValue2 = ""
+    removeTag2 = FALSE
+    tagVR2 = ""
+    stdTagVR2 = FALSE
+    tagName3 = ""
+    tagValue3 = ""
+    removeTag3 = FALSE
+    tagVR3 = ""
+    stdTagVR3 = FALSE
+    tagName4 = ""
+    tagValue4 = ""
+    removeTag4 = FALSE
+    tagVR4 = ""
+    stdTagVR4 = FALSE
+    tagName5 = ""
+    tagValue5 = ""
+    removeTag5 = FALSE
+    tagVR5 = ""
+    stdTagVR5 = FALSE
+    discardSource = None
+    useTagsString = FALSE
+    modifyTagsString = ""
+    removeTagsString = ""
+    synchronizeTagsString = ""
+    trimSpaces = TRUE
+    autoApply = TRUE
+    updateMode = AutoUpdate
+  }
+}
 connections  {
   DicomTagModify.input0 = ImagePropertyConvert.output0
   DicomTagModify.tagValue4 = Arithmetic1.constant
   ImagePropertyConvert.input0 = Arithmetic1.output0
-  SetDicomTreeOnImage.input0 = DicomTagModify.output0
+  SetDicomTreeOnImage.input0 = DicomTagModify1.output0
   Arithmetic1.input0 = itkImageFileReader.output0
+  DicomTagModify1.input0 = DicomTagModify.output0
 }
 networkModel  {
   parentItems  {
