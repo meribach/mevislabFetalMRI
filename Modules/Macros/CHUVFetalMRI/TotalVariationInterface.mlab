@@ -54,7 +54,7 @@ module OrthoView2D {
     inventorOutputOn = FALSE
     synchronizePosition = TRUE
     layout = LAYOUT_AXIAL
-    filterMode = FILTER_LINEAR
+    filterMode = FILTER_CUBIC_POSTCLASS
     synchronizeZoom = TRUE
     synchronizePanning = FALSE
     useGlobalInputImage = TRUE
@@ -101,7 +101,7 @@ module OrthoView2D {
     inventorOutputOn = FALSE
     synchronizePosition = TRUE
     layout = LAYOUT_SAGITTAL
-    filterMode = FILTER_LINEAR
+    filterMode = FILTER_CUBIC_POSTCLASS
     synchronizeZoom = TRUE
     synchronizePanning = FALSE
     useGlobalInputImage = TRUE
@@ -148,7 +148,7 @@ module OrthoView2D {
     inventorOutputOn = FALSE
     synchronizePosition = TRUE
     layout = LAYOUT_CORONAL
-    filterMode = FILTER_LINEAR
+    filterMode = FILTER_CUBIC_POSTCLASS
     synchronizeZoom = TRUE
     synchronizePanning = FALSE
     useGlobalInputImage = TRUE
@@ -751,8 +751,8 @@ module mialTVSuperResolution {
     inputFiles = ""
     transformFilesInput = ""
     nbIter = 50
-    Lambda = 0.13699999
-    DeltaT = 1.005
+    Lambda = 0.1
+    DeltaT = 0.1
     Gamma = 1
     stepScale = 1
     innerConvThreshold = 0.0001
@@ -1093,7 +1093,7 @@ module mialRefineMask {
     useStaple = TRUE
     status = "Refine Mask Done"
     inProgress = FALSE
-    outputSucceed = TRUE
+    outputSucceed = FALSE
   }
 }
 module mialsrtkMaskImage {
@@ -1143,7 +1143,7 @@ module mialN4BiasField {
     outputBiasField = "D:/Pierre/TestFullMevislab\\SRTV_ITER1_gbcorrfield.nii.gz"
     status = "N4BiasField Correction Done"
     inProgress = FALSE
-    outputSucceed = TRUE
+    outputSucceed = FALSE
   }
 }
 connections  {

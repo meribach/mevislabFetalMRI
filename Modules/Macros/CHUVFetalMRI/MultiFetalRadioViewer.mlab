@@ -20,7 +20,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "File closed"
+    info = "Invalid path"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -54,7 +54,7 @@ module OrthoView2D {
     inventorOutputOn = FALSE
     synchronizePosition = TRUE
     layout = LAYOUT_AXIAL
-    filterMode = FILTER_LINEAR
+    filterMode = FILTER_CUBIC_POSTCLASS
     synchronizeZoom = TRUE
     synchronizePanning = FALSE
     useGlobalInputImage = TRUE
@@ -101,7 +101,7 @@ module OrthoView2D {
     inventorOutputOn = FALSE
     synchronizePosition = TRUE
     layout = LAYOUT_SAGITTAL
-    filterMode = FILTER_LINEAR
+    filterMode = FILTER_CUBIC_POSTCLASS
     synchronizeZoom = TRUE
     synchronizePanning = FALSE
     useGlobalInputImage = TRUE
@@ -148,7 +148,7 @@ module OrthoView2D {
     inventorOutputOn = FALSE
     synchronizePosition = TRUE
     layout = LAYOUT_CORONAL
-    filterMode = FILTER_LINEAR
+    filterMode = FILTER_CUBIC_POSTCLASS
     synchronizeZoom = TRUE
     synchronizePanning = FALSE
     useGlobalInputImage = TRUE

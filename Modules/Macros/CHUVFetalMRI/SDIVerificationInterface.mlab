@@ -36,7 +36,7 @@ descrip :
 dim[0] : 3
 dim[1] : 320
 dim[2] : 320
-dim[3] : 138
+dim[3] : 103
 dim[4] : 1
 dim[5] : 1
 dim[6] : 1
@@ -56,12 +56,12 @@ pixdim[5] : 0
 pixdim[6] : 0
 pixdim[7] : 0
 qform_code : 1
-qoffset_x : 212.782
-qoffset_y : 151.821
-qoffset_z : -63.9944
-quatern_b : -0.0119101
-quatern_c : -0.00132138
-quatern_d : 0.993816
+qoffset_x : -56.625
+qoffset_y : 252.618
+qoffset_z : 0.961006
+quatern_b : -0.651304
+quatern_c : 0.275324
+quatern_d : -0.651304
 scl_inter : 0
 scl_slope : 1
 sform_code : 0
@@ -103,7 +103,7 @@ module OrthoView2D {
     inventorOutputOn = FALSE
     synchronizePosition = TRUE
     layout = LAYOUT_AXIAL
-    filterMode = FILTER_LINEAR
+    filterMode = FILTER_CUBIC_POSTCLASS
     synchronizeZoom = TRUE
     synchronizePanning = FALSE
     useGlobalInputImage = TRUE
@@ -114,15 +114,15 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 197.32356262207
-    grayCenter = 98.6617813110352
+    grayWidth = 185.241577148438
+    grayCenter = 92.6207885742188
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "-6.60958862304688 -6.03240203857422 -0.0375137329101562"
+    worldPosition = "0 0 0"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
@@ -138,7 +138,7 @@ module OrthoView2D {
         wasOpen = no
       }
       window _automatic {
-        geometry = "1205 512 500 600"
+        geometry = "762 349 674 747"
         sizeHint = "260 223"
         wasOpen = no
       }
@@ -150,7 +150,7 @@ module OrthoView2D {
     inventorOutputOn = FALSE
     synchronizePosition = TRUE
     layout = LAYOUT_SAGITTAL
-    filterMode = FILTER_LINEAR
+    filterMode = FILTER_CUBIC_POSTCLASS
     synchronizeZoom = TRUE
     synchronizePanning = FALSE
     useGlobalInputImage = TRUE
@@ -161,15 +161,15 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 197.32356262207
-    grayCenter = 98.6617813110352
+    grayWidth = 185.241577148438
+    grayCenter = 92.6207885742188
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "-6.60958862304688 -6.03240203857422 -0.0375137329101562"
+    worldPosition = "0 0 0"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
@@ -197,7 +197,7 @@ module OrthoView2D {
     inventorOutputOn = FALSE
     synchronizePosition = TRUE
     layout = LAYOUT_CORONAL
-    filterMode = FILTER_LINEAR
+    filterMode = FILTER_CUBIC_POSTCLASS
     synchronizeZoom = TRUE
     synchronizePanning = FALSE
     useGlobalInputImage = TRUE
@@ -208,15 +208,15 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 197.32356262207
-    grayCenter = 98.6617813110352
+    grayWidth = 185.241577148438
+    grayCenter = 92.6207885742188
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = World
     showCurrentPos = TRUE
-    worldPosition = "-6.60958862304688 -6.03240203857422 -0.0375137329101562"
+    worldPosition = "0 0 0"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
@@ -305,7 +305,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 49
+    startSlice = 40
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -330,8 +330,8 @@ module View2D {
     sliceOrigin = "0 0"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 98.6617813110352
-    lutWidth = 197.32356262207
+    lutCenter = 92.6207885742188
+    lutWidth = 185.241577148438
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -367,7 +367,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "3.65771887011607 -15.8083657221779 8.39998668106119"
+    center = "-0.187469557903192 1.39863436678252 -2.43551450315385"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -433,7 +433,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 44
+    startSlice = 38
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -458,8 +458,8 @@ module View2D {
     sliceOrigin = "46.5332183837891 110.516395568848"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 98.6617813110352
-    lutWidth = 197.32356262207
+    lutCenter = 92.6207885742188
+    lutWidth = 185.241577148438
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -495,7 +495,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "3.65771887011607 -15.8083657221779 8.39998668106119"
+    center = "-0.187469557903192 1.39863436678252 -2.43551450315385"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -561,7 +561,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 54
+    startSlice = 47
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -586,8 +586,8 @@ module View2D {
     sliceOrigin = "49.2503433227539 47.9289855957031"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 98.6617813110352
-    lutWidth = 197.32356262207
+    lutCenter = 92.6207885742188
+    lutWidth = 185.241577148438
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -630,7 +630,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "3.65771887011607 -15.8083657221779 8.39998668106119"
+    center = "-0.187469557903192 1.39863436678252 -2.43551450315385"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -666,8 +666,8 @@ module SyncVector {
   }
   fields  {
     instanceName = SyncVector
-    vector1 = "-6.60958862304688 -6.03240203857422 -0.0375137329101562 0"
-    vector2 = "-6.60958862304688 -6.03240203857422 -0.0375137329101562 0"
+    vector1 = "0 0 0 0"
+    vector2 = "0 0 0 0"
     epsilon = 9.9999997e-05
     epsilonVec = "0.001 0.001 0.001 0.001"
     mode = EpsilonScalar
@@ -692,8 +692,8 @@ module SyncVector {
   }
   fields  {
     instanceName = SyncVector1
-    vector1 = "-6.60958862304688 -6.03240203857422 -0.0375137329101562 0"
-    vector2 = "-6.60958862304688 -6.03240203857422 -0.0375137329101562 0"
+    vector1 = "0 0 0 0"
+    vector2 = "0 0 0 0"
     epsilon = 9.9999997e-05
     epsilonVec = "0.001 0.001 0.001 0.001"
     mode = EpsilonScalar
@@ -713,8 +713,8 @@ module SyncVector {
   }
   fields  {
     instanceName = SyncVector2
-    vector1 = "-6.60958862304688 -6.03240203857422 -0.0375137329101562 0"
-    vector2 = "-6.60958862304688 -6.03240203857422 -0.0375137329101562 0"
+    vector1 = "0 0 0 0"
+    vector2 = "0 0 0 0"
     epsilon = 9.9999997e-05
     epsilonVec = "0.001 0.001 0.001 0.001"
     mode = EpsilonScalar
@@ -799,12 +799,12 @@ module mialRefineMask {
   }
   fields  {
     instanceName = mialRefineMask
-    inputFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni_bcorr.nii
-    transformIn = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_transform_4V_1.txt
-    maskFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
-    outputHRFile = "D:/Pierre/TestFullMevislab\\brainmaskHR_ITER_1.nii.gz"
-    outputLRFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii
-    referenceFile = "D:/Pierre/TestFullMevislab\\SDI_ITER1.nii.gz"
+    inputFiles = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image3_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image2_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image1_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image0_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image4_worldmatrixModified_lr_reoriented_uni_bcorr.nii"
+    transformIn = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image3_worldmatrixModified_lr_reoriented_transform_5V_1.txt--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image2_worldmatrixModified_lr_reoriented_transform_5V_1.txt--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image1_worldmatrixModified_lr_reoriented_transform_5V_1.txt--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image0_worldmatrixModified_lr_reoriented_transform_5V_1.txt--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image4_worldmatrixModified_lr_reoriented_transform_5V_1.txt"
+    maskFiles = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image3_worldmatrixModified_lr_brain_mask_reoriented.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image2_worldmatrixModified_lr_brain_mask_reoriented.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image1_worldmatrixModified_lr_brain_mask_reoriented.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image0_worldmatrixModified_lr_brain_mask_reoriented.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image4_worldmatrixModified_lr_brain_mask_reoriented.nii"
+    outputHRFile = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\brainmaskHR_ITER_1.nii.gz"
+    outputLRFiles = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image3_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image2_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image1_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image0_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image4_worldmatrixModified_lr_brain_mask_reorientedLR_ITER_1.nii"
+    referenceFile = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\SDI_ITER1.nii.gz"
     radiusDilation = 1
     useStaple = TRUE
     status = "Refine Mask Done"
@@ -853,10 +853,10 @@ module mialN4BiasField {
   }
   fields  {
     instanceName = mialN4BiasField
-    inputFile = "D:/Pierre/TestFullMevislab\\SRTV_ITER1.nii.gz"
-    maskFile = "D:/Pierre/TestFullMevislab\\brainmaskHR_ITER_1.nii.gz"
-    outputFile = "D:/Pierre/TestFullMevislab\\SRTV_ITER1_gbcorr.nii.gz"
-    outputBiasField = "D:/Pierre/TestFullMevislab\\SRTV_ITER1_gbcorrfield.nii.gz"
+    inputFile = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\SRTV_ITER1.nii.gz"
+    maskFile = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\brainmaskHR_ITER_1.nii.gz"
+    outputFile = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\SRTV_ITER1_gbcorr.nii.gz"
+    outputBiasField = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\SRTV_ITER1_gbcorrfield.nii.gz"
     status = "N4BiasField Correction Done"
     inProgress = FALSE
     outputSucceed = TRUE
@@ -866,10 +866,17 @@ module NiftiToDicomFetalMRI {
   internal  {
     frame = "1245 349 152 56"
     moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "717 329 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
   }
   fields  {
     instanceName = NiftiToDicomFetalMRI
-    NamePrivateTage = ""
+    NamePrivateTage = pdeman
     Tag0x42 = ""
   }
 }
@@ -887,15 +894,15 @@ module DicomTool {
     addStudyUIDDIR = FALSE
     addSeriesUIDDIR = FALSE
     allSlices = TRUE
-    minSlice = 0
-    maxSlice = 1
+    minSlice = 1
+    maxSlice = 103
     minUsedSlice = 0
-    maxUsedSlice = 0
+    maxUsedSlice = 103
     allTimepoints = TRUE
-    minTime = 0
+    minTime = 1
     maxTime = 1
     minUsedTime = 0
-    maxUsedTime = 0
+    maxUsedTime = 1
     displayMode1 = Input
     displayMode2 = All
     newStudyUID = FALSE
@@ -954,11 +961,11 @@ module mialTVSuperResolution {
   }
   fields  {
     instanceName = mialTVSuperResolution
-    outputFile = "D:/Pierre/TestFullMevislab\\SRTV_ITER1.nii.gz"
-    maskFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_brain_mask_reoriented.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_brain_mask_reoriented.nii
-    refFile = "D:/Pierre/TestFullMevislab\\SDI_ITER1.nii.gz"
-    inputFiles = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_uni_bcorr.nii
-    transformFilesInput = D:/Pierre/TestFullMevislab/5MR_T2haste3mmtragp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/1MR_T2haste3mmcorgp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/3MR_T2haste3mmsaggp-_worldmatrixModified_lr_reoriented_transform_4V_1.txt--D:/Pierre/TestFullMevislab/6MR_T2haste3mmtra_worldmatrixModified_lr_reoriented_transform_4V_1.txt
+    outputFile = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\SRTV_ITER1.nii.gz"
+    maskFiles = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image3_worldmatrixModified_lr_brain_mask_reoriented.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image2_worldmatrixModified_lr_brain_mask_reoriented.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image1_worldmatrixModified_lr_brain_mask_reoriented.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image0_worldmatrixModified_lr_brain_mask_reoriented.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image4_worldmatrixModified_lr_brain_mask_reoriented.nii"
+    refFile = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\SDI_ITER1.nii.gz"
+    inputFiles = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image3_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image2_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image1_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image0_worldmatrixModified_lr_reoriented_uni_bcorr.nii--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image4_worldmatrixModified_lr_reoriented_uni_bcorr.nii"
+    transformFilesInput = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image3_worldmatrixModified_lr_reoriented_transform_5V_1.txt--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image2_worldmatrixModified_lr_reoriented_transform_5V_1.txt--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image1_worldmatrixModified_lr_reoriented_transform_5V_1.txt--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image0_worldmatrixModified_lr_reoriented_transform_5V_1.txt--D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\Image4_worldmatrixModified_lr_reoriented_transform_5V_1.txt"
     nbIter = 50
     Lambda = 0.1
     DeltaT = 0.1
@@ -995,7 +1002,7 @@ module SoView2DLabel {
       window _default {
         geometry = "1087 419 388 696"
         sizeHint = "388 696"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -1004,7 +1011,7 @@ module SoView2DLabel {
     interactionProviderID = ""
     drawingOn = TRUE
     color = "0.882352948188782 0.968627452850342 0.0352941192686558"
-    text = SDI_ITER1.nii.gzImage0--Image1--Image2--Image3
+    text = SDI_ITER1.nii.gzImage2--Image0--Image4--Image1--Image3
     viewerId = ""
     textPositioning = RELATIVE_TO_VIEWER
     worldPosition = "0 0 0"
