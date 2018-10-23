@@ -228,3 +228,149 @@ Window SDIVerificationInterface {
     }
   }
 }
+
+
+Window LeftSide {
+  Splitter {
+    direction = vertical
+      
+    Box {
+      GraphicsView
+      {
+        name        = GraphicsView
+        initCommand = initSDIVerificationGraphicsView
+        
+        //expandX = No
+      }
+
+      expandY = yes
+      //expandX = No
+    
+      Box{
+        //Horizontal {
+        //  Label "refImage: should be the one with the less movement" {}
+        //  NumberEdit RefImageFiled {step = 1 expandX = False}
+        //}
+        Horizontal {  
+          Label "Registration parameters: " {}
+          CheckBox outlierRejection {toggledCommand = OutlierRejectionStatusChanged enabled = False}
+          ComboBox RegistrationMetric {tooltip = "Nc = Normalized Correlation, MI = Mutual Information, default = NC"}
+          Label "Gradient" {}
+          NumberEdit RegistrationGradient {step = 0.0001}
+          Label "Min Step" {}
+          NumberEdit RegistrationMinStep {step = 0.0001}
+          Label "Max Step" {}
+          NumberEdit RegistrationMaxStep {step = 0.001}
+          Label "Nb It" {}
+          NumberEdit RegistrationNbIt {step = 100}
+          Label "Relaxation Factor" {}
+          NumberEdit RegistrationRelaxationFactor { step = 0.05}
+          Label "Radius Multiplicator" {}
+          NumberEdit kernelRadiusMultiplicator {step = 0.1}
+          dependsOn = ExpertMode}
+        Horizontal { alignX = Left
+          Label "StartIter :" {expandX = No}
+          NumberEdit NumberIteration {step = 1 expandX = No }
+          Button {title = "ReRun SDI Estimation" command = ReRunImageReconstruction dependsOn = !BackgroundTaskRunning}
+        }
+      }
+      Box {
+        Horizontal {
+          Label "Lambda (default = 0.1): " {expandX = No}
+          Slider Lambda {pageStep = 0.1}
+          NumberEdit Lambda {
+            step     = 0.01
+            stepstep = 0.1
+            format   = "%.2f"
+          }
+        }
+        Horizontal {
+          Label "DeltaT (default = 0.1): " {}
+          Slider DeltaT {pageStep = 0.1 }
+          NumberEdit DeltaT {
+            step     = 0.01
+            stepstep = 0.1
+            format   = "%.2f"
+          }
+        }
+        Horizontal { alignX = Left
+          Label "StartIter :" {expandX = No}
+          NumberEdit NumberIteration {step = 1 expandX = No }
+          Button {title = "Run Super Resolution" command = RunSuperResolution dependsOn = !BackgroundTaskRunning}
+        }
+          
+
+      }
+      Horizontal {
+        Field StatusField {format = STRING title = "BackgroundTaskInfo" edit = no}
+      }
+      Horizontal {
+        Button {title = "Help" command = showHelp}
+      }
+    }
+      
+    Box ViewerBoxAxial {
+      title = ""
+      
+      Viewer viewer2DAxial {
+        name            = viewerAxial
+        clone           = NO
+        preferredWidth  = 900
+        preferredHeight = 500
+      }
+      
+      EventFilter {
+        filter  = "MouseButtonPress,KeyPress"
+        control = viewerAxial 
+        command = buttonPressedAxial
+      }
+      expandY = yes
+    } 
+      
+  }
+
+}
+
+Window RightSide {
+  Splitter {
+      
+    direction = vertical
+      
+    Box ViewerBoxCoronal {
+      title = ""
+      
+      Viewer viewer2DCoronal {
+        name            = viewerCoronal
+        clone           = NO
+        preferredWidth  = 900
+        preferredHeight = 500
+      }
+      
+      EventFilter {
+        filter  = "MouseButtonPress,KeyPress"
+        control = viewerCoronal 
+        command = buttonPressedCoronal
+      }
+      expandY = yes
+    } 
+      
+    Box ViewerBoxSagittal {
+      title = ""
+      
+      Viewer viewer2DSagittal {
+        name            = viewerSagittal
+        clone           = NO
+        preferredWidth  = 900
+        preferredHeight = 500
+      }
+      
+      EventFilter {
+        filter  = "MouseButtonPress,KeyPress"
+        control = viewerSagittal 
+        command = buttonPressedSagittal
+      }
+      expandY = yes
+    }
+  }
+  
+}

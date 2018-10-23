@@ -179,3 +179,118 @@ Window TotalVariationInterface {
     }
   }
 }
+
+
+Window LeftSide {
+  Splitter {
+    direction = vertical
+      
+    Box {
+      GraphicsView
+      {
+        name        = GraphicsView
+        initCommand = initTotalVariationInterface
+        
+        //expandX = No
+      }
+
+      expandY = yes
+      //expandX = No
+    
+      Horizontal {
+          
+        Button {title = "Stop SuperResolution" command = stopSuperResolution}
+        Button {title = "Run Super Resolution" command = RunSuperResolution dependsOn = !BackgroundTaskRunning}
+      }
+      Horizontal {
+        Label "Lambda (default = 0.1): " {}
+        Slider Lambda {pageStep = 0.1}
+        NumberEdit Lambda {
+          step     = 0.01
+          stepstep = 0.1
+          format   = "%.2f"
+        }
+      }
+      Horizontal {
+        Label "DeltaT (default = 1): " {}
+        Slider DeltaT {pageStep = 0.1 }
+        NumberEdit DeltaT {
+          step     = 0.01
+          stepstep = 0.1
+          format   = "%.2f"
+        }
+      }
+      Horizontal {
+        Label "StartIter :" {}
+        NumberEdit NumberIteration {step = 1 expandX = No }
+      }
+      Horizontal {
+        Button {title = "Help" command = showHelp}
+      }
+    }
+      
+    Box ViewerBoxAxial {
+      title = ""
+      
+      Viewer viewer2DAxial {
+        name            = viewerAxial
+        clone           = NO
+        preferredWidth  = 900
+        preferredHeight = 500
+      }
+      
+      EventFilter {
+        filter  = "MouseButtonPress,KeyPress"
+        control = viewerAxial 
+        command = buttonPressedAxial
+      }
+      expandY = yes
+    } 
+      
+  }
+
+}
+
+Window RightSide {
+  Splitter {
+      
+    direction = vertical
+      
+    Box ViewerBoxCoronal {
+      title = ""
+      
+      Viewer viewer2DCoronal {
+        name            = viewerCoronal
+        clone           = NO
+        preferredWidth  = 900
+        preferredHeight = 500
+      }
+      
+      EventFilter {
+        filter  = "MouseButtonPress,KeyPress"
+        control = viewerCoronal 
+        command = buttonPressedCoronal
+      }
+      expandY = yes
+    } 
+      
+    Box ViewerBoxSagittal {
+      title = ""
+      
+      Viewer viewer2DSagittal {
+        name            = viewerSagittal
+        clone           = NO
+        preferredWidth  = 900
+        preferredHeight = 500
+      }
+      
+      EventFilter {
+        filter  = "MouseButtonPress,KeyPress"
+        control = viewerSagittal 
+        command = buttonPressedSagittal
+      }
+      expandY = yes
+    }
+  }
+  
+}
