@@ -3,7 +3,6 @@
 body {
   background-color: white;
   font-family: Arial,Geneva,Helvetica,sans-serif;
-  display: block;
   margin-left: 250px;
 }
 
@@ -161,9 +160,10 @@ div.sphinxsidebar h3 a {
 
 div.sphinxsidebar ul {
   color: black;
+  margin-left: -30px;
 }
 div.sphinxsidebar li li {
-  margin-left: 0px;
+  margin-left: -30px;
 }
 div.sphinxsidebar li li li {
   list-style-type: circle;
