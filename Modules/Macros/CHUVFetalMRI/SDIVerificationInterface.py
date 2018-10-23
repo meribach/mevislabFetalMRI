@@ -83,8 +83,8 @@ def updateInterface():
         checkBoxDefinition = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i,i)
       
       
-      ButtonUpDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i],listImage[i])
-      ButtonDownDefinition = """Button {name = moveDown%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i],listImage[i])
+      ButtonUpDefinition = """Button {name = moveUp%s image = $(MLAB_CHUV_FetalMRI)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i],listImage[i])
+      ButtonDownDefinition = """Button {name = moveDown%s image = $(MLAB_CHUV_FetalMRI)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i],listImage[i])
       mdlToSet += """Horizontal { name = \"horizontal%i\"  """%i + checkBoxDefinition +LabelOrder+ ButtonUpDefinition + ButtonDownDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)
   else:
     for i in [0,2,4]:
@@ -125,10 +125,10 @@ def updateInterface():
         checkBoxDefinition = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i,i)
         checkBoxDefinition2 = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i+1,i+1)
         
-      Button1UpDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i],listImage[i])
-      Button1DownDefinition = """Button {name = moveDown%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i],listImage[i])
-      Button2UpDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i+1],listImage[i+1])
-      Button2DownDefinition = """Button {name = moveDown%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i+1],listImage[i+1])
+      Button1UpDefinition = """Button {name = moveUp%s image = $(MLAB_CHUV_FetalMRI)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i],listImage[i])
+      Button1DownDefinition = """Button {name = moveDown%s image = $(MLAB_CHUV_FetalMRI)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i],listImage[i])
+      Button2UpDefinition = """Button {name = moveUp%s image = $(MLAB_CHUV_FetalMRI)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i+1],listImage[i+1])
+      Button2DownDefinition = """Button {name = moveDown%s image = $(MLAB_CHUV_FetalMRI)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i+1],listImage[i+1])
       
       mdlToSet += """Horizontal { name = \"horizontal%i\"  """%i + checkBoxDefinition + LabelOrder1 + Button1UpDefinition + Button1DownDefinition  + checkBoxDefinition2 + LabelOrder2 + Button2UpDefinition + Button2DownDefinition + """ Execute = "py: getHorizontalControl([\'Image%i\',\'Image%i\'],\'horizontal%i\')" } """%(i,i+1,i)
       
@@ -157,8 +157,8 @@ def updateInterface():
       else:
         checkBoxDefinition = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i,i)
         
-      Button1UpDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i],listImage[i])
-      Button1DownDefinition = """Button {name = moveDown%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i],listImage[i])
+      Button1UpDefinition = """Button {name = moveUp%s image = $(MLAB_CHUV_FetalMRI)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i],listImage[i])
+      Button1DownDefinition = """Button {name = moveDown%s image = $(MLAB_CHUV_FetalMRI)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i],listImage[i])
       
       if (i+1)<numImage:
         LabelOrder2 = """ Label Order:%i {name = Label%s}"""%(i+1,listImage[i+1])
@@ -182,8 +182,8 @@ def updateInterface():
         else:
           checkBoxDefinition2 = "CheckBox {name = checkImage%i title = \'Image%i\' checked = True}"%(i+1,i+1)
         
-        Button2UpDefinition = """Button {name = moveUp%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i+1],listImage[i+1])
-        Button2DownDefinition = """Button {name = moveDown%s image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i+1],listImage[i+1])
+        Button2UpDefinition = """Button {name = moveUp%s image = $(MLAB_CHUV_FetalMRI)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',+1)"}"""%(listImage[i+1],listImage[i+1])
+        Button2DownDefinition = """Button {name = moveDown%s image = $(MLAB_CHUV_FetalMRI)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'%s\',-1)"}"""%(listImage[i+1],listImage[i+1])
         mdlToSet += """Horizontal {name = \"horizontal%i\"  """%i + checkBoxDefinition + LabelOrder1 + Button1UpDefinition + Button1DownDefinition  + checkBoxDefinition2 + LabelOrder2 + Button2UpDefinition + Button2DownDefinition + """ Execute = "py: getHorizontalControl([\'Image%i\',\'Image%i\'],\'horizontal%i\')" } """%(i,i+1,i) 
       else:
         mdlToSet += """Horizontal {name = \"horizontal%i\"  """%i + checkBoxDefinition + LabelOrder1 + Button1UpDefinition + Button1DownDefinition  + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)   
@@ -606,13 +606,13 @@ def showHelp():
   #if not ctx.field("FromFrontier").value:
   import webbrowser
   print(webbrowser.browser)
-  print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html")))
-  webbrowser.open_new(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html"))
+  print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html")))
+  webbrowser.open_new(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html"))
 
   #else:
   #  global _frontier
   #  _frontier = ctx.module("parent:FrontierSyngoInterface").object()
-  #  url = ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html")
+  #  url = ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html")
   #  _frontier._syngoVia.call("FE.AppHosting.ShowUrl", url)
     
 def updateBackgroundTaskRunningField():
