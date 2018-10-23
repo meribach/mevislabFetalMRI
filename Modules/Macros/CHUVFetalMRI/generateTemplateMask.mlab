@@ -16,7 +16,7 @@ module GetAtlasMacro {
   }
   fields  {
     instanceName = GetAtlasMacro
-    name = $(MLAB_mevisFetalMRI_MRUser)/Projects/TestInterface2/Data/CRL_Fetal_Brain_Atlas_2017
+    name = $(MLAB_CHUV_FetalMRI)/Projects/TestInterface2/Data/CRL_Fetal_Brain_Atlas_2017
     AtlasPath = D:/Pierre/PackageFetalMRI/CHUV/FetalMRIBis/mevisFetalMRI/MRUser/Projects/TestInterface2/Data/CRL_Fetal_Brain_Atlas_2017
     currentWeek = 37
   }

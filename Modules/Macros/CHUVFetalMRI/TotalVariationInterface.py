@@ -370,13 +370,13 @@ def showHelp():
   #if not ctx.field("FromFrontier").value:
   import webbrowser
   print(webbrowser.browser)
-  print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/TotalVariationInterface.html")))
-  webbrowser.open_new(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/TotalVariationInterface.html"))
+  print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/TotalVariationInterface.html")))
+  webbrowser.open_new(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/TotalVariationInterface.html"))
 
   #else:
   #  global _frontier
   #  _frontier = ctx.module("parent:FrontierSyngoInterface").object()
-  #  url = ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/TotalVariationInterface.html")
+  #  url = ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/TotalVariationInterface.html")
   #  _frontier._syngoVia.call("FE.AppHosting.ShowUrl", url)
 
 

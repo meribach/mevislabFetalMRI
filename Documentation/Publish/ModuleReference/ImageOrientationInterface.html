@@ -94,7 +94,10 @@
 <h1>Windows<a class="headerlink" href="#windows" title="Permalink to this headline"></a></h1>
 <div class="section" id="imageorientationpanel">
 <h2>ImageOrientationPanel<a class="headerlink" href="#imageorientationpanel" title="Permalink to this headline">¶</a></h2>
-<img alt="Images/Screenshots/ImageOrientationInterface.ImageOrientationPanel.png" src="Images/Screenshots/ImageOrientationInterface.ImageOrientationPanel.png" />
+<h3>"Normal View"</h3>
+<img alt="Images/Screenshots/ImageOrientationInterface2.png" src="Images/Screenshots/ImageOrientationInterface2.png" />
+<h3>Engineer Mode View (under Syngovia)</h3>
+<img alt="Images/Screenshots/ImageOrientationInterface2EngineerMode.png" src="Images/Screenshots/ImageOrientationInterface2EngineerMode.png" />
 </div>
 <div class="section" id="buttondescription">
 <h2>Button Description<a class="headerlink" href="#buttondescription" title="Permalink to this headline">¶</a></h2>
@@ -131,10 +134,10 @@
 <p>Orientation of the Fetus :4 possible values: unknown (by default), axial, sagittal, coronal.</p>
 <p><b>Best if done before doing anything else</b></p>
 
-<h3>refImage</h3>
-<p>To define which image is gonna be used as reference. When created the SDI, the reference image is used to generate the first base of the high resolution image.
-<br>All other low resolution images will be projected on it.
-<br><b>It must be the best quality image, with the less movement between slices</b></p>
+<h3>Order:  + Up/Down arrows</h3>
+<p>To define the order of projection images on the High Resolution Volume. When created the SDI, the image <i>Order: 0</i> is used to generate the first base of the high resolution image. 
+<br><b>Image set as <i>Order:0</i> must be the best quality image, with the less movement between slices</b>
+<br>All other low resolution images will be projected on it. It's better if <i>Order: 0, Order:1 arnd Order: 2</i> are orthogonal plans.</p>
 
 </div>
 
