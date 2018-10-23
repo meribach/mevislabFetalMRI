@@ -21,8 +21,8 @@ module GetAtlasMacro {
   }
   fields  {
     instanceName = GetAtlasMacro
-    name = "$(MLAB_CHUV_FetalMRI)\\Projects\\TestInterface2\\Data\\CRL_Fetal_Brain_Atlas_2017"
-    AtlasPath = "$(MLAB_CHUV_FetalMRI)\\Projects\\TestInterface2\\Data\\CRL_Fetal_Brain_Atlas_2017"
+    name = "$(MLAB_mevisFetalMRI_MRUser)\\Projects\\TestInterface2\\Data\\CRL_Fetal_Brain_Atlas_2017"
+    AtlasPath = "$(MLAB_mevisFetalMRI_MRUser)\\Projects\\TestInterface2\\Data\\CRL_Fetal_Brain_Atlas_2017"
     currentWeek = 33
   }
 }
@@ -2139,7 +2139,7 @@ module itkImageFileWriter {
     forceDirectionCosineWrite = TRUE
     outputVoxelType = Automatic
     info = ""
-    unresolvedFileName = $(MLAB_CHUV_FetalMRI)/Projects/TestInterface2/Data/CRL_Fetal_Brain_Atlas_2017/STA21_worldmatrixModified_lr_brain_mask.nii.gz
+    unresolvedFileName = $(MLAB_mevisFetalMRI_MRUser)/Projects/TestInterface2/Data/CRL_Fetal_Brain_Atlas_2017/STA21_worldmatrixModified_lr_brain_mask.nii.gz
   }
 }
 module MessageBox {
@@ -3409,16 +3409,16 @@ module DicomTagModify {
     removeTag3 = FALSE
     tagVR3 = LO
     stdTagVR3 = TRUE
-    tagName4 = ""
+    tagName4 = AcquisitionDate
     tagValue4 = ""
     removeTag4 = FALSE
-    tagVR4 = ""
-    stdTagVR4 = FALSE
-    tagName5 = ""
+    tagVR4 = DA
+    stdTagVR4 = TRUE
+    tagName5 = AcquisitionTime
     tagValue5 = ""
     removeTag5 = FALSE
-    tagVR5 = ""
-    stdTagVR5 = FALSE
+    tagVR5 = TM
+    stdTagVR5 = TRUE
     discardSource = None
     useTagsString = FALSE
     modifyTagsString = ""

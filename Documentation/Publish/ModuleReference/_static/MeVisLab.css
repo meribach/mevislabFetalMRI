@@ -3,7 +3,6 @@
 body {
   background-color: white;
   font-family: Arial,Geneva,Helvetica,sans-serif;
-  position: auto;
 }
 
 a:visited {
@@ -43,7 +42,7 @@ div.section h1 + p + div > h2 {
 }
 
 div.bodywrapper {
-  padding-left: 20px;
+  padding-left: 10px;
 }
 
 div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body h6 {
@@ -84,8 +83,6 @@ div.body dl {
 
 div.document {
   background-color: white;
-  position: absolute;
-  left:270px;
 }
 
 div.footer {
@@ -130,6 +127,7 @@ div.section h1 {
 
 div.section h3 {
   margin-left: -10px;
+  display: block;
 }
 
 div.sphinxsidebar {
@@ -145,7 +143,6 @@ div.sphinxsidebar {
 */
 html, div.document, div.documentwrapper, div.bodywrapper, div.sphinxsidebar {
   height: 100%;
-  display: inline-block;
 }
 div.sphinxsidebarwrapper {
   height: 99%;
@@ -283,5 +280,10 @@ p.math {
   margin-bottom: 0px;
   padding-left: 5px;
   padding-bottom: 2px;
+}
+
+img.align-right {
+  float: right;
+  margin-left: 1em;
 }
 
