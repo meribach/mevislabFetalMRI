@@ -13,6 +13,7 @@ from mevis import *
 import re
 import math
 import os
+import time
 
 g_TVGraphicsView = None
 
@@ -255,6 +256,8 @@ def insertN4BiasFieldCorrectedHRImage():
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue1").setValue(inImages["Image0"]["StudyDescription"])
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue2").setValue(inImages["Image0"]["PatientName"])
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue3").setValue(inImages["Image0"]["PatientID"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue1").setValue(time.strftime("%H%M%S"))
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue0").setValue(time.strftime("%Y%m%d"))
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
     originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
     mutableTree = originalTree.createDerivedTree()
@@ -272,6 +275,8 @@ def insertN4BiasFieldCorrectedHRImage():
   else:
     #we use dicom tool from TotalVariationInterface, dicomSave
     print("not via Frontier")
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue1").setValue(time.strftime("%H%M%S"))
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue0").setValue(time.strftime("%Y%m%d"))
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
     originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
     mutableTree = originalTree.createDerivedTree()
@@ -370,13 +375,13 @@ def showHelp():
   #if not ctx.field("FromFrontier").value:
   import webbrowser
   print(webbrowser.browser)
-  print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/TotalVariationInterface.html")))
-  webbrowser.open_new(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/TotalVariationInterface.html"))
+  print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/TotalVariationInterface.html")))
+  webbrowser.open_new(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/TotalVariationInterface.html"))
 
   #else:
   #  global _frontier
   #  _frontier = ctx.module("parent:FrontierSyngoInterface").object()
-  #  url = ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/TotalVariationInterface.html")
+  #  url = ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/TotalVariationInterface.html")
   #  _frontier._syngoVia.call("FE.AppHosting.ShowUrl", url)
 
 
