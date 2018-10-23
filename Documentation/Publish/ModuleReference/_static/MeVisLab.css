@@ -3,7 +3,6 @@
 body {
   background-color: white;
   font-family: Arial,Geneva,Helvetica,sans-serif;
-  margin-left: 250px;
 }
 
 a:visited {
@@ -84,7 +83,6 @@ div.body dl {
 
 div.document {
   background-color: white;
-  margin-left: 250px;
 }
 
 div.footer {
