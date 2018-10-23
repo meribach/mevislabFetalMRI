@@ -1874,7 +1874,7 @@ def insertImageReconstruction():
     listUID = [inImages[imageIter]["SeriesInstanceUID"] for imageIter in inImages["UsedForSDI"]]
     transfoInfo = [open(inImages[imageIter]["Transform"],"r").read() for imageIter in inImages["UsedForSDI"]]
     mutableTree.setPrivateTag(0x07a1, "pdeman", 0x44, transfoInfo, "UT")
-    mutableTree.setPrivateTag(0x07a1, "pdeman", listUID , "UI")
+    mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43,listUID , "UI")
     mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, 1 , "SS")
     #ctx.connectField("parent:DicomExport.inImage","DicomTagModify.output0")
     
