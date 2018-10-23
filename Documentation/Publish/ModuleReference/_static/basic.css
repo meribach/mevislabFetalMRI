@@ -45,15 +45,13 @@ div.related li.right {
 
 div.sphinxsidebarwrapper {
     padding: 10px 5px 0 10px;
-    position: relative;
 }
 
 div.sphinxsidebar {
     float: left;
     width: 230px;
-    margin-left: 100%;
+    margin-left: -100%;
     font-size: 90%;
-    display: block;
 }
 
 div.sphinxsidebar ul {
