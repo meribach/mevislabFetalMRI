@@ -76,9 +76,9 @@ def initImageOrientationGraphicsView(view):
   ctx.field("FirstSDIDone").setValue(False)
   ctx.field("outputSucceed").setObject(ctx.field("FirstSDIDone"))
   
-  if MLABFileManager.exists(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")):
-    ctx.field("GetAtlasMacro.name").setStringValue("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
-    ctx.field("GetAtlasMacro.AtlasPath").setStringValue("$(MLAB_mevisFetalMRI_MRUser)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
+  if MLABFileManager.exists(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")):
+    ctx.field("GetAtlasMacro.name").setStringValue("$(MLAB_CHUV_FetalMRI)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
+    ctx.field("GetAtlasMacro.AtlasPath").setStringValue("$(MLAB_CHUV_FetalMRI)\Projects\TestInterface2\Data\CRL_Fetal_Brain_Atlas_2017")
     ctx.module("GetAtlasMacro").call("updateAtlas")
   showImageOrientationInterface()
   resetZoom()
@@ -126,8 +126,8 @@ def showImageOrientationInterface():
     #checkBoxImage = g_sceneImageOrientation.addMDL(checkBoxDefinition,True)
     comboboxDefinition = """ComboBox {expandX = No name = \"comboImage%i\" items {item = unknown item = axial item = sagittal item = coronal} tooltip = "%s" textChangedCommand = "py: registerplaneOrientation(\'Image%i\')"}"""%(i,tooltipComboBox,i)
     LabelOrder = """ Label Order:%i {name = LabelImage%i}"""%(i,i)
-    ButtonUpDefinition = """Button {name = moveUpImage%i image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'Image%i\',+1)"}"""%(i,i)
-    ButtonDownDefinition = """Button {name = moveDownImage%i image = $(MLAB_mevisFetalMRI_MRUser)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'Image%i\',-1)"}"""%(i,i)
+    ButtonUpDefinition = """Button {name = moveUpImage%i image = $(MLAB_CHUV_FetalMRI)/Modules/Graphics/up-arrow-symbol-icon-68695.png command = "py: changeOrder(\'Image%i\',+1)"}"""%(i,i)
+    ButtonDownDefinition = """Button {name = moveDownImage%i image = $(MLAB_CHUV_FetalMRI)/Modules/Graphics/down-arrow-symbol-icon-68695.png command = "py: changeOrder(\'Image%i\',-1)"}"""%(i,i)
     
     #mdlToSet +="""Horizontal { name = \"horizontal%i\"  "+ buttonDefinition + buttonPositioningDef + buttonManualPositioningDef + buttonGenerateMaskDef + comboboxDefinition + checkBoxDefinition " Execute = "py: getHorizontalControl(\'horizontal%i\')" } """%(i,i)
     mdlToSet +="""Horizontal { name = \"horizontal%i\"  """%i + buttonDefinition + buttonPositioningDef + buttonGenerateMaskDef + buttonResetBrainMaskDef+ comboboxDefinition + checkBoxDefinition + LabelOrder + ButtonUpDefinition + ButtonDownDefinition + """ Execute = "py: getHorizontalControl(\'Image%i\',\'horizontal%i\')" } """%(i,i)
@@ -1969,15 +1969,15 @@ def showHelp():
   #if not ctx.field("FromFrontier").value:
   import webbrowser
   print(webbrowser.browser)
-  print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html")))
-  webbrowser.open_new(ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html"))
+  print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html")))
+  webbrowser.open_new(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html"))
 
   #else:
   #  global _frontier
   #  _frontier = ctx.module("parent:FrontierSyngoInterface").object()
   #  url = "/".join(["frontier_server", "user_manuals", ctx.field("parent:FrontierSyngoInterface.applicationName").value])
   #  print(url)
-  #  #url = ctx.expandFilename("$(MLAB_mevisFetalMRI_MRUser)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html")
+  #  #url = ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html")
   #  _frontier._syngoVia.call("FE.AppHosting.ShowUrl", url)
 
 def loadPreProcessedAlready():
