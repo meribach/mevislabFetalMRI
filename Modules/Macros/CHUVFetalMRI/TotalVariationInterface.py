@@ -26,6 +26,12 @@ def initTotalVariationInterface(view):
   ctx.field("mialN4BiasField.outputSucceed").setBoolValue(False)
   ctx.field("mialTVSuperResolution.outputSucceed").setBoolValue(False)
   ctx.field("mialRefineMask.outputSucceed").setBoolValue(False)
+  ctx.field("OrthoView2DAxial.grayWidth").setValue(150)
+  ctx.field("OrthoView2DAxial.grayCenter").setValue(125)
+  ctx.field("OrthoView2DCoronal.grayWidth").setValue(150)
+  ctx.field("OrthoView2DCoronal.grayCenter").setValue(125)
+  ctx.field("OrthoView2DSagittal.grayWidth").setValue(150)
+  ctx.field("OrthoView2DSagittal.grayCenter").setValue(125)
   updateInterface()
   
   

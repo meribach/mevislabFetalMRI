@@ -268,6 +268,8 @@ void mialSliceBySliceBiasFieldCorrection::CorrectBiasAllInput()
 		{
 			mlError(__FUNCTION__, ML_UNKNOWN_EXCEPTION) << "Slice by Slice Bias Correction Failed : " << splitInputs[iterIm].c_str();
 		}
+		delete usemialsrtkSliceBySliceCorrectBiasFieldWrapper;
+		usemialsrtkSliceBySliceCorrectBiasFieldWrapper = NULL;
 	}
 
 	_statusFld->setStringValue("Slice by Slice Bias Correction Done");

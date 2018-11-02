@@ -192,6 +192,8 @@ void mialN4BiasField::runN4BiasCorrection()
 		mlError(__FUNCTION__, ML_UNKNOWN_EXCEPTION) << "mialN4BiasField Failed : ";
 	}
 
+	delete useN4BiasFieldCorrectionWrapper;
+	useN4BiasFieldCorrectionWrapper = NULL;
 	_outputSucceedFld->setBoolValue(true);
 }
 

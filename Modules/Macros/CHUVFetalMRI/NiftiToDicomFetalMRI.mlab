@@ -159,7 +159,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
+    info = "File closed"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -255,7 +255,7 @@ networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 14
+        uniqueId = 16
         objectName = NiftiToDicomFetalMRI
         parentUniqueId = 0
         color  {

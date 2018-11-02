@@ -70,6 +70,13 @@ Commands {
   FieldListener mialRefineMask.inProgress {command = updateBackgroundTaskRunningField}
   FieldListener mialsrtkMaskImage.inProgress {command = updateBackgroundTaskRunningField}
   FieldListener mialN4BiasField.inProgress {command = updateBackgroundTaskRunningField}
+  
+  FieldListener mialImageReconstruction.status {command = "py: updateBackgroundTaskStatus('mialImageReconstruction')"}
+  FieldListener mialTVSuperResolution.status {command = "py: updateBackgroundTaskStatus('mialTVSuperResolution')"}
+  FieldListener mialRefineMask.status {command = "py: updateBackgroundTaskStatus('mialRefineMask')"}
+  FieldListener mialsrtkMaskImage.status {command = "py: updateBackgroundTaskStatus('mialsrtkMaskImage')"}
+  FieldListener mialN4BiasField.status {command = "py: updateBackgroundTaskStatus('mialN4BiasField')"}
+  
   //FieldListener RefImageFiled {command = updateRefImageReconstruction}
 }
 
@@ -159,7 +166,9 @@ Window SDIVerificationInterface {
 
         }
         Horizontal {
-          Field StatusField {format = STRING title = "BackgroundTaskInfo" edit = no}
+          name=HorizontalBackgroundTask
+          Label {title = "BackgroundTaskInfo" name = StatusField }
+          Execute = "py: getHorizontalControl('BackgroundStatusLabel','HorizontalBackgroundTask')"
         }
         Horizontal {
           Button {title = "Help" command = showHelp}
@@ -302,7 +311,7 @@ Window LeftSide {
 
       }
       Horizontal {
-        Field StatusField {format = STRING title = "BackgroundTaskInfo" edit = no}
+        Label {title = "BackgroundTaskInfo" name = StatusField}
       }
       Horizontal {
         Button {title = "Help" command = showHelp}

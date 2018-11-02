@@ -261,7 +261,10 @@ void mialCorrectSliceIntensity::CorrectSliceIntensityAllInput()
 		{
 			mlError(__FUNCTION__, ML_UNKNOWN_EXCEPTION) << "correctSliceIntensity Failed : " << splitInputs[iterIm].c_str();
 		}
+		delete useCorrectSliceIntensityWrapper;
+		useCorrectSliceIntensityWrapper = NULL;
 	}
+
 
 	_statusFld->setStringValue("mial Correct Slice Intensity Done");
 	_outputSucceedFld->setBoolValue(true);

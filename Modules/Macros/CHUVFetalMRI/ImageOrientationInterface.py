@@ -38,6 +38,12 @@ def setSceneBackgroundColor(scene):
 def initImageOrientationGraphicsView(view):
   print("##### initImageOrientationGraphicsView")
   global g_ImageOrientationGraphicsView
+
+  #if len(g_ImageOrientationGraphicsView)>0:
+  #  g_ImageOrientationGraphicsView = [g_ImageOrientationGraphicsView[0],view]
+  #  print("Do I go here sometimes ?????")
+  #else:
+  #   g_ImageOrientationGraphicsView = [view]
   g_ImageOrientationGraphicsView = view
   global TempObj
   
@@ -95,9 +101,20 @@ def showImageOrientationInterface():
   global ShouldRunBackgroundTask
   ShouldRunBackgroundTask = False
   
+  if g_ImageOrientationGraphicsView == None:
+    return
+  if ctx.field("TwoScreen"):
+    print("Two Screen")
+  else:  
+    print("One Screen")
   g_HorizontalControl = {}
+  #for viewIter in g_ImageOrientationGraphicsView:
+  #  g_sceneImageOrientation = viewIter.scene()
+  #  g_sceneImageOrientation.clear()
+  
   g_sceneImageOrientation = g_ImageOrientationGraphicsView.scene()
   g_sceneImageOrientation.clear()
+  
   #setSceneBackgroundColor(g_sceneImageOrientation)
   #layer = g_sceneImageOrientation.addLayer()
 
@@ -174,6 +191,8 @@ def showImageOrientationInterface():
     mdlToSet += """Horizontal { name = horizontalExportMode4 alignX = Left """ + buttonLoadPreviousData + """ Execute = "py: getHorizontalControl(\'ExpertButtons4\',\'horizontalExportMode4\')" } """
     #mdlToSet += buttonRunDenoising
   #mdlToSet += FieldStatus
+  #for viewIter in g_ImageOrientationGraphicsView:
+  #  g_sceneImageOrientation = viewIter.scene()  
   g_sceneImageOrientation.addMDL("Vertical {" + mdlToSet + "}")
   
   updateComboBox()
@@ -185,7 +204,7 @@ def changeOrder(Image,Orientation):
   print(previousValue)
   if int( g_HorizontalControl[Image].control("Label%s"%Image).title().split(":")[-1])+Orientation < ctx.field("NumberImages").value and int( g_HorizontalControl[Image].control("Label%s"%Image).title().split(":")[-1])+Orientation >=0:
     g_HorizontalControl[Image].control("Label%s"%Image).setTitle("Order:%i"%(int( g_HorizontalControl[Image].control("Label%s"%Image).title().split(":")[-1])+Orientation))
-  
+   
   for imageIter in inImages:
     if "Image" in imageIter:
       if imageIter != Image:
@@ -212,7 +231,7 @@ def updateComboBox():
               print("test background has control didn't work")
           else:
             try:
-              g_HorizontalControl[imiter].control("button%s"%imiter).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
+                g_HorizontalControl[imiter].control("button%s"%imiter).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
             except Exception as err:
               print("test background g_horizontalcontrol didn't work")
         
@@ -286,11 +305,14 @@ def resetImages():
   
   for iterIm in range(ctx.field("NumberImages").value):
     print("reset combo box")
-    if ctx.hasControl("comboImage%i"%iterIm):
-      ctx.control("comboImage%i"%iterIm).setCurrentItem(0)
-    else:
-      g_HorizontalControl["Image%i"%iterIm].control("comboImage%i"%iterIm).setCurrentItem(0)
-
+    try:
+      if ctx.hasControl("comboImage%i"%iterIm):
+        ctx.control("comboImage%i"%iterIm).setCurrentItem(0)
+      else:
+        g_HorizontalControl["Image%i"%iterIm].control("comboImage%i"%iterIm).setCurrentItem(0)
+    except:
+      print("not generated nothing to reset")
+      
   inImages = None
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep1").setObject(inImages)
@@ -382,6 +404,8 @@ def updateImage(Image="Image0"):
         inImages.update({Image:{"file":filename}})
       else:
         inImages={Image:{"file":filename}}
+        
+      
       #Reoriented Image
       exp = os.path.dirname(inImages[list(inImages.keys())[0]]['file'])
       filename = MLABFileDialog.getOpenFileName(exp, "", "Open WorldChanged ex: Axial2_worldmatrixModified_lr.nii.gz")
@@ -409,7 +433,7 @@ def updateImage(Image="Image0"):
       g_HorizontalControl[Image].control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
       g_HorizontalControl[Image].control("GenerateBrainMask%s"%valIm).setEnabled(True)
       g_HorizontalControl[Image].control("buttonResetBrainMask%s"%valIm).setEnabled(True)
-      ctx.control("checkImage%s"%valIm).setChecked(True)
+      g_HorizontalControl[Image].control("checkImage%s"%valIm).setChecked(True)
       
       
     #return
@@ -514,7 +538,9 @@ def updateImage(Image="Image0"):
       if inImages[Image]["planeOrientation"] != ctx.control("combo%s"%Image).currentText():
         ctx.control("combo%s"%Image).setCurrentItem(dictItem[inImages[Image]['planeOrientation']])
     else:
-      print("why the f... this combo doesn't have any control")
+      if inImages[Image]["planeOrientation"] != g_HorizontalControl[Image].control("combo%s"%Image).currentText():
+        g_HorizontalControl[Image].control("combo%s"%Image).setCurrentItem(dictItem[inImages[Image]['planeOrientation']])
+      #print("why the f... this combo doesn't have any control")
 
   ctx.field("SoInteractionMapping1.ignoreOtherCommandActions").setBoolValue(False)
   ctx.field("adaptTemplateMask.SoToggleMaskEditor.on").setBoolValue(False)
@@ -621,7 +647,7 @@ def button1PressedImOrient(event,control):
         #print("ecriture label")
         position = ctx.field("View2DExtensions.annoReadPix.worldPosition").value
         #est-ce qu'on check que l'output value est differente de 0 ? ctx.field("SyngoViaView2DOverlay.annoReadPix.outpoutValue").value
-        print(position)
+        #print(position)
         #ctx.field("LabelIH.worldPosition").setValue(position)
       
       #if event["button"] == "right":
@@ -629,7 +655,7 @@ def button1PressedImOrient(event,control):
       #  return
     
     elif event["type"] == "KeyPress":    
-      print(event["key"])
+      #print(event["key"])
       if event["key"] == "I":
         positionI = ctx.field("View2DExtensions.annoReadPix.worldPosition").value
         positionIvox = ctx.field("View2DExtensions.annoReadPix.voxelPosition").value
@@ -707,7 +733,7 @@ def button1PressedImOrient(event,control):
             inImages.update({currentPositioning:{"Positioning":{"B":ctx.field("LabelB.worldPosition").value,"Bvox":positionBvox}}})
         ctx.field("LabelB.drawingOn").setValue(True)    
       elif event["key"] == "Return":
-        print("Enter")
+        #print("Enter")
         if (("IH" in inImages[currentPositioning]["Positioning"].keys()) and ("A" in inImages[currentPositioning]["Positioning"].keys()) and ("P" in inImages[currentPositioning]["Positioning"].keys()) and ("T" in inImages[currentPositioning]["Positioning"].keys()) and ("B" in inImages[currentPositioning]["Positioning"].keys())):
           PerformReorientation()            
           #modify mask
@@ -733,7 +759,7 @@ def PerformReorientation():
   ctx.field("View2DExtensions.annotation.editingOn").setBoolValue(True)
   ctx.field("SoView2D.useManagedInteraction").setBoolValue(False)
   activePositioning = False
-  print("anatomic position registered")  
+  #print("anatomic position registered")  
   print("modifying voxel to world transformation matrix")
   if (("IH" in inImages[currentPositioning]["Positioning"].keys()) and ("A" in inImages[currentPositioning]["Positioning"].keys()) and ("P" in inImages[currentPositioning]["Positioning"].keys()) and ("T" in inImages[currentPositioning]["Positioning"].keys()) and ("B" in inImages[currentPositioning]["Positioning"].keys())):
     imagetorotate = ctx.field("itkImageFileReader.output0")
@@ -799,21 +825,21 @@ def PerformReorientation():
     IHinter=list(inImages[currentPositioning]["Positioning"]['IHvox']) #should I use the voxel size ? but normaly not ...
     IHinter.append(1)
     newIH = numpy.dot(FirstTransformation,numpy.multiply(IHinter,numpy.array([voxelSize[0],voxelSize[1],voxelSize[2],1])))
-    print("newIH : %s"%str(newIH))
+    #print("newIH : %s"%str(newIH))
     Binter=list(newBvox)
     Binter.append(1)
     newB = numpy.dot(FirstTransformation,numpy.multiply(Binter,numpy.array([voxelSize[0],voxelSize[1],voxelSize[2],1])))
-    print("newB : %s"%str(newB))
+    #print("newB : %s"%str(newB))
     Tinter=list(inImages[currentPositioning]["Positioning"]['Tvox'])
     Tinter.append(1)          
     newT = numpy.dot(FirstTransformation,numpy.multiply(Tinter,numpy.array([voxelSize[0],voxelSize[1],voxelSize[2],1])))
-    print("newT : %s"%str(newT))
+    #print("newT : %s"%str(newT))
     ctx.field("SoView2DLabel.worldPosition").setValue([newB[0],newB[1],newB[2]])
     ctx.field("SoView2DLabel1.worldPosition").setValue([newT[0],newT[1],newT[2]])
     newBT = numpy.subtract(newB[0:3],newT[0:3])
     newBT=newBT/numpy.linalg.norm(newBT)
-    print("new BT")
-    print(newBT)
+    #print("new BT")
+    #print(newBT)
     orientBT = numpy.cross(newBT,numpy.array([0,0,-1]))
     if numpy.linalg.norm(orientBT) != 0:
       skewMatrixBT = numpy.array(((0,-orientBT[2],orientBT[1]),(orientBT[2],0,-orientBT[0]),(-orientBT[1],orientBT[0],0)))
@@ -828,7 +854,7 @@ def PerformReorientation():
       elif numpy.sign(newBT[2])==1:
         FullRotationBT = numpy.identity(4)
         FullRotationBT[2,2]=-1
-        print(FullRotationBT)
+        #print(FullRotationBT)
           
     ctx.field("TransformWorldMatrixBT.transformation").setValue(FullRotationBT)
     #on fait pareil avec juste AP pour comprendre
@@ -1110,13 +1136,13 @@ def button1PressedMaskRefine(event):
       else:
         global g_HorizontalControl
         try:
-          g_HorizontalControl[imiter].control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
+          g_HorizontalControl[currentImage].control("GenerateBrainMask%s"%valIm).setStyleSheetFromString('QPushButton { background-color: "blue"; }')
         except Exception as err:
           print("test background g_horizontalcontrol didn't work")  
       
       
-      ctx.control("checkImage%s"%valIm).setChecked(True)
-      updateImage(currentImage)
+      g_HorizontalControl[currentImage].control("checkImage%s"%valIm).setChecked(True)
+      updateImage(currentImage) 
       #else:
       #  ctx.field("parent:MessageBox.message").setStringValue("you have to precise the plane orientation to be able to save")
       #  ctx.parent().module("MessageBox").showModalDialog("dialog")
@@ -1127,7 +1153,6 @@ def button1PressedMaskRefine(event):
          
 def modifyImageNumber(x):
   ctx.field("NumberImages").setValue(int(ctx.field("NumberImages").value)+x)
-  global g_ImageOrientationGraphicsView
   inImages = ctx.field("inImageInfos").object()
   if inImages is not None:
     for ii in range(0,20):
@@ -1137,7 +1162,9 @@ def modifyImageNumber(x):
       
   ctx.field("inImageInfos").setObject(inImages)
   ctx.field("outImagesInfosStep1").setObject(inImages)
-  initImageOrientationGraphicsView(g_ImageOrientationGraphicsView)
+  
+  #initImageOrientationGraphicsView(g_ImageOrientationGraphicsView)
+  showImageOrientationInterface()
   #updateComboBox()
   #ctx.updateLayout()
 
@@ -1256,7 +1283,7 @@ def runAllFirstSetBackgroundTasks():
         ImageToOrient=True
     
     if ImageToOrient:
-      OrientImages(WhatToOrient="Mask",listImages=listImageToSendBackgroundTasks)
+      OrientImages(WhatToOrient="Mask",listImages=listImageToSendBackgroundTasks,Background=False)
       OrientImages(WhatToOrient="NativeImage",listImages=listImageToSendBackgroundTasks)
       OrientImages(WhatToOrient="Denoised",listImages=listImageToSendBackgroundTasks)
       
@@ -1299,6 +1326,7 @@ def denoiseImages(BackgroundTask=True,listImages=None):
       
     inputsDenoise=""
     outputsDenoise=""
+    maskDenoise=""
     #if worldmatrix exists we run denoise image on world matrix.
     #else on native
     checkWorldMatrix = True
@@ -1311,15 +1339,24 @@ def denoiseImages(BackgroundTask=True,listImages=None):
     else:
       print("run denoising on native image, will have to reorient them when possible")
       
+    #il all images have brain mask we run denoise image using the brain mask
+    checkBrainMask=True
+    for imageIter in ImagestoDo:
+       if "mask" not in inImages[imageIter]:
+         checkBrainMask = False
+    
     for imageIter in ImagestoDo:
       
       if inputsDenoise != "":
         inputsDenoise = inputsDenoise+"--"
         outputsDenoise = outputsDenoise+"--"
+        maskDenoise = maskDenoise+"--"
       
       if checkWorldMatrix:
         inputsDenoise=inputsDenoise+inImages[imageIter]["WorldChanged"]
         newOutput = inImages[imageIter]["WorldChanged"].replace('.nii','_NLM.nii')
+        if checkBrainMask:
+          maskDenoise = maskDenoise+inImages[imageIter]["mask"]
       else:
         inputsDenoise=inputsDenoise+inImages[imageIter]["file"]
         newOutput = inImages[imageIter]["file"].replace('.nii','_NLM.nii')
@@ -1328,6 +1365,11 @@ def denoiseImages(BackgroundTask=True,listImages=None):
     #set all input file name with -- as delimeter
     ctx.field("mevisbtkDenoising.inputFileName").setStringValue(inputsDenoise)
     ctx.field("mevisbtkDenoising.outputFileName").setStringValue(outputsDenoise)
+    if checkBrainMask:
+      ctx.field("mevisbtkDenoising.maskFileName").setStringValue(maskDenoise)
+    else:
+      ctx.field("mevisbtkDenoising.maskFileName").setStringValue("")
+      
     
     if BackgroundTask:
       ctx.field("mevisbtkDenoising.startTask").touch()
@@ -1338,7 +1380,7 @@ def denoiseImages(BackgroundTask=True,listImages=None):
     
 
 
-def OrientImages(WhatToOrient,listImages=None):
+def OrientImages(WhatToOrient,listImages=None,Background=True):
   
   inImages = ctx.field("inImageInfos").object()
   if inImages == None:
@@ -1392,8 +1434,10 @@ def OrientImages(WhatToOrient,listImages=None):
   ctx.field("%s.outputFileName"%WhichMial).setStringValue(outputsOrient)
   ctx.field("%s.orientation"%WhichMial).setStringValue(inputOrientation)
   print("WhichMial : %s"%WhichMial)
-  ctx.field("%s.startTask"%WhichMial).touch()
-  
+  if Background:
+    ctx.field("%s.startTask"%WhichMial).touch()
+  else:
+    ctx.field("%s.startTaskModal"%WhichMial).touch()
   MLAB.processEvents()
   
 def insertReOrient(WhatToInsert):
@@ -1443,26 +1487,25 @@ def insertReOrient(WhatToInsert):
 def WaitForCorrectSliceIntensity():
   
   ctx.field("WaitForSliceIntensity").setBoolValue(ctx.field("insertOrientDone").value & ctx.field("insertOrientNLMDone").value & ctx.field("insertOrientMaskDone").value)
-  print(ctx.field("insertOrientDone").value)
-  print(ctx.field("insertOrientNLMDone").value)
-  print(ctx.field("insertOrientMaskDone").value)
-  print("bool value")
-  print(ctx.field("WaitForSliceIntensity").value)
-  print("end bool value")
+  #print(ctx.field("insertOrientDone").value)
+  #print(ctx.field("insertOrientNLMDone").value)
+  #print(ctx.field("insertOrientMaskDone").value)
+  #print("bool value")
+  #print(ctx.field("WaitForSliceIntensity").value)
+  #print("end bool value")
   if not ctx.field("WaitForSliceIntensity").value:
     MLAB.processEvents()
     return
   else:
-    print("run SliceIntensity")
-    print(ctx.field("mialOrientImageMask.outputSucceed").value)
-    print(ctx.field("mialOrientImage.outputSucceed").value)
-    print(ctx.field("mialOrientImageNLM.outputSucceed").value)
+    #print("run SliceIntensity")
+    #print(ctx.field("mialOrientImageMask.outputSucceed").value)
+    #print(ctx.field("mialOrientImage.outputSucceed").value)
+    #print(ctx.field("mialOrientImageNLM.outputSucceed").value)
     runCorrectSliceIntensity('RawImage')
     runCorrectSliceIntensity('NLMImage')
 
 def runCorrectSliceIntensity(WhatToCorrect):
   
-  print("HEEEEERRRRRRREEEEE")
   global ImagesToDoBackgroundTasks
   
   inImages = ctx.field("inImageInfos").object()
@@ -1795,7 +1838,6 @@ def runImageReconstruction():
   global ImagesToDoBackgroundTasks
   print("run Image Reconstruction")
   if not ctx.field("WaitForReconstruction").value :
-    print("not here :(")
     return
       
   inImages = ctx.field("inImageInfos").object()
@@ -1842,7 +1884,7 @@ def insertImageReconstruction():
   inImages.update({"SDI_ITER1":os.path.join(os.path.dirname(inImages["Image0"]["file"]),"SDI_ITER1.nii.gz")})
   
   global ImagesToDoBackgroundTasks
-  for imageIter in ImagesToDoBackgroundTasks:   
+  for imageIter in inImages["UsedForSDI"]:   
     inImages[imageIter].update({"Transform":inImages[imageIter]["ImReOriented"].split(".nii")[0]+"_transform_%iV_1.txt"%len(inImages["UsedForSDI"])})
   
   ctx.field("inImageInfos").setObject(inImages)
@@ -1931,7 +1973,7 @@ def insertNLMDenoisingResults():
   inImages = ctx.field("inImageInfos").object()
   for iterImage in range(len(splitNames)):
     for kk,vv in inImages.items():
-      if "Image" in kk:
+      if kk in os.path.basename(splitNames[iterImage]):
         if insertNLMOriented:
           if splitInputNames[iterImage]==vv['WorldChanged']:
             inImages[kk].update({'NLMWorldChanged':splitNames[iterImage]})
@@ -1963,6 +2005,13 @@ def updateParameterRegistration():
 #  
 #  listOfPossibleTask = {"Denoising":ctx.field("mevisbtkDenoising.startTask"),"mialOrientImage":ctx.field("mialOrientImage.startTask"),"mialCorrectSliceIntensity":ctx.field("mialCorrectSliceIntensity.startTask"),"mialBiasEstimation":ctx.field("mialSliceBySliceBiasEstimation.startTask"),"mialBiasCorrection":ctx.field("mialSliceBySliceBiasFieldCorrection.startTask"),"mialIntensityStandardization":ctx.field("mialIntensityStandardization.startTask")}
 #  listOfPossibleTask[Task].touch()
+
+
+#def updateOrtho1Viewer():
+#  ctx.field("CreateBoundingVolumeOrtho1.add").touch()
+  
+#def updateOrtho2Viewer():
+#  ctx.field("CreateBoundingVolumeOrtho2.add").touch()
 
 def showHelp():
   print("showHelp")

@@ -22,6 +22,18 @@ Interface {
       hidden       = yes
       internalName = viewer.self
     }
+    
+    Field viewerOrtho1 {
+      hidden       = yes
+      internalName = viewerOrtho1.self
+    }
+    
+    Field viewerOrtho2 {
+      hidden       = yes
+      internalName = viewerOrtho2.self
+    }
+    
+    
     Field outputSucceed {type = MLBase}
     
   }
@@ -58,6 +70,8 @@ Interface {
     Field WaitForReconstruction {type = Bool value = False}
     Field WaitForSliceIntensity {type = Bool value = False}
     Field FromFrontier {type = Bool value = False}
+    Field TwoScreen {type = Bool value = False}
+
     //Field temporaryMasksSwitch {type = MLBase }
   }
 }
@@ -81,7 +95,7 @@ Commands {
   source = $(LOCAL)/ImageOrientationInterface.py
   //initCommand = initImageOrientationInterface
   //FieldListener cornerMenuIteraction {command = cornerMenuClicked}
-  FieldListener fileSelectionCompleted {command = initImageOrientationGraphicsView}
+  FieldListener fileSelectionCompleted {command = initImageOrientationGraphicsView} 
   FieldListener resetAll {command = resetImages}
   FieldListener GestationalAge {command = updateCSOfromAdapt}
   
@@ -132,6 +146,7 @@ Commands {
   FieldListener ExpertMode {command = showImageOrientationInterface}
   FieldListener RefImageFiled {command = updateRefImageReconstruction}
   
+  
   //FieldListener View2DExtensions.annoReadPix.worldPosition {command = updateLabelPosition}
 }
 
@@ -157,9 +172,9 @@ Window ImageOrientationPanel {
     //expandX = No
     Vertical
     {
-      GraphicsView
+      GraphicsView 
       {
-        name        = GraphicsView
+        name        = GraphicsViewFull
         initCommand = initImageOrientationGraphicsView
         
         //expandX = No
@@ -178,34 +193,7 @@ Window ImageOrientationPanel {
       }
     }
     
-    //expandX = No
-    
-    Box ViewerBox {
-        title = ""
-      
-        Viewer viewer2D {
-        name            = viewer
-        clone           = NO
-        preferredWidth  = 900
-        preferredHeight = 500
-        }
-      
-        EventFilter {
-          //dependsOn = "eventChoice == 1"
-          filter = "MouseButtonPress,KeyPress"
-          control = viewer 
-          command = button1PressedImOrient
-        }
-      
-        /*EventFilter {
-          dependsOn = "eventChoice == 2"
-          filter  = "MouseButtonPress,KeyPress"
-          control = viewer 
-          command = button1PressedMaskRefine         
-        }*/
-      expandY = yes
-    }
-    
+    Panel { window = RightSide }  
     
   }
   
@@ -214,14 +202,16 @@ Window ImageOrientationPanel {
 Window LeftSide {
     
     //style = FrontierStyle
+  Splitter {
+    direction = vertical
   Vertical
   {
-    GraphicsView
+    GraphicsView 
     {
-      name        = GraphicsView
+      name        = GraphicsViewLeft
       initCommand = initImageOrientationGraphicsView
         
-      //expandX = No
+      expandY = Yes
     }
 
     expandY = yes
@@ -236,6 +226,48 @@ Window LeftSide {
       Button { title = "Help" command = showHelp}
     }
   }
+  
+  Splitter {
+      
+    direction = horizontal
+      
+    Box ViewerBoxCoronal {
+      title = ""
+      
+      Viewer viewerOrtho1 {
+        name            = viewerOrtho1
+        clone           = NO
+        preferredWidth  = 900
+        preferredHeight = 500
+      }
+      
+      /*EventFilter {
+        filter  = "MouseButtonPress,KeyPress"
+        control = viewerCoronal 
+        command = buttonPressedCoronal
+      }*/
+      expandY = yes
+    } 
+      
+    Box ViewerBoxSagittal {
+      title = ""
+      
+      Viewer viewerOrtho2 {
+        name            = viewerOrtho2
+        clone           = NO
+        preferredWidth  = 900
+        preferredHeight = 500
+      }
+      
+      /*EventFilter {
+        filter  = "MouseButtonPress,KeyPress"
+        control = viewerSagittal 
+        //command = buttonPressedSagittal
+      }*/
+      expandY = yes
+    }
+  }
+}
   
 }
 

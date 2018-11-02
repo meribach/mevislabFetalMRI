@@ -233,6 +233,8 @@ void mialIntensityStandardization::IntensityStandardizationAllInput()
 		}
 	//}
 
+	delete useIntensityStandardizationWrapper;
+	useIntensityStandardizationWrapper = NULL;
 	_statusFld->setStringValue("Intensity Standardization Done");
 	_outputSucceedFld->setBoolValue(true);
 

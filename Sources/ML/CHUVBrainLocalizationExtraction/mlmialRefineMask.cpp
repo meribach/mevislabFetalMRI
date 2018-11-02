@@ -209,11 +209,11 @@ void mialRefineMask::handleNotification(Field* field)
 			m_pBGRefineMaskWorker = new mialRefineMaskBackgroundTask(this);
 			std::cout << "background task created" << std::endl;
 			_inProgressFld->setBoolValue(true);
-			_statusFld->setStringValue("Refine Mask Running");
 			if (m_pBGRefineMaskWorkerThread)
 				std::cout << "Refine Mask thread killed" << std::endl;
 			delete m_pBGRefineMaskWorkerThread;
 			m_pBGRefineMaskWorkerThread = new boost::thread(*m_pBGRefineMaskWorker);
+			_statusFld->setStringValue("Refine Mask Running");
 		}
 		else if (field == _startTaskModalFld)
 		{
@@ -261,6 +261,8 @@ void mialRefineMask::runRefineMask()
 	}
 
 	_outputSucceedFld->setBoolValue(true);
+	delete useRefineMaskWrapper;
+	useRefineMaskWrapper = NULL;
 
 
 }

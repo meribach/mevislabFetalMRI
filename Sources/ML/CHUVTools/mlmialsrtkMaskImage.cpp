@@ -182,6 +182,8 @@ void mialsrtkMaskImage::runmaskImage()
 		mlError(__FUNCTION__, ML_UNKNOWN_EXCEPTION) << "mialsrtkMaskImage Failed : ";
 	}
 
+	delete usemialsrtkMaskImageWrapper;
+	usemialsrtkMaskImageWrapper = NULL;
 	_outputSucceedFld->setBoolValue(true);
 }
 

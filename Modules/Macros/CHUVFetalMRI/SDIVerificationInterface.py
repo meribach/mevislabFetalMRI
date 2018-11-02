@@ -551,7 +551,7 @@ def insertImageReconstruction():
   ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.inDicomTree").setObject(mutableTree)
   
   if ctx.field("FromFrontier").value:
-    ctx.connectField("parent:DicomExport.inImage","NiftiToDicomFetalMRI.SetDicomTreeOnImage.output0")
+    ctx.connectField("parent:DicomExport.inImage","NiftiToDicomFetalMRI.outDicomTree")
   
   DicomToolToUse.field("exportNameTemplate").setStringValue("$S/"+"SDI_ITER%i"%iterNumber+"$T.dcm")
   DicomToolToUse.field("saveSlices").touch()
@@ -581,11 +581,12 @@ def updateSDI():
   print("test here")
   if len(g_HorizontalControl):
     for iterImage in g_HorizontalControl.keys():
-      if "UsedForSDI" in inImages.keys():
-         if iterImage in inImages["UsedForSDI"]:
-           g_HorizontalControl[iterImage].control("check%s"%iterImage).setChecked(True)
-         else:
-           g_HorizontalControl[iterImage].control("check%s"%iterImage).setChecked(False)
+      if "Image" in iterImage:
+        if "UsedForSDI" in inImages.keys():
+           if iterImage in inImages["UsedForSDI"]:
+             g_HorizontalControl[iterImage].control("check%s"%iterImage).setChecked(True)
+           else:
+             g_HorizontalControl[iterImage].control("check%s"%iterImage).setChecked(False)
       
   
 def updateImage():
@@ -618,6 +619,13 @@ def showHelp():
 def updateBackgroundTaskRunningField():
   print("update backgroundTask")
   ctx.field("BackgroundTaskRunning").setBoolValue(ctx.field("mialImageReconstruction.inProgress").value | ctx.field("mialTVSuperResolution.inProgress").value | ctx.field("mialRefineMask.inProgress").value | ctx.field("mialsrtkMaskImage.inProgress").value | ctx.field("mialN4BiasField.inProgress").value)
+
+def updateBackgroundTaskStatus(Who):
+  print("update message")
+  newMessage =ctx.field("%s.status"%Who).stringValue()
+  print(newMessage)
+  g_HorizontalControl["BackgroundStatusLabel"].control("StatusField").setTitle(newMessage)
+  g_HorizontalControl["BackgroundStatusLabel"].control("StatusField").setStyleSheetFromString('QLabel { color: "red"; }')
 
 def getHorizontalControl(image,horizon):
   

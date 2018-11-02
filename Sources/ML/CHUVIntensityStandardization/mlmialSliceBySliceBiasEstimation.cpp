@@ -268,6 +268,9 @@ void mialSliceBySliceBiasEstimation::EstimateBiasAllInput()
 		{
 			mlError(__FUNCTION__, ML_UNKNOWN_EXCEPTION) << "Slice by Slice Bias Estimation Failed : " << splitInputs[iterIm].c_str();
 		}
+
+		delete usemialsrtkSliceBySliceN4BiasFieldCorrectionWrapper;
+		usemialsrtkSliceBySliceN4BiasFieldCorrectionWrapper = NULL;
 	}
 
 	_statusFld->setStringValue("Slice by Slice Bias Estimation Done");

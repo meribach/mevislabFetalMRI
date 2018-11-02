@@ -261,11 +261,11 @@ void mialImageReconstruction::handleNotification(Field* field)
 			m_pBGImageReconstructionWorker = new mialImageReconstructionBackgroundTask(this);
 			std::cout << "background task created" << std::endl;
 			_inProgressFld->setBoolValue(true);
-			_statusFld->setStringValue("Image Reconstruction Running");
 			if (m_pBGImageReconstructionWorkerThread)
 				std::cout << "Image Reconstruction thread killed" << std::endl;
 			delete m_pBGImageReconstructionWorkerThread;
 			m_pBGImageReconstructionWorkerThread = new boost::thread(*m_pBGImageReconstructionWorker);
+			_statusFld->setStringValue("Image Reconstruction Running");
 		}
 		else if (field == _startTaskModalFld)
 		{
@@ -351,6 +351,8 @@ void mialImageReconstruction::ReconstructHRImage()
 		mlError(__FUNCTION__, ML_UNKNOWN_EXCEPTION) << "mialImageReconstruction Failed : " ;
 	}
 
+  delete useImageReconstructionWrapper;
+  useImageReconstructionWrapper = NULL;
   _outputSucceedFld->setBoolValue(true);
 
 }

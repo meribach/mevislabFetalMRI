@@ -273,8 +273,8 @@ void mialOrientImage::reOrientAllInput()
 			mlError(__FUNCTION__, ML_UNKNOWN_EXCEPTION) << "Reorient Failed : " << splitInputs[iterIm].c_str();
 		}
 		
-		//delete useReorientWrapper;
-		//useReorientWrapper = NULL;
+		delete useReorientWrapper;
+		useReorientWrapper = NULL;
 	}
 
 	_statusFld->setStringValue("mialOrientation Done");

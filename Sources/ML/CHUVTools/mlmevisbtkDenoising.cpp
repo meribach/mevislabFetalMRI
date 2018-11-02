@@ -288,6 +288,7 @@ mevisbtkDenoising::~mevisbtkDenoising()
 		delete m_pBTKDenoiseWorkerThread;
 		m_pBTKDenoiseWorkerThread;
 	}
+	std::cout << "destructor called" << std::endl;
 
 }
 
@@ -334,6 +335,8 @@ void mevisbtkDenoising::DenoiseAllInput()
 		{
 			mlError(__FUNCTION__, ML_UNKNOWN_EXCEPTION) << "btkDenoising Failed : " << splitInputs[iterIm].c_str();
 		}
+		delete usebtkDenoiseWrapper;
+		usebtkDenoiseWrapper = NULL;
 	}
 
 	_statusFld->setStringValue("Denoising Done");
