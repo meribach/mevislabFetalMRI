@@ -731,8 +731,8 @@ module SoToggle {
   }
   fields  {
     instanceName = ToggleBrainMask
-    whichChild = -3
-    on = TRUE
+    whichChild = -1
+    on = FALSE
   }
 }
 module Switch {
@@ -750,7 +750,7 @@ module Switch {
   }
   fields  {
     instanceName = AlreadyModifiedMask
-    currentInput = 1
+    currentInput = 0
     numberOfInputs = 2
   }
 }
@@ -772,7 +772,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
+    info = "File closed"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -1860,7 +1860,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "-3.57404811940015 -2.703829019841 42.2609517472923"
+    center = "0 0 0"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -1939,7 +1939,7 @@ module Switch {
   }
   fields  {
     instanceName = SwitchAlreadyRegistered
-    currentInput = 1
+    currentInput = 0
     numberOfInputs = 2
   }
 }
@@ -1961,64 +1961,15 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Loading okay."
-    numDims = 3
+    info = "File closed"
+    numDims = 0
     fileType = TypeNotApplicable
-    componentType = "unsigned int16"
-    pixelType = SCALAR
-    loaderType = NiftiImageIO
-    outputMetaDataStr = "ITK_FileNotes : 
-aux_file : 
-bitpix : 16
-cal_max : 0
-cal_min : 0
-datatype : 512
-descrip : 
-dim[0] : 3
-dim[1] : 320
-dim[2] : 320
-dim[3] : 29
-dim[4] : 1
-dim[5] : 1
-dim[6] : 1
-dim[7] : 1
-dim_info : 
-intent_code : 0
-intent_name : 
-intent_p1 : 0
-intent_p2 : 0
-intent_p3 : 0
-pixdim[0] : 1
-pixdim[1] : 1.125
-pixdim[2] : 1.125
-pixdim[3] : 3.3
-pixdim[4] : 0
-pixdim[5] : 0
-pixdim[6] : 0
-pixdim[7] : 0
-qform_code : 2
-qoffset_x : 98.2543
-qoffset_y : -77.4725
-qoffset_z : 268.397
-quatern_b : -0.524793
-quatern_c : 0.429587
-quatern_d : 0.37165
-scl_inter : 0
-scl_slope : 1
-sform_code : 1
-slice_code : 
-slice_duration : 0
-slice_end : 0
-slice_start : 0
-srow_x : 0.398995 -1.03739 0.510231 98.2543
-srow_y : 0.0228887 0.194554 3.24959 -77.4725
-srow_z : -1.05162 -0.389361 0.264314 268.397
-toffset : 0
-vox_offset : 352
-xyzt_units : 
-"
+    componentType = ""
+    pixelType = UNKNOWNPIXELTYPE
+    loaderType = ""
+    outputMetaDataStr = ""
     suppressErrorPosting = FALSE
-    unresolvedFileName = D:/Pierre/userdata/FetalMRI/TestInstall/Image2_worldmatrixModified_lr.nii
+    unresolvedFileName = ""
   }
 }
 module SoInteractionMapping {
@@ -2986,11 +2937,11 @@ module MLLogFile {
 }
 module DicomTagModify {
   internal  {
-    frame = "2485 1285 120 56"
+    frame = "2485 1309 120 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "1037 306 518 488"
+        geometry = "196 298 518 488"
         sizeHint = "518 482"
         wasOpen = no
       }
@@ -3114,7 +3065,7 @@ module DicomTool {
 }
 module ImagePropertyConvert {
   internal  {
-    frame = "2469 1389 152 72"
+    frame = "2461 1405 152 72"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
@@ -3173,7 +3124,7 @@ module ImagePropertyConvert {
 }
 module SetDicomTreeOnImage {
   internal  {
-    frame = "2537 1165 160 56"
+    frame = "2585 1133 160 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -4562,6 +4513,60 @@ module updateWorldOrientation {
     instanceName = updateWorldOrientation
   }
 }
+module DicomTagModify {
+  internal  {
+    frame = "2617 1237 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1046 264 518 482"
+        sizeHint = "518 482"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomTagModify1
+    tagName0 = StudyDate
+    tagValue0 = ""
+    removeTag0 = FALSE
+    tagVR0 = DA
+    stdTagVR0 = TRUE
+    tagName1 = StudyTime
+    tagValue1 = ""
+    removeTag1 = FALSE
+    tagVR1 = TM
+    stdTagVR1 = TRUE
+    tagName2 = ""
+    tagValue2 = ""
+    removeTag2 = FALSE
+    tagVR2 = ""
+    stdTagVR2 = FALSE
+    tagName3 = ""
+    tagValue3 = ""
+    removeTag3 = FALSE
+    tagVR3 = ""
+    stdTagVR3 = FALSE
+    tagName4 = ""
+    tagValue4 = ""
+    removeTag4 = FALSE
+    tagVR4 = ""
+    stdTagVR4 = FALSE
+    tagName5 = ""
+    tagValue5 = ""
+    removeTag5 = FALSE
+    tagVR5 = ""
+    stdTagVR5 = FALSE
+    discardSource = None
+    useTagsString = FALSE
+    modifyTagsString = ""
+    removeTagsString = ""
+    synchronizeTagsString = ""
+    trimSpaces = TRUE
+    autoApply = TRUE
+    updateMode = AutoUpdate
+  }
+}
 connections  {
   RemoteRendering.sceneGraph = viewer.self
   Switch.input0 = itkImageFileReader.output0
@@ -4639,7 +4644,7 @@ connections  {
   DicomTagModify.input0 = ImagePropertyConvert.output0
   DicomTool.inImage = SetDicomTreeOnImage.output0
   ImagePropertyConvert.input0 = adaptTemplateMask.outAdaptMaskImage
-  SetDicomTreeOnImage.input0 = DicomTagModify.output0
+  SetDicomTreeOnImage.input0 = DicomTagModify1.output0
   DicomTagViewer.input0 = SetDicomTreeOnImage.output0
   NiftiToDicomFetalMRI.inputNiftiFile = mialImageReconstruction.outputFile
   DicomToolSDI1.inImage = NiftiToDicomFetalMRI.outDicomTree
@@ -4671,6 +4676,9 @@ connections  {
   FloatMultiSync1.field2 = WorldVoxelConvertOrtho1.voxelY
   FloatMultiSync2.field0 = WorldVoxelConvertOrtho1.voxelX
   FloatMultiSync2.field2 = WorldVoxelConvertOrtho2.voxelY
+  DicomTagModify1.input0 = DicomTagModify.output0
+  DicomTagModify1.tagValue0 = DicomTagModify.tagValue4
+  DicomTagModify1.tagValue1 = DicomTagModify.tagValue5
 }
 networkModel  {
   parentItems  {

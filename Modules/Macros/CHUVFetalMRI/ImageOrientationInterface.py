@@ -1074,6 +1074,7 @@ def button1PressedMaskRefine(event):
         ctx.field("DicomTagModify.tagValue4").setValue(time.strftime("%Y%m%d"))
         
         ctx.field("DicomTagModify.apply").touch()
+        ctx.field("DicomTagModify1.apply").touch()
         _frontier = ctx.module("parent:FrontierSyngoInterface").object()
         ctx.field("parent:DicomExport.exportBaseDir").setStringValue(_frontier.getOutgoingDicomDirectory())
         DicomToolToUse = ctx.module("parent:DicomExport") #ctx.module("DicomTool") #
@@ -1085,6 +1086,7 @@ def button1PressedMaskRefine(event):
         ctx.field("DicomTagModify.tagValue5").setValue(time.strftime("%H%M%S"))
         ctx.field("DicomTagModify.tagValue4").setValue(time.strftime("%Y%m%d"))
         ctx.field("DicomTagModify.apply").touch()
+        ctx.field("DicomTagModify1.apply").touch()
         DicomToolToUse = ctx.module("DicomTool")
         ctx.field("DicomTool.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
   
@@ -1907,6 +1909,7 @@ def insertImageReconstruction():
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue1").setValue(time.strftime("%H%M%S"))
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue0").setValue(time.strftime("%Y%m%d"))
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.apply").touch()
     originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
     mutableTree = originalTree.createDerivedTree()
     _frontier = ctx.module("parent:FrontierSyngoInterface").object()
@@ -1926,6 +1929,7 @@ def insertImageReconstruction():
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue1").setValue(time.strftime("%H%M%S"))
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue0").setValue(time.strftime("%Y%m%d"))
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.apply").touch()
     originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
     mutableTree = originalTree.createDerivedTree()
     mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, inImages["UsedForSDI"] , "LO")

@@ -10,7 +10,7 @@ module DicomTagModify {
       window _default {
         geometry = "60 199 518 752"
         sizeHint = "518 482"
-        wasOpen = no
+        wasOpen = yes
       }
       window _automatic {
         geometry = "717 329 500 600"
@@ -159,7 +159,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "File closed"
+    info = "Invalid path"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -213,16 +213,16 @@ module DicomTagModify {
     removeTag1 = FALSE
     tagVR1 = TM
     stdTagVR1 = TRUE
-    tagName2 = ""
+    tagName2 = StudyDate
     tagValue2 = ""
     removeTag2 = FALSE
-    tagVR2 = ""
-    stdTagVR2 = FALSE
-    tagName3 = ""
+    tagVR2 = DA
+    stdTagVR2 = TRUE
+    tagName3 = StudyTime
     tagValue3 = ""
     removeTag3 = FALSE
-    tagVR3 = ""
-    stdTagVR3 = FALSE
+    tagVR3 = TM
+    stdTagVR3 = TRUE
     tagName4 = ""
     tagValue4 = ""
     removeTag4 = FALSE
@@ -250,6 +250,8 @@ connections  {
   SetDicomTreeOnImage.input0 = DicomTagModify1.output0
   Arithmetic1.input0 = itkImageFileReader.output0
   DicomTagModify1.input0 = DicomTagModify.output0
+  DicomTagModify1.tagValue2 = DicomTagModify1.tagValue0
+  DicomTagModify1.tagValue3 = DicomTagModify1.tagValue1
 }
 networkModel  {
   parentItems  {
