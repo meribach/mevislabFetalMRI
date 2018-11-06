@@ -919,7 +919,15 @@ def button1PressedMaskRefine(event):
   if event["type"]== "KeyPress":
     if event["key"] != "Return" or event["key"]!="Enter":
       if 'planeOrientation' not in inImages[currentImage].keys():
-        print("need to define a plante orientation first")
+        if ctx.field("FromFrontier").value:
+          _frontier = ctx.module("parent:FrontierSyngoInterface").object()
+          _frontier.showMessageBox("need to define a plane orientation first","need to define a plane orientation first",["Ok"])
+          return
+        else:
+           ctx.field("MessageBox.message").setStringValue("need to define a plane orientation first")
+           ctx.module("MessageBox").showModalDialog("dialog")
+           return
+        print("need to define a plane orientation first")
         return
   
   
@@ -1249,11 +1257,24 @@ def runAllFirstSetBackgroundTasks():
           #if ctx.control("check%s"%imageIter).isChecked():
           listImageToSendBackgroundTasks.append(imageIter)
         
+    if len(listImageToSendBackgroundTasks)<1:
+       if ctx.field("FromFrontier").value:
+         _frontier = ctx.module("parent:FrontierSyngoInterface").object()
+         _frontier.showMessageBox("no image selected","no image selected",["Ok"])
+         return
+       else:
+         ctx.field("MessageBox.message").setStringValue("no image selected")
+         ctx.module("MessageBox").showModalDialog("dialog")
+         return
+           
+    
     ImagesToDoBackgroundTasks = listImageToSendBackgroundTasks
     if "UsedFromStart" in inImages.keys():
       inImages.update({"UsedFromStart":list(set().union(ImagesToDoBackgroundTasks,inImages["UsedFromStart"]))})
     else:
       inImages.update({"UsedFromStart":ImagesToDoBackgroundTasks})
+    
+    
     #if !ctx.field("mevisbtkDenoising.outputSucceed").value
     #if denoise images as run on native image we have to reorient them
     SomeToDenoise=False
@@ -1267,8 +1288,7 @@ def runAllFirstSetBackgroundTasks():
         ctx.field("updateWorldOrientation.itkImageFileWriter.fileName").setStringValue(newName)
         ctx.field("updateWorldOrientation.itkImageFileWriter.save").touch()
         #have to add to inImages now
-        inImages[imageIter].update({'NLMWorldChanged':newName})
-
+        inImages[imageIter].update({'NLMWorldChanged':newName})           
         
       else:
         SomeToDenoise=True
@@ -1289,28 +1309,10 @@ def runAllFirstSetBackgroundTasks():
       OrientImages(WhatToOrient="NativeImage",listImages=listImageToSendBackgroundTasks)
       OrientImages(WhatToOrient="Denoised",listImages=listImageToSendBackgroundTasks)
       
-
-        
-        
-    ImageDenoisedToOrient=False
+             
     ctx.field("inImageInfos").setObject(inImages)
     ctx.field("outImagesInfosStep1").setObject(inImages)       
     
-    #while (not ctx.field("StopBackgroundTask").value):
-    #  #Normalement denoise est deja fait
-    #  for imageIter in inImages:
-    #    if ctx.control("check%i"%imageIter).isChecked():
-    #      if inputsDenoise != "":
-    #        inputsDenoise = inputsDenoise+"--"
-    #        outputsDenoise = outputsDenoise+"--"
-    #      inputsDenoise=inputsDenoise+inImages[imageIter]["file"]
-    #      newOutput = inImages[imageIter]["file"].replace('.nii','NLM.nii')
-    #      outputsDenoise=outputsDenoise+newOutput
-    #  #set all input file name with -- as delimeter
-    #  ctx.field("mevisbtkDenoising.inputFileName").setStringValue(inputsDenoise)
-    #  ctx.field("mevisbtkDenoising.outputFileName").setStringValue(outputsDenoise)
-    #  ctx.field("mevisbtkDenoising.startTask").touch()
-    #  i=i+1
         
 
 def denoiseImages(BackgroundTask=True,listImages=None):

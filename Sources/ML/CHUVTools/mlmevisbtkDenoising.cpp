@@ -138,7 +138,7 @@ void mevisbtkDenoising::handleNotification(Field* field)
 		splitInputs.push_back(token);
 	}
 
-	std::cout << "I have splitted my input" << std::endl;
+	//std::cout << "I have splitted my input" << std::endl;
 
 	//then outputfilename
 	pos = 0;
@@ -153,7 +153,7 @@ void mevisbtkDenoising::handleNotification(Field* field)
 		splitOutputs.push_back(token);
 	}
 
-	std::cout << "I have splitted my output" << std::endl;
+	//std::cout << "I have splitted my output" << std::endl;
 
 
 	
@@ -256,11 +256,11 @@ void mevisbtkDenoising::handleNotification(Field* field)
 			std::cout << "denoise worker killed" << std::endl;
 			delete (m_pBGBTKDenoiseWorker);
 		m_pBGBTKDenoiseWorker = new BTKDenoiseBackgroundTask(this);
-		std::cout << "background task created" << std::endl;
+		//std::cout << "background task created" << std::endl;
 		_inProgressFld->setBoolValue(true);
 		_statusFld->setStringValue("Denoising Running");
 		if (m_pBTKDenoiseWorkerThread)
-			std::cout << "denoise thread killed" << std::endl;
+			//std::cout << "denoise thread killed" << std::endl;
 			delete m_pBTKDenoiseWorkerThread;
 		m_pBTKDenoiseWorkerThread = new boost::thread(*m_pBGBTKDenoiseWorker);
 		}
@@ -308,7 +308,7 @@ void mevisbtkDenoising::clear()
 
 void mevisbtkDenoising::DenoiseAllInput()
 {
-	std::cout << "inputFiles" << splitInputs.size() << std::endl;
+	//std::cout << "inputFiles" << splitInputs.size() << std::endl;
 
 	//here we use openmp
 	unsigned int iterIm = splitInputs.size();

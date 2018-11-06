@@ -366,6 +366,7 @@ def updateImage():
   ctx.field("CreateBoundingVolumeCoronal.add").touch()
   ctx.field("ReformatCoronal.apply").touch()
   ctx.field("BoundingBoxCoronal.update").touch()
+  ctx.field("OrthoView2DAxial.worldPosition").setVectorValue([0,0,0])
 
 
 def updateBackgroundTaskRunningField():

@@ -311,7 +311,9 @@ Window LeftSide {
 
       }
       Horizontal {
-        Label {title = "BackgroundTaskInfo" name = StatusField}
+        name=HorizontalBackgroundTask
+        Label {title = "BackgroundTaskInfo" name = StatusField }
+        Execute = "py: getHorizontalControl('BackgroundStatusLabel','HorizontalBackgroundTask')"
       }
       Horizontal {
         Button {title = "Help" command = showHelp}

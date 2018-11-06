@@ -161,7 +161,7 @@ void mialOrientImage::handleNotification(Field* field)
 		  splitInputs.push_back(token);
 	  }
 	  
-	  std::cout << "I have splitted my input" << std::endl;
+	  //std::cout << "I have splitted my input" << std::endl;
 
 	  //then outputfilename
 	  pos = 0;
@@ -176,7 +176,7 @@ void mialOrientImage::handleNotification(Field* field)
 		  splitOutputs.push_back(token);
 	  }
 
-	  std::cout << "I have splitted my output" << std::endl;
+	  //std::cout << "I have splitted my output" << std::endl;
 
 
 	  //orientation to end
@@ -192,7 +192,7 @@ void mialOrientImage::handleNotification(Field* field)
 		  splitOrientation.push_back(token);
 	  }
 
-	  std::cout << "I have splitted my orientation" << std::endl;
+	  //std::cout << "I have splitted my orientation" << std::endl;
 
 	  if (splitOrientation.size() != splitInputs.size() || splitInputs.size()!= splitOutputs.size() || splitOrientation.size() != splitOutputs.size())
 	  {
@@ -221,7 +221,7 @@ void mialOrientImage::handleNotification(Field* field)
 		  return;
 	    }
 	  }
-	  std::cout << "Orientations Recognized" << std::endl;
+	  //std::cout << "Orientations Recognized" << std::endl;
 	 
 	  if (field == _startTaskFld)
 	  {
@@ -250,7 +250,7 @@ void mialOrientImage::handleNotification(Field* field)
 void mialOrientImage::reOrientAllInput()
 {
 
-	std::cout << "inputFiles" << splitInputs.size() << std::endl;
+	//std::cout << "inputFiles" << splitInputs.size() << std::endl;
 
 	//here we use openmp
 	unsigned int iterIm = splitInputs.size();
@@ -258,9 +258,9 @@ void mialOrientImage::reOrientAllInput()
     #pragma omp parallel for private(iterIm)
 	for (int iterIm = 0; iterIm < splitInputs.size(); iterIm++)
 	{
-		std::cout << splitInputs[iterIm] << std::endl;
-		std::cout << splitOrientation[iterIm] << std::endl;
-		std::cout << splitOutputs[iterIm] << std::endl;
+		//std::cout << splitInputs[iterIm] << std::endl;
+		//std::cout << splitOrientation[iterIm] << std::endl;
+		//std::cout << splitOutputs[iterIm] << std::endl;
 		//std::cout << "should reorient" << std::endl;
 		reOrientWrapper* useReorientWrapper = new reOrientWrapper(splitInputs[iterIm].c_str(), splitOutputs[iterIm].c_str(), splitOrientation[iterIm].c_str());
 		useReorientWrapper->reOrient();

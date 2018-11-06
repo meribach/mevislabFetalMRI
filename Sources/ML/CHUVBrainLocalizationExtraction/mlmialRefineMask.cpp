@@ -260,6 +260,7 @@ void mialRefineMask::runRefineMask()
 		mlError(__FUNCTION__, ML_UNKNOWN_EXCEPTION) << "mialRefineMask Failed : ";
 	}
 
+	_statusFld->setStringValue("Refine Mask Done");
 	_outputSucceedFld->setBoolValue(true);
 	delete useRefineMaskWrapper;
 	useRefineMaskWrapper = NULL;
@@ -271,7 +272,6 @@ void mialRefineMask::runRefineMask()
 void mialRefineMask::postComputation()
 {
 	_inProgressFld->setBoolValue(false);
-	_statusFld->setStringValue("Refine Mask Done");
 	std::cout << "Refine Mask Done" << std::endl;
 }
 

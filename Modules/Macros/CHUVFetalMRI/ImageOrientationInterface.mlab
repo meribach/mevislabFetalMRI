@@ -104,13 +104,62 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
-    numDims = 0
+    info = "Loading okay."
+    numDims = 3
     fileType = TypeNotApplicable
-    componentType = ""
-    pixelType = UNKNOWNPIXELTYPE
-    loaderType = ""
-    outputMetaDataStr = ""
+    componentType = "unsigned int16"
+    pixelType = SCALAR
+    loaderType = NiftiImageIO
+    outputMetaDataStr = "ITK_FileNotes : 
+aux_file : 
+bitpix : 16
+cal_max : 0
+cal_min : 0
+datatype : 512
+descrip : 
+dim[0] : 3
+dim[1] : 320
+dim[2] : 320
+dim[3] : 30
+dim[4] : 1
+dim[5] : 1
+dim[6] : 1
+dim[7] : 1
+dim_info : 
+intent_code : 0
+intent_name : 
+intent_p1 : 0
+intent_p2 : 0
+intent_p3 : 0
+pixdim[0] : 1
+pixdim[1] : 1.125
+pixdim[2] : 1.125
+pixdim[3] : 3.3
+pixdim[4] : 0
+pixdim[5] : 0
+pixdim[6] : 0
+pixdim[7] : 0
+qform_code : 2
+qoffset_x : -108.95
+qoffset_y : 63.9512
+qoffset_z : -218.741
+quatern_b : 0.742655
+quatern_c : -0.101617
+quatern_d : 0.15049
+scl_inter : 0
+scl_slope : 1
+sform_code : 1
+slice_code : 
+slice_duration : 0
+slice_end : 0
+slice_start : 0
+srow_x : 1.05081 -0.388058 0.305323 -108.95
+srow_y : 0.0484584 -0.166913 -3.26038 63.9512
+srow_z : 0.398842 1.04268 -0.40829 -218.741
+toffset : 0
+vox_offset : 352
+xyzt_units : 
+"
     suppressErrorPosting = FALSE
     unresolvedFileName = ""
   }
@@ -180,11 +229,11 @@ module WorldVoxelConvert {
     voxelX = 64
     voxelY = 86
     voxelZ = 102
-    worldX = 64
-    worldY = 86
-    worldZ = 102
+    worldX = 44.4122356426688
+    worldY = 278.17127360427
+    worldZ = -145.707452632791
     voxelPos = "64 86 102"
-    worldPos = "64 86 102"
+    worldPos = "44.4122356426688 278.17127360427 -145.707452632791"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -305,7 +354,7 @@ LUT C/W: $(numInput07) / $(numInput08)"
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
-    annoNumInput02 = 280
+    annoNumInput02 = 0
     annoNumInput03 = 0.5
     annoNumInput04 = 1
     annoNumInput05 = 0.5
@@ -384,7 +433,7 @@ module SoView2DLabel {
   fields  {
     instanceName = LabelIH
     interactionProviderID = ""
-    drawingOn = TRUE
+    drawingOn = FALSE
     color = "1 0 0"
     text = "IH
 "
@@ -420,7 +469,7 @@ module SoView2DLabel {
   fields  {
     instanceName = LabelT
     interactionProviderID = ""
-    drawingOn = TRUE
+    drawingOn = FALSE
     color = "1 0 0"
     text = T
     viewerId = ""
@@ -455,7 +504,7 @@ module SoView2DLabel {
   fields  {
     instanceName = LabelB
     interactionProviderID = ""
-    drawingOn = TRUE
+    drawingOn = FALSE
     color = "1 0 0"
     text = B
     viewerId = ""
@@ -490,7 +539,7 @@ module SoView2DLabel {
   fields  {
     instanceName = LabelA
     interactionProviderID = ""
-    drawingOn = TRUE
+    drawingOn = FALSE
     color = "1 0 0"
     text = A
     viewerId = ""
@@ -525,7 +574,7 @@ module SoView2DLabel {
   fields  {
     instanceName = LabelP
     interactionProviderID = ""
-    drawingOn = TRUE
+    drawingOn = FALSE
     color = "1 0 0"
     text = P
     viewerId = ""
@@ -551,9 +600,9 @@ module SoView2D {
     moduleGroupName = ViewerInterface
     windows  {
       window _default {
-        geometry = "21 622 833 501"
+        geometry = "587 801 833 501"
         sizeHint = "439 501"
-        wasOpen = no
+        wasOpen = yes
       }
       window _automatic {
         geometry = "510 357 500 600"
@@ -566,11 +615,11 @@ module SoView2D {
     instanceName = SoView2D
     interactionProviderID = ""
     viewerId = viewer
-    startSlice = 0
+    startSlice = 24
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 29
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -881,7 +930,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 29
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -980,11 +1029,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
-    lutGrayWidth = 1
-    lutAlphaCenter = 1
-    lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutGrayCenter = 455
+    lutGrayWidth = 910
+    lutAlphaCenter = 455
+    lutAlphaWidth = 910
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -1059,21 +1108,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
-    annoInput04 = 1
+    annoInput03 = 455
+    annoInput04 = 910
     annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 1
-    annoInput08 = 1
+    annoInput07 = 455
+    annoInput08 = 910
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 760
-    annoNumInput03 = 1
-    annoNumInput04 = 1
+    annoNumInput03 = 455
+    annoNumInput04 = 910
     annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 455
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -1179,11 +1228,11 @@ module WorldVoxelConvert {
     voxelX = 276.786315917969
     voxelY = 249.435897827149
     voxelZ = 11.5012265243338
-    worldX = 276.786315917969
-    worldY = 249.435897827149
-    worldZ = 11.5012265243338
+    worldX = 94.9279297671573
+    worldY = -13.0322295956533
+    worldZ = 80.2009822328633
     voxelPos = "276.786315917969 249.435897827149 11.5012265243338"
-    worldPos = "276.786315917969 249.435897827149 11.5012265243338"
+    worldPos = "94.9279297671573 -13.0322295956533 80.2009822328633"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -1371,7 +1420,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 29
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -1470,11 +1519,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
-    lutGrayWidth = 1
-    lutAlphaCenter = 1
-    lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutGrayCenter = 455
+    lutGrayWidth = 910
+    lutAlphaCenter = 455
+    lutAlphaWidth = 910
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -1549,21 +1598,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
-    annoInput04 = 1
+    annoInput03 = 455
+    annoInput04 = 910
     annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 1
-    annoInput08 = 1
+    annoInput07 = 455
+    annoInput08 = 910
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 892
-    annoNumInput03 = 1
-    annoNumInput04 = 1
+    annoNumInput03 = 455
+    annoNumInput04 = 910
     annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 455
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -1798,16 +1847,16 @@ module OrthoSwapFlip {
     useViewDir = TRUE
     view = Coronal
     useOrientation = FALSE
-    orientation = XYZ
+    orientation = XZY
     flipHorizontal = FALSE
-    flipVertical = FALSE
+    flipVertical = TRUE
     flipDepth = FALSE
     autoPageSizeX = TRUE
-    pageX = 1
+    pageX = 135
     autoPageSizeY = TRUE
-    pageY = 1
+    pageY = 155
     autoPageSizeZ = TRUE
-    pageZ = 1
+    pageZ = 69
   }
 }
 module Resample3D {
@@ -1829,10 +1878,10 @@ module Resample3D {
     isotropic = FALSE
     filterAlways = FALSE
     filterAlwaysTolerance = 0
-    zoom = "0.711110221015082 0.711110221015082 0.242423767338889"
+    zoom = "0.711110221015083 0.711110221015083 0.242423767338888"
     imageSize = "96 110 46"
     voxelSize = "1.125 1.125 3.30000233650208"
-    subVoxelShift = "0.225378385871593 0.372379246167142 0.327804441651821"
+    subVoxelShift = "0.225403644425484 0.372386356066073 0.327820750402992"
     useReferenceImage = TRUE
   }
 }
@@ -1860,7 +1909,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "0 0 0"
+    center = "-3.82914536592361 -4.32860645165358 42.3931086887286"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -2016,7 +2065,7 @@ module SoView2DLabel {
     interactionProviderID = ""
     drawingOn = TRUE
     color = "0.882352948188782 0.968627452850342 0.0352941192686558"
-    text = "Viewer Mode Image2"
+    text = "Viewer Mode Image0"
     viewerId = ""
     textPositioning = RELATIVE_TO_VIEWER
     worldPosition = "0 0 0"
@@ -2211,11 +2260,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 1
-    lutGrayWidth = 1
-    lutAlphaCenter = 1
-    lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutGrayCenter = 1742
+    lutGrayWidth = 3484
+    lutAlphaCenter = 1742
+    lutAlphaWidth = 3484
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -2290,21 +2339,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 1
-    annoInput04 = 1
+    annoInput03 = 1742
+    annoInput04 = 3484
     annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 1
-    annoInput08 = 1
+    annoInput07 = 1742
+    annoInput08 = 3484
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
     annoNumInput02 = 0
-    annoNumInput03 = 1
-    annoNumInput04 = 1
+    annoNumInput03 = 1742
+    annoNumInput04 = 3484
     annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 1
+    annoNumInput07 = 1742
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -2378,7 +2427,7 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 154
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -3010,15 +3059,15 @@ module DicomTool {
     addStudyUIDDIR = FALSE
     addSeriesUIDDIR = FALSE
     allSlices = TRUE
-    minSlice = 0
-    maxSlice = 1
+    minSlice = 1
+    maxSlice = 30
     minUsedSlice = 0
-    maxUsedSlice = 0
+    maxUsedSlice = 30
     allTimepoints = TRUE
-    minTime = 0
+    minTime = 1
     maxTime = 1
     minUsedTime = 0
-    maxUsedTime = 0
+    maxUsedTime = 1
     displayMode1 = Input
     displayMode2 = All
     newStudyUID = FALSE
@@ -3340,14 +3389,14 @@ module WorldVoxelConvert {
   }
   fields  {
     instanceName = WorldVoxelConvert1
-    voxelX = -1
-    voxelY = -1
-    voxelZ = -1
-    worldX = -1
-    worldY = -1
-    worldZ = -1
-    voxelPos = "-1 -1 -1"
-    worldPos = "-1 -1 -1"
+    voxelX = 170.151053623731
+    voxelY = 169.18430010674
+    voxelZ = 24.4999983832617
+    worldX = -11.1894454956055
+    worldY = 34.2324371337891
+    worldZ = 15.0069732666016
+    voxelPos = "170.151053623731 169.18430010674 24.4999983832617"
+    worldPos = "-11.1894454956055 34.2324371337891 15.0069732666016"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -3391,8 +3440,8 @@ module SoView2DSlider {
     clipToSlice = FALSE
     cursorShape = UNDEFINED_CURSOR
     minimumValue = 0
-    maximumValue = 0
-    currentValue = 0
+    maximumValue = 29
+    currentValue = 24
     useTracking = TRUE
     stepSize = 1
     snapSize = 1
@@ -3567,11 +3616,11 @@ module OrthoSwapFlip {
     flipVertical = FALSE
     flipDepth = FALSE
     autoPageSizeX = TRUE
-    pageX = 1
+    pageX = 160
     autoPageSizeY = TRUE
-    pageY = 1
+    pageY = 30
     autoPageSizeZ = TRUE
-    pageZ = 1
+    pageZ = 320
   }
 }
 module SoView2D {
@@ -3590,11 +3639,11 @@ module SoView2D {
     instanceName = SoView2DOrtho2
     interactionProviderID = ""
     viewerId = viewer
-    startSlice = 0
+    startSlice = 170
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 319
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -3718,11 +3767,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 0.5
-    lutGrayWidth = 1
-    lutAlphaCenter = 0.5
-    lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutGrayCenter = 455
+    lutGrayWidth = 910
+    lutAlphaCenter = 455
+    lutAlphaWidth = 910
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -3797,21 +3846,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 0.5
-    annoInput04 = 1
-    annoInput05 = 0.5
+    annoInput03 = 455
+    annoInput04 = 910
+    annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 0.5
-    annoInput08 = 1
+    annoInput07 = 455
+    annoInput08 = 910
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
-    annoNumInput02 = 328
-    annoNumInput03 = 0.5
-    annoNumInput04 = 1
-    annoNumInput05 = 0.5
+    annoNumInput02 = 106
+    annoNumInput03 = 455
+    annoNumInput04 = 910
+    annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 0.5
+    annoNumInput07 = 455
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -3889,11 +3938,11 @@ module OrthoSwapFlip {
     flipVertical = FALSE
     flipDepth = FALSE
     autoPageSizeX = TRUE
-    pageX = 1
+    pageX = 30
     autoPageSizeY = TRUE
-    pageY = 1
+    pageY = 160
     autoPageSizeZ = TRUE
-    pageZ = 1
+    pageZ = 320
   }
 }
 module SoView2D {
@@ -3909,7 +3958,7 @@ module SoView2D {
       window _default {
         geometry = "799 712 439 501"
         sizeHint = "439 501"
-        wasOpen = no
+        wasOpen = yes
       }
     }
   }
@@ -3917,11 +3966,11 @@ module SoView2D {
     instanceName = SoView2DOrtho1
     interactionProviderID = ""
     viewerId = viewer
-    startSlice = 0
+    startSlice = 169
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 319
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
@@ -4050,11 +4099,11 @@ module View2DExtensions {
     position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutAlphaSync = TRUE
-    lutGrayCenter = 0.5
-    lutGrayWidth = 1
-    lutAlphaCenter = 0.5
-    lutAlphaWidth = 1
-    lutIsRelative = TRUE
+    lutGrayCenter = 455
+    lutGrayWidth = 910
+    lutAlphaCenter = 455
+    lutAlphaWidth = 910
+    lutIsRelative = FALSE
     lutSetDefaultOnce = FALSE
     useRelativeLUTIfNoInputImage = TRUE
     lutColorFactor = "1 1 1"
@@ -4129,21 +4178,21 @@ $(ImageComments)"
 Scan: $(AcquisitionDate)
 LUT C/W: $(numInput07) / $(numInput08)"
     annotCTBottomCenter = ""
-    annoInput03 = 0.5
-    annoInput04 = 1
-    annoInput05 = 0.5
+    annoInput03 = 455
+    annoInput04 = 910
+    annoInput05 = 1
     annoInput06 = 1
-    annoInput07 = 0.5
-    annoInput08 = 1
+    annoInput07 = 455
+    annoInput08 = 910
     annoInput09 = HU
     annoNumInput00 = 0
     annoNumInput01 = 0
-    annoNumInput02 = 180
-    annoNumInput03 = 0.5
-    annoNumInput04 = 1
-    annoNumInput05 = 0.5
+    annoNumInput02 = 183
+    annoNumInput03 = 455
+    annoNumInput04 = 910
+    annoNumInput05 = 1
     annoNumInput06 = 1
-    annoNumInput07 = 0.5
+    annoNumInput07 = 455
     maxPrecision = 4
     showColorChannelValues = FALSE
     colorChannelSeparator = " / "
@@ -4317,16 +4366,6 @@ module SyncFloat {
     epsilon = 9.9999997e-05
   }
 }
-module RealGetOrthoOrientation {
-  internal  {
-    frame = "1637 310 168 72"
-    moduleGroupName = ViewerInterface
-    showNetworkPanel = true
-  }
-  fields  {
-    instanceName = RealGetOrthoOrientation
-  }
-}
 module WorldVoxelConvert {
   internal  {
     frame = "3273 33 176 64"
@@ -4341,14 +4380,14 @@ module WorldVoxelConvert {
   }
   fields  {
     instanceName = WorldVoxelConvertOrtho2
-    voxelX = -1
-    voxelY = -1
-    voxelZ = -1
-    worldX = -1
-    worldY = -1
-    worldZ = -1
-    voxelPos = "-1 -1 -1"
-    worldPos = "-1 -1 -1"
+    voxelX = 129.932877813106
+    voxelY = 5.97925547020664
+    voxelZ = 120.49999387245
+    worldX = 31.407341003418
+    worldY = -30.2977561950684
+    worldZ = -38.1607055664062
+    voxelPos = "129.932877813106 5.97925547020664 120.49999387245"
+    worldPos = "31.407341003418 -30.2977561950684 -38.1607055664062"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -4369,14 +4408,14 @@ module WorldVoxelConvert {
   }
   fields  {
     instanceName = WorldVoxelConvertOrtho1
-    voxelX = -1
-    voxelY = -1
-    voxelZ = -1
-    worldX = -1
-    worldY = -1
-    worldZ = -1
-    voxelPos = "-1 -1 -1"
-    worldPos = "-1 -1 -1"
+    voxelX = 14.6044640733534
+    voxelY = 120.730216190637
+    voxelZ = 157.500012509653
+    worldX = 39.229606628418
+    worldY = 2.41384124755859
+    worldZ = -12.8468475341797
+    voxelPos = "14.6044640733534 120.730216190637 157.500012509653"
+    worldPos = "39.229606628418 2.41384124755859 -12.8468475341797"
     voxelMode = TRUE
     worldMode = FALSE
     intVoxelCoords = FALSE
@@ -4397,26 +4436,26 @@ module FloatMultiSync {
   }
   fields  {
     instanceName = FloatMultiSync
-    field0 = -1
-    field1 = -1
-    field2 = -1
-    field3 = -1
-    field4 = -1
-    field5 = -1
-    field6 = -1
-    field7 = -1
-    field8 = -1
-    field9 = -1
-    field10 = -1
-    field11 = -1
-    field12 = -1
-    field13 = -1
-    field14 = -1
-    field15 = -1
-    field16 = -1
-    field17 = -1
-    field18 = -1
-    field19 = -1
+    field0 = 169.1843
+    field1 = 169.18431
+    field2 = 169.18431
+    field3 = 169.18431
+    field4 = 169.18431
+    field5 = 169.18431
+    field6 = 169.18431
+    field7 = 169.18431
+    field8 = 169.18431
+    field9 = 169.18431
+    field10 = 169.18431
+    field11 = 169.18431
+    field12 = 169.18431
+    field13 = 169.18431
+    field14 = 169.18431
+    field15 = 169.18431
+    field16 = 169.18431
+    field17 = 169.18431
+    field18 = 169.18431
+    field19 = 169.18431
     numberOfFields = 3
     epsilon = 9.9999997e-05
   }
@@ -4435,26 +4474,26 @@ module FloatMultiSync {
   }
   fields  {
     instanceName = FloatMultiSync1
-    field0 = -1
-    field1 = -1
-    field2 = -1
-    field3 = -1
-    field4 = -1
-    field5 = -1
-    field6 = -1
-    field7 = -1
-    field8 = -1
-    field9 = -1
-    field10 = -1
-    field11 = -1
-    field12 = -1
-    field13 = -1
-    field14 = -1
-    field15 = -1
-    field16 = -1
-    field17 = -1
-    field18 = -1
-    field19 = -1
+    field0 = 170.15105
+    field1 = 170.15106
+    field2 = 170.15106
+    field3 = 170.15106
+    field4 = 170.15106
+    field5 = 170.15106
+    field6 = 170.15106
+    field7 = 170.15106
+    field8 = 170.15106
+    field9 = 170.15106
+    field10 = 170.15106
+    field11 = 170.15106
+    field12 = 170.15106
+    field13 = 170.15106
+    field14 = 170.15106
+    field15 = 170.15106
+    field16 = 170.15106
+    field17 = 170.15106
+    field18 = 170.15106
+    field19 = 170.15106
     numberOfFields = 3
     epsilon = 9.9999997e-05
   }
@@ -4465,35 +4504,35 @@ module FloatMultiSync {
     moduleGroupName = ViewerInterface
     windows  {
       window _default {
-        geometry = "695 591 189 123"
+        geometry = "695 591 189 153"
         sizeHint = "189 123"
-        wasOpen = no
+        wasOpen = yes
       }
     }
   }
   fields  {
     instanceName = FloatMultiSync2
-    field0 = -1
-    field1 = -1
-    field2 = -1
-    field3 = -1
-    field4 = -1
-    field5 = -1
-    field6 = -1
-    field7 = -1
-    field8 = -1
-    field9 = -1
-    field10 = -1
-    field11 = -1
-    field12 = -1
-    field13 = -1
-    field14 = -1
-    field15 = -1
-    field16 = -1
-    field17 = -1
-    field18 = -1
-    field19 = -1
-    numberOfFields = 3
+    field0 = 24
+    field1 = 24
+    field2 = 24
+    field3 = 24
+    field4 = 24
+    field5 = 24
+    field6 = 24
+    field7 = 24
+    field8 = 24
+    field9 = 24
+    field10 = 24
+    field11 = 24
+    field12 = 24
+    field13 = 24
+    field14 = 24
+    field15 = 24
+    field16 = 24
+    field17 = 24
+    field18 = 24
+    field19 = 24
+    numberOfFields = 4
     epsilon = 9.9999997e-05
   }
 }
@@ -4565,6 +4604,44 @@ module DicomTagModify {
     trimSpaces = TRUE
     autoApply = TRUE
     updateMode = AutoUpdate
+  }
+}
+module FloatMultiSync {
+  internal  {
+    frame = "1170 218 120 56"
+    moduleGroupName = ViewerInterface
+    windows  {
+      window _default {
+        geometry = "446 606 189 213"
+        sizeHint = "189 213"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FloatMultiSync3
+    field0 = 24
+    field1 = 24
+    field2 = 24
+    field3 = 24
+    field4 = 24
+    field5 = 24
+    field6 = 24
+    field7 = 24
+    field8 = 24
+    field9 = 24
+    field10 = 24
+    field11 = 24
+    field12 = 24
+    field13 = 24
+    field14 = 24
+    field15 = 24
+    field16 = 24
+    field17 = 24
+    field18 = 24
+    field19 = 24
+    numberOfFields = 3
+    epsilon = 9.9999997e-05
   }
 }
 connections  {
@@ -4654,6 +4731,7 @@ connections  {
   WorldVoxelConvert1.input0 = Switch.output0
   WorldVoxelConvert1.worldPos = SoView2DVoxelValue.worldPosition
   SoView2DSlider.maximumValue = ImageStatistics.bBoxZ2
+  SoView2DSlider.currentValue = FloatMultiSync3.field1
   SoToggle.children = View2DExtensions.outNode
   OrthoSwapFlipOrtho2.input0 = Switch.output0
   SoView2DOrtho2.image = OrthoSwapFlipOrtho2.output0
@@ -4665,7 +4743,6 @@ connections  {
   SoView2DOrtho1.startSlice = FloatMultiSync.field1
   viewerOrtho1.children = "View2DExtensionsOrtho1.outNode SoView2DVoxelValue1.self SoView2DOrtho1.self"
   View2DExtensionsOrtho1.inLUT = OrthoSwapFlipOrtho1.output0
-  RealGetOrthoOrientation.inImage = Switch.output0
   WorldVoxelConvertOrtho2.input0 = OrthoSwapFlipOrtho2.output0
   WorldVoxelConvertOrtho2.worldPos = SoView2DVoxelValue2.worldPosition
   WorldVoxelConvertOrtho1.input0 = OrthoSwapFlipOrtho1.output0
@@ -4676,9 +4753,11 @@ connections  {
   FloatMultiSync1.field2 = WorldVoxelConvertOrtho1.voxelY
   FloatMultiSync2.field0 = WorldVoxelConvertOrtho1.voxelX
   FloatMultiSync2.field2 = WorldVoxelConvertOrtho2.voxelY
+  FloatMultiSync2.field3 = SoView2DSlider.currentValue
   DicomTagModify1.input0 = DicomTagModify.output0
   DicomTagModify1.tagValue0 = DicomTagModify.tagValue4
   DicomTagModify1.tagValue1 = DicomTagModify.tagValue5
+  FloatMultiSync3.field0 = SoView2D.startSlice
 }
 networkModel  {
   parentItems  {

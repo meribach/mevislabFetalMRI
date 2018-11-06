@@ -352,16 +352,21 @@ void mialTVSuperResolution::runTVSuperResolution()
 		mlError(__FUNCTION__, ML_UNKNOWN_EXCEPTION) << "mialTVSuperResolution Failed : ";
 	}
 
+	
+	delete useTVSuperResolutionWrapper;
+	useTVSuperResolutionWrapper = NULL; 
+	_statusFld->setStringValue("TV SuperResolution Done");
 	_outputSucceedFld->setBoolValue(true);
-
-
+	
+	//est-ce que je ferais pas un try except pour passer a statusfld un message dependant de ca.
+	//via frontier on a pas le retour des erreurs facilement
 }
 
 
 void mialTVSuperResolution::postComputation()
 {
 	_inProgressFld->setBoolValue(false);
-	_statusFld->setStringValue("TV SuperResolution Done");
+	
 	std::cout << "TV SuperResolution Done" << std::endl;
 }
 
