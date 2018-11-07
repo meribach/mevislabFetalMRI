@@ -77,12 +77,32 @@
                     Select all Series you want to send to the FetalMRI prototype, including the one starting by "!ResearchOnly_" <br>
                 Then right click -> Dispaly in Read Only -> MM Research Frontier</p>
                 <img alt="Images/Screenshots/CallFrontier.png" src="Images/Screenshots/CallFrontier.png"/>
+                
+                <p>Click on the FetalMRI Prototype</p>
+                <img alt="Images/Screenshots/AppStoreReal.png" src="Images/Screenshots/AppStoreReal.png"/>
+                
+                <p>The you have the patient browser module:</p>
+                <img alt="Images/Screenshots/PatientBrowserReal.png" src="Images/Screenshots/PatientBrowserReal.png"/>
+                
+                <p>You have to check that all T2 haste 3mm have been selected. sometimes the series descriptions has been modified and then automatic detection doesn't work.<br>
+                if some mask have been done before and you have selected all studies, including the "!ResearchOnly" when starting the prototype it should detect them automatically</p>
+                
+                <p>To start the first Interface (ImageOrientationInterface) you have two button at the bottom <br>
+                -RunSuperResolutionFirstTime (if masks haven't been done yet or if you think you will modify them)<br>
+                -RunSuperResolutionMaskDone (if masks have been done you do not intend to modify them)<br>
+                In the first case, denoising is done on all images selected, and on the full images, so it's taking some time <br>
+                In the second case, denoising is done only on images having a brain mask, and only on the part of the image in the mask, everything outside the mask will be set to 0 and then not processed</p>
+                
+                
             </div>
             
             <div class= "section" id="SendPrototypeResults">
                 <h1>Send Results from Frontier To Syngovia<a class="headerlink" href="#SendPrototypeResults" title="Permalink to this headline"></a></h1>
                 <p>Click on the SendResults at the bottom of the control panel</p>
                 <img alt="Images/Screenshots/sendResults.png" src="Images/Screenshots/sendResults.png"/>
+                <p>You can export the data with the prefix "!ResearchOnly_" on all Dicom Tag (recommanded) or without. <br>
+                by default the solution with the prefix is selected. <b>DO NOT SEND DATA WITHOUT !ResearchOnly IF YOU ARE NOT ALLOWED TO !!</b></p>
+                <img alt="Images/Screenshots/ExportDICOMdataToSyngovia.png" src="Images/Screenshots/ExportDICOMdataToSyngovia.png"/>
             </div>
             
             <div class= "section" id="PushDataPACS">
