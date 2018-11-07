@@ -168,6 +168,9 @@ NetworkPanel {
 Window ImageOrientationPanel {
   
   Splitter {
+   direction = horizontal
+    
+  Splitter {
     direction = vertical
     //expandX = No
     Vertical
@@ -196,7 +199,48 @@ Window ImageOrientationPanel {
     Panel { window = RightSide }  
     
   }
-  
+    
+    Splitter {
+      
+      direction = vertical
+      
+      Box ViewerBoxCoronal {
+        title = ""
+      
+        Viewer viewerOrtho1 {
+          name            = viewerOrtho1
+          clone           = NO
+          preferredWidth  = 900
+          preferredHeight = 500
+        }
+      
+        /*EventFilter {
+        filter  = "MouseButtonPress,KeyPress"
+        control = viewerCoronal 
+        command = buttonPressedCoronal
+        }*/
+        expandY = yes
+      } 
+      
+      Box ViewerBoxSagittal {
+        title = ""
+      
+        Viewer viewerOrtho2 {
+          name            = viewerOrtho2
+          clone           = NO
+          preferredWidth  = 900
+          preferredHeight = 500
+        }
+      
+        /*EventFilter {
+        filter  = "MouseButtonPress,KeyPress"
+        control = viewerSagittal 
+        //command = buttonPressedSagittal
+        }*/
+        expandY = yes
+      }
+    }
+  }
 }
 
 Window LeftSide {

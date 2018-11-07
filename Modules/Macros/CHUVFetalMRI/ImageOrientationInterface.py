@@ -573,6 +573,7 @@ def setPositioning(Image="Image0"):
   ctx.field("SoView2D.useManagedInteraction").setBoolValue(True)
   ctx.field("eventChoice").setValue(1)
   ctx.field("LabelViewerMode.text").setStringValue("Set Positioning Mode")
+  ctx.field("SoInteractionMapping1.ignoreOtherCommandActions").setBoolValue(True)
   #while tuppleWorldPosition == None:
   #    tuppleWorldPosition = button1PressedImOrient() #ctx.field("SyngoViaView2DOverlay.annoReadPix.worldPosition").value
   #ctx.showModalDialog("ViewerOnly")
@@ -2023,7 +2024,6 @@ def showHelp():
   print("showHelp")
   #if not ctx.field("FromFrontier").value:
   import webbrowser
-  print(webbrowser.browser)
   print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html")))
   webbrowser.open_new(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html"))
 
