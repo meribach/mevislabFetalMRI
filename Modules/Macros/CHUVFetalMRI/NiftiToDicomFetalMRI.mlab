@@ -10,7 +10,7 @@ module DicomTagModify {
       window _default {
         geometry = "60 199 518 752"
         sizeHint = "518 482"
-        wasOpen = yes
+        wasOpen = no
       }
       window _automatic {
         geometry = "717 329 500 600"
@@ -155,11 +155,11 @@ module itkImageFileReader {
   }
   fields  {
     instanceName = itkImageFileReader
-    fileDataType = "unsigned int8"
+    fileDataType = float
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Invalid path"
+    info = "File closed"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -195,7 +195,7 @@ module DicomTagModify {
     moduleGroupName = NiftiToDicomFetalMRI
     windows  {
       window _default {
-        geometry = "708 388 518 482"
+        geometry = "995 376 518 482"
         sizeHint = "518 482"
         wasOpen = no
       }
@@ -204,30 +204,30 @@ module DicomTagModify {
   fields  {
     instanceName = DicomTagModify1
     tagName0 = AcquisitionDate
-    tagValue0 = ""
+    tagValue0 = 20181112
     removeTag0 = FALSE
     tagVR0 = DA
     stdTagVR0 = TRUE
     tagName1 = AcquisitionTime
-    tagValue1 = ""
+    tagValue1 = 135005
     removeTag1 = FALSE
     tagVR1 = TM
     stdTagVR1 = TRUE
     tagName2 = StudyDate
-    tagValue2 = ""
+    tagValue2 = 20181112
     removeTag2 = FALSE
     tagVR2 = DA
     stdTagVR2 = TRUE
     tagName3 = StudyTime
-    tagValue3 = ""
+    tagValue3 = 135005
     removeTag3 = FALSE
     tagVR3 = TM
     stdTagVR3 = TRUE
-    tagName4 = ""
+    tagName4 = StudyInstanceUID
     tagValue4 = ""
     removeTag4 = FALSE
-    tagVR4 = ""
-    stdTagVR4 = FALSE
+    tagVR4 = UI
+    stdTagVR4 = TRUE
     tagName5 = ""
     tagValue5 = ""
     removeTag5 = FALSE
@@ -250,14 +250,12 @@ connections  {
   SetDicomTreeOnImage.input0 = DicomTagModify1.output0
   Arithmetic1.input0 = itkImageFileReader.output0
   DicomTagModify1.input0 = DicomTagModify.output0
-  DicomTagModify1.tagValue2 = DicomTagModify1.tagValue0
-  DicomTagModify1.tagValue3 = DicomTagModify1.tagValue1
 }
 networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 16
+        uniqueId = 17
         objectName = NiftiToDicomFetalMRI
         parentUniqueId = 0
         color  {

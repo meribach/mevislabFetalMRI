@@ -96,6 +96,9 @@ mialsrtkMaskImage::mialsrtkMaskImage() : Module(0, 0), m_pBGMaskImageWorker(NULL
 
 void mialsrtkMaskImage::clear()
 {
+	splitInputs.clear();
+	splitMasks.clear();
+	splitOutputs.clear();
 	_outputSucceedFld->setBoolValue(false);
 }
 
@@ -124,6 +127,49 @@ void mialsrtkMaskImage::handleNotification(Field* field)
 	{
 		clear();
 
+		std::string delimiter = "--";
+		//inputfilename first
+		size_t pos = 0;
+		std::string token;
+		std::string s = _inputFileFld->getStringValue() + "--";
+		while ((pos = s.find(delimiter)) != std::string::npos) {
+			token = s.substr(0, pos);
+			//remove whitespace
+			boost::trim(token);
+			//std::cout << token << std::endl;
+			s.erase(0, pos + delimiter.length());
+			splitInputs.push_back(token);
+		}
+
+		//std::cout << "I have splitted my input" << std::endl;
+
+		//then outputfilename
+		pos = 0;
+		token = "";
+		s = _outputFileFld->getStringValue() + "--";
+		while ((pos = s.find(delimiter)) != std::string::npos) {
+			token = s.substr(0, pos);
+			//remove whitespace
+			boost::trim(token);
+			//std::cout << token << std::endl;
+			s.erase(0, pos + delimiter.length());
+			splitOutputs.push_back(token);
+		}
+
+
+		//then mask
+		pos = 0;
+		token = "";
+		s = _maskFileFld->getStringValue() + "--";
+		while ((pos = s.find(delimiter)) != std::string::npos) {
+			token = s.substr(0, pos);
+			//remove whitespace
+			boost::trim(token);
+			//std::cout << token << std::endl;
+			s.erase(0, pos + delimiter.length());
+			splitMasks.push_back(token);
+		}
+
 		if (field == _startTaskFld)
 		{
 			//kill le background worker si il exist:
@@ -149,41 +195,29 @@ void mialsrtkMaskImage::handleNotification(Field* field)
 
 void mialsrtkMaskImage::runmaskImage()
 {
-	const char* tempOutput;
-	std::string temp1Output;
-
-	const char* tempInput;
-	std::string temp1Input;
-
-	const char* tempMask;
-	std::string temp1Mask;
-
-	temp1Output = _outputFileFld->getStringValue();
-	tempOutput = temp1Output.c_str();
-
-	temp1Mask = _maskFileFld->getStringValue();
-	tempMask = temp1Mask.c_str();
-
-	temp1Input = _inputFileFld->getStringValue();
-	tempInput = temp1Input.c_str();
-
-
-	mialsrtkMaskImageWrapper* usemialsrtkMaskImageWrapper = new mialsrtkMaskImageWrapper(tempInput, tempMask, tempOutput);
-
-	std::cout << "wrapper construct" << std::endl;
-
-	usemialsrtkMaskImageWrapper->runMaskImage();
-	if (usemialsrtkMaskImageWrapper->boolExit)
+	unsigned int iterIm = splitInputs.size();
+	omp_set_num_threads(7);
+    #pragma omp parallel for private(iterIm)
+	for (int iterIm = 0; iterIm < splitInputs.size(); iterIm++)
 	{
-		std::cout << "should have done mialsrtkMaskImage" << std::endl;
-	}
-	else
-	{
-		mlError(__FUNCTION__, ML_UNKNOWN_EXCEPTION) << "mialsrtkMaskImage Failed : ";
-	}
 
-	delete usemialsrtkMaskImageWrapper;
-	usemialsrtkMaskImageWrapper = NULL;
+		mialsrtkMaskImageWrapper* usemialsrtkMaskImageWrapper = new mialsrtkMaskImageWrapper(splitInputs[iterIm].c_str(), splitMasks[iterIm].c_str(), splitOutputs[iterIm].c_str());
+
+		std::cout << "wrapper construct" << std::endl;
+
+		usemialsrtkMaskImageWrapper->runMaskImage();
+		if (usemialsrtkMaskImageWrapper->boolExit)
+		{
+			std::cout << "should have done mialsrtkMaskImage" << std::endl;
+		}
+		else
+		{
+			mlError(__FUNCTION__, ML_UNKNOWN_EXCEPTION) << "mialsrtkMaskImage Failed : ";
+		}
+
+		delete usemialsrtkMaskImageWrapper;
+		usemialsrtkMaskImageWrapper = NULL;
+	}
 	_outputSucceedFld->setBoolValue(true);
 }
 

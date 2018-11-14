@@ -1,0 +1,19 @@
+//----------------------------------------------------------------------------------
+//! GenerateBidsNameForNifti module definition
+/*!
+// \file    GenerateBidsNameForNifti.def
+// \author  FetalMRI
+// \date    2018-11-13
+*/
+//----------------------------------------------------------------------------------
+
+
+MacroModule GenerateBidsNameForNifti {
+  genre              = ""
+  author             = "FetalMRI"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+   
+  externalDefinition = "$(LOCAL)/GenerateBidsNameForNifti.script"
+}

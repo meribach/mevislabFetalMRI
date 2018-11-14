@@ -371,7 +371,7 @@ def insertN4BiasFieldCorrectedHRImage():
   ##we convert them to dicom as well:
   print("convert SDI To Dicom") 
   ctx.field("NiftiToDicomFetalMRI.itkImageFileReader.fileName").setStringValue(inImages["SRTV_ITER%i_BCorr"%iterNumber])
-  ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue0").setValue("SRTV_ITER%i"%iterNumber)
+  ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue0").setValue("!ResearchOnly_SRTV_ITER%i"%iterNumber)
    
   if ctx.field("FromFrontier").value:
     #we use dicom tool from testinstall, dicomSend
@@ -381,7 +381,11 @@ def insertN4BiasFieldCorrectedHRImage():
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue3").setValue(inImages["Image0"]["PatientID"])
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue1").setValue(time.strftime("%H%M%S"))
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue0").setValue(time.strftime("%Y%m%d"))
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue3").setValue(inImages["Image0"]["StudyTime"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue2").setValue(inImages["Image0"]["StudyDate"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue4").setValue(inImages["Image0"]["StudyInstanceUID"])
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.apply").touch()
     originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
     mutableTree = originalTree.createDerivedTree()
     _frontier = ctx.module("parent:FrontierSyngoInterface").object()
@@ -402,7 +406,10 @@ def insertN4BiasFieldCorrectedHRImage():
     print("not via Frontier")
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue1").setValue(time.strftime("%H%M%S"))
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue0").setValue(time.strftime("%Y%m%d"))
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue3").setValue(time.strftime("%H%M%S"))
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue2").setValue(time.strftime("%Y%m%d"))
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.apply").touch()
     originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
     mutableTree = originalTree.createDerivedTree()
     mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, inImages["UsedForSDI"] , "LO")
@@ -508,7 +515,7 @@ def insertImageReconstruction():
   ##we convert them to dicom as well:
   print("convert SDI To Dicom")
   ctx.field("NiftiToDicomFetalMRI.itkImageFileReader.fileName").setStringValue(inImages["SDI_ITER%i"%iterNumber])
-  ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue0").setValue("SDI_ITER%i"%iterNumber)
+  ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue0").setValue("!ResearchOnly_SDI_ITER%i"%iterNumber)
    
   if ctx.field("FromFrontier").value:
     #we use dicom tool from testinstall, dicomSend
@@ -518,7 +525,11 @@ def insertImageReconstruction():
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue3").setValue(inImages["Image0"]["PatientID"])
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue1").setValue(time.strftime("%H%M%S"))
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue0").setValue(time.strftime("%Y%m%d"))
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue3").setValue(inImages["Image0"]["StudyTime"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue2").setValue(inImages["Image0"]["StudyDate"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue4").setValue(inImages["Image0"]["StudyInstanceUID"])
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.apply").touch()
     originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
     mutableTree = originalTree.createDerivedTree()
     _frontier = ctx.module("parent:FrontierSyngoInterface").object()
@@ -537,6 +548,8 @@ def insertImageReconstruction():
     print("not via Frontier")
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue1").setValue(time.strftime("%H%M%S"))
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue0").setValue(time.strftime("%Y%m%d"))
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue3").setValue(time.strftime("%H%M%S"))
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue2").setValue(time.strftime("%Y%m%d"))
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
     originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
     mutableTree = originalTree.createDerivedTree()
@@ -606,8 +619,8 @@ def showHelp():
   print("showHelp")
   #if not ctx.field("FromFrontier").value:
   import webbrowser
-  print(webbrowser.browser)
-  print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html")))
+  #print(webbrowser.browser)
+  #print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html")))
   webbrowser.open_new(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/SDIVerificationInterface.html"))
 
   #else:

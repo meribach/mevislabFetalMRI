@@ -795,8 +795,8 @@ module DicomTool {
     exportDir = D:/Pierre/testDicomOutput/
     exportBaseDir = D:/Pierre/testDicomOutput
     exportNameTemplate = $S/export$T.dcm
-    addPatNameDir = TRUE
-    addStudyUIDDIR = FALSE
+    addPatNameDir = FALSE
+    addStudyUIDDIR = TRUE
     addSeriesUIDDIR = FALSE
     allSlices = TRUE
     minSlice = 0

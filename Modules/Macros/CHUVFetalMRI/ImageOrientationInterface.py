@@ -1083,6 +1083,9 @@ def button1PressedMaskRefine(event):
         ctx.field("DicomTagModify.tagValue4").setValue(time.strftime("%Y%m%d"))
         
         ctx.field("DicomTagModify.apply").touch()
+        ctx.field("DicomTagModify1.tagValue1").setValue(inImages["Image0"]["StudyTime"])
+        ctx.field("DicomTagModify1.tagValue0").setValue(inImages["Image0"]["StudyDate"])
+        ctx.field("DicomTagModify1.tagValue2").setValue(inImages["Image0"]["StudyInstanceUID"])
         ctx.field("DicomTagModify1.apply").touch()
         _frontier = ctx.module("parent:FrontierSyngoInterface").object()
         ctx.field("parent:DicomExport.exportBaseDir").setStringValue(_frontier.getOutgoingDicomDirectory())
@@ -1090,11 +1093,13 @@ def button1PressedMaskRefine(event):
         print(DicomToolToUse.field("exportBaseDir").value)
         #ctx.connectField("parent:DicomExport.inImage","DicomTagModify.output0")
       else:
-        #we use dicom tool from TotalVariationInterface, dicomSave
+        
         print("not via Frontier")
         ctx.field("DicomTagModify.tagValue5").setValue(time.strftime("%H%M%S"))
         ctx.field("DicomTagModify.tagValue4").setValue(time.strftime("%Y%m%d"))
         ctx.field("DicomTagModify.apply").touch()
+        ctx.field("DicomTagModify1.tagValue1").setValue(time.strftime("%H%M%S"))
+        ctx.field("DicomTagModify1.tagValue0").setValue(time.strftime("%Y%m%d"))
         ctx.field("DicomTagModify1.apply").touch()
         DicomToolToUse = ctx.module("DicomTool")
         ctx.field("DicomTool.exportBaseDir").setStringValue(os.path.join(os.path.dirname(inImages["Image0"]["file"]),"Results"))
@@ -1307,8 +1312,8 @@ def runAllFirstSetBackgroundTasks():
     
     if ImageToOrient:
       OrientImages(WhatToOrient="Mask",listImages=listImageToSendBackgroundTasks,Background=False)
-      OrientImages(WhatToOrient="NativeImage",listImages=listImageToSendBackgroundTasks)
-      OrientImages(WhatToOrient="Denoised",listImages=listImageToSendBackgroundTasks)
+      OrientImages(WhatToOrient="NativeImage",listImages=listImageToSendBackgroundTasks,Background=False)
+      OrientImages(WhatToOrient="Denoised",listImages=listImageToSendBackgroundTasks,Background=False)
       
              
     ctx.field("inImageInfos").setObject(inImages)
@@ -1901,7 +1906,7 @@ def insertImageReconstruction():
   ##we convert them to dicom as well:
   print("convert SDI To Dicom")
   ctx.field("NiftiToDicomFetalMRI.itkImageFileReader.fileName").setStringValue(inImages["SDI_ITER1"])
-  ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue0").setValue("SDI_ITER1")
+  ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue0").setValue("!ResearchOnly_SDI_ITER1")
    
   if ctx.field("FromFrontier").value:
     #we use dicom tool from testinstall, dicomSend
@@ -1911,6 +1916,9 @@ def insertImageReconstruction():
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue3").setValue(inImages["Image0"]["PatientID"])
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue1").setValue(time.strftime("%H%M%S"))
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue0").setValue(time.strftime("%Y%m%d"))
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue3").setValue(inImages["Image0"]["StudyTime"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue2").setValue(inImages["Image0"]["StudyDate"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue4").setValue(inImages["Image0"]["StudyInstanceUID"])
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.apply").touch()
     originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
@@ -1931,6 +1939,8 @@ def insertImageReconstruction():
     print("not via Frontier")
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue1").setValue(time.strftime("%H%M%S"))
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue0").setValue(time.strftime("%Y%m%d"))
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue3").setValue(time.strftime("%H%M%S"))
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue2").setValue(time.strftime("%Y%m%d"))
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.apply").touch()
     originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
@@ -1980,10 +1990,11 @@ def insertNLMDenoisingResults():
   inImages = ctx.field("inImageInfos").object()
   for iterImage in range(len(splitNames)):
     for kk,vv in inImages.items():
-      if kk in os.path.basename(splitNames[iterImage]):
+       if "Image" in kk:
         if insertNLMOriented:
-          if splitInputNames[iterImage]==vv['WorldChanged']:
-            inImages[kk].update({'NLMWorldChanged':splitNames[iterImage]})
+          if 'WorldChanged' in vv.keys():
+            if splitInputNames[iterImage]==vv['WorldChanged']:
+              inImages[kk].update({'NLMWorldChanged':splitNames[iterImage]})
         else:
           if splitInputNames[iterImage]==vv['file']:
              inImages[kk].update({'NLM':splitNames[iterImage]})
@@ -2024,7 +2035,7 @@ def showHelp():
   print("showHelp")
   #if not ctx.field("FromFrontier").value:
   import webbrowser
-  print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html")))
+  #print(MLABFileManager.exists(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html")))
   webbrowser.open_new(ctx.expandFilename("$(MLAB_CHUV_FetalMRI)/Documentation/Publish/ModuleReference/ImageOrientationInterface.html"))
 
   #else:

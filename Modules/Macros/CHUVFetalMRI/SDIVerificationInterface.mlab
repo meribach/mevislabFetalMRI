@@ -20,62 +20,13 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "Loading okay."
-    numDims = 3
+    info = "Invalid path"
+    numDims = 0
     fileType = TypeNotApplicable
-    componentType = float
-    pixelType = SCALAR
-    loaderType = NiftiImageIO
-    outputMetaDataStr = "ITK_FileNotes : 
-aux_file : 
-bitpix : 32
-cal_max : 0
-cal_min : 0
-datatype : 16
-descrip : 
-dim[0] : 3
-dim[1] : 320
-dim[2] : 320
-dim[3] : 103
-dim[4] : 1
-dim[5] : 1
-dim[6] : 1
-dim[7] : 1
-dim_info : 
-intent_code : 0
-intent_name : 
-intent_p1 : 0
-intent_p2 : 0
-intent_p3 : 0
-pixdim[0] : 1
-pixdim[1] : 1.125
-pixdim[2] : 1.125
-pixdim[3] : 1.125
-pixdim[4] : 0
-pixdim[5] : 0
-pixdim[6] : 0
-pixdim[7] : 0
-qform_code : 1
-qoffset_x : -56.625
-qoffset_y : 252.618
-qoffset_z : 0.961006
-quatern_b : -0.651304
-quatern_c : 0.275324
-quatern_d : -0.651304
-scl_inter : 0
-scl_slope : 1
-sform_code : 0
-slice_code : 
-slice_duration : 0
-slice_end : 0
-slice_start : 0
-srow_x : 0 0 0 0
-srow_y : 0 0 0 0
-srow_z : 0 0 0 0
-toffset : 0
-vox_offset : 352
-xyzt_units : 
-"
+    componentType = ""
+    pixelType = UNKNOWNPIXELTYPE
+    loaderType = ""
+    outputMetaDataStr = ""
     suppressErrorPosting = FALSE
     unresolvedFileName = ""
   }
@@ -114,8 +65,8 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 185.241577148438
-    grayCenter = 92.6207885742188
+    grayWidth = 1
+    grayCenter = 1
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
@@ -161,8 +112,8 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 185.241577148438
-    grayCenter = 92.6207885742188
+    grayWidth = 1
+    grayCenter = 1
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
@@ -208,8 +159,8 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 185.241577148438
-    grayCenter = 92.6207885742188
+    grayWidth = 1
+    grayCenter = 1
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
@@ -305,7 +256,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 40
+    startSlice = 0
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -330,8 +281,8 @@ module View2D {
     sliceOrigin = "0 0"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 92.6207885742188
-    lutWidth = 185.241577148438
+    lutCenter = 1
+    lutWidth = 1
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -367,7 +318,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "-0.187469557903192 1.39863436678252 -2.43551450315385"
+    center = "0 0 0"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -433,7 +384,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 38
+    startSlice = 0
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -458,8 +409,8 @@ module View2D {
     sliceOrigin = "46.5332183837891 110.516395568848"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 92.6207885742188
-    lutWidth = 185.241577148438
+    lutCenter = 1
+    lutWidth = 1
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -495,7 +446,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "-0.187469557903192 1.39863436678252 -2.43551450315385"
+    center = "0 0 0"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -561,7 +512,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 47
+    startSlice = 0
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -586,8 +537,8 @@ module View2D {
     sliceOrigin = "49.2503433227539 47.9289855957031"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 92.6207885742188
-    lutWidth = 185.241577148438
+    lutCenter = 1
+    lutWidth = 1
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -630,7 +581,7 @@ module Reformat {
     scale = "1 1 1"
     rotation = "0 0 1 0"
     translation = "0 0 0"
-    center = "-0.187469557903192 1.39863436678252 -2.43551450315385"
+    center = "0 0 0"
     fillValue = 0
     interactive = TRUE
     autoCenter = TRUE
@@ -809,7 +760,7 @@ module mialRefineMask {
     useStaple = TRUE
     status = "Refine Mask Done"
     inProgress = FALSE
-    outputSucceed = TRUE
+    outputSucceed = FALSE
   }
 }
 module mialsrtkMaskImage {
@@ -859,7 +810,7 @@ module mialN4BiasField {
     outputBiasField = "D:\\Pierre\\userdata\\FetalMRI\\TestInstall\\SRTV_ITER1_gbcorrfield.nii.gz"
     status = "N4BiasField Correction Done"
     inProgress = FALSE
-    outputSucceed = TRUE
+    outputSucceed = FALSE
   }
 }
 module NiftiToDicomFetalMRI {
@@ -884,25 +835,32 @@ module DicomTool {
   internal  {
     frame = "1277 229 88 56"
     moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "665 419 604 420"
+        sizeHint = "604 420"
+        wasOpen = no
+      }
+    }
   }
   fields  {
     instanceName = DicomTool
-    exportDir = "D:/Pierre/TestFullMevislab\\Results"
+    exportDir = "D:/Pierre/TestFullMevislab\\Results/"
     exportBaseDir = "D:/Pierre/TestFullMevislab\\Results"
     exportNameTemplate = $S/export$T.dcm
     addPatNameDir = FALSE
-    addStudyUIDDIR = FALSE
+    addStudyUIDDIR = TRUE
     addSeriesUIDDIR = FALSE
     allSlices = TRUE
-    minSlice = 1
-    maxSlice = 103
+    minSlice = 0
+    maxSlice = 1
     minUsedSlice = 0
-    maxUsedSlice = 103
+    maxUsedSlice = 0
     allTimepoints = TRUE
-    minTime = 1
+    minTime = 0
     maxTime = 1
     minUsedTime = 0
-    maxUsedTime = 1
+    maxUsedTime = 0
     displayMode1 = Input
     displayMode2 = All
     newStudyUID = FALSE
@@ -991,7 +949,7 @@ module mialTVSuperResolution {
     MaxStepLengthRegistration = 0.2
     status = "TV SuperResolution Done"
     inProgress = FALSE
-    outputSucceed = TRUE
+    outputSucceed = FALSE
   }
 }
 module SoView2DLabel {

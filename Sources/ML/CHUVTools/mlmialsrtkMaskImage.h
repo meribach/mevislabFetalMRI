@@ -57,6 +57,11 @@ private:
 
   BoolField* _inProgressFld;
   BoolField* _outputSucceedFld;
+
+  std::vector<std::string> splitInputs;
+  std::vector<std::string> splitOutputs;
+  std::vector<std::string> splitMasks;
+
   //@}
 protected:
 	void postComputation();

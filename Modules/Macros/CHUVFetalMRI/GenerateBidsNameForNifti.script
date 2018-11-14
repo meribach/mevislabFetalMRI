@@ -1,0 +1,56 @@
+//----------------------------------------------------------------------------------
+//! Macro module GenerateBidsNameForNifti
+/*!
+// \file    GenerateBidsNameForNifti.script
+// \author  FetalMRI
+// \date    2018-11-13
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {
+    Field name     {
+      type       = string
+      persistent = Yes
+    }
+    Field DataPath {
+      editable   = No 
+      type       = String
+      persistent = Yes
+    }
+  }
+}
+
+
+Commands {
+  source = $(LOCAL)/GenerateBidsNameForNifti.py
+  initCommand        = init
+  FieldListener name { command = DataPathChanged }
+  
+}
+
+Window {
+  mw = 480
+  Vertical {
+    //droppedFileCommand = fileDropped
+    margin             = 8
+    Box {
+      Horizontal {
+        FieldLabel name { title = "Path:" labelAlignGroup = group1 }
+        ComboBox name { name = pathChoices }
+        Button { title = "Browse" command = fileDialog }
+      }   
+      Field DataPath { trim = left labelAlignGroup = group1 }
+    }
+    
+  }
+  
+  
+  Execute = populateComboBox  
+}
