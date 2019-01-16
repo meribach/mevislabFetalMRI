@@ -1,0 +1,19 @@
+//----------------------------------------------------------------------------------
+//! ChangeTAGCHUV module definition
+/*!
+// \file    ChangeTAGCHUV.def
+// \author     neuropsynov
+// \date    2019-01-11
+*/
+//----------------------------------------------------------------------------------
+
+
+MacroModule ChangeTAGCHUV {
+  genre              = ""
+  author             = "   neuropsynov"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+   
+  externalDefinition = "$(LOCAL)/ChangeTAGCHUV.script"
+}

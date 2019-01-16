@@ -1,0 +1,72 @@
+//----------------------------------------------------------------------------------
+//! Macro module ChangeTAGCHUV
+/*!
+// \file    ChangeTAGCHUV.script
+// \author     neuropsynov
+// \date    2019-01-11
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {
+    Field PathAcq    {
+      type       = string
+      persistent = Yes
+    }
+    Field PathSRTV { 
+      type       = String
+      persistent = Yes
+    }
+    Field nameAcq     {
+      type       = string
+      persistent = Yes
+    }
+    Field nameSRTV    {
+      type       = string
+      persistent = Yes
+    }
+    
+    Field ListNumberAcquisition {internalName = MultiFileVolumeListImageOutput.outVolIdx}
+    Field ListNumberSRTV {internalName = MultiFileVolumeListImageOutput1.outVolIdx}
+  }
+
+}
+
+
+Commands {
+  source = $(LOCAL)/ChangeTAGCHUV.py
+  FieldListener PathAcq { command = PathAcqChanged }
+  FieldListener PathSRTV { command = PathSRTVChanged }
+  FieldListener ListNumberAcquisition {command = ChangelabelAcqDisplayed}
+  FieldListener ListNumberSRTV {command = ChangeLabelSRTVDisplayed}
+}
+
+Window {
+  mw = 480
+  Vertical {
+    //droppedFileCommand = fileDropped
+    margin             = 8
+    Box {
+      Horizontal {
+        FieldLabel nameAcq { title = "Path Acquisition:" labelAlignGroup = group1 }
+        Button { title = "Browse" command = "py: fileDialog('Acq')" }
+        Field ListNumberAcquisition {step = 1 }
+        Label SeriesDescriptionAcq {title = SeriesDescriptionAcq}
+      } 
+      Horizontal {
+        FieldLabel nameSRTV { title = "Path STRV:" labelAlignGroup = group1 }
+        Button { title = "Browse" command = "py: fileDialog('SRTV')" }
+        Field ListNumberSRTV {step =1}
+        Label SeriesDescriptionSRTV {title = SeriesDescriptionSRTV}
+      } 
+      
+    }
+    
+  }
+}
