@@ -52,4 +52,4 @@ def ChangeLabelSRTVDisplayed():
   
   
 def SaveDicom():
-  ctx.control("DicomTool.saveSlices").touch()
+  ctx.field("DicomTool.saveSlices").touch()
