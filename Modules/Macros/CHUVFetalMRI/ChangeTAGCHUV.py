@@ -28,17 +28,25 @@ def fileDialog(whichPath):
       
       
 def PathAcqChanged():
+  print("PathAcqChanged")
   ctx.field("DirectDicomImport1.source").setStringValue(ctx.field("PathAcq").value)
   ctx.field("DirectDicomImport1.dplImport").touch()
 
 
 def PathSRTVChanged():
+  print("PathSRTVChanged")
   ctx.field("DirectDicomImport.source").setStringValue(ctx.field("PathSRTV").value)
   ctx.field("DirectDicomImport.dplImport").touch()
   
   
 def ChangelabelAcqDisplayed():
-  ctx.control("SeriesDescriptionAcq").setTitle(ctx.field("DicomTagViewer1.tagValue3").value)
+  print(ctx.field("MultiFileVolumeListImageOutput.outVolIdx").value)
+  ctx.field("SeriesDescriptionAcq").setValue(ctx.field("DicomTagViewer1.tagValue3").value)
   
 def ChangeLabelSRTVDisplayed():
-  ctx.control("SeriesDescriptionSRTV").setTitle(ctx.field("DicomTagViewer.tagValue0").value)
+  print(ctx.field("MultiFileVolumeListImageOutput.outVolIdx").value)
+  ctx.field("SeriesDescriptionSRTV").setValue(ctx.field("DicomTagViewer.tagValue0").value)
+  
+  
+def SaveDicom():
+  ctx.control("DicomTool.saveSlices").touch()

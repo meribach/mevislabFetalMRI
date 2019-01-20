@@ -34,7 +34,12 @@ Interface {
     
     Field ListNumberAcquisition {internalName = MultiFileVolumeListImageOutput.outVolIdx}
     Field ListNumberSRTV {internalName = MultiFileVolumeListImageOutput1.outVolIdx}
+    
+    Field SeriesDescriptionAcq {type = string editable = No}
+    Field SeriesDescriptionSRTV {type = string editable = No}
   }
+  
+
 
 }
 
@@ -48,7 +53,7 @@ Commands {
 }
 
 Window {
-  mw = 480
+  mw = 640
   Vertical {
     //droppedFileCommand = fileDropped
     margin             = 8
@@ -57,14 +62,18 @@ Window {
         FieldLabel nameAcq { title = "Path Acquisition:" labelAlignGroup = group1 }
         Button { title = "Browse" command = "py: fileDialog('Acq')" }
         Field ListNumberAcquisition {step = 1 }
-        Label SeriesDescriptionAcq {title = SeriesDescriptionAcq}
+        Field SeriesDescriptionAcq {}
       } 
       Horizontal {
         FieldLabel nameSRTV { title = "Path STRV:" labelAlignGroup = group1 }
         Button { title = "Browse" command = "py: fileDialog('SRTV')" }
         Field ListNumberSRTV {step =1}
-        Label SeriesDescriptionSRTV {title = SeriesDescriptionSRTV}
+        Field SeriesDescriptionSRTV {}
       } 
+    
+      Horizontal {
+        Button {Title = "Save new SRTV" command = "SaveDicom"}
+      }
       
     }
     
