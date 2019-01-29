@@ -71,7 +71,7 @@ module DicomTagModify {
     tagVR4 = ""
     stdTagVR4 = FALSE
     tagName5 = RescaleSlope
-    tagValue5 = 0.001
+    tagValue5 = 0.01
     removeTag5 = FALSE
     tagVR5 = DS
     stdTagVR5 = TRUE
@@ -94,7 +94,7 @@ module DirectDicomImport {
       window _default {
         geometry = "970 714 800 385"
         sizeHint = "800 385"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -797,7 +797,7 @@ module DicomTool {
       window _default {
         geometry = "1236 374 621 501"
         sizeHint = "621 420"
-        wasOpen = yes
+        wasOpen = no
       }
       window _automatic {
         geometry = "726 215 500 603"
