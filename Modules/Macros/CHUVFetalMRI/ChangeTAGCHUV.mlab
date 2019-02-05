@@ -39,7 +39,7 @@ module DicomTagModify {
       window _default {
         geometry = "180 202 610 494"
         sizeHint = "610 494"
-        wasOpen = no
+        wasOpen = yes
       }
     }
   }
@@ -65,11 +65,11 @@ module DicomTagModify {
     removeTag3 = FALSE
     tagVR3 = LO
     stdTagVR3 = TRUE
-    tagName4 = ""
+    tagName4 = ReferringPhysicianName
     tagValue4 = ""
     removeTag4 = FALSE
-    tagVR4 = ""
-    stdTagVR4 = FALSE
+    tagVR4 = PN
+    stdTagVR4 = TRUE
     tagName5 = RescaleSlope
     tagValue5 = 0.01
     removeTag5 = FALSE

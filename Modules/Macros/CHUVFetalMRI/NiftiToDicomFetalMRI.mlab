@@ -42,7 +42,7 @@ module DicomTagModify {
     tagVR3 = LO
     stdTagVR3 = TRUE
     tagName4 = RescaleSlope
-    tagValue4 = 100
+    tagValue4 = 0.01
     removeTag4 = FALSE
     tagVR4 = DS
     stdTagVR4 = TRUE
@@ -159,7 +159,7 @@ module itkImageFileReader {
     autoDetermineDataType = TRUE
     correctSubVoxelShift = TRUE
     fileDimension = 3
-    info = "File closed"
+    info = "Invalid path"
     numDims = 0
     fileType = TypeNotApplicable
     componentType = ""
@@ -228,11 +228,11 @@ module DicomTagModify {
     removeTag4 = FALSE
     tagVR4 = UI
     stdTagVR4 = TRUE
-    tagName5 = ""
+    tagName5 = ReferringPhysicianName
     tagValue5 = ""
     removeTag5 = FALSE
-    tagVR5 = ""
-    stdTagVR5 = FALSE
+    tagVR5 = PN
+    stdTagVR5 = TRUE
     discardSource = None
     useTagsString = FALSE
     modifyTagsString = ""

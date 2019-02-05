@@ -258,6 +258,7 @@ def insertN4BiasFieldCorrectedHRImage():
    
   if ctx.field("FromFrontier").value:
     #we use dicom tool from testinstall, dicomSend
+    import getpass
     print("via Frontier")
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue1").setValue(inImages["Image0"]["StudyDescription"])
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue2").setValue(inImages["Image0"]["PatientName"])
@@ -267,6 +268,7 @@ def insertN4BiasFieldCorrectedHRImage():
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue3").setValue(inImages["Image0"]["StudyTime"])
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue2").setValue(inImages["Image0"]["StudyDate"])
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue4").setValue(inImages["Image0"]["StudyInstanceUID"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue5").setValue(getpass.getuser())
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.apply").touch()
     originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()

@@ -52,4 +52,7 @@ def ChangeLabelSRTVDisplayed():
   
   
 def SaveDicom():
+  import getpass
+  ctx.field("DicomTagModify.tagName4").setValue(getpass.getuser())
+  ctx.field("DicomTagModify.apply").touch()
   ctx.field("DicomTool.saveSlices").touch()

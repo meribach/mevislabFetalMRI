@@ -375,6 +375,7 @@ def insertN4BiasFieldCorrectedHRImage():
    
   if ctx.field("FromFrontier").value:
     #we use dicom tool from testinstall, dicomSend
+    import getpass
     print("via Frontier")
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue1").setValue(inImages["Image0"]["StudyDescription"])
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.tagValue2").setValue(inImages["Image0"]["PatientName"])
@@ -384,6 +385,7 @@ def insertN4BiasFieldCorrectedHRImage():
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue3").setValue(inImages["Image0"]["StudyTime"])
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue2").setValue(inImages["Image0"]["StudyDate"])
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue4").setValue(inImages["Image0"]["StudyInstanceUID"])
+    ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.tagValue5").setValue(getpass.getuser())
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify.apply").touch()
     ctx.field("NiftiToDicomFetalMRI.DicomTagModify1.apply").touch()
     originalTree = ctx.field("NiftiToDicomFetalMRI.SetDicomTreeOnImage.input0").getDicomTree()
@@ -393,6 +395,7 @@ def insertN4BiasFieldCorrectedHRImage():
     DicomToolToUse = ctx.module("parent:DicomExport") #ctx.module("DicomTool") #
     print(DicomToolToUse.field("exportBaseDir").value)
     listUID = [inImages[imageIter]["SeriesInstanceUID"] for imageIter in inImages["UsedForSDI"]]
+    #mutableTree.setTag("(0008,1050)",getpass.getuser())
     mutableTree.setPrivateTag(0x07a1, "pdeman", 0x43, listUID , "UI")
     mutableTree.setPrivateTag(0x07a1, "pdeman", 0x42, iterNumber , "SS")
     #transfoInfo = [open(inImages[imageIter]["Transform"],"r").read() for imageIter in inImages["UsedForSDI"]]
