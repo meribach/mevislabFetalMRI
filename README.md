@@ -12,8 +12,17 @@ There is also a version of the software implemented on syngo.via Frontier https:
 
 # How to Install
 
-See wiki https://github.com/pdeman/mevislabFetalMRI/wiki#how-to-install
+See wiki https://github.com/meribach/mevislabFetalMRI/wiki#how-to-install
 
 # How to Use it
 
-See https://htmlpreview.github.io/?https://raw.githubusercontent.com/pdeman/mevislabFetalMRI/master/Documentation/Publish/ModuleReference/index.html
+See https://htmlpreview.github.io/?https://raw.githubusercontent.com/meribach/mevislabFetalMRI/master/Documentation/Publish/ModuleReference/index.html
+
+# Cite our work
+People using in part or fully this software should refer to:
+1) Zenodo repository 
+2) Tourbier S, Bresson X, Hagmann P, Thiran JP, Meuli R, Bach Cuadra M. An efficient total variation algorithm for super-resolution in fetal brain MRI with adaptive regularization. Neuroimage. 2015;118:584‐597. doi:10.1016/j.neuroimage.2015.06.018
+
+# Acknowledgements
+This work hase been funded by the Hasler Foundation (https://haslerstiftung.ch, project 17029) and the Radiology Department of the Lausanne University Hospital, Switzerland. 
+
