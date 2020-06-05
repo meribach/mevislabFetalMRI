@@ -24,5 +24,5 @@ People using in part or fully this software should refer to:
 2) Tourbier S, Bresson X, Hagmann P, Thiran JP, Meuli R, Bach Cuadra M. An efficient total variation algorithm for super-resolution in fetal brain MRI with adaptive regularization. Neuroimage. 2015;118:584‐597. doi:10.1016/j.neuroimage.2015.06.018
 
 # Acknowledgements
-This work hase been funded by the Hasler Foundation (https://haslerstiftung.ch, project 17029) and the Radiology Department of the Lausanne University Hospital, Switzerland. 
+This work was funded by the Hasler Foundation (https://haslerstiftung.ch, project 17029) and the Radiology Department of the Lausanne University Hospital, Switzerland. 
 
