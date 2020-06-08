@@ -1,4 +1,6 @@
 # mevislabMIALFetalMRI
+![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3878564.svg)
+
 Some fetal brain MRI super-resolution reconstruction tools developed on Mevislab, based on https://github.com/sebastientourbier/mialsuperresolutiontoolkit.
 
 The software presented on this page is for research purpose only.
@@ -21,6 +23,8 @@ See https://htmlpreview.github.io/?https://raw.githubusercontent.com/meribach/me
 # Cite our work
 People using in part or fully this software should refer to:
 1) Pierre Deman, Sebastien Tourbier, Reto Meuli, & Meritxell Bach Cuadra. (2020, June 5). meribach/mevislabFetalMRI: MEVISLAB MIAL Super-Resolution Reconstruction of Fetal Brain MRI v1.0 (Version v1.0). Zenodo. http://doi.org/10.5281/zenodo.3878564
+![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3878564.svg)
+
 2) Tourbier S, Bresson X, Hagmann P, Thiran JP, Meuli R, Bach Cuadra M. An efficient total variation algorithm for super-resolution in fetal brain MRI with adaptive regularization. Neuroimage. 2015;118:584‐597. doi:10.1016/j.neuroimage.2015.06.018
 
 # Acknowledgements
