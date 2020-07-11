@@ -1,0 +1,37 @@
+{
+    "license": "BSD-3-Clause",
+    "keywords": [
+      "fetal",
+      "neuroimaging",
+      "MRI",
+      "super-resolution",
+      "reconstruction",
+      "mevislab",
+      "pipeline",
+      "workflow"
+    ],
+    "publication_date": "2020-06-05",
+    "creators": [
+      {
+        "name": "Deman, Pierre",
+        "affiliation": "Department of Radiology, Lausanne University Hospital (CHUV), Switzerland",
+      },  
+      {
+        "name": "Tourbier, Sebastien",
+        "affiliation": "Department of Radiology, Lausanne University Hospital (CHUV), Switzerland",
+        "orcid": "0000-0002-4441-899X"
+      },
+      {
+         "name": "Meuli, Reto",
+         "affiliation": "Department of Radiology, Lausanne University Hospital (CHUV), Switzerland",
+         "orcid": "0000-0002-9573-3076"
+       },
+      {
+        "name": "Bach Cuadra, Meritxell",
+        "affiliation": "Department of Radiology, Lausanne University Hospital (CHUV), Switzerland",
+        "orcid": "0000-0003-2730-4285"
+      }
+    ],
+    "access_right": "open",
+    "upload_type": "software"
+}
